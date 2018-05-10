@@ -702,7 +702,4 @@ bool database::before_last_checkpoint()const
 {
    return (_checkpoints.size() > 0) && (_checkpoints.rbegin()->first >= head_block_num());
 }
-bool database::create_data_block()
-{
-}
 } }
