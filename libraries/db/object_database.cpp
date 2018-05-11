@@ -122,4 +122,8 @@ void object_database::save_undo_remove(const object& obj)
    _undo_db.on_remove( obj );
 }
 
+void object_database::write_tag(const object& obj)
+{
+}
+
 } } // namespace graphene::db
