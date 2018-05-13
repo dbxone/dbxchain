@@ -26,7 +26,6 @@
 #include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <dbx.hpp>
 #include <fc/io/json.hpp>
 #include <fc/io/stdio.hpp>
 #include <fc/network/http/server.hpp>
