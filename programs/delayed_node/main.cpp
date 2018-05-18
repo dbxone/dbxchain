@@ -46,6 +46,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <dbx/rtree.hpp>
+
 #ifdef WIN32
 # include <signal.h>
 #else
