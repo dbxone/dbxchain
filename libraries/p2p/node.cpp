@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 #include <graphene/p2p/node.hpp>
-
+#include <dbx/datanode.hpp>
 namespace graphene { namespace p2p {
 
    node::node( chain_database& db )
