@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 #include <graphene/p2p/peer_connection.hpp>
-#include <dbx/p2p/peer.hpp>
 namespace graphene { namespace p2p {
 
 } } //graphene::p2p
