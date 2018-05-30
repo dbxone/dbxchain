@@ -33,7 +33,7 @@
 #include <fc/exception/exception.hpp>
 
 #include <graphene/p2p/stcp_socket.hpp>
-
+#include <dbx/stcp_socket.hpp>
 namespace graphene { namespace p2p {
 
 stcp_socket::stcp_socket()
