@@ -78,7 +78,6 @@
 #endif
 
 #define BRAIN_KEY_WORD_COUNT 16
-#define OWNER_KEY_WORD_COUNT 32
 
 namespace graphene { namespace wallet {
 
