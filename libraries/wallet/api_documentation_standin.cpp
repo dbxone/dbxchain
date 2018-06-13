@@ -25,7 +25,6 @@
 #include <boost/algorithm/string/join.hpp>
 #include <graphene/wallet/wallet.hpp>
 #include <graphene/wallet/api_documentation.hpp>
-#include <dbx/wallet/api_documentation.hpp>
 namespace graphene { namespace wallet {
    namespace detail {
       namespace
