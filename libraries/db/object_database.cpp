@@ -26,7 +26,7 @@
 #include <fc/io/raw.hpp>
 #include <fc/container/flat.hpp>
 #include <fc/uint128.hpp>
-
+#include <dbx/flat.hpp>
 namespace graphene { namespace db {
 
 object_database::object_database()
