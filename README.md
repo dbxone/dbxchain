@@ -1,2 +1,2 @@
-# dbxchain
-DBX Blockchain
+# dbx-core
+dbx coin base chain core
