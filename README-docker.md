@@ -65,7 +65,7 @@ With docker compose, multiple nodes can be managed with a single
        - ./docker/conf/:/etc/bitshares/
       # Optional parameters
       environment:
-       - BITSHARESD_ARGS=--help
+       - DBXCHAIND_ARGS=--help
 
 
     version: '3'
