@@ -24,7 +24,7 @@ sudo apt-get install -yfV libssl-dev openssl build-essential python-dev autotool
 sudo apt-get install -yfV libbz2-dev automake doxygen cmake ncurses-dev libtool nodejs nodejs-legacy npm mc
 sudo apt-get -y autoremove
 
-[ ! -d "dbx" ] && mkdir bts && cd bts
+[ ! -d "dbx" ] && mkdir dbx && cd bts
 [ ! -d "tmp" ] && mkdir tmp
 [ ! -d "build" ] && mkdir build
 
