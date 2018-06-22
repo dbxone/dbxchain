@@ -996,7 +996,7 @@ BOOST_AUTO_TEST_CASE( limit_call_rounding_test1_after_hf_342 )
 /***
  * Due to #338, when matching a smaller taker limit order with a big maker call order,
  *   the small order will be filled at its own price.
- * So unable or no need to reproduce one of the scenarios described in bitshares-core issue #342:
+ * So unable or no need to reproduce one of the scenarios described in dbxchain-core issue #342:
  *   when matching a small taker limit order with a big maker call order,
  *   the small limit order would be paying too much.
  * But we'll just write the test case for #338 here.
