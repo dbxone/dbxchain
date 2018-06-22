@@ -24,7 +24,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD . /dbxchain-core
-WORKDIR /bitshares-core
+WORKDIR /dbxchain-core
 
 # Compile
 RUN \
