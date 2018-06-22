@@ -227,7 +227,7 @@ BOOST_AUTO_TEST_CASE(issue_338_etc)
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #338 #343 #606 #625 #649
+ * Fixed dbxchain-core issue #338 #343 #606 #625 #649
  */
 BOOST_AUTO_TEST_CASE(hardfork_core_338_test)
 { try {
