@@ -6,7 +6,7 @@
     url = https://github.com/dbxchain/secp256k1-zkp.git
 [submodule "vendor/websocketpp"]
     path = vendor/websocketpp
-    url = https://github.com/bitshares/websocketpp.git
+    url = https://github.com/dbxchain/websocketpp.git
 [submodule "vendor/editline"]
     path = vendor/editline
     url = https://github.com/troglobit/editline.git
