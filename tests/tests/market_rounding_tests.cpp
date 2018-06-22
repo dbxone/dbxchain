@@ -403,7 +403,7 @@ BOOST_AUTO_TEST_CASE( limit_limit_rounding_test2_after_hf_342 )
 }
 
 /***
- * Reproduces bitshares-core issue #132: something for nothing when matching a limit order with a call order.
+ * Reproduces dbxchain-core issue #132: something for nothing when matching a limit order with a call order.
  * Also detects the cull_small issue in check_call_orders.
  */
 BOOST_AUTO_TEST_CASE( issue_132_limit_and_call_test1 )
