@@ -72,7 +72,7 @@ With docker compose, multiple nodes can be managed with a single
     services:
      fullnode:
       # Image to run
-      image: bitshares/bitshares-core:latest
+      image: dbxchain/bitshares-core:latest
       environment:
       # Optional parameters
       environment:
