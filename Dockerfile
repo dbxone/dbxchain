@@ -44,7 +44,7 @@ RUN \
     #
     # Obtain version
     mkdir /etc/dbxchain && \
-    git rev-parse --short HEAD > /etc/bitshares/version && \
+    git rev-parse --short HEAD > /etc/dbxchain/version && \
     cd / && \
     rm -rf /bitshares-core
 
