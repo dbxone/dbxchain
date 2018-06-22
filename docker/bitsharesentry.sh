@@ -48,7 +48,7 @@ if [[ ! -z "$DBXCHAIND_WITNESS_ID" ]]; then
     ARGS+=" --witness-id=$DBXCHAIND_WITNESS_ID"
 fi
 
-if [[ ! -z "$BITSHARESD_PRIVATE_KEY" ]]; then
+if [[ ! -z "$DBXCHAIND_PRIVATE_KEY" ]]; then
     ARGS+=" --private-key=$BITSHARESD_PRIVATE_KEY"
 fi
 
