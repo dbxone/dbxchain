@@ -1,7 +1,7 @@
 fc
 ==
 
-[![](https://travis-ci.org/bitshares/bitshares-fc.svg?branch=master)](https://travis-ci.org/bitshares/bitshares-fc) 
+[![](https://travis-ci.org/dbxchain/bitshares-fc.svg?branch=master)](https://travis-ci.org/bitshares/bitshares-fc) 
 
 **NOTE:** This fork reverts upstream commit a421e280488385cab26a42153f7ce3c8d5b6281f to avoid changing the DBXChain API.
 
