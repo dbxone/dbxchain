@@ -41,7 +41,7 @@ git submodule update --init --recursive
    DBXChain Core depends on the Boost libraries version 1.57 ~ 1.60.  You can build them from
    source.
    * download the latest boost source from http://www.boost.org/users/download/
-   * unzip it to the base directory `D:\bitshares`.
+   * unzip it to the base directory `D:\dbxchain`.
    * This will create a directory like `D:\bitshares\boost_1_57_0`.
 
 * OpenSSL
