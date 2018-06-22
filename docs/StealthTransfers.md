@@ -35,51 +35,51 @@ Suppose Alice wishes to make a payment to Bob, she must first ask Bob for his ac
 
 All balances must come from somewhere and initially all balances are held by some public account.  For the purpose of this example we will assume alice has an account with the name 'alicepub' has a public balance that it would like to obscure.   It will do this by transferring some funds to one or more blind accounts.
 
-    >>> transfer_to_blind alicepub BTS [[alice,1000],[alice,2000]] true
-    alicepub sent 3000 BTS to 2 blinded balances fee: 15 BTS
-    1000 BTS to  alice
+    >>> transfer_to_blind alicepub DBX [[alice,1000],[alice,2000]] true
+    alicepub sent 3000 DBX to 2 blinded balances fee: 15 DBX
+    1000 DBX to  alice
 	  receipt: 2Dif6AK9AqYGDLDLYcpcwBmzA36dZRmuXXJR8tTQsXg32nBGs6AetDT2E4u4GSVbMKEiTi54sqYu1Bc23cPvzSAyPGEJTLkVpihaot4e1FUDnNPz41uFfu2G6rug1hcRf2Qp5kkRm4ucsAi4Fzb2M3MSfw4r56ucztRisk9JJjLdqFjUPuiAiTdM99JdfKZy8WTkKF2npd
 
-    2000 BTS to  alice
+    2000 DBX to  alice
 	  receipt: 28HrgG1nzkGEDNnL1eZmNvN9JmTVQp7X88nf7rfayjM7sACY8yA7FjV1cW5QXHi1sqv1ywCqfnGiNBqDQWMwpcGB1KdRwDcJPaTMZ5gZpw7Vw4BhdnVeZHY88GV5n8j3uGmZuGBEq18zgHDCFiLJ6WAYvs5PiFvjaNjwQmvBXaC6CqAJWJKXeKCCgmoVJ3CQCw2ErocfVH
 
-In this case the only thing the public sees is that account 'alicepub' sent 3000 BTS to two different places.  The outside world has no idea how much is in each output, only that they add up to 3000 BTS.
+In this case the only thing the public sees is that account 'alicepub' sent 3000 DBX to two different places.  The outside world has no idea how much is in each output, only that they add up to 3000 DBX.
 
 ### Viewing Blind Balances
 
-Alice can verify that she has 3000 BTS in blinded balances by using the command:
+Alice can verify that she has 3000 DBX in blinded balances by using the command:
 
     >>> get_blind_balances alice
-    3000 BTS
+    3000 DBX
 
 ### Stealth Transfer to Bob
 
 Alice can now transfer to "Bob" which she has labeled 'bobby' in her wallet via the following command:
 
-    >>> blind_transfer alice bobby 500 BTS true
-    blind_transfer_operation temp-account fee: 15 BTS
-    485 BTS to  alice
+    >>> blind_transfer alice bobby 500 DBX true
+    blind_transfer_operation temp-account fee: 15 DBX
+    485 DBX to  alice
 	  receipt: iLrPEY61BQsrKSVLLhuJBB6axkjpp2YA1EUq8k8tdQNfbgm1rZn8iUfxd2szyLV1962S39VtPFcuidok7tnT851JFUvP5r7U5MfbtRvmsNBHtSmaWyfbXg7srPsp1roUBpr9Z2QM7W7X5AAonFqoduWcnGp7cViQCDppEqSZHGjY8zFJARd1vm4qoPcMAjw4pjS3vgj6796SfR9ntnN5vZr5b9WvM4Hune7DfbGShed81n1R63BH9h9Ef8BXRy1ERkkJhMmYhXKC
 
-    500 BTS to  bobby
+    500 DBX to  bobby
 	  receipt: iLrPEY61BQsrKSVLLhuJBB6axkjpp2YA1EUq8k8tdQNfbgmWNQD9tWnAciMpPuLhanv4j8nhvUE1ZjD3WNZPoxdiekTCraMir7xx5rbZsGCogF6YfPbCnZCapMDkC8Zsgs5bZWCB2oRvB1wCjYmsQaji6SQcax5Sii4MY93Q1HGPvehcS7jBvLDz5e1GQmAzoWhnPZqoCuDSvL521CSCCxRvLXoHK1Rih5kX72tJYdAXCECUL3xZ2cd2CA8eegfTiC7f7XkTd75f
 
-The output shows that 500 BTS was sent to bobby and 485 BTS sent back to alice as change after paying a 15 BTS fee.  If we check the balance of alice we will see: 
+The output shows that 500 DBX was sent to bobby and 485 DBX sent back to alice as change after paying a 15 DBX fee.  If we check the balance of alice we will see: 
 
     >>> get_blind_balances alice
-    2485 BTS
+    2485 DBX
 
-The outside world only knows that alice sent some amount less than 3000 BTS to two new outputs.
+The outside world only knows that alice sent some amount less than 3000 DBX to two new outputs.
 
 ### Receiving a Blind Transfer
 
 At this point Bob has not actually received any funds because his wallet has no idea where to look.  He needs to load the receipt from Alice into his account.
 
     >>> receive_blind_transfer iLrPEY61BQsrKSVLLhuJBB6axkjpp2YA1EUq8k8tdQNfbgmWNQD9tWnAciMpPuLhanv4j8nhvUE1ZjD3WNZPoxdiekTCraMir7xx5rbZsGCogF6YfPbCnZCapMDkC8Zsgs5bZWCB2oRvB1wCjYmsQaji6SQcax5Sii4MY93Q1HGPvehcS7jBvLDz5e1GQmAzoWhnPZqoCuDSvL521CSCCxRvLXoHK1Rih5kX72tJYdAXCECUL3xZ2cd2CA8eegfTiC7f7XkTd75f "alice" "memo"
-    500 BTS  alice  =>  bob   memo
+    500 DBX  alice  =>  bob   memo
 
     >>> get_blind_balances bob
-    500 BTS
+    500 DBX
 
 The call to receive a blind transfer takes two optional arguments, "from" and "memo" which will be used to label alice's public key in bob's wallet.  This helps bob to make sense of his transfer history.
 
@@ -87,13 +87,13 @@ The call to receive a blind transfer takes two optional arguments, "from" and "m
 
     WHEN           AMOUNT  FROM  =>  TO  MEMO
     ====================================================================================
-    19 seconds ago  500 BTS  alice  =>  bob  memo
+    19 seconds ago  500 DBX  alice  =>  bob  memo
 
 ### Transferring back to Public 
 
 Eventually every blind balance needs to convert back to a public balance which can be achieved with the following command:
 
-    >>> transfer_from_blind alice alicepub 1000 BTS true 
+    >>> transfer_from_blind alice alicepub 1000 DBX true 
     { ... }
 
 In this case alice returned some of her remaining blind balances back to her public balance.
