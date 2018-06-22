@@ -70,7 +70,7 @@ if [[ ! -z "$DBXCHAIND_ES_NODE_URL" ]]; then
     ARGS+=" --elasticsearch-node-url=${DBXCHAIND_ES_NODE_URL}"
 fi
 
-if [[ ! -z "$BITSHARESD_TRUSTED_NODE" ]]; then
+if [[ ! -z "$DBXCHAIND_TRUSTED_NODE" ]]; then
     ARGS+=" --trusted-node=${BITSHARESD_TRUSTED_NODE}"
 fi
 
