@@ -116,7 +116,7 @@ services:
   ports:
    - "0.0.0.0:8091:8090"
   volumes:
-  - "bitshares-delayed_node:/var/lib/bitshares"
+  - "dbxchain-delayed_node:/var/lib/bitshares"
   links: 
   - fullnode
 
