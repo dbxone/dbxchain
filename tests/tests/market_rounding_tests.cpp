@@ -626,7 +626,7 @@ BOOST_AUTO_TEST_CASE( issue_132_limit_and_call_test3 )
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #132: something for nothing when matching a limit order with a call order.
+ * Fixed dbxchain-core issue #132: something for nothing when matching a limit order with a call order.
  */
 BOOST_AUTO_TEST_CASE( issue_132_limit_and_call_test1_after_hardfork )
 { try {
