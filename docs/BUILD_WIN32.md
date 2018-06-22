@@ -67,7 +67,7 @@ D:\dbxchain
 
 ```
 D:
-cd D:\bitshares
+cd D:\dbxchain
 notepad setenv_x64.bat
 ```
 
