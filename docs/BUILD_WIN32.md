@@ -138,7 +138,7 @@ run_cmake_x64.bat
 
  This pops up the cmake gui, but if you've used CMake before it will probably be
  showing the wrong data, so fix that:
- * Where is the source code: `D:\dbxchain\bitshares-core`
+ * Where is the source code: `D:\dbxchain\dbxchain-core`
  * Where to build the binaries: `D:\bitshares\x64` 
 
  Then hit **Configure**.  It may ask you to specify a generator for this
