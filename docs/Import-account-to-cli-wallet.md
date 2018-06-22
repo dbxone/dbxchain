@@ -20,7 +20,7 @@ Now, the only thing you need to import to the cli wallet is your account name an
 Start the cli wallet pointing it to a live node:
 
 ```
-root@NC-PH-1346-07:~/dbxchain/issue163/bitshares-core# ./programs/cli_wallet/cli_wallet --server-rpc-endpoint ws://localhost:8090
+root@NC-PH-1346-07:~/dbxchain/issue163/dbxchain-core# ./programs/cli_wallet/cli_wallet --server-rpc-endpoint ws://localhost:8090
 ```
 
 Set a password for your wallet, please note this password does not need to be the same as the one you have for OpenLedger, this is a new wallet and it will be secured by a new password, then we import the accounts into the new created wallet.
