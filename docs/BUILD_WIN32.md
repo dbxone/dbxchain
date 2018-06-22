@@ -104,7 +104,7 @@ nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak install
 ```
 
-  This will create the directory `D:\bitshares\OpenSSL` with the libraries, DLLs,
+  This will create the directory `D:\dbxchain\OpenSSL` with the libraries, DLLs,
   and header files.
 
 * Build Boost
