@@ -954,7 +954,7 @@ void process_hf_868_890( database& db, bool skip_check_call_orders )
  * Prior to hardfork 935, `check_call_orders` may be unintendedly skipped when
  * median price feed has changed. This method will run at the hardfork time, and
  * call `check_call_orders` for all markets.
- * https://github.com/dbxchain/bitshares-core/issues/935
+ * https://github.com/dbxchain/dbxchain-core/issues/935
  *
  * @param db the database
  */
