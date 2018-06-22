@@ -127,7 +127,7 @@ notepad run_cmake_x64.bat
 Put this into the notepad window, then save and quit.
 ```
 setlocal
-call "d:\bitshares\setenv_x64.bat"
+call "d:\dbxchain\setenv_x64.bat"
 cd %GRA_ROOT%
 cmake-gui -G "Visual Studio 12"
 ```
