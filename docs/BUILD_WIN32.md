@@ -55,7 +55,7 @@ At the end of this, your base directory should look like this (directory names w
 be slightly different for the 64bit versions):
 ```
 D:\dbxchain
-+- bitshares-core
++- dbxchain-core
 +- boost_1_57_0
 +- CMake
 +- openssl-1.0.1g
