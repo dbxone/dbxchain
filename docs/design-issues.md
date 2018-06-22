@@ -2,7 +2,7 @@
 Purpose
 -------
 
-This is a list of some design issues based on my (@theoreticalbts) review of White Rabbit.  Feel free to add or delete from this.
+This is a list of some design issues based on my (@theoreticaldbx) review of White Rabbit.  Feel free to add or delete from this.
 
 Sub-objects
 -----------
@@ -18,7 +18,7 @@ The strength of implementing this with a local object ID space is that we can la
 Tx size optimizations for TaPoS validation
 ------------------------------------------
 
-EDIT:  I (@theoreticalbts) have taken a crack at this, it compiles but is not yet tested.
+EDIT:  I (@theoreticaldbx) have taken a crack at this, it compiles but is not yet tested.
 
 We have this:
 
@@ -77,7 +77,7 @@ Thoughts on prices
 
 *Prices need overhauled*.  Having a `price` be decimal in DBXChain is a pain point.  If you do that, you're asking for rounding errors -- and we sure have plenty.  Instead, `price` should be a rational number.
 
-IMHO (M = @theoreticalbts), an offer should specify `have` and `want` instead of `quote` and `base`.  Then it stands for the half-open interval `(want / have, infinity)`.  I.e. if Alice has 10000 BTS and wants $90, then Alice will accept an exchange rate of $0.009 / BTS or more.  If Bob has $100 and wants 10000 BTS, Bob will accept an exchange rate of 100 BTS per dollar or more (i.e. $0.01 / BTS or less).  Two offers can be matched against each other if `alice.have.asset_id == bob.want.asset_id` and `alice.want.asset_id == bob.have.asset_id` (i.e. they are on opposite sides of the same market), and `alice.want.amount * bob.want.amount >= alice.have.amount * bob.have.amount`.  So in our example, the LHS "want product" is `$90 * 10000 BTS = 900,000 BTS` and the RHS "have product" is `$100 * 10000 BTS = 1,000,000 BTS`, so the parties can make a deal.  (The difference between the two is negative if there's a spread, positive if there's an overlap, zero if there's an exact match.)
+IMHO (M = @theoreticaldbx), an offer should specify `have` and `want` instead of `quote` and `base`.  Then it stands for the half-open interval `(want / have, infinity)`.  I.e. if Alice has 10000 BTS and wants $90, then Alice will accept an exchange rate of $0.009 / BTS or more.  If Bob has $100 and wants 10000 BTS, Bob will accept an exchange rate of 100 BTS per dollar or more (i.e. $0.01 / BTS or less).  Two offers can be matched against each other if `alice.have.asset_id == bob.want.asset_id` and `alice.want.asset_id == bob.have.asset_id` (i.e. they are on opposite sides of the same market), and `alice.want.amount * bob.want.amount >= alice.have.amount * bob.have.amount`.  So in our example, the LHS "want product" is `$90 * 10000 BTS = 900,000 BTS` and the RHS "have product" is `$100 * 10000 BTS = 1,000,000 BTS`, so the parties can make a deal.  (The difference between the two is negative if there's a spread, positive if there's an overlap, zero if there's an exact match.)
 
 You can create an order list for matching by comparing `want / have` and sending the smallest list to the top.  I.e. if Charlie has 10000 BTS and wants $95, comparing his offer to Alice's above would require comparing `charlie.want / charlie.have` to `alice.want / alice.have`.  The current market engine uses decimal fraction data type, however an exact comparison is also possible:  `charlie.want / charlie.have >= alice.want / alice.have` iff `charlie.want * alice.have >= alice.want * charlie.have`.
 
