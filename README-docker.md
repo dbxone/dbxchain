@@ -102,7 +102,7 @@ version: '3'
 services:
 
  fullnode:
-  image: dbxchain/bitshares-core:latest
+  image: dbxchain/dbxchain-core:latest
   ports:
    - "0.0.0.0:8090:8090"
   volumes:
