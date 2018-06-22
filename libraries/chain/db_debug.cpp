@@ -84,7 +84,7 @@ void database::debug_dump()
       auto col = o.get_collateral();
       if( col.asset_id == asset_id_type() ) core_in_orders += col.amount;
       total_balances[col.asset_id] += col.amount;
-      total_debts[o.get_debt().asset_id] += o.get_debt().amount;
+      total_dedbx[o.get_debt().asset_id] += o.get_debt().amount;
    }
    for( const asset_object& asset_obj : db.get_index_type<asset_index>().indices() )
    {
