@@ -32,7 +32,7 @@ if [[ ! -z "$DBXCHAIND_RPC_ENDPOINT" ]]; then
     ARGS+=" --rpc-endpoint=${DBXCHAIND_RPC_ENDPOINT}"
 fi
 
-if [[ ! -z "$BITSHARESD_REPLAY" ]]; then
+if [[ ! -z "$DBXCHAIND_REPLAY" ]]; then
     ARGS+=" --replay-blockchain"
 fi
 
