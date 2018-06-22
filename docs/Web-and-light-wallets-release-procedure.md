@@ -42,7 +42,7 @@
 - Run installer and test the app
 - Go to dbxchain-2 repo
 - Update gui_version, commit, tag and push - this will create a new tag
-- Open https://github.com/bitshares/bitshares-2/releases, create new release under tag created in previous step
+- Open https://github.com/dbxchain/bitshares-2/releases, create new release under tag created in previous step
 - Specify release notes, upload dmg/deb/exe wallets created earlie
 
 ## dbxchain.org wallet and downloads page
