@@ -29,7 +29,7 @@ The entry point simplifies the use of parameters for the `witness_node`
 * `$DBXCHAIND_RPC_ENDPOINT`
 * `$DBXCHAIND_PLUGINS`
 * `$DBXCHAIND_REPLAY`
-* `$BITSHARESD_RESYNC`
+* `$DBXCHAIND_RESYNC`
 * `$BITSHARESD_P2P_ENDPOINT`
 * `$BITSHARESD_WITNESS_ID`
 * `$BITSHARESD_PRIVATE_KEY`
