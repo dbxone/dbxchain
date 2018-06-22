@@ -273,7 +273,7 @@ BOOST_AUTO_TEST_CASE( limit_limit_rounding_test1_after_hf_342 )
 }
 
 /***
- * This test case reproduces one of the scenarios described in bitshares-core issue #342:
+ * This test case reproduces one of the scenarios described in dbxchain-core issue #342:
  *   when matching a limit order with another limit order, a small maker order will pay more than minimum required.
  */
 BOOST_AUTO_TEST_CASE( limit_limit_rounding_test2 )
