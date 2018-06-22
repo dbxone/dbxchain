@@ -50,7 +50,7 @@ However, if Alice is a weakly collateralized short seeking to exit, and Bob is a
 have incentive for her to sell her position to him.  It is desirable to force Alice to cover and force Bob to short at the minimum initial leverage,
 to re-capitalize shorts over time.
 
-Differences from BitShares
+Differences from DBXChain
 --------------------------
 
 - Shorting mechanics.  Shorts have maintenance margin requirement and user-settable stop-loss.  TODO:  Document exactly how this works.
@@ -161,7 +161,7 @@ Account porting gateways
 - This is `theoreticalbts` idea for an interesting feature
 
 This can also be used for third-party "account porting gateways".  E.g. let's say we have `email` account and want to
-set up a way where anyone with an email address can claim the email address in BitShares form.  So for example
+set up a way where anyone with an email address can claim the email address in DBXChain form.  So for example
 `email/user_at_example_dot_com` would be given to someone who proves they control `user@example.com`.  The holder of
 the `email` BTS account, and *not* core witnesses / validation, is responsible for checking this proof (which may
 require arbitrary off-blockchain actions that cannot be validated in a non-decentralized way, like sending confirmation
