@@ -59,7 +59,7 @@ With docker compose, multiple nodes can be managed with a single
     services:
      main:
       # Image to run
-      image: bitshares/bitshares-core:latest
+      image: dbxchain/bitshares-core:latest
       # 
       volumes:
        - ./docker/conf/:/etc/bitshares/
