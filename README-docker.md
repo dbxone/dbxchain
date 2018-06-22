@@ -111,7 +111,7 @@ services:
  delayed_node:
   image: bitshares/bitshares-core:latest
   environment:
-   - 'BITSHARESD_PLUGINS=delayed_node witness'
+   - 'DBXCHAIND_PLUGINS=delayed_node witness'
    - 'BITSHARESD_TRUSTED_NODE=ws://fullnode:8090'
   ports:
    - "0.0.0.0:8091:8090"
