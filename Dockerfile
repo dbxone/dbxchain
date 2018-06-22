@@ -50,7 +50,7 @@ RUN \
 
 # Home directory $HOME
 WORKDIR /
-RUN useradd -s /bin/bash -m -d /var/lib/bitshares bitshares
+RUN useradd -s /bin/bash -m -d /var/lib/dbxchain bitshares
 ENV HOME /var/lib/bitshares
 RUN chown bitshares:bitshares -R /var/lib/bitshares
 
