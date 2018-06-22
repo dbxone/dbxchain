@@ -12,7 +12,7 @@ create, configure and run a witness node.
 
 ### Extracting an account from DBXChain 0.9
 To create a new account, you will need to start with an existing account with
-some of the BTS asset that will pay the transaction fee registering your new
+some of the DBX asset that will pay the transaction fee registering your new
 witness. Get your `<wif>` key from DBXChain 0.9 via
 
     DBXChain0.9: >>> wallet_dump_account_private_key <accountname> "owner_key"
@@ -27,7 +27,7 @@ public keys with balances (or, conversely, public keys with balances could exist
 without any account associated with them). 
 
 In order to get a witness registered we need to import approximately $120 worth of
-BTS into the DBXChain 2.0 client later.
+DBX into the DBXChain 2.0 client later.
 
 #### Manually extracting private keys (most secure way)
 We can extract the required private keys that hold funds this way. First we get
@@ -47,7 +47,7 @@ Each of these balances can be investigated via:
 
     DBXChain0.9: >>> blockchain_get_balance BTSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     ....
-    "asset_id": 0,                                     <- asset_id (0: BTS)
+    "asset_id": 0,                                     <- asset_id (0: DBX)
     "data": {
       "owner": "DBXOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWNER", <- address
           ...
@@ -55,7 +55,7 @@ Each of these balances can be investigated via:
       ...
 
 The required part (the owner of the balance) is denoted as `owner`.
-Pick one or more address for BTS balances and dump the corresponding private key(s) with:
+Pick one or more address for DBX balances and dump the corresponding private key(s) with:
 
     DBXChain0.9: >>> wallet_dump_private_key BTSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWNER
     "5......." # the <balance wif key>
@@ -91,8 +91,8 @@ the private keys associated to a given account name and the correspoinding
 balance:
 
     $ python getbalancekeys.py
-    accountA   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>           2750.00000 BTS        
-    accountB   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>          11246.00000 BTS
+    accountA   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>           2750.00000 DBX        
+    accountB   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>          11246.00000 DBX
     accountB   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>          30000.00000 BROWNIE.PTS
     accountB   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>            300.00000 USE
     accountB   5xxxxxxxxxxxxxxxxxxxxxxxxxx<owner wif key>          65744.00000 NOTE
@@ -103,7 +103,7 @@ balance:
     accountC's owner key 5xxxxxxxxxxxxxxxxxxxxxxxxxx<balance wif key>  # 
 
 
-You will only need BTS balances and the one of your account owner keys in order
+You will only need DBX balances and the one of your account owner keys in order
 to become a witness.
 
 ## DBXChain 2.0 network (or Graphene testnet)
@@ -170,7 +170,7 @@ DBXChain 2.0:
     ...
     ]
     unlocked >>> list_account_balances <accountname>
-    XXXXXXX BTS
+    XXXXXXX DBX
 
 Note: Make sure to put the []-brackets around the private key, since the import
 method takes an array of keys.  
