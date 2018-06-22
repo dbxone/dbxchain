@@ -83,7 +83,7 @@ Update `angel` account to be controlled by our own private key and generate a (f
 
     dbg_update_object {"_action":"update", "id":"1.2.1090", "active":{"weight_threshold":1,"key_auths":[["DBX6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV",1]]}}
     import_key angel 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
-    transfer angel init0 999999 BTS "" true
+    transfer angel init0 999999 DBX "" true
 
 How it works
 ------------
