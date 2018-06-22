@@ -47,6 +47,6 @@
 
 ## dbxchain.org wallet and downloads page
 - Go to dbxchain.gihub.io repo (`git clone https://github.com/dbxchain/dbxchain.github.io`)
-- Copy `bitshares-2-ui/web/dist/*` to `wallet/`
+- Copy `dbxchain-2-ui/web/dist/*` to `wallet/`
 - Edit `_includes/download.html` and update download links and gui release date
 - Commit and push
