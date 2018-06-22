@@ -45,7 +45,7 @@
 - Open https://github.com/bitshares/bitshares-2/releases, create new release under tag created in previous step
 - Specify release notes, upload dmg/deb/exe wallets created earlie
 
-## Bitshares.org wallet and downloads page
+## dbxchain.org wallet and downloads page
 - Go to bitshares.gihub.io repo (`git clone https://github.com/bitshares/bitshares.github.io`)
 - Copy `bitshares-2-ui/web/dist/*` to `wallet/`
 - Edit `_includes/download.html` and update download links and gui release date
