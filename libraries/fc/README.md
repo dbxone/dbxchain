@@ -3,7 +3,7 @@ fc
 
 [![](https://travis-ci.org/bitshares/bitshares-fc.svg?branch=master)](https://travis-ci.org/bitshares/bitshares-fc) 
 
-**NOTE:** This fork reverts upstream commit a421e280488385cab26a42153f7ce3c8d5b6281f to avoid changing the BitShares API.
+**NOTE:** This fork reverts upstream commit a421e280488385cab26a42153f7ce3c8d5b6281f to avoid changing the DBXChain API.
 
 FC stands for fast-compiling c++ library and provides a set of utility libraries useful
 for the development of asynchronous libraries.  Some of the highlights include:
