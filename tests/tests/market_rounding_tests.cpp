@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE( trade_amount_equals_zero )
 }
 
 /**
- *  The something-for-nothing bug should be fixed https://github.com/bitshares/bitshares-core/issues/184
+ *  The something-for-nothing bug should be fixed https://github.com/dbxchain/bitshares-core/issues/184
  */
 BOOST_AUTO_TEST_CASE( trade_amount_equals_zero_after_hf_184 )
 {
