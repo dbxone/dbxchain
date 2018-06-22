@@ -14,7 +14,7 @@ The `Dockerfile` performs the following steps:
 5. Perform `cmake` with build type `Release`
 6. Run `make` and `make_install` (this will install binaries into `/usr/local/bin`
 7. Purge source code off the container
-8. Add a local bitshares user and set `$HOME` to `/var/lib/bitshares`
+8. Add a local dbxchain user and set `$HOME` to `/var/lib/bitshares`
 9. Make `/var/lib/bitshares` and `/etc/bitshares` a docker *volume*
 10. Expose ports `8090` and `2001`
 11. Add default config from `docker/default_config.ini` and entry point script
