@@ -67,7 +67,7 @@ if [[ ! -z "$DBXCHAIND_MAX_OPS_PER_ACCOUNT" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_ES_NODE_URL" ]]; then
-    ARGS+=" --elasticsearch-node-url=${BITSHARESD_ES_NODE_URL}"
+    ARGS+=" --elasticsearch-node-url=${DBXCHAIND_ES_NODE_URL}"
 fi
 
 if [[ ! -z "$BITSHARESD_TRUSTED_NODE" ]]; then
