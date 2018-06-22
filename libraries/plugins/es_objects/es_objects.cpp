@@ -249,7 +249,7 @@ void es_objects_plugin_impl::PrepareBalance(const balance_object* balance_object
    }
 
    std::string data = fc::json::to_string(balance);
-   prepare = graphene::utilities::createBulk("bitshares-balance", data, "", 1);
+   prepare = graphene::utilities::createBulk("dbxchain-balance", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
