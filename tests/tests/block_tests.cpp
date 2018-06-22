@@ -333,7 +333,7 @@ BOOST_AUTO_TEST_CASE( fork_blocks )
       }
 
       {
-         // PR #938 make sure db is in a good state https://github.com/bitshares/bitshares-core/pull/938
+         // PR #938 make sure db is in a good state https://github.com/dbxchain/bitshares-core/pull/938
          BOOST_TEST_MESSAGE( "Checking whether all blocks on disk are good" );
          fc::optional<signed_block> previous_block = db1.fetch_block_by_number(1);
          BOOST_CHECK ( previous_block.valid() );
