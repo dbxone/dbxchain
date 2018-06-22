@@ -38,7 +38,7 @@ BOOST_FIXTURE_TEST_SUITE(market_rounding_tests, database_fixture)
 /**
  *  Create an order such that when the trade executes at the
  *  requested price the resulting payout to one party is 0
- *  ( Reproduces https://github.com/bitshares/bitshares-core/issues/184 )
+ *  ( Reproduces https://github.com/dbxchain/bitshares-core/issues/184 )
  */
 BOOST_AUTO_TEST_CASE( trade_amount_equals_zero )
 {
