@@ -277,7 +277,7 @@ void_result call_order_update_evaluator::do_apply(const call_order_update_operat
 
       // check to see if the order needs to be margin called now, but don't allow black swans and require there to be
       // limit orders available that could be used to fill the order.
-      // Note: due to https://github.com/dbxchain/bitshares-core/issues/649,
+      // Note: due to https://github.com/dbxchain/dbxchain-core/issues/649,
       //       the first call order may be unable to be updated if the second one is undercollateralized.
       if( d.check_call_orders( *_debt_asset, false ) )
       {
