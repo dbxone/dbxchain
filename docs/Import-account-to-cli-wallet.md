@@ -50,7 +50,7 @@ And to check balance:
 ```
 unlocked >>> list_account_balances oxarbitrage.a699
 list_account_balances oxarbitrage.a699
-31016.69330 BTS
+31016.69330 DBX
 0 CNY
 0 USD
 
