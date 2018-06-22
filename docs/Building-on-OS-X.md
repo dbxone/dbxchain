@@ -1,4 +1,4 @@
-BitShares OS X Build Instructions
+DBXChain OS X Build Instructions
 ===============================
 
 1. Install XCode and its command line tools by following the instructions here: https://guide.macports.org/#installing.xcode. 
@@ -35,7 +35,7 @@ BitShares OS X Build Instructions
    cd graphene
    ```
 
-8. Build BitShares:
+8. Build DBXChain:
    ```
    git submodule update --init --recursive
    cmake .
