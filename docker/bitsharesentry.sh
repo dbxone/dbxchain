@@ -41,7 +41,7 @@ if [[ ! -z "$DBXCHAIND_RESYNC" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_P2P_ENDPOINT" ]]; then
-    ARGS+=" --p2p-endpoint=${BITSHARESD_P2P_ENDPOINT}"
+    ARGS+=" --p2p-endpoint=${DBXCHAIND_P2P_ENDPOINT}"
 fi
 
 if [[ ! -z "$BITSHARESD_WITNESS_ID" ]]; then
