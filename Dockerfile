@@ -51,7 +51,7 @@ RUN \
 # Home directory $HOME
 WORKDIR /
 RUN useradd -s /bin/bash -m -d /var/lib/dbxchain dbxchain
-ENV HOME /var/lib/bitshares
+ENV HOME /var/lib/dbxchain
 RUN chown bitshares:bitshares -R /var/lib/bitshares
 
 # Volume
