@@ -45,7 +45,7 @@ if [[ ! -z "$DBXCHAIND_P2P_ENDPOINT" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_WITNESS_ID" ]]; then
-    ARGS+=" --witness-id=$BITSHARESD_WITNESS_ID"
+    ARGS+=" --witness-id=$DBXCHAIND_WITNESS_ID"
 fi
 
 if [[ ! -z "$BITSHARESD_PRIVATE_KEY" ]]; then
