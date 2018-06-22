@@ -17,7 +17,7 @@ Specifically, the architecture of the Ethereum blockchain as executing Turing-co
 - Scalability:  Every node must execute every contract.
 - Flexibility:  Giving resources to a particular piece of code means that code cannot be upgraded or bugfixed; the new version will be a *different* piece of code with no access to the old version's resources.
 
-Project Black Lizard involves a substantial rewrite of the BitShares blockchain database and transactions.
+Project Black Lizard involves a substantial rewrite of the DBXChain blockchain database and transactions.
 
 From the business side, Project Black Lizard has two goals:
 
