@@ -1,10 +1,10 @@
 ## Stealth Transfers
 
-This tutorial shows how to use the CLI wallet to perform stealth transfers in BitShares.   A stealth transfer is one that hides both the amount being sent and the parties involved in the trade.   Stealth transfers are also referred to as blinded transfers.  When privacy is important no account is ever used twice and it is impossible for any third party to identify how money is moving through blockchain analysis alone.
+This tutorial shows how to use the CLI wallet to perform stealth transfers in DBXChain.   A stealth transfer is one that hides both the amount being sent and the parties involved in the trade.   Stealth transfers are also referred to as blinded transfers.  When privacy is important no account is ever used twice and it is impossible for any third party to identify how money is moving through blockchain analysis alone.
 
 ### Creating a Blind Account
 
-Blind Accounts are not registered on the blockchain like the named accounts on BitShares.  Instead a blind account is nothing more than a labeled public key.  The label assigned to the key is only known to your wallet.  The first step is to create an blind account by giving the wallet a name and a "brainkey".  A "brainkey" is effectively the private key used by your account. 
+Blind Accounts are not registered on the blockchain like the named accounts on DBXChain.  Instead a blind account is nothing more than a labeled public key.  The label assigned to the key is only known to your wallet.  The first step is to create an blind account by giving the wallet a name and a "brainkey".  A "brainkey" is effectively the private key used by your account. 
 
     >>> create_blind_account alice "alice-brain-key"
         "DBX7vbxtK1WaZqXsiCHPcjVFBewVj8HFRd5Z5XZDpN6Pvb2dZcMqK"
