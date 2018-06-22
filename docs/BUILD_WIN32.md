@@ -153,5 +153,5 @@ run_cmake_x64.bat
 * *Build Solution*
 
 Or you can build the `INSTALL` target in Visual Studio which will
-copy all of the necessary files into your `D:\bitshares\install`
+copy all of the necessary files into your `D:\dbxchain\install`
 directory, then copy all of those files to the `bin` directory.
