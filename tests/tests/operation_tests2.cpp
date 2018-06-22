@@ -553,7 +553,7 @@ BOOST_AUTO_TEST_CASE( withdraw_permission_nominal_case )
 
 /**
  * Test asset whitelisting feature for withdrawals.
- * Reproduces https://github.com/bitshares/bitshares-core/issues/942 and tests the fix for it.
+ * Reproduces https://github.com/dbxchain/bitshares-core/issues/942 and tests the fix for it.
  */
 BOOST_AUTO_TEST_CASE( withdraw_permission_whitelist_asset_test )
 { try {
