@@ -1,4 +1,4 @@
-# Configures Ubuntu 14.04 VM to be used with BitShares 2.0 (Graphene)
+# Configures Ubuntu 14.04 VM to be used with DBXChain 2.0 (Graphene)
 # Downloads and builds all necessary software to run witness node and web GUI
 # Use with Vagrant (http://docs.vagrantup.com/v2/getting-started/index.html)
 # or just execute the shell script below.
