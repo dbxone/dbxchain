@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(bsip36)
        */
 
       /* References:
-       * BSIP 36: https://github.com/bitshares/bsips/blob/master/bsip-0036.md
+       * BSIP 36: https://github.com/dbxchain/bsips/blob/master/bsip-0036.md
        * and the former: CORE Issue 518: https://github.com/bitshares/bitshares-core/issues/518
        */
 
