@@ -64,7 +64,7 @@ There are several suitable screens on:
         11873.pts-2.alfredo     (09/01/17 20:07:00)     (Detached)
         11831.pts-2.alfredo     (09/01/17 19:55:18)     (Detached)
 Type "screen [-d] -r [pid.]tty.host" to resume one of them.
-root@alfredo:~/dbxchain-munich/recurring/bitshares-core# 
+root@alfredo:~/dbxchain-munich/recurring/dbxchain-core# 
 ```
 
 In this case i will do:
