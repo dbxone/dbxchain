@@ -29,7 +29,7 @@ What is an app?
 
 A Black Lizard *app* is any DAC, other than Black Lizard itself, which is hosted on the Black Lizard blockchain.
 
-Entities on the Black Lizard blockchain that do not belong to any app are *platform level* entities.  For example, the *core asset* (Black Lizard equivalent of BTS), BitAssets and UIA's unassociated with an app are considered *platform assets*.
+Entities on the Black Lizard blockchain that do not belong to any app are *platform level* entities.  For example, the *core asset* (Black Lizard equivalent of DBX), BitAssets and UIA's unassociated with an app are considered *platform assets*.
 
 What are the hard problems?
 ---------------------------
