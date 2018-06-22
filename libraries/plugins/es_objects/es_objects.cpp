@@ -226,7 +226,7 @@ void es_objects_plugin_impl::PrepareAsset(const asset_object* asset_object, cons
    }
 
    std::string data = fc::json::to_string(_asset);
-   prepare = graphene::utilities::createBulk("bitshares-asset", data, "", 1);
+   prepare = graphene::utilities::createBulk("dbxchain-asset", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
