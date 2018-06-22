@@ -107,7 +107,7 @@ TODO:  Document limitations of relative ID's.  They can only be used in some ope
 Name blinding
 -------------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 This is a feature implemented in Namecoin.  It is a commit/reveal procedure to prevent front-running of name registration.
 When registering a new name, you can *commit* `(H(name + separator + salt), recipient_pubkey)` in one tx, then within 24 hours,
@@ -122,7 +122,7 @@ nameless.
 Namespacing
 -----------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 Many user-bases already exist, and some of these may have name collisions.  Common names like `dan` or `nathan` are probably
 already registered on Github, Linkedin, Twitter, Google, Yahoo, etc. and probably belong to different people on all these services.
@@ -136,7 +136,7 @@ root NS might have conflicts), and this change should be name-blinded.
 Wrapped transactions
 --------------------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 In traditional exchanges, unfilled orders are free -- market fees are only charged on matched orders.  We have to charge a minimal
 amount per unfilled order as anti-spam measure.  However, we can imagine an e(x)change provider (X)avier who hosts orders on
@@ -158,7 +158,7 @@ Can we do this with proposed tx's?  We have to think very carefully about the ex
 Account porting gateways
 ------------------------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 This can also be used for third-party "account porting gateways".  E.g. let's say we have `email` account and want to
 set up a way where anyone with an email address can claim the email address in DBXChain form.  So for example
@@ -184,7 +184,7 @@ needs to provide their own funding.
 Account revocation
 ------------------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 There needs to be an "I lost my email address and private keys" button which allows `email` to revoke the name `email/user_at_example_dot_com`.
 However, the underlying account should still exist, it just needs to be unlinked from the name (this way if `user` later finds
@@ -203,7 +203,7 @@ It also complicates account history, as the name displayed will be determined by
 Assertion ops
 -------------
 
-- This is `theoreticalbts` idea for an interesting feature
+- This is `theoreticaldbx` idea for an interesting feature
 
 An *assertion op* is an operation which invalidates a transaction unless the *asserted condition* holds.
 So far we have:
