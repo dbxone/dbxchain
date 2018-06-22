@@ -121,7 +121,7 @@ bootstrap
 
 ```
 D:
-cd D:\bitshares\bitshares-core
+cd D:\dbxchain\bitshares-core
 notepad run_cmake_x64.bat
 ```
 Put this into the notepad window, then save and quit.
