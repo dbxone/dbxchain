@@ -402,7 +402,7 @@ BOOST_AUTO_TEST_CASE(hardfork_core_338_test)
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #453: multiple limit order filling issue
+ * Fixed dbxchain-core issue #453: multiple limit order filling issue
  */
 BOOST_AUTO_TEST_CASE(hardfork_core_453_test)
 { try {
