@@ -98,7 +98,7 @@ setenv_x64.bat
 ```
 D:
 cd D:\dbxchain\openssl-1.0.1g
-perl Configure --openssldir=D:\bitshares\OpenSSL VC-WIN64A
+perl Configure --openssldir=D:\dbxchain\OpenSSL VC-WIN64A
 ms\do_ms.bat
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak install
