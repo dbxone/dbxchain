@@ -631,7 +631,7 @@ BOOST_AUTO_TEST_CASE(hardfork_core_625_big_limit_order_test)
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #453 #606: multiple order matching without black swan, multiple bitassets
+ * Fixed dbxchain-core issue #453 #606: multiple order matching without black swan, multiple bitassets
  */
 BOOST_AUTO_TEST_CASE(hard_fork_453_cross_test)
 { try { // create orders before hard fork, which will be matched on hard fork
