@@ -110,7 +110,7 @@ nmake -f ms\ntdll.mak install
 * Build Boost
 ```
 D:
-cd D:\bitshares\boost_1_57_0
+cd D:\dbxchain\boost_1_57_0
 bootstrap
 .\b2
 ```
