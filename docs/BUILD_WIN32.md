@@ -19,7 +19,7 @@ mkdir D:\dbxchain
 ```
 D:
 cd D:\dbxchain
-git clone https://github.com/dbxchain/bitshares-core.git
+git clone https://github.com/dbxchain/dbxchain-core.git
 cd bitshares-core
 git submodule update --init --recursive
 ```
