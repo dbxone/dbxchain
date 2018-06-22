@@ -80,7 +80,7 @@ ln -f -s /etc/bitshares/config.ini /var/lib/bitshares
 
 # Plugins need to be provided in a space-separated list, which
 # makes it necessary to write it like this
-if [[ ! -z "$BITSHARESD_PLUGINS" ]]; then
+if [[ ! -z "$DBXCHAIND_PLUGINS" ]]; then
    $BITSHARESD --data-dir ${HOME} ${ARGS} ${BITSHARESD_ARGS} --plugins "${BITSHARESD_PLUGINS}"
 else
    $BITSHARESD --data-dir ${HOME} ${ARGS} ${BITSHARESD_ARGS}
