@@ -11,7 +11,7 @@ Windows - Visual Studio 2013
   and makefiles, this directory will be referred to as `GRA_ROOT`:
 
 ```
-mkdir D:\bitshares
+mkdir D:\dbxchain
 ```
 
 * Clone the DBXChain Core repository
