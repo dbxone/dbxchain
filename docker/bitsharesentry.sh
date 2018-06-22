@@ -49,16 +49,16 @@ if [[ ! -z "$DBXCHAIND_WITNESS_ID" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_PRIVATE_KEY" ]]; then
-    ARGS+=" --private-key=$BITSHARESD_PRIVATE_KEY"
+    ARGS+=" --private-key=$DBXCHAIND_PRIVATE_KEY"
 fi
 
-if [[ ! -z "$BITSHARESD_TRACK_ACCOUNTS" ]]; then
-    for ACCOUNT in $BITSHARESD_TRACK_ACCOUNTS ; do
+if [[ ! -z "$DBXCHAIND_TRACK_ACCOUNTS" ]]; then
+    for ACCOUNT in $DBXCHAIND_TRACK_ACCOUNTS ; do
         ARGS+=" --track-account=$ACCOUNT"
     done
 fi
 
-if [[ ! -z "$BITSHARESD_PARTIAL_OPERATIONS" ]]; then
+if [[ ! -z "$DBXCHAIND_PARTIAL_OPERATIONS" ]]; then
     ARGS+=" --partial-operations=${BITSHARESD_PARTIAL_OPERATIONS}"
 fi
 
