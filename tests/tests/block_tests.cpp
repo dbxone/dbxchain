@@ -1415,7 +1415,7 @@ BOOST_FIXTURE_TEST_CASE( update_account_keys, database_fixture )
       std::cout << "update_account_keys:  this test will take a few minutes...\n";
 
       // Originally we had a loop here to go from use_address=0 to 1
-      // Live chain do not allow this so it had to be removed: https://github.com/bitshares/bitshares-core/issues/565
+      // Live chain do not allow this so it had to be removed: https://github.com/dbxchain/bitshares-core/issues/565
       vector< public_key_type > key_ids = numbered_key_id[ 0 ];
       for( int num_owner_keys=1; num_owner_keys<=2; num_owner_keys++ )
       {
