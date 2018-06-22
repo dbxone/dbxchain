@@ -40,7 +40,7 @@ if [ ! -d "tmp/boost_1_57_0" ]; then
 fi 
   
 if [ ! -d "graphene" ]; then
-  echo_msg "building bitshares graphene toolkit.."  
+  echo_msg "building dbxchain graphene toolkit.."  
   git clone https://github.com/cryptonomex/graphene.git
   cd graphene
   git submodule update --init --recursive
