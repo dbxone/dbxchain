@@ -476,7 +476,7 @@ BOOST_AUTO_TEST_CASE( issue_132_limit_and_call_test1 )
 
 /***
  * Another test case
- * reproduces bitshares-core issue #132: something for nothing when matching a limit order with a call order.
+ * reproduces dbxchain-core issue #132: something for nothing when matching a limit order with a call order.
  * Also detects the cull_small issue in check_call_orders.
  *
  * In this test case, the limit order is taker.
