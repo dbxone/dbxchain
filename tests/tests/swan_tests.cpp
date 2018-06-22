@@ -419,7 +419,7 @@ BOOST_AUTO_TEST_CASE( revive_empty_recovered )
    }
 }
 
-/** Creates a black swan, settles all debts - asset should be revived in next maintenance
+/** Creates a black swan, settles all dedbx - asset should be revived in next maintenance
  */
 BOOST_AUTO_TEST_CASE( revive_empty )
 { try {
