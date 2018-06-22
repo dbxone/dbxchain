@@ -1,5 +1,5 @@
 //
-// A stacktrace handler for bitshares
+// A stacktrace handler for dbxchain
 //
 #include <ostream>
 
