@@ -62,7 +62,7 @@ if [[ ! -z "$DBXCHAIND_PARTIAL_OPERATIONS" ]]; then
     ARGS+=" --partial-operations=${DBXCHAIND_PARTIAL_OPERATIONS}"
 fi
 
-if [[ ! -z "$BITSHARESD_MAX_OPS_PER_ACCOUNT" ]]; then
+if [[ ! -z "$DBXCHAIND_MAX_OPS_PER_ACCOUNT" ]]; then
     ARGS+=" --max-ops-per-account=${BITSHARESD_MAX_OPS_PER_ACCOUNT}"
 fi
 
