@@ -74,7 +74,7 @@ if [[ ! -z "$DBXCHAIND_TRUSTED_NODE" ]]; then
     ARGS+=" --trusted-node=${DBXCHAIND_TRUSTED_NODE}"
 fi
 
-## Link the bitshares config file into home
+## Link the dbxchain config file into home
 ## This link has been created in Dockerfile, already
 ln -f -s /etc/bitshares/config.ini /var/lib/bitshares
 
