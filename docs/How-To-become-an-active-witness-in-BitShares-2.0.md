@@ -85,7 +85,7 @@ connection to your DBXChain daemon.
 
 If you don't know what to do with these, you certainly shouldn't run a witness
 just now. Instead, read about [RPC and the
-API](http://wiki.bitshares.org/index.php/DBXChain/API) of DBXChain.
+API](http://wiki.dbxchain.org/index.php/DBXChain/API) of DBXChain.
 If you set up everything correctly, you may just run the python script and get
 the private keys associated to a given account name and the correspoinding
 balance:
