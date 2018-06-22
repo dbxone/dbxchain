@@ -55,7 +55,7 @@ ENV HOME /var/lib/dbxchain
 RUN chown dbxchain:dbxchain -R /var/lib/dbxchain
 
 # Volume
-VOLUME ["/var/lib/bitshares", "/etc/bitshares"]
+VOLUME ["/var/lib/dbxchain", "/etc/bitshares"]
 
 # rpc service:
 EXPOSE 8090
