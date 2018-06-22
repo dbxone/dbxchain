@@ -71,7 +71,7 @@ if [[ ! -z "$DBXCHAIND_ES_NODE_URL" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_TRUSTED_NODE" ]]; then
-    ARGS+=" --trusted-node=${BITSHARESD_TRUSTED_NODE}"
+    ARGS+=" --trusted-node=${DBXCHAIND_TRUSTED_NODE}"
 fi
 
 ## Link the bitshares config file into home
