@@ -1,4 +1,4 @@
-The bitshares developer community use different ways to interact with the core api mainly by the use of the websocket.
+The dbxchain developer community use different ways to interact with the core api mainly by the use of the websocket.
 
 Some of this methods are curl, pybitshares, wscat and many others.
 
