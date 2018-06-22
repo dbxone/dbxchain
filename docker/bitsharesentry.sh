@@ -76,7 +76,7 @@ fi
 
 ## Link the dbxchain config file into home
 ## This link has been created in Dockerfile, already
-ln -f -s /etc/dbxchain/config.ini /var/lib/bitshares
+ln -f -s /etc/dbxchain/config.ini /var/lib/dbxchain
 
 # Plugins need to be provided in a space-separated list, which
 # makes it necessary to write it like this
