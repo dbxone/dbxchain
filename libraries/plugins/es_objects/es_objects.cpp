@@ -275,7 +275,7 @@ void es_objects_plugin_impl::PrepareLimit(const limit_order_object* limit_object
    }
 
    std::string data = fc::json::to_string(limit);
-   prepare = graphene::utilities::createBulk("bitshares-limitorder", data, "", 1);
+   prepare = graphene::utilities::createBulk("dbxchain-limitorder", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
