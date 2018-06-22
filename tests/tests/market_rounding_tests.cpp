@@ -700,7 +700,7 @@ BOOST_AUTO_TEST_CASE( issue_132_limit_and_call_test1_after_hardfork )
 
 /***
  * Another test case
- * for fixed bitshares-core issue #132: something for nothing when matching a limit order with a call order.
+ * for fixed dbxchain-core issue #132: something for nothing when matching a limit order with a call order.
  *
  * In this test case, the limit order is taker.
  */
