@@ -1,6 +1,6 @@
 The dbxchain developer community use different ways to interact with the core api mainly by the use of the websocket.
 
-Some of this methods are curl, pybitshares, wscat and many others.
+Some of this methods are curl, pydbxchain, wscat and many others.
 
 The most used tool is wscat, this is a great tool but it is not scriptable. I found myself pasting the same commands like login and subscribe to database, crypto and other apis over and over again.
 
