@@ -2,7 +2,7 @@
 DBXCHAIND="/usr/local/bin/witness_node"
 
 # For blockchain download
-VERSION=`cat /etc/bitshares/version`
+VERSION=`cat /etc/dbxchain/version`
 
 ## Supported Environmental Variables
 #
