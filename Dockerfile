@@ -63,7 +63,7 @@ EXPOSE 8090
 EXPOSE 2001
 
 # default exec/config files
-ADD docker/default_config.ini /etc/bitshares/config.ini
+ADD docker/default_config.ini /etc/dbxchain/config.ini
 ADD docker/bitsharesentry.sh /usr/local/bin/bitsharesentry.sh
 RUN chmod a+x /usr/local/bin/bitsharesentry.sh
 
