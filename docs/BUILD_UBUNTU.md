@@ -19,7 +19,7 @@ The Boost which ships with Ubuntu 14.04 is too old.  You need to download the Bo
     ./b2 install
 
 
-## Build BitShares Core
+## Build DBXChain Core
 
     cd ..
     git clone https://github.com/bitshares/bitshares-core.git
