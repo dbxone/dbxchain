@@ -46,7 +46,7 @@ RUN \
     mkdir /etc/dbxchain && \
     git rev-parse --short HEAD > /etc/dbxchain/version && \
     cd / && \
-    rm -rf /bitshares-core
+    rm -rf /dbxchain-core
 
 # Home directory $HOME
 WORKDIR /
