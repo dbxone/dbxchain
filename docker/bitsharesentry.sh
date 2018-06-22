@@ -83,5 +83,5 @@ ln -f -s /etc/bitshares/config.ini /var/lib/bitshares
 if [[ ! -z "$DBXCHAIND_PLUGINS" ]]; then
    $DBXCHAIND --data-dir ${HOME} ${ARGS} ${DBXCHAIND_ARGS} --plugins "${DBXCHAIND_PLUGINS}"
 else
-   $DBXCHAIND --data-dir ${HOME} ${ARGS} ${BITSHARESD_ARGS}
+   $DBXCHAIND --data-dir ${HOME} ${ARGS} ${DBXCHAIND_ARGS}
 fi
