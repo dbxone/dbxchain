@@ -42,7 +42,7 @@ git submodule update --init --recursive
    source.
    * download the latest boost source from http://www.boost.org/users/download/
    * unzip it to the base directory `D:\dbxchain`.
-   * This will create a directory like `D:\bitshares\boost_1_57_0`.
+   * This will create a directory like `D:\dbxchain\boost_1_57_0`.
 
 * OpenSSL
 
