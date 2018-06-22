@@ -989,7 +989,7 @@ bool database::check_call_orders(const asset_object& mia, bool enable_black_swan
        if( after_hardfork_436 && ( bitasset.current_feed.settlement_price > ~call_itr->call_price ) )
           return margin_called;
 
-       // Old rule: margin calls can only buy high https://github.com/bitshares/bitshares-core/issues/606
+       // Old rule: margin calls can only buy high https://github.com/dbxchain/bitshares-core/issues/606
        if( before_core_hardfork_606 && match_price > ~call_itr->call_price )
           return margin_called;
 
