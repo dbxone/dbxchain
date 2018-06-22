@@ -75,7 +75,7 @@ Put this into the notepad window, then save and quit.
 
 ```
 @echo off
-set GRA_ROOT=d:\dbxchain\bitshares-core
+set GRA_ROOT=d:\dbxchain\dbxchain-core
 set OPENSSL_ROOT=%GRA_ROOT%\openssl-1.0.1g
 set OPENSSL_ROOT_DIR=%OPENSSL_ROOT%
 set OPENSSL_INCLUDE_DIR=%OPENSSL_ROOT%\include
