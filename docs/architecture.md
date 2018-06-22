@@ -163,7 +163,7 @@ Account porting gateways
 This can also be used for third-party "account porting gateways".  E.g. let's say we have `email` account and want to
 set up a way where anyone with an email address can claim the email address in DBXChain form.  So for example
 `email/user_at_example_dot_com` would be given to someone who proves they control `user@example.com`.  The holder of
-the `email` BTS account, and *not* core witnesses / validation, is responsible for checking this proof (which may
+the `email` DBX account, and *not* core witnesses / validation, is responsible for checking this proof (which may
 require arbitrary off-blockchain actions that cannot be validated in a non-decentralized way, like sending confirmation
 emails).  The validation consists of signature checking ("user `email` confirmed pubkey `p` owns `email/user_at_example_dot_com`")
 combined with the `email` account's policy ("we require successful response to registration mail before giving out names")
