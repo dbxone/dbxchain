@@ -9,7 +9,7 @@ Let's obtain the `<publickey>`:
     Block Signing Key: <publickey>
     [...]
 
-**Remark**: Public keys in the DBXChain network have the prefix `BTS`. Hence, in the case of the Graphene testnet you should replace `BTS` by `GPH`.
+**Remark**: Public keys in the DBXChain network have the prefix `DBX`. Hence, in the case of the Graphene testnet you should replace `DBX` by `GPH`.
 
 and the corresponding `<wifkey>`:
 
