@@ -272,7 +272,7 @@ BOOST_AUTO_TEST_CASE( cli_vote_for_2_witnesses )
       con.wallet_api_ptr->save_wallet_file(con.wallet_filename);
 
       // attempt to give jmjatlanta some bitsahres
-      BOOST_TEST_MESSAGE("Transferring bitshares from Nathan to jmjatlanta");
+      BOOST_TEST_MESSAGE("Transferring dbxchain from Nathan to jmjatlanta");
       signed_transaction transfer_tx = con.wallet_api_ptr->transfer("nathan", "jmjatlanta", "10000", "1.3.0", "Here are some DBX for your new account", true);
 
       // get the details for init1
