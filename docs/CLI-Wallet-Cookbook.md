@@ -59,7 +59,7 @@ unlocked >>> list_account_balances nathan
 unlocked >>>
 ```
 We control the account now, but there is no money in the account yet.  In the genesis 
-state, none of the accounts have balances in them.  In the first BitShares network, 
+state, none of the accounts have balances in them.  In the first DBXChain network, 
 accounts were less tightly coupled to balances.  Balances were associated with 
 public keys, and an account could have hundreds of public keys with balances (or,
 conversely, public keys with balances could exist without any account associated
