@@ -1,4 +1,4 @@
-When i started working in the bitshares-core one of the first problems i found after building a node was a proper way to run a node in the background.
+When i started working in the dbxchain-core one of the first problems i found after building a node was a proper way to run a node in the background.
 
 When a node is started, it needs to sync all the chain and this takes time, when the ssh connection between my pc and my server is lost then I need to start all over again.
 
