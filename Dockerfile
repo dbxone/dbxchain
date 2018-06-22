@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.10.1
-MAINTAINER The bitshares decentralized organisation
+MAINTAINER The dbxchain decentralized organisation
 
 ENV LANG=en_US.UTF-8
 RUN \
