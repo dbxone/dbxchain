@@ -14,7 +14,7 @@ Windows - Visual Studio 2013
 mkdir D:\bitshares
 ```
 
-* Clone the BitShares Core repository
+* Clone the DBXChain Core repository
 
 ```
 D:
@@ -33,12 +33,12 @@ git submodule update --init --recursive
   directory to `D:\bitshares\CMake`.
 
   If you already have CMake installed elsewhere on your system you can use it,
-  but BitShares Core has a few batch files that expect it to be in the base
+  but DBXChain Core has a few batch files that expect it to be in the base
   directory's `CMake` subdirectory, so those scripts would need tweaking.
 
 * Boost
 
-   BitShares Core depends on the Boost libraries version 1.57 ~ 1.60.  You can build them from
+   DBXChain Core depends on the Boost libraries version 1.57 ~ 1.60.  You can build them from
    source.
    * download the latest boost source from http://www.boost.org/users/download/
    * unzip it to the base directory `D:\bitshares`.
@@ -46,7 +46,7 @@ git submodule update --init --recursive
 
 * OpenSSL
 
-   BitShares Core depends on OpenSSL, and you must build this from source.
+   DBXChain Core depends on OpenSSL, and you must build this from source.
     * download the latest OpenSSL source from http://www.openssl.org/source/
     * Untar it to the base directory `D:\bitshares`
     * this will create a directory like `D:\bitshares\openssl-1.0.1g`.
@@ -115,7 +115,7 @@ bootstrap
 .\b2
 ```
 
-#### Build project files for BitShares Core ####
+#### Build project files for DBXChain Core ####
 
 * Run CMake:
 
@@ -147,7 +147,7 @@ run_cmake_x64.bat
  hit **Generate**.
 
 
-* Launch *Visual Studio* and load `D:\bitshares\x64\BitShares.sln` 
+* Launch *Visual Studio* and load `D:\bitshares\x64\DBXChain.sln` 
 * Set Active Configuration to `RelWithDebInfo`, ensure Active Solution platform is `x64` for 64 bit builds
 
 * *Build Solution*
