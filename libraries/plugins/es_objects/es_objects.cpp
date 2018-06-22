@@ -164,7 +164,7 @@ void es_objects_plugin_impl::PrepareProposal(const proposal_object* proposal_obj
    }
 
    std::string data = fc::json::to_string(prop);
-   prepare = graphene::utilities::createBulk("bitshares-proposal", data, "", 1);
+   prepare = graphene::utilities::createBulk("dbxchain-proposal", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
