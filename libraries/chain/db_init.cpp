@@ -470,7 +470,7 @@ void database::init_genesis(const genesis_state_type& genesis_state)
       if( asset.is_bitasset )
       {
          int collateral_holder_number = 0;
-         total_debts[ new_asset_id ] = 0;
+         total_dedbx[ new_asset_id ] = 0;
          for( const auto& collateral_rec : asset.collateral_records )
          {
             account_create_operation cop;
