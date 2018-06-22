@@ -54,7 +54,7 @@ git submodule update --init --recursive
 At the end of this, your base directory should look like this (directory names will
 be slightly different for the 64bit versions):
 ```
-D:\bitshares
+D:\dbxchain
 +- bitshares-core
 +- boost_1_57_0
 +- CMake
