@@ -22,7 +22,7 @@ The Boost which ships with Ubuntu 14.04 is too old.  You need to download the Bo
 ## Build DBXChain Core
 
     cd ..
-    git clone https://github.com/bitshares/bitshares-core.git
+    git clone https://github.com/dbxchain/bitshares-core.git
     cd bitshares-core
     git submodule update --init --recursive
     cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release .
