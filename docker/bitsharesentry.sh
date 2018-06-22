@@ -36,7 +36,7 @@ if [[ ! -z "$DBXCHAIND_REPLAY" ]]; then
     ARGS+=" --replay-blockchain"
 fi
 
-if [[ ! -z "$BITSHARESD_RESYNC" ]]; then
+if [[ ! -z "$DBXCHAIND_RESYNC" ]]; then
     ARGS+=" --resync-blockchain"
 fi
 
