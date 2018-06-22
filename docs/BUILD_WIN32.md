@@ -7,7 +7,7 @@ Windows - Visual Studio 2013
 
 #### Set up the directory structure ####
 * Create a base directory for all projects.  I'm putting everything in
-  `D:\bitshares`, you can use whatever you like.  In several of the batch files
+  `D:\dbxchain`, you can use whatever you like.  In several of the batch files
   and makefiles, this directory will be referred to as `GRA_ROOT`:
 
 ```
