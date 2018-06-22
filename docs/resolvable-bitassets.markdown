@@ -9,14 +9,14 @@ The new BitAsset design presented by Dan today (4-13-2015) consists of a trio of
 Declaration window
 ------------------
 
-One improvement to resolvable BitAssets which comes to mind is to provide a *declaration window* whereby the long side must opt-in to the settlement process.  The declaration process would work something like this:  The *declaration window* consists of e.g. 60-45 days before the resolution date, each long asset holder may make a binding declaration stating that they wish to settle.  At the end of the declaration window, declaration causes each long holder's USD to be replaced by USDA, which is then settled on the resolution date.  This has the virtue of having only two assets (USD and USDA), and USDA only exists for the interval between the close of the declaration window and the resolution date.  There is no potential "A -> B conversion black swan event" which could potentially affect USD holders (although BitShares-style black swans where BTS drops like a rock, causing settlement to soar and exceed the total available collateral is still possible).
+One improvement to resolvable BitAssets which comes to mind is to provide a *declaration window* whereby the long side must opt-in to the settlement process.  The declaration process would work something like this:  The *declaration window* consists of e.g. 60-45 days before the resolution date, each long asset holder may make a binding declaration stating that they wish to settle.  At the end of the declaration window, declaration causes each long holder's USD to be replaced by USDA, which is then settled on the resolution date.  This has the virtue of having only two assets (USD and USDA), and USDA only exists for the interval between the close of the declaration window and the resolution date.  There is no potential "A -> B conversion black swan event" which could potentially affect USD holders (although DBXChain-style black swans where BTS drops like a rock, causing settlement to soar and exceed the total available collateral is still possible).
 
 This creates a declare-wait-sample-resolve cycle consisting of the declaration window (60-45 days before resolution), a waiting period (45-30 days before resolution), a sampling window (30-0 days before resolution), and resolution.  The waiting period is necessary to deal with the fact that the price feed will be slow to respond to new information in the market, thus some lag period provides a "handicap" of sorts to "hobble" the traders who would normally be able to move faster than the system and outmaneuver it.  Note that since the USDA is transferrable and tradeable during the waiting period and sampling period, USDA holders will likely be able to find counterparties in the market willing to convert their USDA to BTS right away (at a small spread of course).  So all of the long side's wealth is always liquid.
 
 Equitable shorting
 ------------------
 
-Another modification which I have been thinking about for a very long time is *equitable shorting*, which does away with the traditional shorting mechanics.  Equitable shorting divides the short side into *short shares* which are fully tradeable and fungible.  Unlike BitShares-style shorting, all short positions have equal debt-to-collateral ratios in equitable shorting, and short positions are naturally divisible (to the satoshi), transferrable, tradeable, and fungible.  Equitable shorting offers substantial bookkeeping advantages, and the mechanics are much easier to explain than shorting.  Furthermore, depending on the details of the mechanics, it may be possible to design equitable shorting in a manner that separates (at least to some extent) *market* activities (involving counterparties making deals with each other) from *supply* activities (involving creation or redemption of long/short shares).
+Another modification which I have been thinking about for a very long time is *equitable shorting*, which does away with the traditional shorting mechanics.  Equitable shorting divides the short side into *short shares* which are fully tradeable and fungible.  Unlike DBXChain-style shorting, all short positions have equal debt-to-collateral ratios in equitable shorting, and short positions are naturally divisible (to the satoshi), transferrable, tradeable, and fungible.  Equitable shorting offers substantial bookkeeping advantages, and the mechanics are much easier to explain than shorting.  Furthermore, depending on the details of the mechanics, it may be possible to design equitable shorting in a manner that separates (at least to some extent) *market* activities (involving counterparties making deals with each other) from *supply* activities (involving creation or redemption of long/short shares).
 
 Balanced supply operations
 --------------------------
@@ -46,7 +46,7 @@ Equitable "margin call"
 
 A *margin call* is requiring the short to buy out the long (i.e. debt) at a premium to book value when collateralization is getting dangerously close to 100%, in order to reduce the probability of a black swan.
 
-In BitShares, margin call happens on a position-by-position basis, and the excess collateral liberated by the margin call is cashed out.  With equitable shorts, it is possible to let this liberated collateral remain to shore up the collateralization of the remaining long shares.
+In DBXChain, margin call happens on a position-by-position basis, and the excess collateral liberated by the margin call is cashed out.  With equitable shorts, it is possible to let this liberated collateral remain to shore up the collateralization of the remaining long shares.
 
 Reducing long DWSR cycles
 -------------------------
@@ -81,7 +81,7 @@ The number of long shares issued will be determined by the price.  2500 BTS at $
 also created.
 
 To simplify discussion, let's say Alice transfers the long shares to Lisa.  (Long holders will have names starting with letters "L" and later, short holders will begin with "A".  A list
-of alphabetical names is available in BitShares at https://github.com/BitShares/bitshares/blob/3ebe73b463d637d3c0e991d6abd4613b68bed3b6/tests/drltc_tests/tscript/genesis.py#L31 ).
+of alphabetical names is available in DBXChain at https://github.com/DBXChain/bitshares/blob/3ebe73b463d637d3c0e991d6abd4613b68bed3b6/tests/drltc_tests/tscript/genesis.py#L31 ).
 We have these books:
 
     -------------------------------------------
