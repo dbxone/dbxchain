@@ -62,7 +62,7 @@ With docker compose, multiple nodes can be managed with a single
       image: dbxchain/dbxchain-core:latest
       # 
       volumes:
-       - ./docker/conf/:/etc/bitshares/
+       - ./docker/conf/:/etc/dbxchain/
       # Optional parameters
       environment:
        - DBXCHAIND_ARGS=--help
