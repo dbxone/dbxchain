@@ -81,7 +81,7 @@ The number of long shares issued will be determined by the price.  2500 DBX at $
 also created.
 
 To simplify discussion, let's say Alice transfers the long shares to Lisa.  (Long holders will have names starting with letters "L" and later, short holders will begin with "A".  A list
-of alphabetical names is available in DBXChain at https://github.com/DBXChain/bitshares/blob/3ebe73b463d637d3c0e991d6abd4613b68bed3b6/tests/drltc_tests/tscript/genesis.py#L31 ).
+of alphabetical names is available in DBXChain at https://github.com/DBXChain/dbxchain/blob/3ebe73b463d637d3c0e991d6abd4613b68bed3b6/tests/drltc_tests/tscript/genesis.py#L31 ).
 We have these books:
 
     -------------------------------------------
