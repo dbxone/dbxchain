@@ -25,19 +25,19 @@ The entry point simplifies the use of parameters for the `witness_node`
 
 ### Supported Environmental Variables
 
-* `$DBXCHAIND_SEED_NODES`
-* `$DBXCHAIND_RPC_ENDPOINT`
-* `$DBXCHAIND_PLUGINS`
-* `$DBXCHAIND_REPLAY`
-* `$DBXCHAIND_RESYNC`
-* `$DBXCHAIND_P2P_ENDPOINT`
-* `$DBXCHAIND_WITNESS_ID`
-* `$DBXCHAIND_PRIVATE_KEY`
-* `$DBXCHAIND_TRACK_ACCOUNTS`
-* `$DBXCHAIND_PARTIAL_OPERATIONS`
-* `$DBXCHAIND_MAX_OPS_PER_ACCOUNT`
-* `$DBXCHAIND_ES_NODE_URL`
-* `$DBXCHAIND_TRUSTED_NODE`
+* `$BITSHARESD_SEED_NODES`
+* `$BITSHARESD_RPC_ENDPOINT`
+* `$BITSHARESD_PLUGINS`
+* `$BITSHARESD_REPLAY`
+* `$BITSHARESD_RESYNC`
+* `$BITSHARESD_P2P_ENDPOINT`
+* `$BITSHARESD_WITNESS_ID`
+* `$BITSHARESD_PRIVATE_KEY`
+* `$BITSHARESD_TRACK_ACCOUNTS`
+* `$BITSHARESD_PARTIAL_OPERATIONS`
+* `$BITSHARESD_MAX_OPS_PER_ACCOUNT`
+* `$BITSHARESD_ES_NODE_URL`
+* `$BITSHARESD_TRUSTED_NODE`
 
 ### Default config
 
@@ -65,7 +65,7 @@ With docker compose, multiple nodes can be managed with a single
        - ./docker/conf/:/etc/bitshares/
       # Optional parameters
       environment:
-       - DBXCHAIND_ARGS=--help
+       - BITSHARESD_ARGS=--help
 
 
     version: '3'
@@ -76,7 +76,7 @@ With docker compose, multiple nodes can be managed with a single
       environment:
       # Optional parameters
       environment:
-       - DBXCHAIND_ARGS=--help
+       - BITSHARESD_ARGS=--help
       ports:
        - "0.0.0.0:8090:8090"
       volumes:
@@ -111,8 +111,8 @@ services:
  delayed_node:
   image: bitshares/bitshares-core:latest
   environment:
-   - 'DBXCHAIND_PLUGINS=delayed_node witness'
-   - 'DBXCHAIND_TRUSTED_NODE=ws://fullnode:8090'
+   - 'BITSHARESD_PLUGINS=delayed_node witness'
+   - 'BITSHARESD_TRUSTED_NODE=ws://fullnode:8090'
   ports:
    - "0.0.0.0:8091:8090"
   volumes:

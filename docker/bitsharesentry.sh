@@ -58,7 +58,7 @@ if [[ ! -z "$DBXCHAIND_TRACK_ACCOUNTS" ]]; then
     done
 fi
 
-if [[ ! -z "$DBXCHAIND_PARTIAL_OPERATIONS" ]]; then
+if [[ ! -z "$BITSHARESD_PARTIAL_OPERATIONS" ]]; then
     ARGS+=" --partial-operations=${BITSHARESD_PARTIAL_OPERATIONS}"
 fi
 
