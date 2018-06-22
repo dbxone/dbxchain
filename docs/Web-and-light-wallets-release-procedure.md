@@ -20,7 +20,7 @@
 - Clone `https://github.com/cryptonomex/faucet` and checkout `ol` branch and install gems with bundle command
 - In faucet dir run `mina wallet` - this will deploy to 'ol' server (specified in `.ssh/config`)
 - Alternatively, copy the dist folder directly to the server: scp dist/* dbxchain.openledger.info:/www/current/public/wallet/    
-- Open https://bitshares.openledger.info and make sure there are no errors and version matches release tag
+- Open https://dbxchain.openledger.info and make sure there are no errors and version matches release tag
 
 ## Light wallets
 - (one time) Install [NSIS](http://nsis.sourceforge.net/Main_Page)
