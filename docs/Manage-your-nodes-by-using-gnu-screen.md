@@ -54,7 +54,7 @@ Next day after logging in:
 
 will send you to the terminal with the running node.
 
-More cool stuff can be done with screen but these are the basics for using it with bitshares nodes.
+More cool stuff can be done with screen but these are the basics for using it with dbxchain nodes.
 
 If you have several screens going on, the screen -r will not work for you, but follow the command suggestions and you will know how to gain control of each terminal again:
 
