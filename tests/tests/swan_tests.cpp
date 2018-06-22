@@ -390,7 +390,7 @@ BOOST_AUTO_TEST_CASE( recollateralize )
    }
 }
 
-/** Creates a black swan, settles all debts, recovers price feed - asset should be revived
+/** Creates a black swan, settles all dedbx, recovers price feed - asset should be revived
  */
 BOOST_AUTO_TEST_CASE( revive_empty_recovered )
 { try {
