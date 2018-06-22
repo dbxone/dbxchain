@@ -24,7 +24,7 @@
 
 ## Light wallets
 - (one time) Install [NSIS](http://nsis.sourceforge.net/Main_Page)
-- `git clone https://github.com/bitshares/bitshares-2-ui` branch `bitshares`
+- `git clone https://github.com/dbxchain/bitshares-2-ui` branch `bitshares`
 - Add upstream repo `git remote add cnx https://github.com/cryptonomex/graphene-ui`
 - Fetch upstream
   `git fetch cnx`
