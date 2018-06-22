@@ -301,7 +301,7 @@ BOOST_AUTO_TEST_CASE( fork_blocks )
 
             // At this point, `fetch_block_by_number` will fetch block from fork_db,
             //    so unable to reproduce the issue which is fixed in PR #938
-            //    https://github.com/bitshares/bitshares-core/pull/938
+            //    https://github.com/dbxchain/bitshares-core/pull/938
             fc::optional<signed_block> previous_block = db1.fetch_block_by_number(1);
             BOOST_CHECK ( previous_block.valid() );
             uint32_t db1_blocks = db1.head_block_num();
