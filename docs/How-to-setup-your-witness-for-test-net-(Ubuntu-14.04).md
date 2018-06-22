@@ -88,7 +88,7 @@ _Detach from screen_
 
 _Extract your wif keys for user and balances as per xeroc's instructions_
 
-[How-to-become-an-active-witness-in-BitShares-2.0](https://github.com/cryptonomex/graphene/wiki/How%20to%20become%20an%20active%20witness%20in%20BitShares%202.0)
+[How-to-become-an-active-witness-in-DBXChain-2.0](https://github.com/cryptonomex/graphene/wiki/How%20to%20become%20an%20active%20witness%20in%20DBXChain%202.0)
 
 _Navigate to cli_wallet_
 
@@ -104,7 +104,7 @@ Note:
 
 _Setup witness as per xerocs instructions_ 
 
-[Howto-become-an-active-witness-in-BitShares-2.0](https://github.com/cryptonomex/graphene/wiki/How%20to%20become%20an%20active%20witness%20in%20BitShares%202.0)
+[Howto-become-an-active-witness-in-DBXChain-2.0](https://github.com/cryptonomex/graphene/wiki/How%20to%20become%20an%20active%20witness%20in%20DBXChain%202.0)
 
 
 Remember to copy your keys, witness id
