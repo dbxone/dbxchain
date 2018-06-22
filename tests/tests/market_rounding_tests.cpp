@@ -1140,7 +1140,7 @@ BOOST_AUTO_TEST_CASE( limit_call_rounding_test2_after_hf_342 )
 } FC_LOG_AND_RETHROW() }
 
 /***
- * This test case reproduces one of the scenarios described in bitshares-core issue #342:
+ * This test case reproduces one of the scenarios described in dbxchain-core issue #342:
  *   when matching a small taker call order with a big maker limit order,
  *   rounding was in favor of the small call order.
  */
