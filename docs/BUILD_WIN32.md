@@ -48,7 +48,7 @@ git submodule update --init --recursive
 
    DBXChain Core depends on OpenSSL, and you must build this from source.
     * download the latest OpenSSL source from http://www.openssl.org/source/
-    * Untar it to the base directory `D:\bitshares`
+    * Untar it to the base directory `D:\dbxchain`
     * this will create a directory like `D:\bitshares\openssl-1.0.1g`.
 
 At the end of this, your base directory should look like this (directory names will
