@@ -6,7 +6,7 @@ The most used tool is wscat, this is a great tool but it is not scriptable. I fo
 
 I was after scripting wscat since a while until @gdfbacchus asked in telegram for the same thing.
 
-Ptython is the choice as it is probably the most used language in the bitshares community.
+Ptython is the choice as it is probably the most used language in the dbxchain community.
 
 https://pypi.python.org/pypi/websocket-client
 
