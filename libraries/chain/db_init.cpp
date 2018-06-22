@@ -495,7 +495,7 @@ void database::init_genesis(const genesis_state_type& genesis_state)
             });
 
             total_supplies[ asset_id_type(0) ] += collateral_rec.collateral;
-            total_debts[ new_asset_id ] += collateral_rec.debt;
+            total_dedbx[ new_asset_id ] += collateral_rec.debt;
             ++collateral_holder_number;
          }
 
