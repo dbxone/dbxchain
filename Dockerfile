@@ -43,7 +43,7 @@ RUN \
     make install && \
     #
     # Obtain version
-    mkdir /etc/bitshares && \
+    mkdir /etc/dbxchain && \
     git rev-parse --short HEAD > /etc/bitshares/version && \
     cd / && \
     rm -rf /bitshares-core
