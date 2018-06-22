@@ -36,7 +36,7 @@ using namespace graphene::chain::test;
 BOOST_FIXTURE_TEST_SUITE(market_tests, database_fixture)
 
 /***
- * Reproduce bitshares-core issue #338 #343 #453 #606 #625 #649
+ * Reproduce dbxchain-core issue #338 #343 #453 #606 #625 #649
  */
 BOOST_AUTO_TEST_CASE(issue_338_etc)
 { try {
