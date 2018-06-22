@@ -1386,7 +1386,7 @@ BOOST_FIXTURE_TEST_CASE( parent_owner_test, database_fixture )
       op.amount = asset(1);
       tx.operations.push_back( op );
 
-      // https://github.com/bitshares/bitshares-core/issues/584
+      // https://github.com/dbxchain/bitshares-core/issues/584
       BOOST_CHECK( chk( tx, { alice_owner_pub }, { } ) );
       BOOST_CHECK( chk( tx, { alice_active_pub, alice_owner_pub }, { alice_active_pub } ) );
       sign( tx, alice_owner_key );
