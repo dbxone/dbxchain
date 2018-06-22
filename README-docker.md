@@ -15,7 +15,7 @@ The `Dockerfile` performs the following steps:
 6. Run `make` and `make_install` (this will install binaries into `/usr/local/bin`
 7. Purge source code off the container
 8. Add a local dbxchain user and set `$HOME` to `/var/lib/dbxchain`
-9. Make `/var/lib/dbxchain` and `/etc/bitshares` a docker *volume*
+9. Make `/var/lib/dbxchain` and `/etc/dbxchain` a docker *volume*
 10. Expose ports `8090` and `2001`
 11. Add default config from `docker/default_config.ini` and entry point script
 12. Run entry point script by default
