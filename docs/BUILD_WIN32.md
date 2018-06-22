@@ -30,7 +30,7 @@ git submodule update --init --recursive
   http://cmake.org/cmake/resources/software.html (version 2.8.12.2 as of this
   writing).  Unzip it to your base directory, which will create a directory that
   looks something like `D:\dbxchain\cmake-2.8.12.2-win32-x86`.  Rename this
-  directory to `D:\bitshares\CMake`.
+  directory to `D:\dbxchain\CMake`.
 
   If you already have CMake installed elsewhere on your system you can use it,
   but DBXChain Core has a few batch files that expect it to be in the base
