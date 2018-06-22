@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE( limit_limit_rounding_test1 )
 }
 
 /***
- * This test case tests one of the scenarios described in bitshares-core issue #342 after hard fork:
+ * This test case tests one of the scenarios described in dbxchain-core issue #342 after hard fork:
  *   when matching a limit order with another limit order,
  *   a small taker order will only pay minimum required amount, and the rest will be returned.
  */
