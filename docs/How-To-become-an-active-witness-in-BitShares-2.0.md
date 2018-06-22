@@ -70,7 +70,7 @@ relevant private keys using a python script. If you are comfortable with the
 description above, you can safely skip the subsequent paragraph.
 
 A Python script located at
-[github](https://github.com/xeroc/bitshares-pytools/blob/master/tools/getbalancekeys.py)
+[github](https://github.com/xeroc/dbxchain-pytools/blob/master/tools/getbalancekeys.py)
 may help you to retrieve private keys for your balances.
 You need to modify the first few lines of the script in order to get a
 connection to your DBXChain daemon.
