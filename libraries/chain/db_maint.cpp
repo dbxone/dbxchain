@@ -917,7 +917,7 @@ void process_hf_868_890( database& db, bool skip_check_call_orders )
                ("asset_sym", current_asset.symbol)("asset_id", current_asset.id) );
       }
 
-      // always update the median feed due to https://github.com/dbxchain/bitshares-core/issues/890
+      // always update the median feed due to https://github.com/dbxchain/dbxchain-core/issues/890
       db.modify( bitasset_data, [&head_time]( asset_bitasset_data_object &obj ) {
          obj.update_median_feeds( head_time );
       });
