@@ -139,7 +139,7 @@ run_cmake_x64.bat
  This pops up the cmake gui, but if you've used CMake before it will probably be
  showing the wrong data, so fix that:
  * Where is the source code: `D:\dbxchain\dbxchain-core`
- * Where to build the binaries: `D:\bitshares\x64` 
+ * Where to build the binaries: `D:\dbxchain\x64` 
 
  Then hit **Configure**.  It may ask you to specify a generator for this
  project; if it does, choose **Visual Studio 12 2013 Win64** for 64 bit builds and select **Use default
