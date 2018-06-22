@@ -18,7 +18,7 @@ Here are some ideas for app use cases the platform should consider supporting.
 - Atomic cross-chain trading
 - Bond market
 - Decentralized joint ventures ("equitable UIA")
-- Selling equity in sale of future software / music licenses ("BitShares Play")
+- Selling equity in sale of future software / music licenses ("DBXChain Play")
 - Crowdfunding
 - Sweepstakes
 - Market as an app?
