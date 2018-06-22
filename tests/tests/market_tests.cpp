@@ -1074,7 +1074,7 @@ BOOST_AUTO_TEST_CASE(hard_fork_649_cross_test)
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #343: change sorting of call orders when matching against limit order
+ * Fixed dbxchain-core issue #343: change sorting of call orders when matching against limit order
  */
 BOOST_AUTO_TEST_CASE(hard_fork_343_cross_test)
 { try { // create orders before hard fork, which will be matched on hard fork
