@@ -1,7 +1,7 @@
 
 ## How to Import Large Wallets from DBXChain 0.9.3
 
-In bitshares 0.9.3c, run: 
+In dbxchain 0.9.3c, run: 
     
     wallet_export_keys /tmp/final_bitshares_keys.json
 
