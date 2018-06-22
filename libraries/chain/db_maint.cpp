@@ -870,7 +870,7 @@ void process_hf_868_890( database& db, bool skip_check_call_orders )
       // Incorrect witness & committee feeds can simply be removed.
       // For non-witness-fed and non-committee-fed assets, set incorrect
       // feeds to price(), since we can't simply remove them. For more information:
-      // https://github.com/bitshares/bitshares-core/pull/832#issuecomment-384112633
+      // https://github.com/dbxchain/bitshares-core/pull/832#issuecomment-384112633
       bool is_witness_or_committee_fed = false;
       if ( current_asset.options.flags & ( witness_fed_asset | committee_fed_asset ) )
          is_witness_or_committee_fed = true;
