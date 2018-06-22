@@ -200,7 +200,7 @@ void es_objects_plugin_impl::PrepareAccount(const account_object* account_object
    }
 
    std::string data = fc::json::to_string(acct);
-   prepare = graphene::utilities::createBulk("bitshares-account", data, "", 1);
+   prepare = graphene::utilities::createBulk("dbxchain-account", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
