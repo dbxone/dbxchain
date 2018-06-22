@@ -195,7 +195,7 @@ void database_fixture::verify_asset_supplies( const database& db )
    const auto& settle_index = db.get_index_type<force_settlement_index>().indices();
    const auto& bids = db.get_index_type<collateral_bid_index>().indices();
    map<asset_id_type,share_type> total_balances;
-   map<asset_id_type,share_type> total_debts;
+   map<asset_id_type,share_type> total_dedbx;
    share_type core_in_orders;
    share_type reported_core_in_orders;
 
