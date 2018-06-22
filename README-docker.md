@@ -25,7 +25,7 @@ The entry point simplifies the use of parameters for the `witness_node`
 
 ### Supported Environmental Variables
 
-* `$BITSHARESD_SEED_NODES`
+* `$DBXCHAIND_SEED_NODES`
 * `$BITSHARESD_RPC_ENDPOINT`
 * `$BITSHARESD_PLUGINS`
 * `$BITSHARESD_REPLAY`
