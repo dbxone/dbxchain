@@ -457,7 +457,7 @@ void database::init_genesis(const genesis_state_type& genesis_state)
    };
 
    map<asset_id_type, share_type> total_supplies;
-   map<asset_id_type, share_type> total_debts;
+   map<asset_id_type, share_type> total_dedbx;
 
    // Create initial assets
    for( const genesis_state_type::initial_asset_type& asset : genesis_state.initial_assets )
