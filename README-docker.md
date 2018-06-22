@@ -80,7 +80,7 @@ With docker compose, multiple nodes can be managed with a single
       ports:
        - "0.0.0.0:8090:8090"
       volumes:
-      - "dbxchain-fullnode:/var/lib/bitshares"
+      - "dbxchain-fullnode:/var/lib/dbxchain"
 
 
 # Docker Hub
