@@ -40,7 +40,7 @@
 - It will create dmg/deb/exe file in `releases/`
 - Make sure created file name matches tag/version
 - Run installer and test the app
-- Go to bitshares-2 repo
+- Go to dbxchain-2 repo
 - Update gui_version, commit, tag and push - this will create a new tag
 - Open https://github.com/bitshares/bitshares-2/releases, create new release under tag created in previous step
 - Specify release notes, upload dmg/deb/exe wallets created earlie
