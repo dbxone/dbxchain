@@ -1,4 +1,4 @@
-Lets face it, in this days most of the bitshares accounts are created through OpenLedger.
+Lets face it, in this days most of the dbxchain accounts are created through OpenLedger.
 
 As developers we like to control our accounts throw the command line. This small tutorial will help you import your light/web wallet created account into the cli wallet.
 
