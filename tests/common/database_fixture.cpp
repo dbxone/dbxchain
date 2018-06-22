@@ -244,7 +244,7 @@ void database_fixture::verify_asset_supplies( const database& db )
 
    total_balances[asset_id_type()] += db.get_dynamic_global_properties().witness_budget;
 
-   for( const auto& item : total_debts )
+   for( const auto& item : total_dedbx )
    {
       BOOST_CHECK_EQUAL(item.first(db).dynamic_asset_data_id(db).current_supply.value, item.second.value);
    }
