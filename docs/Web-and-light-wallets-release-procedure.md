@@ -28,7 +28,7 @@
 - Add upstream repo `git remote add cnx https://github.com/cryptonomex/graphene-ui`
 - Fetch upstream
   `git fetch cnx`
-- Merge upstream/master into bitshares branch
+- Merge upstream/master into dbxchain branch
   `git merge cnx/master`
 - Run `npm install` in `dl/` , `web/` **and** in `electron/`
 - Tag it with release version
