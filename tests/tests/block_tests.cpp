@@ -1522,7 +1522,7 @@ BOOST_FIXTURE_TEST_CASE( update_account_keys, database_fixture )
 
 // The next test is commented out as it will fail in current dbxchain implementaton
 // where "witnesses should never sign 2 consecutive blocks" is not enforced.
-// https://github.com/bitshares/bitshares-core/issues/565
+// https://github.com/dbxchain/bitshares-core/issues/565
 // Leaving it here to use it if we implement.later
 
 /**
