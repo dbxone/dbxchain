@@ -23,7 +23,7 @@ VERSION=`cat /etc/bitshares/version`
 
 ARGS=""
 # Translate environmental variables
-if [[ ! -z "$BITSHARESD_SEED_NODES" ]]; then
+if [[ ! -z "$DBXCHAIND_SEED_NODES" ]]; then
     for NODE in $BITSHARESD_SEED_NODES ; do
         ARGS+=" --seed-node=$NODE"
     done
