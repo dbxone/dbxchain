@@ -87,7 +87,7 @@ With docker compose, multiple nodes can be managed with a single
 
 This container is properly registered with docker hub under the name:
 
-* [dbxchain/dbxchain-core](https://hub.docker.com/r/dbxchain/bitshares-core/)
+* [dbxchain/dbxchain-core](https://hub.docker.com/r/dbxchain/dbxchain-core/)
 
 Going forward, every release tag as well as all pushes to `develop` and
 `testnet` will be built into ready-to-run containers, there.
