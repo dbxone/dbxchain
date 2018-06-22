@@ -57,7 +57,7 @@ if [ ! -d "graphene-ui" ]; then
   cd ../web
   npm install --silent
   npm run-script build
-  cd ~/bts
+  cd ~/dbx
 fi
 
 # ------ shell script end ------
