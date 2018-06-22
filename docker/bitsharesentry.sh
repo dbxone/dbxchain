@@ -59,7 +59,7 @@ if [[ ! -z "$DBXCHAIND_TRACK_ACCOUNTS" ]]; then
 fi
 
 if [[ ! -z "$DBXCHAIND_PARTIAL_OPERATIONS" ]]; then
-    ARGS+=" --partial-operations=${BITSHARESD_PARTIAL_OPERATIONS}"
+    ARGS+=" --partial-operations=${DBXCHAIND_PARTIAL_OPERATIONS}"
 fi
 
 if [[ ! -z "$BITSHARESD_MAX_OPS_PER_ACCOUNT" ]]; then
