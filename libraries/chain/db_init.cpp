@@ -580,7 +580,7 @@ void database::init_genesis(const genesis_state_type& genesis_state)
          auto supply_itr = total_supplies.find( it->id );
          auto debt_itr = total_dedbx.find( it->id );
          FC_ASSERT( supply_itr != total_supplies.end() );
-         FC_ASSERT( debt_itr != total_debts.end() );
+         FC_ASSERT( debt_itr != total_dedbx.end() );
          if( supply_itr->second != debt_itr->second )
          {
             has_imbalanced_assets = true;
