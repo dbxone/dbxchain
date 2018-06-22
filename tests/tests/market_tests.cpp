@@ -960,7 +960,7 @@ BOOST_AUTO_TEST_CASE(hard_fork_338_cross_test)
 } FC_LOG_AND_RETHROW() }
 
 /***
- * Fixed bitshares-core issue #649: Black swan detection fetch call order by call_price but not collateral ratio
+ * Fixed dbxchain-core issue #649: Black swan detection fetch call order by call_price but not collateral ratio
  */
 BOOST_AUTO_TEST_CASE(hard_fork_649_cross_test)
 { try { // create orders before hard fork, which will be matched on hard fork
