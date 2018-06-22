@@ -36,7 +36,7 @@ The entry point simplifies the use of parameters for the `witness_node`
 * `$DBXCHAIND_TRACK_ACCOUNTS`
 * `$DBXCHAIND_PARTIAL_OPERATIONS`
 * `$DBXCHAIND_MAX_OPS_PER_ACCOUNT`
-* `$BITSHARESD_ES_NODE_URL`
+* `$DBXCHAIND_ES_NODE_URL`
 * `$BITSHARESD_TRUSTED_NODE`
 
 ### Default config
