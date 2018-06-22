@@ -76,7 +76,7 @@ With docker compose, multiple nodes can be managed with a single
       environment:
       # Optional parameters
       environment:
-       - BITSHARESD_ARGS=--help
+       - DBXCHAIND_ARGS=--help
       ports:
        - "0.0.0.0:8090:8090"
       volumes:
