@@ -9,7 +9,7 @@ The `Dockerfile` performs the following steps:
 
 1. Obtain base image (phusion/baseimage:0.10.1)
 2. Install required dependencies using `apt-get`
-3. Add bitshares-core source code into container
+3. Add dbxchain-core source code into container
 4. Update git submodules
 5. Perform `cmake` with build type `Release`
 6. Run `make` and `make_install` (this will install binaries into `/usr/local/bin`
