@@ -28,7 +28,7 @@ if [[ ! -z "$DBXCHAIND_SEED_NODES" ]]; then
         ARGS+=" --seed-node=$NODE"
     done
 fi
-if [[ ! -z "$BITSHARESD_RPC_ENDPOINT" ]]; then
+if [[ ! -z "$DBXCHAIND_RPC_ENDPOINT" ]]; then
     ARGS+=" --rpc-endpoint=${BITSHARESD_RPC_ENDPOINT}"
 fi
 
