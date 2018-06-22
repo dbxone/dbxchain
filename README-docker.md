@@ -109,7 +109,7 @@ services:
   - "dbxchain-fullnode:/var/lib/dbxchain"
 
  delayed_node:
-  image: dbxchain/bitshares-core:latest
+  image: dbxchain/dbxchain-core:latest
   environment:
    - 'DBXCHAIND_PLUGINS=delayed_node witness'
    - 'DBXCHAIND_TRUSTED_NODE=ws://fullnode:8090'
