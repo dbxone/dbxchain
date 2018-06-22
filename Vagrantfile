@@ -46,7 +46,7 @@ if [ ! -d "graphene" ]; then
   git submodule update --init --recursive
   cmake .
   make
-  cd ~/bts
+  cd ~/dbx
 fi
 
 if [ ! -d "graphene-ui" ]; then
