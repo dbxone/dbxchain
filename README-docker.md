@@ -121,5 +121,5 @@ services:
   - fullnode
 
 volumes:
- bitshares-fullnode:
+ dbxchain-fullnode:
 ```
