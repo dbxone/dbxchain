@@ -36,7 +36,7 @@ if [ ! -d "tmp/boost_1_57_0" ]; then
     cd boost_1_57_0/
     ./bootstrap.sh --prefix=/usr/local/ > /dev/null
     sudo ./b2 install > /dev/null
-    cd ~/bts
+    cd ~/dbx
 fi 
   
 if [ ! -d "graphene" ]; then
