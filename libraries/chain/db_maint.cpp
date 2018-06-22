@@ -844,7 +844,7 @@ void database::process_bitassets()
  * Prior to hardfork 868, switching a bitasset's shorting asset would not reset its
  * feeds. This method will run at the hardfork time, and erase (or nullify) feeds
  * that have incorrect backing assets.
- * https://github.com/dbxchain/bitshares-core/issues/868
+ * https://github.com/dbxchain/dbxchain-core/issues/868
  *
  * Prior to hardfork 890, changing a bitasset's feed expiration time would not
  * trigger a median feed update. This method will run at the hardfork time, and
