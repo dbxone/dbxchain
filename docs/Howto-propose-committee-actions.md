@@ -60,7 +60,7 @@ in order to use the new `propose_builder_transaction2` command which allows you 
 
 Then set fees, sign and broadcast the transaction:
 
-    >>> set_fees_on_builder_transaction $HANDLE BTS
+    >>> set_fees_on_builder_transaction $HANDLE DBX
     >>> sign_builder_transaction $HANDLE true
 
 Notes:
