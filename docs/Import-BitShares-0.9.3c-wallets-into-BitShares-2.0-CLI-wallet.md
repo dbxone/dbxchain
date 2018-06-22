@@ -3,7 +3,7 @@
 
 In dbxchain 0.9.3c, run: 
     
-    wallet_export_keys /tmp/final_bitshares_keys.json
+    wallet_export_keys /tmp/final_dbxchain_keys.json
 
 in bitshares 2.0 CLI wallet, run:
     >>> import_accounts /tmp/final_bitshares_keys.json my_password
