@@ -52,7 +52,7 @@ RUN \
 WORKDIR /
 RUN useradd -s /bin/bash -m -d /var/lib/dbxchain dbxchain
 ENV HOME /var/lib/dbxchain
-RUN chown dbxchain:dbxchain -R /var/lib/bitshares
+RUN chown dbxchain:dbxchain -R /var/lib/dbxchain
 
 # Volume
 VOLUME ["/var/lib/bitshares", "/etc/bitshares"]
