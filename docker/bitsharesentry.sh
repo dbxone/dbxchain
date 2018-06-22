@@ -40,7 +40,7 @@ if [[ ! -z "$DBXCHAIND_RESYNC" ]]; then
     ARGS+=" --resync-blockchain"
 fi
 
-if [[ ! -z "$BITSHARESD_P2P_ENDPOINT" ]]; then
+if [[ ! -z "$DBXCHAIND_P2P_ENDPOINT" ]]; then
     ARGS+=" --p2p-endpoint=${BITSHARESD_P2P_ENDPOINT}"
 fi
 
