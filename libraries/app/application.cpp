@@ -164,7 +164,7 @@ void application_impl::reset_p2p_node(const fc::path& data_dir)
    }
    else
    {
-      // https://bitsharestalk.org/index.php/topic,23715.0.html
+      // https://dbxchaintalk.org/index.php/topic,23715.0.html
       vector<string> seeds = {
          "104.236.144.84:1777",               // puppies      (USA)
          "128.199.143.47:2015",               // Harvey       (Singapore)
