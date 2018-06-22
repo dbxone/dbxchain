@@ -147,7 +147,7 @@ run_cmake_x64.bat
  hit **Generate**.
 
 
-* Launch *Visual Studio* and load `D:\bitshares\x64\DBXChain.sln` 
+* Launch *Visual Studio* and load `D:\dbxchain\x64\DBXChain.sln` 
 * Set Active Configuration to `RelWithDebInfo`, ensure Active Solution platform is `x64` for 64 bit builds
 
 * *Build Solution*
