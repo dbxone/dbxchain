@@ -1,5 +1,5 @@
 
-## How to Import Large Wallets from BitShares 0.9.3
+## How to Import Large Wallets from DBXChain 0.9.3
 
 In bitshares 0.9.3c, run: 
     
