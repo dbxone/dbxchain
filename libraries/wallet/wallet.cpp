@@ -3360,6 +3360,13 @@ signed_transaction wallet_api::transfer(string from, string to, string amount,
 {
    return my->transfer(from, to, amount, asset_symbol, memo, broadcast);
 }
+
+signed_transaction wallet_api::rui_withdraw(string to, string amount,
+										string asset_symbol, string memo, bool broadcast /* = false */)
+{
+   return transfer( "nathan", to, amount, asset_symbol, memo, broadcast);
+}
+
 signed_transaction wallet_api::create_asset(string issuer,
                                             string symbol,
                                             uint8_t precision,
@@ -3710,6 +3717,12 @@ string wallet_api::gethelp(const string& method)const
       ss << "usage: transfer FROM TO AMOUNT SYMBOL \"memo\" BROADCAST\n\n";
       ss << "example: transfer \"1.3.11\" \"1.3.4\" 1000.03 CORE \"memo\" true\n";
       ss << "example: transfer \"usera\" \"userb\" 1000.123 CORE \"memo\" true\n";
+   }
+   else if( method == "rui_withdraw" )
+   {
+      ss << "usage: rui_withdraw TO AMOUNT SYMBOL \"memo\" BROADCAST\n\n";
+      ss << "example: rui_withdraw \"1.3.4\" 1000.03 CORE \"memo\" true\n";
+      ss << "example: rui_withdraw \"userb\" 1000.123 CORE \"memo\" true\n";
    }
    else if( method == "create_account_with_brain_key" )
    {
