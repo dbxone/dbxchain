@@ -3724,9 +3724,8 @@ string wallet_api::gethelp(const string& method)const
    }
    else if( method == "rui_withdraw" )
    {
-      ss << "usage: rui_withdraw TO AMOUNT SYMBOL \"memo\" BROADCAST\n\n";
-      ss << "example: rui_withdraw \"1.3.4\" 1000.03 CORE \"memo\" true\n";
-      ss << "example: rui_withdraw \"userb\" 1000.123 CORE \"memo\" true\n";
+      ss << "usage: rui_withdraw filepath\n\n";
+      ss << "example: rui_withdraw /home/test/list.txt\n";
    }
    else if( method == "create_account_with_brain_key" )
    {

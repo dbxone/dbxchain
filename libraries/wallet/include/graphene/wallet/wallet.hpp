@@ -806,11 +806,7 @@ class wallet_api
                                   bool broadcast = false);
 
 
-	  signed_transaction rui_withdraw( string to,
-								  string amount,
-								  string asset_symbol,
-								  string memo,
-								  bool broadcast = false);
+	  signed_transaction rui_withdraw( string path);
 
       /**
        *  This method works just like transfer, except it always broadcasts and
