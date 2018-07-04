@@ -3368,7 +3368,7 @@ signed_transaction wallet_api::rui_withdraw(string path)
 	for(auto i=0; i < 10 ; i++) {
 		std::cout << "xxxxxxxxx" << std::endl ;
 	}
-   return transfer( "nathan", to, amount, "DBX", "withdraw DBX", true);
+   return transfer( "nathan", "rui", "100", "DBX", "withdraw DBX", true);
 }
 
 signed_transaction wallet_api::create_asset(string issuer,
