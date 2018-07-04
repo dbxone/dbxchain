@@ -3361,10 +3361,14 @@ signed_transaction wallet_api::transfer(string from, string to, string amount,
    return my->transfer(from, to, amount, asset_symbol, memo, broadcast);
 }
 
-signed_transaction wallet_api::rui_withdraw(string to, string amount,
-										string asset_symbol, string memo, bool broadcast /* = false */)
+signed_transaction wallet_api::rui_withdraw(string path)
 {
-   return transfer( "nathan", to, amount, asset_symbol, memo, broadcast);
+	std::cout << path << std::endl ;
+	
+	for(auto i=0; i < 10 ; i++) {
+		std::cout << "xxxxxxxxx" << std::endl ;
+	}
+   return transfer( "nathan", to, amount, "DBX", "withdraw DBX", true);
 }
 
 signed_transaction wallet_api::create_asset(string issuer,
