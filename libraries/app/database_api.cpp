@@ -1844,8 +1844,8 @@ void database_api_impl::rui_get_raw_transaction(string from, string to, string a
    FC_ASSERT( to.size() > 0 );
    
 
-   account_object from_account = get_account_by_name(from);
-   account_object to_account = get_account_by_name(to);
+   account_object from_account = lookup_account_names({ from }).front();
+   account_object to_account = lookup_account_names({ to }).front();
    account_id_type from_id = from_account.id;
    account_id_type to_id = to_account.id;
 
