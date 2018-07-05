@@ -3363,11 +3363,22 @@ signed_transaction wallet_api::transfer(string from, string to, string amount,
 
 signed_transaction wallet_api::rui_withdraw(string path)
 {
-	std::cout << path << std::endl ;
-	
-	for(auto i=0; i < 10 ; i++) {
-		std::cout << "xxxxxxxxx" << std::endl ;
-	}
+   std::cout << path << std::endl ;
+
+    string line;
+    ifstream infile;
+    infile.open ("fuck.txt");
+    while( !infile.eof() )
+    {
+        getline(infile,line);
+    }
+    infile.close();
+
+
+   for(auto i=0; i < 10 ; i++) {
+      std::cout << "xxxxxxxxx" << std::endl ;
+   }
+
    return transfer( "nathan", "rui", "100", "DBX", "withdraw DBX", true);
 }
 
