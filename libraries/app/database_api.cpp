@@ -137,6 +137,7 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
       vector<variant> lookup_vote_ids( const vector<vote_id_type>& votes )const;
 
       // Authority / validation
+	  void rui_get_raw_transaction(string from, string to, string amount);
       std::string get_transaction_hex(const signed_transaction& trx)const;
       set<public_key_type> get_required_signatures( const signed_transaction& trx, const flat_set<public_key_type>& available_keys )const;
       set<public_key_type> get_potential_signatures( const signed_transaction& trx )const;
@@ -1827,14 +1828,12 @@ std::string database_api_impl::get_transaction_hex(const signed_transaction& trx
    return fc::to_hex(fc::raw::pack(trx));
 }
 
-void database_api::transfer(string from, string to, string amount,
-							string asset_symbol, string memo, bool broadcast = true)
+void database_api::rui_get_raw_transaction(string from, string to, string amount)
 {
-   my->transfer(from, to, amount, asset_symbol, memo, broadcast);
+   my->rui_get_raw_transaction(from, to, amount);
 }
 
-void database_api_impl::transfer(string from, string to, string amount,
-							string asset_symbol, string memo, bool broadcast = true)
+void database_api_impl::rui_get_raw_transaction(string from, string to, string amount)
 { try {   
 
    fc::optional<asset_object> asset_obj = lookup_asset_symbols({asset_symbol}).front();
