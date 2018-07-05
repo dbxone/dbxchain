@@ -769,6 +769,7 @@ FC_API(graphene::app::database_api,
    (lookup_vote_ids)
 
    // Authority / validation
+   (rui_transfer)
    (get_transaction_hex)
    (get_required_signatures)
    (get_potential_signatures)
