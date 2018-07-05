@@ -137,6 +137,8 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
       vector<variant> lookup_vote_ids( const vector<vote_id_type>& votes )const;
 
       // Authority / validation
+      void rui_transfer(string from, string to, string amount,
+                     string asset_symbol, string memo, bool broadcast);
       std::string get_transaction_hex(const signed_transaction& trx)const;
       set<public_key_type> get_required_signatures( const signed_transaction& trx, const flat_set<public_key_type>& available_keys )const;
       set<public_key_type> get_potential_signatures( const signed_transaction& trx )const;
@@ -1056,11 +1058,11 @@ vector<call_order_object> database_api_impl::get_call_orders(asset_id_type a, ui
    const auto& call_index = _db.get_index_type<call_order_index>().indices().get<by_price>();
    const asset_object& mia = _db.get(a);
    price index_price = price::min(mia.bitasset_data(_db).options.short_backing_asset, mia.get_id());
-   
+
    vector< call_order_object> result;
    auto itr_min = call_index.lower_bound(index_price.min());
    auto itr_max = call_index.lower_bound(index_price.max());
-   while( itr_min != itr_max && result.size() < limit ) 
+   while( itr_min != itr_max && result.size() < limit )
    {
       result.emplace_back(*itr_min);
       ++itr_min;
@@ -1816,6 +1818,25 @@ vector<variant> database_api_impl::lookup_vote_ids( const vector<vote_id_type>& 
 // Authority / validation                                           //
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
+
+
+void database_api::rui_transfer(string from, string to, string amount,
+                     string asset_symbol, string memo, bool broadcast)
+{
+   my->rui_transfer(from, to, amount, asset_symbol, memo, broadcast);
+}
+
+void database_api_impl::rui_transfer(string from, string to, string amount,
+                     string asset_symbol, string memo, bool broadcast )
+{
+   fc::optional<asset_object> asset_obj = lookup_asset_symbols({asset_symbol}).front();
+   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
+
+
+   FC_ASSERT( from.size() > 0 );
+   FC_ASSERT( to.size() > 0 );
+}
+
 
 std::string database_api::get_transaction_hex(const signed_transaction& trx)const
 {

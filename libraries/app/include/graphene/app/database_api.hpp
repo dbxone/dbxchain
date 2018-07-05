@@ -593,6 +593,9 @@ class database_api
       // Authority / validation //
       ////////////////////////////
 
+      void rui_transfer(string from, string to, string amount,
+                     string asset_symbol, string memo, bool broadcast);
+
       /// @brief Get a hexdump of the serialized binary form of a transaction
       std::string get_transaction_hex(const signed_transaction& trx)const;
 
