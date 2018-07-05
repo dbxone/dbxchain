@@ -1836,17 +1836,13 @@ void database_api::rui_get_raw_transaction(string from, string to, string amount
 void database_api_impl::rui_get_raw_transaction(string from, string to, string amount)
 { try {   
 
-   fc::optional<asset_object> asset_obj = lookup_asset_symbols({asset_symbol}).front();
-   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
+   fc::optional<asset_object> asset_obj = lookup_asset_symbols({"DBX"}).front();
+   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", "DBX"));
    
 
    FC_ASSERT( from.size() > 0 );
    FC_ASSERT( to.size() > 0 );
    
-/*
-   auto rec = lookup_accounts({to}).front();
-   FC_ASSERT( rec && rec->name == to );
-*/   
 
    account_object from_account = get_account_by_name(from);
    account_object to_account = get_account_by_name(to);
