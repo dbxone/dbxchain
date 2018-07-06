@@ -251,10 +251,11 @@ void application_impl::new_connection( const fc::http::websocket_connection_ptr&
    login->enable_api("database_api");
    wsc->register_api(login->database());
 
+   wsc->register_api(fc::api<graphene::app::login_api>(login));
+
    login->enable_api("history_api");
    wsc->register_api(login->history());
 
-   wsc->register_api(fc::api<graphene::app::login_api>(login));
    c->set_session_data( wsc );
 
    std::string username = "*";
