@@ -592,8 +592,6 @@ class database_api
       ////////////////////////////
       // Authority / validation //
       ////////////////////////////
-	  void rui_get_raw_transaction(string from, string to, string amount);
-
       /// @brief Get a hexdump of the serialized binary form of a transaction
       std::string get_transaction_hex(const signed_transaction& trx)const;
 
@@ -770,7 +768,6 @@ FC_API(graphene::app::database_api,
    (lookup_vote_ids)
 
    // Authority / validation
-   (rui_get_raw_transaction)
    (get_transaction_hex)
    (get_required_signatures)
    (get_potential_signatures)

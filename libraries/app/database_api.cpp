@@ -137,7 +137,6 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
       vector<variant> lookup_vote_ids( const vector<vote_id_type>& votes )const;
 
       // Authority / validation
-	  void rui_get_raw_transaction(string from, string to, string amount);
       std::string get_transaction_hex(const signed_transaction& trx)const;
       set<public_key_type> get_required_signatures( const signed_transaction& trx, const flat_set<public_key_type>& available_keys )const;
       set<public_key_type> get_potential_signatures( const signed_transaction& trx )const;
@@ -1827,120 +1826,6 @@ std::string database_api_impl::get_transaction_hex(const signed_transaction& trx
 {
    return fc::to_hex(fc::raw::pack(trx));
 }
-
-void database_api::rui_get_raw_transaction(string from, string to, string amount)
-{
-   my->rui_get_raw_transaction(from, to, amount);
-}
-
-void database_api_impl::rui_get_raw_transaction(string from, string to, string amount)
-{ try {   
-
-   fc::optional<asset_object> asset_obj = lookup_asset_symbols({"DBX"}).front();
-   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", "DBX"));
-   
-
-   FC_ASSERT( from.size() > 0 );
-   FC_ASSERT( to.size() > 0 );
-   
-
-   account_object from_account = get_account(from);
-   account_object to_account = get_account(to);
-   account_id_type from_id = from_account.id;
-   account_id_type to_id = to_account.id;
-
-   std::cout << "fuck .................." << std::endl;
-   
- /*
-
-   transfer_operation xfer_op;
-
-   xfer_op.from = from_id;
-   xfer_op.to = to_id;
-   xfer_op.amount = asset_obj->amount_from_string(amount);
-
-   if( memo.size() )
-	  {
-		 xfer_op.memo = memo_data();
-		 xfer_op.memo->from = from_account.options.memo_key;
-		 xfer_op.memo->to = to_account.options.memo_key;
-		 xfer_op.memo->set_message(get_private_key(from_account.options.memo_key),
-								   to_account.options.memo_key, memo);
-	  }
-
-   signed_transaction tx;
-   tx.operations.push_back(xfer_op);
-   set_operation_fees( tx, get_global_properties().parameters.current_fees);
-   tx.validate();
-
-   return sign_transaction(tx, broadcast);
- */
-} FC_CAPTURE_AND_RETHROW( (from)(to)(amount)(asset_symbol)(memo)(broadcast) ) }
-/*
-
-signed_transaction sign_transaction(signed_transaction tx, bool broadcast = true)
-{
-   set<public_key_type> pks = get_potential_signatures( tx );
-   flat_set<public_key_type> owned_keys;
-   owned_keys.reserve( pks.size() );
-   std::copy_if( pks.begin(), pks.end(), std::inserter(owned_keys, owned_keys.end()),
-				 [this](const public_key_type& pk){ return _keys.find(pk) != _keys.end(); } );
-   tx.signatures.clear();
-   set<public_key_type> approving_key_set = get_required_signatures( tx, owned_keys );
-
-   auto dyn_props = get_dynamic_global_properties();
-   tx.set_reference_block( dyn_props.head_block_id );
-
-   // first, some bookkeeping, expire old items from _recently_generated_transactions
-   // since transactions include the head block id, we just need the index for keeping transactions unique
-   // when there are multiple transactions in the same block.  choose a time period that should be at
-   // least one block long, even in the worst case.  2 minutes ought to be plenty.
-   fc::time_point_sec oldest_transaction_ids_to_track(dyn_props.time - fc::minutes(2));
-   auto oldest_transaction_record_iter = _recently_generated_transactions.get<timestamp_index>().lower_bound(oldest_transaction_ids_to_track);
-   auto begin_iter = _recently_generated_transactions.get<timestamp_index>().begin();
-   _recently_generated_transactions.get<timestamp_index>().erase(begin_iter, oldest_transaction_record_iter);
-
-   uint32_t expiration_time_offset = 0;
-   for (;;)
-   {
-	  tx.set_expiration( dyn_props.time + fc::seconds(30 + expiration_time_offset) );
-	  tx.signatures.clear();
-
-	  for( const public_key_type& key : approving_key_set )
-		 tx.sign( get_private_key(key), _chain_id );
-
-	  graphene::chain::transaction_id_type this_transaction_id = tx.id();
-	  auto iter = _recently_generated_transactions.find(this_transaction_id);
-	  if (iter == _recently_generated_transactions.end())
-	  {
-		 // we haven't generated this transaction before, the usual case
-		 recently_generated_transaction_record this_transaction_record;
-		 this_transaction_record.generation_time = dyn_props.time;
-		 this_transaction_record.transaction_id = this_transaction_id;
-		 _recently_generated_transactions.insert(this_transaction_record);
-		 break;
-	  }
-
-	  // else we've generated a dupe, increment expiration time and re-sign it
-	  ++expiration_time_offset;
-   }
-
-   if( broadcast )
-   {
-	  try
-	  {
-		 _remote_net_broadcast->broadcast_transaction( tx );
-	  }
-	  catch (const fc::exception& e)
-	  {
-		 elog("Caught exception while broadcasting tx ${id}:  ${e}", ("id", tx.id().str())("e", e.to_detail_string()) );
-		 throw;
-	  }
-   }
-
-   return tx;
-}
-*/
 
 set<public_key_type> database_api::get_required_signatures( const signed_transaction& trx, const flat_set<public_key_type>& available_keys )const
 {
