@@ -2919,7 +2919,7 @@ vector<operation_detail> wallet_api::get_account_history(string name, int limit)
       for( auto& o : current ) {
          std::stringstream ss;
          auto memo = o.op.visit(detail::operation_printer(ss, *my, o.result));
-         result.push_back( operation_detail{ memo, ss.str(), o } );
+         result.push_back( operation_detail{ memo, ""/*ss.str()*/, o } );
       }
       if( int(current.size()) < std::min(100,limit) )
          break;
