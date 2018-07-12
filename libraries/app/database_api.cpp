@@ -1993,10 +1993,10 @@ struct get_required_fees_helper
       }
 
       if( op.which() == operation::tag<transfer_operation>::value ) {
-          transfer_operation& op = tx.operations.back().get<transfer_operation>();
-          op.fee.amount = op.amount.amount / 1000 ;
+          transfer_operation& transop = op.get<transfer_operation>();
+          transop.fee.amount = transop.amount.amount / 1000 ;
           fc::variant result;
-          fc::to_variant( op.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
+          fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
           return result;
       }
 
