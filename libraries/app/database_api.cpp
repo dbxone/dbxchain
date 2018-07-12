@@ -1993,6 +1993,16 @@ struct get_required_fees_helper
       }
 
       if( op.which() == operation::tag<transfer_operation>::value ) {
+          dlog("------------ transfer_operation ------------------");
+          transfer_operation& transop = op.get<transfer_operation>();
+          transop.fee.amount = transop.amount.amount / 1000 ;
+          fc::variant result;
+          fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
+          return result;
+      }
+
+      if( op.which() == operation::tag<account_transfer_operation>::value ) {
+          dlog("------------ account_transfer_operation ------------------");
           transfer_operation& transop = op.get<transfer_operation>();
           transop.fee.amount = transop.amount.amount / 1000 ;
           fc::variant result;
