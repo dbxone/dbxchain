@@ -61,7 +61,8 @@
 #define GRAPHENE_DEFAULT_TRANSFER_FEE                           (1*GRAPHENE_BLOCKCHAIN_PRECISION)
 #define GRAPHENE_MAX_INSTANCE_ID                                (uint64_t(-1)>>16)
 /** percentage fields are fixed point with a denominator of 10,000 */
-#define GRAPHENE_100_PERCENT                                    10000
+#define GRAPHENE_100_PERCENT                                    10  //rui------
+//#define GRAPHENE_100_PERCENT                                    10000
 #define GRAPHENE_1_PERCENT                                      (GRAPHENE_100_PERCENT/100)
 /** NOTE: making this a power of 2 (say 2^15) would greatly accelerate fee calcs */
 #define GRAPHENE_MAX_MARKET_FEE_PERCENT                         GRAPHENE_100_PERCENT
