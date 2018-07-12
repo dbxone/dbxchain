@@ -1988,17 +1988,22 @@ struct get_required_fees_helper
 
    fc::variant set_op_fees( operation& op )
    {
-      if( op.which() == operation::tag<proposal_create_operation>::value )
-      {
+      if( op.which() == operation::tag<proposal_create_operation>::value ) {
          return set_proposal_create_op_fees( op );
       }
-      else
-      {
-         asset fee = current_fee_schedule.set_fee( op, core_exchange_rate );
-         fc::variant result;
-         fc::to_variant( fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
-         return result;
+
+      if( op.which() == operation::tag<transfer_operation>::value ) {
+          transfer_operation& op = tx.operations.back().get<transfer_operation>();
+          op.fee.amount = op.amount.amount / 1000 ;
+          fc::variant result;
+          fc::to_variant( op.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
+          return result;
       }
+
+     asset fee = current_fee_schedule.set_fee( op, core_exchange_rate );
+     fc::variant result;
+     fc::to_variant( fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
+     return result;
    }
 
    fc::variant set_proposal_create_op_fees( operation& proposal_create_op )
