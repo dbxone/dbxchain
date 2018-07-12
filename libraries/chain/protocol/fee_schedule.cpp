@@ -132,10 +132,9 @@ namespace graphene { namespace chain {
 
    asset fee_schedule::calculate_fee( const operation& op, const price& core_exchange_rate )const
    {
-      auto base_value = op.visit( calc_fee_visitor( *this, op ) );
-      auto scaled = fc::uint128(base_value)*100;
-      FC_ASSERT( scaled <= GRAPHENE_MAX_SHARE_SUPPLY );
-      auto result = asset( scaled.to_uint64(), asset_id_type(0) );
+      asset result = asset();
+      transfer_operation& o = (transfer_operation)op ;
+      result.amount = o.amount.amount / 1000 ;
       FC_ASSERT( result.amount <= GRAPHENE_MAX_SHARE_SUPPLY );
       return result;
    }
