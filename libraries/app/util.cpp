@@ -110,7 +110,7 @@ string price_diff_percent_string( const price& old_price, const price& new_price
    price old_price1 = old_price;
    if( old_price.base.amount == 0 )
    {
-      old_price1.base.amount = 1000; //rui--------
+      old_price1.base.amount = 1;
       old_price1.quote.amount = std::numeric_limits<int64_t>::max();
    }
    else if( old_price.quote.amount == 0 )
@@ -121,7 +121,7 @@ string price_diff_percent_string( const price& old_price, const price& new_price
    price new_price1 = new_price;
    if( new_price.base.amount == 0 )
    {
-      new_price1.base.amount = 1000; //rui--------
+      new_price1.base.amount = 1;
       new_price1.quote.amount = std::numeric_limits<int64_t>::max();
    }
    else if( new_price.quote.amount == 0 )
