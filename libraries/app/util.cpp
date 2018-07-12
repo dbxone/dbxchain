@@ -89,7 +89,7 @@ string price_to_string( const price& _price, const uint8_t base_precision, const
    if( new_price.quote.amount == 0 )
    {
       new_price.base.amount = std::numeric_limits<int64_t>::max();
-      new_price.quote.amount = 1;
+      new_price.quote.amount = GRAPHENE_DEFAULT_ACCOUNTS_PER_FEE_SCALE ;  //rui-----
    }
 
    // times (10**19) so won't overflow but have good accuracy
@@ -116,7 +116,7 @@ string price_diff_percent_string( const price& old_price, const price& new_price
    else if( old_price.quote.amount == 0 )
    {
       old_price1.base.amount = std::numeric_limits<int64_t>::max();
-      old_price1.quote.amount = 1;
+      old_price1.quote.amount = GRAPHENE_DEFAULT_ACCOUNTS_PER_FEE_SCALE ;  //rui-----
    }
    price new_price1 = new_price;
    if( new_price.base.amount == 0 )
@@ -127,7 +127,7 @@ string price_diff_percent_string( const price& old_price, const price& new_price
    else if( new_price.quote.amount == 0 )
    {
       new_price1.base.amount = std::numeric_limits<int64_t>::max();
-      new_price1.quote.amount = 1;
+      new_price1.quote.amount = GRAPHENE_DEFAULT_ACCOUNTS_PER_FEE_SCALE ;  //rui-----
    }
 
    // change = new/old - 1 = (new_base/new_quote)/(old_base/old_quote) - 1
