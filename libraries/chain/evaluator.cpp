@@ -121,6 +121,13 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
+     // liruigang 2018.07.13 add
+     if( op.which() == operation::tag<transfer_operation>::value ) {
+         dlog("------------ transfer_operation ------------------");
+         const transfer_operation& transop = op.get<transfer_operation>();
+         return (transop.amount.amount / 1000);
+     }
+
      return db().current_fee_schedule().calculate_fee( op ).amount;
    }
    void generic_evaluator::db_adjust_balance(const account_id_type& fee_payer, asset fee_from_account)
