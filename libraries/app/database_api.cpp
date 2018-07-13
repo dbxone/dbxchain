@@ -2001,15 +2001,6 @@ struct get_required_fees_helper
           return result;
       }
 
-      if( op.which() == operation::tag<account_transfer_operation>::value ) {
-          dlog("------------ account_transfer_operation ------------------");
-          transfer_operation& transop = op.get<transfer_operation>();
-          transop.fee.amount = transop.amount.amount / 1000 ;
-          fc::variant result;
-          fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
-          return result;
-      }
-
      asset fee = current_fee_schedule.set_fee( op, core_exchange_rate );
      fc::variant result;
      fc::to_variant( fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );

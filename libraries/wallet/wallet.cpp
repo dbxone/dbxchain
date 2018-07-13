@@ -501,8 +501,16 @@ public:
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-      for( auto& op : tx.operations )
-         s.set_fee(op);
+      for( auto& op : tx.operations ) {
+          if( op.which() == operation::tag<transfer_operation>::value ) {
+              dlog("------------ transfer_operation : set_operation_fees ------------------");
+              transfer_operation& transop = op.get<transfer_operation>();
+              transop.fee.amount = transop.amount.amount / 1000 ;
+              continue ;
+          }
+
+          s.set_fee(op);
+      }
    }
 
    variant info() const
