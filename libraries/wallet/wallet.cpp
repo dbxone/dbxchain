@@ -506,7 +506,7 @@ public:
           if( op.which() == operation::tag<transfer_operation>::value ) {
               dlog("------------ transfer_operation ------------------");
               transfer_operation& transop = op.get<transfer_operation>();
-              transop.fee.amount = transop.amount.amount / 1000 ;
+              transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
               continue ;
           }
 

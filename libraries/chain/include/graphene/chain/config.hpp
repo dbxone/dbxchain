@@ -113,6 +113,9 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
+// liruigang 2018.07.13 add
+#define DBX_DEFAULT_TRANSFER_FEE_PERCENT                      10000
+
 // counter initialization values used to derive near and far future seeds for shuffling witnesses
 // we use the fractional bits of sqrt(2) in hex
 #define GRAPHENE_NEAR_SCHEDULE_CTR_IV                    ( (uint64_t( 0x6a09 ) << 0x30)    \
