@@ -124,7 +124,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
      // liruigang 2018.07.13 add
      if( op.which() == operation::tag<transfer_operation>::value ) {
          dlog("------------ transfer_operation ------------------");
-         transfer_operation& transop = op.get<transfer_operation>();
+         const transfer_operation& transop = op.get<transfer_operation>();
          transop.fee.amount = transop.amount.amount / 1000 ;
          return transop.fee.amount;
      }
