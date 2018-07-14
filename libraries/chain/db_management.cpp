@@ -171,7 +171,7 @@ void database::open(
          FC_ASSERT( *last_block >= head_block_id(),
                     "last block ID does not match current chain state",
                     ("last_block->id", last_block)("head_block_id",head_block_num()) );
-         reindex( data_dir );
+         //reindex( data_dir );
       }
       _opened = true;
    }
