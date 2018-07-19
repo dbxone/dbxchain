@@ -331,7 +331,6 @@ void application_impl::startup()
       ilog("Initializing database...");
       if( _options->count("genesis-json") )
       {
-         ilog("1111111111111111111");
          std::string genesis_str;
          fc::read_file_contents( _options->at("genesis-json").as<boost::filesystem::path>(), genesis_str );
          graphene::chain::genesis_state_type genesis = fc::json::from_string( genesis_str ).as<graphene::chain::genesis_state_type>( 20 );
@@ -356,7 +355,6 @@ void application_impl::startup()
             std::cerr << "Set init witness key to " << init_key << "\n";
          }
 
-         std::cerr << "-------- genesis_str : " << genesis_str << std::endl ;
          if( modified_genesis )
          {
             std::cerr << "WARNING:  GENESIS WAS MODIFIED, YOUR CHAIN ID MAY BE DIFFERENT\n";
@@ -364,10 +362,10 @@ void application_impl::startup()
             genesis.initial_chain_id = fc::sha256::hash( genesis_str );
          }
          else
-            genesis.initial_chain_id = fc::sha256::hash( genesis_str );
+           //liruigang 20180719 update
+           genesis.initial_chain_id = fc::sha256::hash( "" );
+           //genesis.initial_chain_id = fc::sha256::hash( genesis_str );
 
-
-         std::cerr << "---------- initial_chain_id : " << genesis.initial_chain_id << std::endl ;
          return genesis;
       }
       else
