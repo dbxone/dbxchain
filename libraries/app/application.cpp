@@ -354,6 +354,11 @@ void application_impl::startup()
             modified_genesis = true;
             std::cerr << "Set init witness key to " << init_key << "\n";
          }
+
+         //liruigang 20180719 add
+         modified_genesis = false;
+         //end liruigang add
+
          if( modified_genesis )
          {
             std::cerr << "WARNING:  GENESIS WAS MODIFIED, YOUR CHAIN ID MAY BE DIFFERENT\n";
