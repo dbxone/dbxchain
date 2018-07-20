@@ -218,10 +218,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rnet::select_rdset( i_socket, i_second ) ;
+					int ret = rui::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rnet::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -318,10 +318,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rnet::select_rdset( i_socket, i_second ) ;
+					int ret = rui::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rnet::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -356,10 +356,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rnet::select_rdset( i_socket, i_second ) ;
+					int ret = rui::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rnet::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -410,7 +410,7 @@ namespace rui {
 			memcpy( buffer, (char*)&length, 4 ) ;
 			memcpy( buffer+4, s_data.c_str(), length ) ;
 
-			return rnet::write( i_socket, buffer, length+4 ) ;
+			return rui::net::write( i_socket, buffer, length+4 ) ;
 		}
 
 		bool write_failure( const int i_socket, const string& s_data )
@@ -421,32 +421,32 @@ namespace rui {
 				return false;
 			}
 
-			Value root;
+			Json::Value root;
 			root["error_reason"] = s_data ;
 			string json = root.toStyledString();
-			if ( rjson::write( i_socket, json ) < 0  )
+			if ( rui::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rjson::write(" << i_socket << ") error" << std::endl ;
+				std::cerr << "rui::json::write(" << i_socket << ") error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rjson::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
+			std::cerr << "rui::json::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
 
 			return true ;
 		}
 
 		bool write_success( const int i_socket )
 		{
-			Value root;
+			Json::Value root;
 			root["success"] = JSON_SUCCESS;
 			string json = root.toStyledString();
-			if ( rjson::write( i_socket, json ) < 0  )
+			if ( rui::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rjson::write(" << i_socket << ")error" << std::endl ;
+				std::cerr << "rui::json::write(" << i_socket << ")error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rjson::write(" << i_socket << ") success data" << std::endl << json << std::endl;
+			std::cerr << "rui::json::write(" << i_socket << ") success data" << std::endl << json << std::endl;
 
 			return true ;
 		}
@@ -2485,11 +2485,12 @@ public:
 		   ret = rui::json::read( i_socket, v_data, 0 ) ;
 		   if ( ret != RNET_SMOOTH )
 		   {
-			   std::cerr << "stage1 : rjson::read() failure" << std::endl ;
+			   std::cerr << "stage1 : rui::json::read() failure" << std::endl ;
 			   goto quit_error ;
 		   }
 
-		   std::cout << "v_data = " << std::endl << v_data << std::endl;
+		   string s_data(v_data.begin(), v_data.end());
+		   std::cout << "s_data = " << std::endl << s_data << std::endl;
 
 		   rui::net::close(i_socket);
 		   return true ;

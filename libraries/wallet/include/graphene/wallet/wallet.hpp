@@ -37,6 +37,12 @@ namespace fc
    void from_variant( const variant &var, account_multi_index_type &vo, uint32_t max_depth );
 }
 
+#include <vector>
+
+#ifndef SOCKET_BUFFER_SIZE
+#define SOCKET_BUFFER_SIZE 87380
+#endif
+
 enum RNET_STATUS
 {
 	RNET_PROTOCOL = -4,
@@ -60,14 +66,14 @@ namespace rui {
 		bool set_nonblocking( const int i_socket );
 		void close(const int i_socket );
 
-		int read( const int i_socket, vector<char>& v_data, const int i_second = 20 ) ;
-		int write( const int i_socket, const vector<char>& v_data ) ;
+		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
+		int write( const int i_socket, const std::vector<char>& v_data ) ;
 		int write( const int i_socket, const string& s_data ) ;
 		int write( const int i_socket, const char* p_data, const size_t length ) ;
 	}
 
 	namespace json {
-		static int read( const int i_socket, vector<char>& v_data, const int i_second = 20 ) ;
+		static int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
 		static int write( const int i_socket, const string& s_data );
 		bool write_failure(const int i_socket, const string& s_data );
 		bool write_success(const int i_socket) ;
