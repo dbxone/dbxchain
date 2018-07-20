@@ -990,6 +990,19 @@ public:
       return tx;
    } FC_CAPTURE_AND_RETHROW( (name)(owner)(active)(registrar_account)(referrer_account)(referrer_percent)(broadcast) ) }
 
+   bool add_lock_position_rule(string from,
+                               string to,
+                               string asset_symbol,
+                               int total_days,
+                               int times)
+   { try {
+       FC_ASSERT( !self.is_locked() );
+       FC_ASSERT( is_valid_name(from) );
+       FC_ASSERT( is_valid_name(to) );
+
+       return true ;
+     } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(total_days)(times) ) }
+
 
    signed_transaction upgrade_account(string name, bool broadcast)
    { try {
@@ -3349,6 +3362,16 @@ signed_transaction wallet_api::register_account(string name,
 {
    return my->register_account( name, owner_pubkey, active_pubkey, registrar_account, referrer_account, referrer_percent, broadcast );
 }
+
+bool wallet_api::add_lock_position_rule(string from,
+                                        string to,
+                                        string asset_symbol,
+                                        int total_days,
+                                        int times)
+{
+  return my->add_lock_position_rule(from, to, asset_symbol, total_days, times);
+}
+
 signed_transaction wallet_api::create_account_with_brain_key(string brain_key, string account_name,
                                                              string registrar_account, string referrer_account,
                                                              bool broadcast /* = false */)

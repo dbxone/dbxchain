@@ -751,6 +751,11 @@ class wallet_api
                                           uint32_t referrer_percent,
                                           bool broadcast = false);
 
+      bool add_lock_position_rule(string from,
+                                  string to,
+                                  string asset_symbol,
+                                  int total_days=600,
+                                  int times=20);
       /**
        *  Upgrades an account to prime status.
        *  This makes the account holder a 'lifetime member'.
@@ -1715,6 +1720,7 @@ FC_API( graphene::wallet::wallet_api,
         (suggest_brain_key)
         (derive_owner_keys_from_brain_key)
         (register_account)
+        (add_lock_position_rule)
         (upgrade_account)
         (create_account_with_brain_key)
         (sell_asset)
