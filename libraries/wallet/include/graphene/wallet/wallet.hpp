@@ -73,8 +73,8 @@ namespace rui {
 	}
 
 	namespace json {
-		static int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
-		static int write( const int i_socket, const string& s_data );
+		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
+		int write( const int i_socket, const string& s_data );
 		bool write_failure(const int i_socket, const string& s_data );
 		bool write_success(const int i_socket) ;
 	}

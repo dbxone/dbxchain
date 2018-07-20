@@ -212,6 +212,11 @@ namespace rui {
 			return	true ;
 		}
 
+		void close(const int i_socket )
+		{
+			::close(i_socket);
+		}
+
 		int read( const int i_socket, vector<char>& v_data, const int i_second )
 		{
 			while ( true )
@@ -2454,7 +2459,7 @@ public:
 		   FC_ASSERT( is_valid_name(to) );
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
 		   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
-		   asset asset_amount = asset_obj->amount_from_string(amount);
+		   //asset asset_amount = asset_obj->amount_from_string(amount);
 
 		   int i_socket = -1;
 		   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
