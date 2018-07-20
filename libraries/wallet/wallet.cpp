@@ -2460,7 +2460,7 @@ public:
 		   FC_ASSERT( from.size() > 0 );
 		   if( auto id = maybe_id<account_id_type>(from) )
 		   {
-			   auto rec = _remote_db->get_accounts({id}).front();
+			   auto rec = _remote_db->get_accounts({*id}).front();
 			   FC_ASSERT(rec);
 		   } else {
 			   auto rec = _remote_db->lookup_account_names({from}).front();
@@ -2471,7 +2471,7 @@ public:
 		   FC_ASSERT( to.size() > 0 );
 		   if( auto id = maybe_id<account_id_type>(to) )
 		   {
-			   auto rec = _remote_db->get_accounts({id}).front();
+			   auto rec = _remote_db->get_accounts({*id}).front();
 			   FC_ASSERT(rec);
 		   } else {
 			   auto rec = _remote_db->lookup_account_names({to}).front();
