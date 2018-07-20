@@ -2455,8 +2455,29 @@ public:
 							   int times)
    { try {
 		   FC_ASSERT( !self.is_locked() );
-		   FC_ASSERT( is_valid_name(from) );
-		   FC_ASSERT( is_valid_name(to) );
+
+		   // "from" exist?
+		   FC_ASSERT( from.size() > 0 );
+		   if( auto id = maybe_id<account_id_type>(from) )
+		   {
+			   auto rec = _remote_db->get_accounts({id}).front();
+			   FC_ASSERT(rec);
+		   } else {
+			   auto rec = _remote_db->lookup_account_names({from}).front();
+			   FC_ASSERT( rec && rec->name == from );
+		   }
+
+		   // "to" exist?
+		   FC_ASSERT( to.size() > 0 );
+		   if( auto id = maybe_id<account_id_type>(to) )
+		   {
+			   auto rec = _remote_db->get_accounts({id}).front();
+			   FC_ASSERT(rec);
+		   } else {
+			   auto rec = _remote_db->lookup_account_names({to}).front();
+			   FC_ASSERT( rec && rec->name == to );
+		   }
+
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
 		   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
 		   //asset asset_amount = asset_obj->amount_from_string(amount);
