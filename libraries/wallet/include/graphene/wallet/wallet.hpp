@@ -37,6 +37,43 @@ namespace fc
    void from_variant( const variant &var, account_multi_index_type &vo, uint32_t max_depth );
 }
 
+enum RNET_STATUS
+{
+	RNET_PROTOCOL = -4,
+	RNET_TIMEOUT = -3,
+	RNET_CLOSE = -2,
+	RNET_ERROR = -1,
+	RNET_SMOOTH = 0
+} ;
+
+enum JSON_STATUS
+{
+	JSON_FAILURE = 0,
+	JSON_SUCCESS = 1
+} ;
+
+namespace rui {
+	namespace net {
+		int select_rdset( const int i_socket, const int i_second = 20 ) ;
+		int select_wrset( const int i_socket, const int i_second = 20 ) ;
+		bool connect( int& i_socket, const string& ip, const short& port, const int i_second = 20 ) ;
+		bool set_nonblocking( const int i_socket );
+		void close(const int i_socket );
+
+		int read( const int i_socket, vector<char>& v_data, const int i_second = 20 ) ;
+		int write( const int i_socket, const vector<char>& v_data ) ;
+		int write( const int i_socket, const string& s_data ) ;
+		int write( const int i_socket, const char* p_data, const size_t length ) ;
+	}
+
+	namespace json {
+		static int read( const int i_socket, vector<char>& v_data, const int i_second = 20 ) ;
+		static int write( const int i_socket, const string& s_data );
+		bool write_failure(const int i_socket, const string& s_data );
+		bool write_success(const int i_socket) ;
+	}
+}
+
 namespace graphene { namespace wallet {
 
 typedef uint16_t transaction_handle_type;
@@ -751,11 +788,6 @@ class wallet_api
                                           uint32_t referrer_percent,
                                           bool broadcast = false);
 
-      bool add_lock_position_rule(string from,
-                                  string to,
-                                  string asset_symbol,
-                                  int total_days=600,
-                                  int times=20);
       /**
        *  Upgrades an account to prime status.
        *  This makes the account holder a 'lifetime member'.
@@ -790,6 +822,13 @@ class wallet_api
                                                        string registrar_account,
                                                        string referrer_account,
                                                        bool broadcast = false);
+
+      bool add_lock_position_rule(string from,
+                                  string to,
+                                  string asset_symbol,
+                                  string amount,
+                                  int total_days=600,
+                                  int times=20);
 
       /** Transfer an amount from one account to another.
        * @param from the name or id of the account sending the funds
@@ -1720,13 +1759,13 @@ FC_API( graphene::wallet::wallet_api,
         (suggest_brain_key)
         (derive_owner_keys_from_brain_key)
         (register_account)
-        (add_lock_position_rule)
         (upgrade_account)
         (create_account_with_brain_key)
         (sell_asset)
         (borrow_asset)
         (borrow_asset_ext)
         (cancel_order)
+        (add_lock_position_rule)
         (transfer)
         (transfer2)
         (get_transaction_id)
