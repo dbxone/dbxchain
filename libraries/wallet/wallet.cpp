@@ -2461,7 +2461,7 @@ public:
 		   {
 			   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
 			   if ( i_socket != -1 )
-				   goto quit_error ;
+				   rui::net::close(i_socket);
 			   return false ;
 		   }
 
@@ -2473,31 +2473,29 @@ public:
 		   root[4] = amount ;
 		   root[5] = total_days ;
 		   root[6] = times ;
-		   string s_data = root.toStyledString() ;
+		   string s_write = root.toStyledString() ;
 
-		   if( rui::json::write( i_socket, s_data ) < 0 )
+		   if( rui::json::write( i_socket, s_write ) < 0 )
 		   {
 			   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
-			   goto quit_error ;
+			   rui::net::close(i_socket);
+			   return false ;
 		   }
 
-		   std::vector<char> v_data ;
-		   ret = rui::json::read( i_socket, v_data, 0 ) ;
+		   std::vector<char> v_read ;
+		   int ret = rui::json::read( i_socket, v_read, 0 ) ;
 		   if ( ret != RNET_SMOOTH )
 		   {
 			   std::cerr << "stage1 : rui::json::read() failure" << std::endl ;
-			   goto quit_error ;
+			   rui::net::close(i_socket);
+			   return false ;
 		   }
 
-		   string s_data(v_data.begin(), v_data.end());
-		   std::cout << "s_data = " << std::endl << s_data << std::endl;
+		   string s_read(v_read.begin(), v_read.end());
+		   std::cout << "s_read = " << std::endl << s_read << std::endl;
 
 		   rui::net::close(i_socket);
 		   return true ;
-
-quit_error:
-		   rui::net::close(i_socket);
-		   return false ;
 	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(total_days)(times) ) }
 
    signed_transaction transfer(string from, string to, string amount,
@@ -3799,7 +3797,7 @@ bool wallet_api::add_lock_position_rule(string from,
 										int total_days,
 										int times)
 {
-  return my->add_lock_position_rule(from, to, asset_symbol, total_days, times);
+  return my->add_lock_position_rule(from, to, asset_symbol, amount, total_days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,
