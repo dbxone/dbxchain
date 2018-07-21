@@ -2460,9 +2460,11 @@ public:
 		   FC_ASSERT( from.size() > 0 );
 		   if( auto id = maybe_id<account_id_type>(from) )
 		   {
+			   std::cout << "111111111111111111111111111" << std::endl ;
 			   auto rec = _remote_db->get_accounts({*id}).front();
 			   FC_ASSERT(rec);
 		   } else {
+			   std::cout << "222222222222222222222222222" << std::endl ;
 			   auto rec = _remote_db->lookup_account_names({from}).front();
 			   FC_ASSERT( rec && rec->name == from );
 		   }
