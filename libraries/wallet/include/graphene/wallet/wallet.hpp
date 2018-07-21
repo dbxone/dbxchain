@@ -833,7 +833,7 @@ class wallet_api
                                   string to,
                                   string asset_symbol,
                                   string amount,
-                                  int total_days=600,
+								  int days=600,
                                   int times=20);
 
       /** Transfer an amount from one account to another.

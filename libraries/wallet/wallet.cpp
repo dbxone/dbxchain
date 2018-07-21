@@ -2451,7 +2451,7 @@ public:
 							   string to,
 							   string asset_symbol,
 							   string amount,
-							   int total_days,
+							   int days,
 							   int times)
    { try {
 		   FC_ASSERT( !self.is_locked() );
@@ -2497,7 +2497,7 @@ public:
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
 		   root[4] = amount ;
-		   root[5] = total_days ;
+		   root[5] = days ;
 		   root[6] = times ;
 		   string s_write = root.toStyledString() ;
 
@@ -2522,7 +2522,7 @@ public:
 
 		   rui::net::close(i_socket);
 		   return true ;
-	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(total_days)(times) ) }
+	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
 
    signed_transaction transfer(string from, string to, string amount,
 							   string asset_symbol, string memo, bool broadcast = false)
@@ -3820,10 +3820,10 @@ bool wallet_api::add_lock_position_rule(string from,
 										string to,
 										string asset_symbol,
 										string amount,
-										int total_days,
+										int days,
 										int times)
 {
-  return my->add_lock_position_rule(from, to, asset_symbol, amount, total_days, times);
+  return my->add_lock_position_rule(from, to, asset_symbol, amount, days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,
