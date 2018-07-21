@@ -2447,7 +2447,7 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
-   bool add_lock_position_rule(string from,
+   bool add_blacklist_account(string from,
 							   string to,
 							   string asset_symbol,
 							   string amount,
@@ -3816,14 +3816,14 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
    return my->issue_asset(to_account, amount, symbol, memo, broadcast);
 }
 
-bool wallet_api::add_lock_position_rule(string from,
+bool wallet_api::add_blacklist_account(string from,
 										string to,
 										string asset_symbol,
 										string amount,
 										int days,
 										int times)
 {
-  return my->add_lock_position_rule(from, to, asset_symbol, amount, days, times);
+  return my->add_blacklist_account(from, to, asset_symbol, amount, days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,

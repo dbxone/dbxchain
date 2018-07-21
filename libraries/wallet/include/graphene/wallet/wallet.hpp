@@ -829,7 +829,7 @@ class wallet_api
                                                        string referrer_account,
                                                        bool broadcast = false);
 
-      bool add_lock_position_rule(string from,
+	  bool add_blacklist_account(string from,
                                   string to,
                                   string asset_symbol,
                                   string amount,
@@ -1771,7 +1771,7 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset)
         (borrow_asset_ext)
         (cancel_order)
-        (add_lock_position_rule)
+		(add_blacklist_account)
         (transfer)
         (transfer2)
         (get_transaction_id)
