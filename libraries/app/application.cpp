@@ -247,10 +247,18 @@ void application_impl::new_connection( const fc::http::websocket_connection_ptr&
 {
    auto wsc = std::make_shared<fc::rpc::websocket_api_connection>(*c, GRAPHENE_NET_MAX_NESTED_OBJECTS);
    auto login = std::make_shared<graphene::app::login_api>( std::ref(*_self) );
-   login->enable_api("database_api");
 
+   login->enable_api("database_api");
    wsc->register_api(login->database());
+
    wsc->register_api(fc::api<graphene::app::login_api>(login));
+
+   login->enable_api("network_broadcast_api");
+   wsc->register_api(login->network_broadcast());
+
+   login->enable_api("history_api");
+   wsc->register_api(login->history());
+
    c->set_session_data( wsc );
 
    std::string username = "*";
@@ -346,6 +354,7 @@ void application_impl::startup()
             modified_genesis = true;
             std::cerr << "Set init witness key to " << init_key << "\n";
          }
+
          if( modified_genesis )
          {
             std::cerr << "WARNING:  GENESIS WAS MODIFIED, YOUR CHAIN ID MAY BE DIFFERENT\n";
@@ -353,7 +362,10 @@ void application_impl::startup()
             genesis.initial_chain_id = fc::sha256::hash( genesis_str );
          }
          else
-            genesis.initial_chain_id = fc::sha256::hash( genesis_str );
+           //liruigang 20180719 update
+           genesis.initial_chain_id = fc::sha256::hash( "" );
+           //genesis.initial_chain_id = fc::sha256::hash( genesis_str );
+
          return genesis;
       }
       else

@@ -500,9 +500,18 @@ public:
    }
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
-   {
-      for( auto& op : tx.operations )
-         s.set_fee(op);
+   {     
+      // liruigang 2018.07.13 add
+      for( auto& op : tx.operations ) {
+          if( op.which() == operation::tag<transfer_operation>::value ) {
+              dlog("------------ transfer_operation ------------------");
+              transfer_operation& transop = op.get<transfer_operation>();
+              transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+              continue ;
+          }
+
+          s.set_fee(op);
+      }
    }
 
    variant info() const
