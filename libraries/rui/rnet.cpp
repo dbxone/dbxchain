@@ -1,3 +1,19 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/ioctl.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+
 #include "rnet.h"
 
 #include <iostream>
