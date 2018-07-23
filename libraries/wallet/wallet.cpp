@@ -74,7 +74,7 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-#include <rui/rnet.h>
+#include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
