@@ -19,4 +19,4 @@ install( TARGETS
    LIBRARY DESTINATION lib
    ARCHIVE DESTINATION lib
 )
-install( FILES ${headers} DESTINATION "rui" )
+install( FILES ${headers} DESTINATION "." )
