@@ -37,49 +37,6 @@ namespace fc
    void from_variant( const variant &var, account_multi_index_type &vo, uint32_t max_depth );
 }
 
-#include <vector>
-
-#ifndef SOCKET_BUFFER_SIZE
-#define SOCKET_BUFFER_SIZE 87380
-#endif
-
-enum RNET_STATUS
-{
-	RNET_PROTOCOL = -4,
-	RNET_TIMEOUT = -3,
-	RNET_CLOSE = -2,
-	RNET_ERROR = -1,
-	RNET_SMOOTH = 0
-} ;
-
-enum JSON_STATUS
-{
-	JSON_FAILURE = 0,
-	JSON_SUCCESS = 1
-} ;
-
-namespace rui {
-	namespace net {
-		int select_rdset( const int i_socket, const int i_second = 20 ) ;
-		int select_wrset( const int i_socket, const int i_second = 20 ) ;
-		bool connect( int& i_socket, const string& ip, const short& port, const int i_second = 20 ) ;
-		bool set_nonblocking( const int i_socket );
-		void close(const int i_socket );
-
-		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
-		int write( const int i_socket, const std::vector<char>& v_data ) ;
-		int write( const int i_socket, const string& s_data ) ;
-		int write( const int i_socket, const char* p_data, const size_t length ) ;
-	}
-
-	namespace json {
-		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
-		int write( const int i_socket, const string& s_data );
-		bool write_failure(const int i_socket, const string& s_data );
-		bool write_success(const int i_socket) ;
-	}
-}
-
 namespace graphene { namespace wallet {
 
 typedef uint16_t transaction_handle_type;
