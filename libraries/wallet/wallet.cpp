@@ -74,6 +74,9 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
+#include <rui/rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
 
 #ifndef WIN32
 # include <sys/types.h>
@@ -2122,7 +2125,7 @@ public:
 
 		   std::vector<char> v_read ;
 		   int ret = rui::json::read( i_socket, v_read, 0 ) ;
-		   if ( ret != RNET_SMOOTH )
+		   if ( ret != rui::RNET_SMOOTH )
 		   {
 			   std::cerr << "rui::json::read() failure" << std::endl ;
 			   rui::net::close(i_socket);
