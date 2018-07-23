@@ -188,6 +188,23 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
+	   // liruigang 20180723 add
+	   for( auto& op : tx.operations )
+	   {
+		   if( op.which() == operation::tag<transfer_operation>::value ) {
+			   transfer_operation& transop = op.get<transfer_operation>();
+
+			   auto from_object = _app.chain_database()->lookup_account_names({transop.from}).front();
+			   std::cerr << "1111111 : " <<  from_object->name << endl ;
+			   FC_ASSERT( from_object && from_object->name == transop.from );
+
+			   auto to_object = _app.chain_database()->lookup_account_names({transop.to}).front();
+			   std::cerr << "2222222222 : " <<  to_object->name << endl ;
+			   FC_ASSERT( to_object && to_object->name == transop.from );
+
+			   continue ;
+		   }
+	   }
        _callbacks[trx.id()] = cb;
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )

@@ -74,6 +74,7 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
+//liruigang 20180723 add
 #include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
@@ -505,10 +506,9 @@ public:
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 2018.07.13 add
+	  // liruigang 20180723 add
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
-			  dlog("------------ transfer_operation ------------------");
 			  transfer_operation& transop = op.get<transfer_operation>();
 			  transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
 			  continue ;
@@ -2078,6 +2078,7 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
+   //liruigang 20180721 add
    bool add_blacklist_account(string from,
 							   string to,
 							   string asset_symbol,
@@ -3431,6 +3432,7 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
    return my->issue_asset(to_account, amount, symbol, memo, broadcast);
 }
 
+//liruigang 20180721 add
 bool wallet_api::add_blacklist_account(string from,
 										string to,
 										string asset_symbol,
