@@ -9,7 +9,7 @@ add_library( rui
              ${HEADERS} )
 target_link_libraries( rui )
 target_include_directories( rui
-                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
                           )
 
 install( TARGETS
@@ -19,4 +19,4 @@ install( TARGETS
    LIBRARY DESTINATION lib
    ARCHIVE DESTINATION lib
 )
-install( FILES ${headers} DESTINATION "include" )
+install( FILES ${headers} DESTINATION "." )
