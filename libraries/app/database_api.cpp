@@ -1992,7 +1992,7 @@ struct get_required_fees_helper
          return set_proposal_create_op_fees( op );
       }
 
-      // liruigang 2018.07.13 add
+	  // liruigang 20180713 add
 	  if( op.which() == operation::tag<transfer_operation>::value ) {
           transfer_operation& transop = op.get<transfer_operation>();
           transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
@@ -2049,7 +2049,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
       GET_REQUIRED_FEES_MAX_RECURSION );
    for( operation& op : _ops )
    {
-	   // liruigang 2018.07.13 add
+	   // liruigang 20180723 add
 	   if( op.which() == operation::tag<transfer_operation>::value ) {
 		   transfer_operation& transop = op.get<transfer_operation>();
 

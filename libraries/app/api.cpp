@@ -41,6 +41,9 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
+//liruigang 20180723 add
+#include <iostream>
+
 namespace graphene { namespace app {
 
     login_api::login_api(application& a)
@@ -189,7 +192,7 @@ namespace graphene { namespace app {
     {
        trx.validate();
 	   // liruigang 20180723 add
-	   for( auto& op : tx.operations )
+	   for( auto& op : trx.operations )
 	   {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   transfer_operation& transop = op.get<transfer_operation>();
