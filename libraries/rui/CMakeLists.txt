@@ -7,7 +7,7 @@ set(sources rnet.cpp
 add_library( rui
              ${sources}
              ${HEADERS} )
-target_link_libraries( rui )
+target_link_libraries( rui wallet )
 target_include_directories( rui
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
                           )
