@@ -7,7 +7,7 @@ set(sources rnet.cpp
 add_library( rui
              ${sources}
              ${HEADERS} )
-target_link_libraries( rui PRIVATE ${CMAKE_DL_LIBS} ${PLATFORM_SPECIFIC_LIBS} )
+target_link_libraries( rui PRIVATE jsoncpp ${CMAKE_DL_LIBS} ${PLATFORM_SPECIFIC_LIBS} )
 target_include_directories( rui
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
                           )
