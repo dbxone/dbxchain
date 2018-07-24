@@ -41,6 +41,14 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
+
+//liruigang 20180724 add
+#include <iostream>
+#include <string>
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+
 namespace graphene { namespace app {
 
     login_api::login_api(application& a)
@@ -188,6 +196,63 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
+
+	   for( auto& op : trx.operations ) {
+		   if( op.which() == operation::tag<transfer_operation>::value ) {
+			   const transfer_operation& transop = op.get<transfer_operation>();
+			   const account_object& from_account    = transop.from(_app.chain_database());
+			   const account_object& to_account      = transop.to(_app.chain_database());
+			   const asset_object&   asset_type      = transop.amount.asset_id(_app.chain_database());
+
+			   Json::Value root ;
+			   root[0] = 1 ;
+			   root[1] = from_account.name ;
+			   root[2] = to_account.name ;
+
+			   std::cout << "-------------" << from_account.name << std::endl ;
+			   std::cout << "-------------" << to_account.name << std::endl ;
+			   std::cout << "-------------" << asset_type.symbol << std::endl ;
+			   std::cout << "-------------" << asset_type.amount_to_string(transop.amount) << std::endl ;
+			   //root[3] = "DBX" ;
+			   std::string s_write = root.toStyledString() ;
+
+			   continue ;
+		   }
+	   }
+
+
+	   /*
+		  const database& d = db();
+
+		  const account_object& from_account    = from(d);
+		  const account_object& to_account      = to(d);
+		  const asset_object&   asset_type      = amount.asset_id(d);
+
+		  //liruigang 20180724 add
+		  Json::Value root ;
+		  root[0] = 1 ;
+		  root[1] = from_account.name ;
+		  root[2] = to_account.name ;
+
+		  std::cout << "-------------" << from_account.name << std::endl ;
+		  std::cout << "-------------" << to_account.name << std::endl ;
+		  std::cout << asset_type.amount_to_string(op.amount) << std::endl ;
+		  //root[3] = "DBX" ;
+		  std::string s_write = root.toStyledString() ;
+
+		  //liruigang 20180724 add
+		  Json::Value root ;
+		  root[0] = 1 ;
+		  root[1] = std::string(from.operator object_id_type()) ;
+		  root[2] = std::string(to.operator object_id_type()) ;
+
+		  std::cout << std::string(from.operator object_id_type()) << std::endl ;
+		  std::cout << std::string(to.operator object_id_type()) << std::endl ;
+		  std::cout << std::string( amount.asset_id.operator object_id_type() ) << std::endl ;
+		  //root[3] = "DBX" ;
+		  std::string s_write = root.toStyledString() ;
+
+	   */
        _callbacks[trx.id()] = cb;
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )
