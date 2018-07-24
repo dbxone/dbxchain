@@ -41,6 +41,11 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
+//liruigang 20180724 add
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+
 namespace graphene { namespace app {
 
     login_api::login_api(application& a)
@@ -188,6 +193,55 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
+	   // liruigang 20180724 add
+	   for( auto& op : tx.operations ) {
+		   if( op.which() == operation::tag<transfer_operation>::value ) {
+			   transfer_operation& transop = op.get<transfer_operation>();
+
+			   const account_object& from_account    = transop.from(_app.chain_database());
+			   const account_object& to_account      = transop.to(_app.chain_database());
+			   const asset_object&   asset_type      = transop.amount.asset_id(_app.chain_database());
+
+			   Json::Value root ;
+			   root[0] = 1 ;
+			   root[1] = from_account.name ;
+			   root[3] = to_account.name ;
+			   root[4] = asset_type.symbol ;
+			   root[5] = asset_type.amount_to_string(transop.amount) ;
+			   string s_write = root.toStyledString() ;
+
+			   int i_socket = -1;
+			   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+			   {
+				   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+				   if ( i_socket != -1 )
+					   rui::net::close(i_socket);
+				   FC_ASSERT( false, "connect blacklistd service error" );
+			   }
+
+			   if( rui::json::write( i_socket, s_write ) < 0 )
+			   {
+				   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
+				   rui::net::close(i_socket);
+				   FC_ASSERT( false, "write blacklistd service error" );
+			   }
+
+			   std::vector<char> v_read ;
+			   int ret = rui::json::read( i_socket, v_read, 0 ) ;
+			   if ( ret != rui::RNET_SMOOTH )
+			   {
+				   std::cerr << "rui::json::read() failure" << std::endl ;
+				   rui::net::close(i_socket);
+				   FC_ASSERT( false, "read blacklistd service error" );
+			   }
+
+			   string s_read(v_read.begin(), v_read.end());
+			   std::cout << "s_read = " << std::endl << s_read << std::endl;
+
+			   rui::net::close(i_socket);
+		   }
+	   }
+
        _callbacks[trx.id()] = cb;
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )
