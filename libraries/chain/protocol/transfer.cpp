@@ -24,6 +24,7 @@
 #include <graphene/chain/protocol/transfer.hpp>
 
 //liruigang 20180724 add
+#include <graphene/chain/database.hpp>
 #include <iostream>
 #include <string>
 #include <rnet.h>
