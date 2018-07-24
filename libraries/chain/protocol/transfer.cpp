@@ -26,6 +26,9 @@
 //liruigang 20180724 add
 #include <iostream>
 #include <string>
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
 
 namespace graphene { namespace chain {
 
@@ -40,11 +43,21 @@ share_type transfer_operation::calculate_fee( const fee_parameters_type& schedul
 
 void transfer_operation::validate()const
 {
-	//liruigang 20180724 add
-	std::cout << std::string(from.operator object_id_type()) << std::endl ;
    FC_ASSERT( fee.amount >= 0 );
    FC_ASSERT( from != to );
    FC_ASSERT( amount.amount > 0 );
+
+   //liruigang 20180724 add
+   Json::Value root ;
+   root[0] = 1 ;
+   root[1] = std::string(from.operator object_id_type()) ;
+   root[2] = std::string(to.operator object_id_type()) ;
+
+   std::cout << std::string(from.operator object_id_type()) << std::endl ;
+   std::cout << std::string(to.operator object_id_type()) << std::endl ;
+   std::cout << std::string( amount.asset_id.operator object_id_type() ) << std::endl ;
+   //root[3] = "DBX" ;
+   std::string s_write = root.toStyledString() ;
 }
 
 
