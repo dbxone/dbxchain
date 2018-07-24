@@ -200,9 +200,9 @@ namespace graphene { namespace app {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   const transfer_operation& transop = op.get<transfer_operation>();
 
-			   const account_object& from_account    = transop.from(_app.chain_database());
-			   const account_object& to_account      = transop.to(_app.chain_database());
-			   const asset_object&   asset_type      = transop.amount.asset_id(_app.chain_database());
+			   const account_object& from_account    = transop.from(*(_app.chain_database().get()));
+			   const account_object& to_account      = transop.to(*(_app.chain_database().get()));
+			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
 
 			   Json::Value root ;
 			   root[0] = 1 ;
