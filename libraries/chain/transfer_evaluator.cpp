@@ -51,8 +51,8 @@ void_result transfer_evaluator::do_evaluate( const transfer_operation& op )
    root[1] = from_account.name ;
    root[2] = to_account.name ;
 
-   std::cout << from_account.name << std::endl ;
-   std::cout << to_account.name << std::endl ;
+   std::cout << "-------------" << from_account.name << std::endl ;
+   std::cout << "-------------" << to_account.name << std::endl ;
    std::cout << asset_type.amount_to_string(op.amount) << std::endl ;
    //root[3] = "DBX" ;
    std::string s_write = root.toStyledString() ;
