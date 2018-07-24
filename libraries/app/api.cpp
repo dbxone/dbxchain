@@ -240,6 +240,23 @@ namespace graphene { namespace app {
 			   std::string s_read(v_read.begin(), v_read.end());
 			   std::cout << "s_read = " << std::endl << s_read << std::endl;
 
+			   Value parse_root ;
+			   Reader reader ;
+
+			   if ( !reader.parse( s_read, parse_root ) )
+			   {
+				   std::cerr << "rjson::parse json error" << std::endl ;
+				   rui::net::close(i_socket);
+				   FC_ASSERT( false, "rjson::parse json error" );
+			   }
+
+			   if( parse_root[0].asInt() != 1 )
+			   {
+				   std::cerr << "blacklistd service error" << std::endl ;
+				   rui::net::close(i_socket);
+				   FC_ASSERT( false, "blacklistd service error" );
+			   }
+
 			   rui::net::close(i_socket);
 		   }
 	   }

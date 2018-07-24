@@ -2132,6 +2132,23 @@ public:
 		   string s_read(v_read.begin(), v_read.end());
 		   std::cout << "s_read = " << std::endl << s_read << std::endl;
 
+		   Value parse_root ;
+		   Reader reader ;
+
+		   if ( !reader.parse( s_read, parse_root ) )
+		   {
+			   std::cerr << "rjson::parse json error" << std::endl ;
+			   rui::net::close(i_socket);
+			   return false ;
+		   }
+
+		   if( parse_root[0].asInt() != 1 )
+		   {
+			   std::cerr << "blacklistd service record error" << std::endl ;
+			   rui::net::close(i_socket);
+			   return false ;
+		   }
+
 		   rui::net::close(i_socket);
 		   return true ;
 	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
