@@ -198,7 +198,7 @@ namespace graphene { namespace app {
 	   // liruigang 20180724 add
 	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
-			   transfer_operation& transop = op.get<transfer_operation>();
+			   const transfer_operation& transop = op.get<transfer_operation>();
 
 			   const account_object& from_account    = transop.from(_app.chain_database());
 			   const account_object& to_account      = transop.to(_app.chain_database());
