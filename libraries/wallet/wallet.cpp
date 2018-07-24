@@ -506,7 +506,7 @@ public:
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 20180723 add
+	  // liruigang 20180721 add
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
 			  transfer_operation& transop = op.get<transfer_operation>();

@@ -23,6 +23,10 @@
  */
 #include <graphene/chain/protocol/transfer.hpp>
 
+//liruigang 20180724 add
+#include <iostream>
+#include <string>
+
 namespace graphene { namespace chain {
 
 share_type transfer_operation::calculate_fee( const fee_parameters_type& schedule )const
@@ -36,6 +40,8 @@ share_type transfer_operation::calculate_fee( const fee_parameters_type& schedul
 
 void transfer_operation::validate()const
 {
+	//liruigang 20180724 add
+	std::cout << std::string(from.operator object_id_type()) << std::endl ;
    FC_ASSERT( fee.amount >= 0 );
    FC_ASSERT( from != to );
    FC_ASSERT( amount.amount > 0 );

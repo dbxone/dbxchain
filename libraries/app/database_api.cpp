@@ -2049,20 +2049,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
       GET_REQUIRED_FEES_MAX_RECURSION );
    for( operation& op : _ops )
    {
-	   // liruigang 20180723 add
-	   if( op.which() == operation::tag<transfer_operation>::value ) {
-		   transfer_operation& transop = op.get<transfer_operation>();
-
-		   auto from_object = lookup_account_names({transop.from}).front();
-		   std::cerr << "3333333 : " <<  from_object->name << endl ;
-		   FC_ASSERT( from_object && from_object->name == transop.from );
-
-		   auto to_object = lookup_account_names({transop.to}).front();
-		   std::cerr << "2222222222 : " <<  to_object->name << endl ;
-		   FC_ASSERT( to_object && to_object->name == transop.from );
-	   }
-
-      result.push_back( helper.set_op_fees( op ) );
+	 result.push_back( helper.set_op_fees( op ) );
    }
    return result;
 }
