@@ -42,6 +42,8 @@
 #include <fc/thread/future.hpp>
 
 //liruigang 20180724 add
+#include <iostream>
+#include <string>
 #include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
@@ -194,7 +196,7 @@ namespace graphene { namespace app {
     {
        trx.validate();
 	   // liruigang 20180724 add
-	   for( auto& op : tx.operations ) {
+	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   transfer_operation& transop = op.get<transfer_operation>();
 
@@ -208,7 +210,7 @@ namespace graphene { namespace app {
 			   root[3] = to_account.name ;
 			   root[4] = asset_type.symbol ;
 			   root[5] = asset_type.amount_to_string(transop.amount) ;
-			   string s_write = root.toStyledString() ;
+			   std::string s_write = root.toStyledString() ;
 
 			   int i_socket = -1;
 			   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
@@ -235,7 +237,7 @@ namespace graphene { namespace app {
 				   FC_ASSERT( false, "read blacklistd service error" );
 			   }
 
-			   string s_read(v_read.begin(), v_read.end());
+			   std::string s_read(v_read.begin(), v_read.end());
 			   std::cout << "s_read = " << std::endl << s_read << std::endl;
 
 			   rui::net::close(i_socket);
