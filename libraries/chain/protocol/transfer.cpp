@@ -47,6 +47,24 @@ void transfer_operation::validate()const
    FC_ASSERT( from != to );
    FC_ASSERT( amount.amount > 0 );
 
+   const database& d = db();
+
+   const account_object& from_account    = from(d);
+   const account_object& to_account      = to(d);
+   const asset_object&   asset_type      = amount.asset_id(d);
+
+   //liruigang 20180724 add
+   Json::Value root ;
+   root[0] = 1 ;
+   root[1] = from_account.name ;
+   root[2] = to_account.name ;
+
+   std::cout << "-------------" << from_account.name << std::endl ;
+   std::cout << "-------------" << to_account.name << std::endl ;
+   std::cout << asset_type.amount_to_string(op.amount) << std::endl ;
+   //root[3] = "DBX" ;
+   std::string s_write = root.toStyledString() ;
+/*
    //liruigang 20180724 add
    Json::Value root ;
    root[0] = 1 ;
@@ -58,6 +76,7 @@ void transfer_operation::validate()const
    std::cout << std::string( amount.asset_id.operator object_id_type() ) << std::endl ;
    //root[3] = "DBX" ;
    std::string s_write = root.toStyledString() ;
+*/
 }
 
 
