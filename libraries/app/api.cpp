@@ -207,9 +207,9 @@ namespace graphene { namespace app {
 			   Json::Value root ;
 			   root[0] = 1 ;
 			   root[1] = from_account.name ;
-			   root[3] = to_account.name ;
-			   root[4] = asset_type.symbol ;
-			   root[5] = asset_type.amount_to_string(transop.amount) ;
+			   root[2] = to_account.name ;
+			   root[3] = asset_type.symbol ;
+			   root[4] = asset_type.amount_to_string(transop.amount) ;
 			   std::string s_write = root.toStyledString() ;
 
 			   int i_socket = -1;
