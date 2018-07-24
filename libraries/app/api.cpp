@@ -240,8 +240,8 @@ namespace graphene { namespace app {
 			   std::string s_read(v_read.begin(), v_read.end());
 			   std::cout << "s_read = " << std::endl << s_read << std::endl;
 
-			   Value parse_root ;
-			   Reader reader ;
+			   Json::Value parse_root ;
+			   Json::Reader reader ;
 
 			   if ( !reader.parse( s_read, parse_root ) )
 			   {
