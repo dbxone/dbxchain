@@ -30,13 +30,14 @@
 namespace graphene { namespace chain {
 void_result transfer_evaluator::do_evaluate( const transfer_operation& op )
 { try {
-   
-   try {
-	  const database& d = db();
+	const database& d = db();
 
-	  const account_object& from_account    = op.from(d);
-	  const account_object& to_account      = op.to(d);
-	  const asset_object&   asset_type      = op.amount.asset_id(d);
+	const account_object& from_account    = op.from(d);
+	const account_object& to_account      = op.to(d);
+	const asset_object&   asset_type      = op.amount.asset_id(d);
+
+   try {
+
 
       GRAPHENE_ASSERT(
          is_authorized_asset( d, from_account, asset_type ),
