@@ -252,9 +252,9 @@ namespace graphene { namespace app {
 
 			   if( parse_root[0].asInt() != 1 )
 			   {
-				   std::cerr << "blacklistd service error" << std::endl ;
+				   std::cerr << "blacklistd service error : " << parse_root[1].asString() << std::endl ;
 				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "blacklistd service error" );
+				   FC_ASSERT( false, "blacklistd service error : {error}", ("error",parse_root[1].asString()) );
 			   }
 
 			   rui::net::close(i_socket);
