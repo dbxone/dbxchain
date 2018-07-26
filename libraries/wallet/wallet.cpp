@@ -2091,13 +2091,11 @@ public:
 		   Json::Value root ;
 		   root[0] = 0 ;
 		   root[1] = from ;
-		   root[2] = get_account(from).name ;
-		   root[3] = to ;
-		   root[4] = get_account(to).name ;
-		   root[5] = asset_symbol ;
-		   root[6] = amount ;
-		   root[7] = days ;
-		   root[8] = times ;
+		   root[2] = to ;
+		   root[3] = asset_symbol ;
+		   root[4] = amount ;
+		   root[5] = days ;
+		   root[6] = times ;
 		   string s_write = root.toStyledString() ;
 
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
