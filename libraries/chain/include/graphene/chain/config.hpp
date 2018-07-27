@@ -113,7 +113,7 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
-// liruigang 2018.07.13 add
+// liruigang 20180713 add
 #define DBX_DEFAULT_TRANSFER_FEE_PERCENT                      10000
 
 // counter initialization values used to derive near and far future seeds for shuffling witnesses

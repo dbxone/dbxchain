@@ -121,9 +121,8 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
-     // liruigang 2018.07.13 add
-     if( op.which() == operation::tag<transfer_operation>::value ) {
-         dlog("------------ transfer_operation ------------------");
+	 // liruigang 20180713 add
+	 if( op.which() == operation::tag<transfer_operation>::value ) {
          const transfer_operation& transop = op.get<transfer_operation>();
          return (transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT);
      }

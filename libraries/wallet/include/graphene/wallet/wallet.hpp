@@ -786,6 +786,14 @@ class wallet_api
                                                        string referrer_account,
                                                        bool broadcast = false);
 
+	  //liruigang 20180721 add
+	  bool add_blacklist_account(string from,
+                                  string to,
+                                  string asset_symbol,
+                                  string amount,
+								  int days=600,
+                                  int times=20);
+
       /** Transfer an amount from one account to another.
        * @param from the name or id of the account sending the funds
        * @param to the name or id of the account receiving the funds
@@ -1721,6 +1729,7 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset)
         (borrow_asset_ext)
         (cancel_order)
+		(add_blacklist_account)
         (transfer)
         (transfer2)
         (get_transaction_id)
