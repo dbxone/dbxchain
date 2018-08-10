@@ -518,7 +518,7 @@ public:
 				  amount = amount + DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
 
 			  // 费率万分之一
-			  transop.fee.amount = amount / share_type(DBX_DEFAULT_TRANSFER_FEE_PERCENT) ;
+			  transop.fee.amount = ( amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT) ;
 
 			  //设置最大费率或最小费率
 			  if ( transop.fee.amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
