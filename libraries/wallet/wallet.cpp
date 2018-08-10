@@ -2095,11 +2095,12 @@ public:
 
    //liruigang 20180721 blacklist
    bool add_blacklist_account(string from,
-							   string to,
-							   string asset_symbol,
-							   string amount,
-							   int days,
-							   int times)
+							  string to,
+							  string asset_symbol,
+							  string amount,
+							  string start_time,
+							  int days,
+							  int times)
    { try {
 		   FC_ASSERT( !self.is_locked() );
 
@@ -2109,8 +2110,9 @@ public:
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
 		   root[4] = amount ;
-		   root[5] = days ;
-		   root[6] = times ;
+		   root[5] = start_time ;
+		   root[6] = days ;
+		   root[7] = times ;
 		   string s_write = root.toStyledString() ;
 
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
@@ -3460,13 +3462,14 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
 
 //liruigang 20180721 blacklist
 bool wallet_api::add_blacklist_account(string from,
-										string to,
-										string asset_symbol,
-										string amount,
-										int days,
-										int times)
+									   string to,
+									   string asset_symbol,
+									   string amount,
+									   string start_time,
+									   int days,
+									   int times)
 {
-  return my->add_blacklist_account(from, to, asset_symbol, amount, days, times);
+  return my->add_blacklist_account(from, to, asset_symbol, amount, start_time, days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,
