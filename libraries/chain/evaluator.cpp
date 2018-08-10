@@ -132,15 +132,15 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 			 amount = amount + DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
 
 		 // 费率万分之一
-		 transop.fee.amount = ( amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT) ;
+		 amount = ( amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT) ;
 
 		 //设置最大费率或最小费率
-		 if ( transop.fee.amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
-			 transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT ;
-		 else if ( transop.fee.amount > DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT )
-			 transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT ;
+		 if ( amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
+			 amount = DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT ;
+		 else if ( amount > DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT )
+			 amount = DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT ;
 
-		 return transop.fee.amount;
+		 return amount;
      }
 
      return db().current_fee_schedule().calculate_fee( op ).amount;
