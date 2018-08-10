@@ -74,7 +74,7 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-//liruigang 20180723 add
+//liruigang 20180723 headers
 #include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
@@ -506,11 +506,26 @@ public:
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 20180721 add
+	  // liruigang 20180721 calc fee
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
 			  transfer_operation& transop = op.get<transfer_operation>();
-			  transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+
+			  share_type    amount = transop.amount.amount ;
+
+			  // 超过费率精度的，费率多加1个
+			  if ( amount % DBX_DEFAULT_TRANSFER_FEE_PERCENT  != 0 )
+				  amount = amount + DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+
+			  // 费率万分之一
+			  transop.fee.amount = amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+
+			  //设置最大费率或最小费率
+			  if ( transop.fee.amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
+				  transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT ;
+			  else if ( transop.fee.amount > DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT )
+				  transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT ;
+
 			  continue ;
 		  }
 
@@ -2078,7 +2093,7 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
-   //liruigang 20180721 add
+   //liruigang 20180721 blacklist
    bool add_blacklist_account(string from,
 							   string to,
 							   string asset_symbol,
@@ -3443,7 +3458,7 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
    return my->issue_asset(to_account, amount, symbol, memo, broadcast);
 }
 
-//liruigang 20180721 add
+//liruigang 20180721 blacklist
 bool wallet_api::add_blacklist_account(string from,
 										string to,
 										string asset_symbol,

@@ -121,10 +121,26 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
-	 // liruigang 20180713 add
+	 // liruigang 20180713 calc fee
 	 if( op.which() == operation::tag<transfer_operation>::value ) {
          const transfer_operation& transop = op.get<transfer_operation>();
-         return (transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT);
+
+		 share_type    amount = transop.amount.amount ;
+
+		 // 超过费率精度的，费率多加1个
+		 if ( amount % DBX_DEFAULT_TRANSFER_FEE_PERCENT  != 0 )
+			 amount = amount + DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+
+		 // 费率万分之一
+		 transop.fee.amount = amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+
+		 //设置最大费率或最小费率
+		 if ( transop.fee.amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
+			 transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT ;
+		 else if ( transop.fee.amount > DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT )
+			 transop.fee.amount = DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT ;
+
+		 return transop.fee.amount;
      }
 
      return db().current_fee_schedule().calculate_fee( op ).amount;

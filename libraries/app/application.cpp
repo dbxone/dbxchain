@@ -362,7 +362,7 @@ void application_impl::startup()
             genesis.initial_chain_id = fc::sha256::hash( genesis_str );
          }
          else
-           //liruigang 20180719 update
+		   //liruigang 20180719 chain id null hash
            genesis.initial_chain_id = fc::sha256::hash( "" );
            //genesis.initial_chain_id = fc::sha256::hash( genesis_str );
 

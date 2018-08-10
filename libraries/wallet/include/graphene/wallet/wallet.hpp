@@ -786,7 +786,7 @@ class wallet_api
                                                        string referrer_account,
                                                        bool broadcast = false);
 
-	  //liruigang 20180721 add
+	  //liruigang 20180721 blacklist
 	  bool add_blacklist_account(string from,
                                   string to,
                                   string asset_symbol,

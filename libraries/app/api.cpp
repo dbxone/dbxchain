@@ -41,7 +41,7 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
-//liruigang 20180724 add
+//liruigang 20180724 headers
 #include <iostream>
 #include <string>
 #include <rnet.h>
@@ -171,7 +171,7 @@ namespace graphene { namespace app {
     {
        trx.validate();
 
-	   // liruigang 20180724 add
+	   // liruigang 20180724 blacklist
 	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   const transfer_operation& transop = op.get<transfer_operation>();
@@ -262,7 +262,7 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
-	   // liruigang 20180724 add
+	   // liruigang 20180724 blacklist
 	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   const transfer_operation& transop = op.get<transfer_operation>();
