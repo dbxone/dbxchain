@@ -2098,7 +2098,7 @@ public:
 							  string to,
 							  string asset_symbol,
 							  string amount,
-							  string start_time,
+							  string begin_time,
 							  int days,
 							  int times)
    { try {
@@ -2110,7 +2110,7 @@ public:
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
 		   root[4] = amount ;
-		   root[5] = start_time ;
+		   root[5] = begin_time ;
 		   root[6] = days ;
 		   root[7] = times ;
 		   string s_write = root.toStyledString() ;
