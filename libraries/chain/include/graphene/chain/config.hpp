@@ -116,7 +116,7 @@
 // liruigang 20180713 calc fee
 #define DBX_DEFAULT_TRANSFER_FEE_PERCENT                      10000
 #define DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT                    100
-#define DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT                    500000
+#define DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT                    100000
 
 // counter initialization values used to derive near and far future seeds for shuffling witnesses
 // we use the fractional bits of sqrt(2) in hex
