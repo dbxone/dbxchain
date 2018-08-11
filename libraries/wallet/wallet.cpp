@@ -2098,6 +2098,7 @@ public:
 							  string to,
 							  string asset_symbol,
 							  string amount,
+							  string begin_date,
 							  string begin_time,
 							  int days,
 							  int times)
@@ -2110,7 +2111,7 @@ public:
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
 		   root[4] = amount ;
-		   root[5] = begin_time ;
+		   root[5] = begin_date + " " + begin_time ;
 		   root[6] = days ;
 		   root[7] = times ;
 		   string s_write = root.toStyledString() ;
@@ -3465,11 +3466,12 @@ bool wallet_api::add_blacklist_account(string from,
 									   string to,
 									   string asset_symbol,
 									   string amount,
-									   string start_time,
+									   string begin_date,
+									   string begin_time,
 									   int days,
 									   int times)
 {
-  return my->add_blacklist_account(from, to, asset_symbol, amount, start_time, days, times);
+  return my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,

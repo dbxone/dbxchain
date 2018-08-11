@@ -791,7 +791,8 @@ class wallet_api
 								 string to,
 								 string asset_symbol,
 								 string amount,
-								 string start_time,
+								 string begin_date,
+								 string begin_time,
 								 int days=600,
 								 int times=20);
 
