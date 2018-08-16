@@ -1981,7 +1981,7 @@ vector< fc::variant > database_api::get_required_fees( const vector<operation>& 
  */
 struct get_required_fees_helper
 {
-   get_required_fees_helper( asset_object& _a,
+   get_required_fees_helper( const asset_object& _a,
       const fee_schedule& _current_fee_schedule,
       const price& _core_exchange_rate,
       uint32_t _max_recursion
@@ -1993,7 +1993,7 @@ struct get_required_fees_helper
    {}
 
    //liruigang 20180816 calc fee
-   static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
 	   fee_amount = 0;
 
@@ -2102,7 +2102,7 @@ struct get_required_fees_helper
       return vresult;
    }
 
-   asset_object a;
+   const asset_object& a;
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
    uint32_t max_recursion;
