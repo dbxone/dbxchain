@@ -205,7 +205,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 		 share_type    fee_amount = 0;
 		 set_asset_fee(transop, fee_amount);
 
-		 return amount;
+		 return fee_amount;
      }
 
      return db().current_fee_schedule().calculate_fee( op ).amount;
