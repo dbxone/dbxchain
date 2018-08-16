@@ -181,7 +181,7 @@ namespace graphene { namespace app {
 			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
 
 			   Json::Value root ;
-			   root[0] = 1 ;
+			   root[0] = DBX_TRANSFER ;
 			   root[1] = from_account.name ;
 			   root[2] = to_account.name ;
 			   root[3] = asset_type.symbol ;
@@ -272,7 +272,7 @@ namespace graphene { namespace app {
 			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
 
 			   Json::Value root ;
-			   root[0] = 1 ;
+			   root[0] = DBX_TRANSFER ;
 			   root[1] = from_account.name ;
 			   root[2] = to_account.name ;
 			   root[3] = asset_type.symbol ;

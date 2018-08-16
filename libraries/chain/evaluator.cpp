@@ -119,26 +119,82 @@ database& generic_evaluator::db()const { return trx_state->db(); }
       } );
    }
 
+   static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   {
+	   fee_amount = asset_obj->amount_from_string("0");
+
+	   share_type    amount = transop.amount.amount ;
+
+	   fc::optional<asset_object> asset_obj = get_asset(transop.amount.asset_id);
+	   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
+	   string asset_type = asset_obj->amount_to_string( transop.amount );
+
+	   Json::Value root ;
+	   root[0] = DBX_FEE_CALC ;
+	   root[1] = asset_type ;
+	   root[2] = amount ;
+	   string s_write = root.toStyledString() ;
+
+	   int i_socket = -1;
+	   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+	   {
+		   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+		   if ( i_socket != -1 )
+			   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( rui::json::write( i_socket, s_write ) < 0 )
+	   {
+		   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   std::vector<char> v_read ;
+	   int ret = rui::json::read( i_socket, v_read, 0 ) ;
+	   if ( ret != rui::RNET_SMOOTH )
+	   {
+		   std::cerr << "rui::json::read() failure" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   string s_read(v_read.begin(), v_read.end());
+	   std::cout << "s_read = " << std::endl << s_read << std::endl;
+
+	   Json::Value parse_root ;
+	   Json::Reader reader ;
+
+	   if ( !reader.parse( s_read, parse_root ) )
+	   {
+		   std::cerr << "rjson::parse json error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( parse_root[0].asInt() != 1 )
+	   {
+		   std::cerr << "blacklistd service record error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   rui::net::close(i_socket);
+
+	   fee_amount = asset_obj->amount_from_string(parse_root[0].asString());
+
+	   return true;
+   }
+
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
 	 // liruigang 20180713 calc fee
 	 if( op.which() == operation::tag<transfer_operation>::value ) {
          const transfer_operation& transop = op.get<transfer_operation>();
 
-		 share_type    amount = transop.amount.amount ;
-
-		 // 超过费率精度的，费率多加1个
-		 if ( amount % DBX_DEFAULT_TRANSFER_FEE_PERCENT  != 0 )
-			 amount = amount + DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
-
-		 // 费率万分之一
-		 amount = ( amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT) ;
-
-		 //设置最大费率或最小费率
-		 if ( amount < DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT )
-			 amount = DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT ;
-		 else if ( amount > DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT )
-			 amount = DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT ;
+		 share_type    amount ;
+		 set_asset_fee(transop, amount);
 
 		 return amount;
      }
