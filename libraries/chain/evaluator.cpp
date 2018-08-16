@@ -202,8 +202,8 @@ database& generic_evaluator::db()const { return trx_state->db(); }
          const transfer_operation& transop = op.get<transfer_operation>();
 
 		 //liruigang 20180816 calc fee
-		 share_type    amount ;
-		 set_asset_fee(transop, amount);
+		 share_type    fee_amount = 0;
+		 set_asset_fee(transop, fee_amount);
 
 		 return amount;
      }
