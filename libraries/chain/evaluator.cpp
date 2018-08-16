@@ -140,7 +140,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
 	   root[1] = asset_type ;
-	   root[2] = amount.value ;
+	   root[2] = Json::Value::Value<Json::Value::Int>(amount.value) ;
 	   string s_write = root.toStyledString() ;
 
 	   int i_socket = -1;
