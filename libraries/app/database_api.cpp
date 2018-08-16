@@ -2102,7 +2102,9 @@ struct get_required_fees_helper
       return vresult;
    }
 
+   //liruigang 20180816 calc fee
    const asset_object& a;
+
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
    uint32_t max_recursion;
@@ -2120,7 +2122,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
    vector< fc::variant > result;
    result.reserve(ops.size());
    const asset_object& a = id(_db);
-   get_required_fees_helper helper(a,
+   get_required_fees_helper helper(a, //liruigang 20180816 calc fee
       _db.current_fee_schedule(),
       a.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );

@@ -505,13 +505,13 @@ public:
    }
 
    //liruigang 20180816 calc fee
-   static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
 	   fee_amount = 0;
 
 	   share_type    amount = transop.amount.amount ;
 
-	   const asset_object& fee_asset = get_asset(transop.amount.asset_id);
+	   const asset_object& fee_asset = my->get_asset(transop.amount.asset_id);
 	   string asset_type = fee_asset.amount_to_string( transop.amount );
 
 	   Json::Value root ;
