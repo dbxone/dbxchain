@@ -134,7 +134,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
 	   share_type    amount = transop.amount.amount ;
 
-	   string asset_type = asset_object->amount_to_string( transop.amount );
+	   string asset_type = fee_asset->amount_to_string( transop.amount );
 
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
