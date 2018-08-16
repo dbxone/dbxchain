@@ -1998,7 +1998,7 @@ struct get_required_fees_helper
 
 	   share_type    amount = transop.amount.amount ;
 
-	   const asset_object& fee_asset = transop.amount.asset_id;
+	   const asset_object& fee_asset = transop.amount.asset_id(_db);
 	   string asset_type = fee_asset.amount_to_string( transop.amount );
 
 	   Json::Value root ;
