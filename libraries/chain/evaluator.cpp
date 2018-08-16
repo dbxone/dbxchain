@@ -128,7 +128,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
    }
 
    //liruigang 20180816 calc fee
-   static bool generic_evaluator::set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   bool generic_evaluator::set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
 	   fee_amount = asset_obj->amount_from_string("0");
 
