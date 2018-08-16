@@ -518,7 +518,7 @@ public:
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
 	   root[1] = asset_type ;
-	   root[2] = amount ;
+	   root[2] = Json::Value::Int64(amount.value) ;
 	   string s_write = root.toStyledString() ;
 
 	   int i_socket = -1;
@@ -568,7 +568,7 @@ public:
 
 	   rui::net::close(i_socket);
 
-	   fee_amount = asset_obj->amount_from_string(parse_root[0].asString());
+	   fee_amount.value = parse_root[1].asInt64();
 
 	   return true;
    }

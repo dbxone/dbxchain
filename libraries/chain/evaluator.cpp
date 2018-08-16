@@ -190,7 +190,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
 	   rui::net::close(i_socket);
 
-	   fee_amount = fee_asset->amount_from_string(parse_root[0].asString());
+	   fee_amount.value = parse_root[1].asInt64();
 
 	   return true;
    }
