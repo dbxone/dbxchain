@@ -1998,9 +1998,8 @@ struct get_required_fees_helper
 
 	   share_type    amount = transop.amount.amount ;
 
-	   fc::optional<asset_object> asset_obj = get_asset(transop.amount.asset_id);
-	   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
-	   string asset_type = asset_obj->amount_to_string( transop.amount );
+	   const asset_object& fee_asset = transop.amount.asset_id;
+	   string asset_type = fee_asset.amount_to_string( transop.amount );
 
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
