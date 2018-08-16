@@ -130,11 +130,13 @@ database& generic_evaluator::db()const { return trx_state->db(); }
    //liruigang 20180816 calc fee
    bool generic_evaluator::set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
-	   fee_amount = asset_obj->amount_from_string("0");
+	   fee_amount = fee_asset->amount_from_string("0");
+
+	   const database& d = db();
+	   asset_object fee_asset = &transop.amount.asset_id(d);
+	   string asset_type = fee_asset->amount_to_string( transop.amount );
 
 	   share_type    amount = transop.amount.amount ;
-
-	   string asset_type = fee_asset->amount_to_string( transop.amount );
 
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
@@ -189,7 +191,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
 	   rui::net::close(i_socket);
 
-	   fee_amount = asset_obj->amount_from_string(parse_root[0].asString());
+	   fee_amount = fee_asset->amount_from_string(parse_root[0].asString());
 
 	   return true;
    }
