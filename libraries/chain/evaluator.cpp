@@ -42,6 +42,8 @@
 #include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
+#include <iostream>
+
 
 namespace graphene { namespace chain {
 database& generic_evaluator::db()const { return trx_state->db(); }
