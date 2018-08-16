@@ -1981,12 +1981,13 @@ vector< fc::variant > database_api::get_required_fees( const vector<operation>& 
  */
 struct get_required_fees_helper
 {
-   get_required_fees_helper(
+   get_required_fees_helper( asset_object& _a,
       const fee_schedule& _current_fee_schedule,
       const price& _core_exchange_rate,
       uint32_t _max_recursion
       )
-      : current_fee_schedule(_current_fee_schedule),
+	  : a(_a),
+		current_fee_schedule(_current_fee_schedule),
         core_exchange_rate(_core_exchange_rate),
         max_recursion(_max_recursion)
    {}
@@ -1998,8 +1999,7 @@ struct get_required_fees_helper
 
 	   share_type    amount = transop.amount.amount ;
 
-	   const asset_object& fee_asset = transop.amount.asset_id(_db);
-	   string asset_type = fee_asset.amount_to_string( transop.amount );
+	   string asset_type = a.amount_to_string( transop.amount );
 
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
@@ -2102,6 +2102,7 @@ struct get_required_fees_helper
       return vresult;
    }
 
+   asset_object a;
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
    uint32_t max_recursion;
@@ -2119,7 +2120,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
    vector< fc::variant > result;
    result.reserve(ops.size());
    const asset_object& a = id(_db);
-   get_required_fees_helper helper(
+   get_required_fees_helper helper(a,
       _db.current_fee_schedule(),
       a.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );
