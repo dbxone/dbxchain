@@ -504,6 +504,7 @@ public:
 	  return ob.template as<T>( GRAPHENE_MAX_NESTED_OBJECTS );
    }
 
+   //liruigang 20180816 calc fee
    static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
 	   fee_amount = asset_obj->amount_from_string("0");
@@ -578,6 +579,7 @@ public:
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
 			  transfer_operation& transop = op.get<transfer_operation>();
+			  //liruigang 20180816 calc fee
 			  set_asset_fee(transop, transop.fee.amount);
 			  continue ;
 		  }

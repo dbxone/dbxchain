@@ -37,6 +37,12 @@
 
 #include <fc/uint128.hpp>
 
+
+//liruigang 20180816 headers
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+
 namespace graphene { namespace chain {
 database& generic_evaluator::db()const { return trx_state->db(); }
 
@@ -119,15 +125,14 @@ database& generic_evaluator::db()const { return trx_state->db(); }
       } );
    }
 
-   static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   //liruigang 20180816 calc fee
+   static bool generic_evaluator::set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
 	   fee_amount = asset_obj->amount_from_string("0");
 
 	   share_type    amount = transop.amount.amount ;
 
-	   fc::optional<asset_object> asset_obj = get_asset(transop.amount.asset_id);
-	   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
-	   string asset_type = asset_obj->amount_to_string( transop.amount );
+	   string asset_type = asset_object->amount_to_string( transop.amount );
 
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
@@ -193,6 +198,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 	 if( op.which() == operation::tag<transfer_operation>::value ) {
          const transfer_operation& transop = op.get<transfer_operation>();
 
+		 //liruigang 20180816 calc fee
 		 share_type    amount ;
 		 set_asset_fee(transop, amount);
 
