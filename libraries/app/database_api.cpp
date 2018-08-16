@@ -1994,7 +1994,7 @@ struct get_required_fees_helper
    //liruigang 20180816 calc fee
    static bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
    {
-	   fee_amount = asset_obj->amount_from_string("0");
+	   fee_amount = 0;
 
 	   share_type    amount = transop.amount.amount ;
 
