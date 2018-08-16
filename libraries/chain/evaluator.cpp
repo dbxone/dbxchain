@@ -203,7 +203,7 @@ database& generic_evaluator::db()const { return trx_state->db(); }
 
 		 //liruigang 20180816 calc fee
 		 share_type    fee_amount = 0;
-		 set_asset_fee(transop, fee_amount);
+		 //set_asset_fee(transop, fee_amount);
 
 		 return fee_amount;
      }
