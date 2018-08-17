@@ -511,7 +511,7 @@ public:
 
 	   share_type    amount = transop.amount.amount ;
 
-	   const asset_object& fee_asset = my->get_asset(transop.amount.asset_id);
+	   const asset_object& fee_asset = get_asset(transop.amount.asset_id);
 	   string asset_type = fee_asset.amount_to_string( transop.amount );
 
 	   Json::Value root ;
