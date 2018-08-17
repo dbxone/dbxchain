@@ -509,15 +509,10 @@ public:
    {
 	   fee_amount = 0;
 
-	   share_type    amount = transop.amount.amount ;
-
-	   const asset_object& fee_asset = get_asset(transop.amount.asset_id);
-	   string asset_type = fee_asset.amount_to_string( transop.amount );
-
 	   Json::Value root ;
 	   root[0] = DBX_FEE_CALC ;
-	   root[1] = asset_type ;
-	   root[2] = Json::Value::Int64(amount.value) ;
+	   root[1] = get_asset(transop.amount.asset_id).symbol ;
+	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_write = root.toStyledString() ;
 
 	   int i_socket = -1;
