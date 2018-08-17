@@ -113,11 +113,6 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
-// liruigang 20180713 calc fee
-#define DBX_DEFAULT_TRANSFER_FEE_PERCENT                      10000
-#define DBX_DEFAULT_TRANSFER_FEE_MIN_LIMIT                    100
-#define DBX_DEFAULT_TRANSFER_FEE_MAX_LIMIT                    100000
-
 //liruigang 20180816 operate type
 #define DBX_ADD_BLACKLIST	0
 #define DBX_TRANSFER	1
