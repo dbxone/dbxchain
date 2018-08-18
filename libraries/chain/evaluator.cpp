@@ -37,6 +37,14 @@
 
 #include <fc/uint128.hpp>
 
+
+//liruigang 20180816 headers
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+#include <iostream>
+
+
 namespace graphene { namespace chain {
 database& generic_evaluator::db()const { return trx_state->db(); }
 
@@ -119,12 +127,80 @@ database& generic_evaluator::db()const { return trx_state->db(); }
       } );
    }
 
+   //liruigang 20180816 calc fee
+   bool generic_evaluator::set_asset_fee(const transfer_operation& transop, share_type& fee_amount ) const
+   {
+	   fee_amount = 0;
+
+	   Json::Value root ;
+	   root[0] = DBX_FEE_CALC ;
+	   root[1] = transop.amount.asset_id(db()).symbol ;
+	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
+	   string s_write = root.toStyledString() ;
+
+	   int i_socket = -1;
+	   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+	   {
+		   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+		   if ( i_socket != -1 )
+			   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( rui::json::write( i_socket, s_write ) < 0 )
+	   {
+		   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   std::vector<char> v_read ;
+	   int ret = rui::json::read( i_socket, v_read, 0 ) ;
+	   if ( ret != rui::RNET_SMOOTH )
+	   {
+		   std::cerr << "rui::json::read() failure" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   string s_read(v_read.begin(), v_read.end());
+	   std::cout << "s_read = " << std::endl << s_read << std::endl;
+
+	   Json::Value parse_root ;
+	   Json::Reader reader ;
+
+	   if ( !reader.parse( s_read, parse_root ) )
+	   {
+		   std::cerr << "rjson::parse json error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( parse_root[0].asInt() != 1 )
+	   {
+		   std::cerr << "blacklistd service record error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   rui::net::close(i_socket);
+
+	   fee_amount.value = parse_root[1].asInt64();
+
+	   return true;
+   }
+
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
-	 // liruigang 20180713 add
+	 // liruigang 20180713 calc fee
 	 if( op.which() == operation::tag<transfer_operation>::value ) {
          const transfer_operation& transop = op.get<transfer_operation>();
-         return (transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT);
+
+		 //liruigang 20180816 calc fee
+		 share_type    fee_amount = 0;
+		 this->set_asset_fee(transop, fee_amount);
+
+		 return fee_amount;
      }
 
      return db().current_fee_schedule().calculate_fee( op ).amount;

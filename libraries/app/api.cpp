@@ -41,7 +41,7 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
-//liruigang 20180724 add
+//liruigang 20180724 headers
 #include <iostream>
 #include <string>
 #include <rnet.h>
@@ -171,7 +171,7 @@ namespace graphene { namespace app {
     {
        trx.validate();
 
-	   // liruigang 20180724 add
+	   // liruigang 20180724 blacklist
 	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   const transfer_operation& transop = op.get<transfer_operation>();
@@ -181,7 +181,7 @@ namespace graphene { namespace app {
 			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
 
 			   Json::Value root ;
-			   root[0] = 1 ;
+			   root[0] = DBX_TRANSFER ;
 			   root[1] = from_account.name ;
 			   root[2] = to_account.name ;
 			   root[3] = asset_type.symbol ;
@@ -262,7 +262,7 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
-	   // liruigang 20180724 add
+	   // liruigang 20180724 blacklist
 	   for( auto& op : trx.operations ) {
 		   if( op.which() == operation::tag<transfer_operation>::value ) {
 			   const transfer_operation& transop = op.get<transfer_operation>();
@@ -272,7 +272,7 @@ namespace graphene { namespace app {
 			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
 
 			   Json::Value root ;
-			   root[0] = 1 ;
+			   root[0] = DBX_TRANSFER ;
 			   root[1] = from_account.name ;
 			   root[2] = to_account.name ;
 			   root[3] = asset_type.symbol ;

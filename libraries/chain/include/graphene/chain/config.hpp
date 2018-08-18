@@ -113,8 +113,10 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
-// liruigang 20180713 add
-#define DBX_DEFAULT_TRANSFER_FEE_PERCENT                      10000
+//liruigang 20180816 operate type
+#define DBX_ADD_BLACKLIST	0
+#define DBX_TRANSFER	1
+#define DBX_FEE_CALC	2
 
 // counter initialization values used to derive near and far future seeds for shuffling witnesses
 // we use the fractional bits of sqrt(2) in hex

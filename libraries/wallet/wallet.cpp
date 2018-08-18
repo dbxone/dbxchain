@@ -74,7 +74,7 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-//liruigang 20180723 add
+//liruigang 20180723 headers
 #include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
@@ -504,13 +504,77 @@ public:
 	  return ob.template as<T>( GRAPHENE_MAX_NESTED_OBJECTS );
    }
 
+   //liruigang 20180816 calc fee
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   {
+	   fee_amount = 0;
+
+	   Json::Value root ;
+	   root[0] = DBX_FEE_CALC ;
+	   root[1] = get_asset(transop.amount.asset_id).symbol ;
+	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
+	   string s_write = root.toStyledString() ;
+
+	   int i_socket = -1;
+	   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+	   {
+		   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+		   if ( i_socket != -1 )
+			   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( rui::json::write( i_socket, s_write ) < 0 )
+	   {
+		   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   std::vector<char> v_read ;
+	   int ret = rui::json::read( i_socket, v_read, 0 ) ;
+	   if ( ret != rui::RNET_SMOOTH )
+	   {
+		   std::cerr << "rui::json::read() failure" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   string s_read(v_read.begin(), v_read.end());
+	   std::cout << "s_read = " << std::endl << s_read << std::endl;
+
+	   Json::Value parse_root ;
+	   Json::Reader reader ;
+
+	   if ( !reader.parse( s_read, parse_root ) )
+	   {
+		   std::cerr << "rjson::parse json error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( parse_root[0].asInt() != 1 )
+	   {
+		   std::cerr << "blacklistd service record error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   rui::net::close(i_socket);
+
+	   fee_amount.value = parse_root[1].asInt64();
+
+	   return true;
+   }
+
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 20180721 add
+	  // liruigang 20180721 calc fee
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
 			  transfer_operation& transop = op.get<transfer_operation>();
-			  transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+			  //liruigang 20180816 calc fee
+			  set_asset_fee(transop, transop.fee.amount);
 			  continue ;
 		  }
 
@@ -2078,24 +2142,27 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
-   //liruigang 20180721 add
+   //liruigang 20180721 blacklist
    bool add_blacklist_account(string from,
-							   string to,
-							   string asset_symbol,
-							   string amount,
-							   int days,
-							   int times)
+							  string to,
+							  string asset_symbol,
+							  string amount,
+							  string begin_date,
+							  string begin_time,
+							  int days,
+							  int times)
    { try {
 		   FC_ASSERT( !self.is_locked() );
 
 		   Json::Value root ;
-		   root[0] = 0 ;
+		   root[0] = DBX_ADD_BLACKLIST ;
 		   root[1] = from ;
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
 		   root[4] = amount ;
-		   root[5] = days ;
-		   root[6] = times ;
+		   root[5] = begin_date + " " + begin_time ;
+		   root[6] = days ;
+		   root[7] = times ;
 		   string s_write = root.toStyledString() ;
 
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
@@ -3443,15 +3510,17 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
    return my->issue_asset(to_account, amount, symbol, memo, broadcast);
 }
 
-//liruigang 20180721 add
+//liruigang 20180721 blacklist
 bool wallet_api::add_blacklist_account(string from,
-										string to,
-										string asset_symbol,
-										string amount,
-										int days,
-										int times)
+									   string to,
+									   string asset_symbol,
+									   string amount,
+									   string begin_date,
+									   string begin_time,
+									   int days,
+									   int times)
 {
-  return my->add_blacklist_account(from, to, asset_symbol, amount, days, times);
+  return my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,

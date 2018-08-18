@@ -581,6 +581,9 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    const chain_parameters& chain_parameters = get_global_properties().parameters;
    eval_state._trx = &trx;
 
+   //liruigang 20180813 remove basic fee calc
+   eval_state.skip_fee_schedule_check = true;
+
    if( !(skip & (skip_transaction_signatures | skip_authority_check) ) )
    {
       auto get_active = [&]( account_id_type id ) { return &id(*this).active; };

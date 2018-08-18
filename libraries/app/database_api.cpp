@@ -41,6 +41,11 @@
 #include <cfenv>
 #include <iostream>
 
+//liruigang 20180816 headers
+#include <rnet.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
+
 #define GET_REQUIRED_FEES_MAX_RECURSION 4
 
 typedef std::map< std::pair<graphene::chain::asset_id_type, graphene::chain::asset_id_type>, std::vector<fc::variant> > market_queue_type;
@@ -1976,15 +1981,79 @@ vector< fc::variant > database_api::get_required_fees( const vector<operation>& 
  */
 struct get_required_fees_helper
 {
-   get_required_fees_helper(
+   get_required_fees_helper( const asset_object& _a,
       const fee_schedule& _current_fee_schedule,
       const price& _core_exchange_rate,
       uint32_t _max_recursion
       )
-      : current_fee_schedule(_current_fee_schedule),
+	  : a(_a),
+		current_fee_schedule(_current_fee_schedule),
         core_exchange_rate(_core_exchange_rate),
         max_recursion(_max_recursion)
    {}
+
+   //liruigang 20180816 calc fee
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   {
+	   fee_amount = 0;
+
+	   Json::Value root ;
+	   root[0] = DBX_FEE_CALC ;
+	   root[1] = a.symbol ; ;
+	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
+	   string s_write = root.toStyledString() ;
+
+	   int i_socket = -1;
+	   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+	   {
+		   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+		   if ( i_socket != -1 )
+			   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( rui::json::write( i_socket, s_write ) < 0 )
+	   {
+		   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   std::vector<char> v_read ;
+	   int ret = rui::json::read( i_socket, v_read, 0 ) ;
+	   if ( ret != rui::RNET_SMOOTH )
+	   {
+		   std::cerr << "rui::json::read() failure" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   string s_read(v_read.begin(), v_read.end());
+	   std::cout << "s_read = " << std::endl << s_read << std::endl;
+
+	   Json::Value parse_root ;
+	   Json::Reader reader ;
+
+	   if ( !reader.parse( s_read, parse_root ) )
+	   {
+		   std::cerr << "rjson::parse json error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   if( parse_root[0].asInt() != 1 )
+	   {
+		   std::cerr << "blacklistd service record error" << std::endl ;
+		   rui::net::close(i_socket);
+		   return false ;
+	   }
+
+	   rui::net::close(i_socket);
+
+	   fee_amount.value = parse_root[1].asInt64();
+
+	   return true;
+   }
 
    fc::variant set_op_fees( operation& op )
    {
@@ -1992,10 +2061,13 @@ struct get_required_fees_helper
          return set_proposal_create_op_fees( op );
       }
 
-	  // liruigang 20180713 add
+	  // liruigang 20180713 calc fee
 	  if( op.which() == operation::tag<transfer_operation>::value ) {
-          transfer_operation& transop = op.get<transfer_operation>();
-          transop.fee.amount = transop.amount.amount / DBX_DEFAULT_TRANSFER_FEE_PERCENT ;
+		  transfer_operation& transop = op.get<transfer_operation>();
+
+		  //liruigang 20180816 calc fee
+		  set_asset_fee(transop, transop.fee.amount);
+
           fc::variant result;
           fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
           return result;
@@ -2026,6 +2098,9 @@ struct get_required_fees_helper
       return vresult;
    }
 
+   //liruigang 20180816 calc fee
+   const asset_object& a;
+
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
    uint32_t max_recursion;
@@ -2043,7 +2118,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
    vector< fc::variant > result;
    result.reserve(ops.size());
    const asset_object& a = id(_db);
-   get_required_fees_helper helper(
+   get_required_fees_helper helper(a, //liruigang 20180816 calc fee
       _db.current_fee_schedule(),
       a.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );

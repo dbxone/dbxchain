@@ -786,13 +786,15 @@ class wallet_api
                                                        string referrer_account,
                                                        bool broadcast = false);
 
-	  //liruigang 20180721 add
+	  //liruigang 20180721 blacklist
 	  bool add_blacklist_account(string from,
-                                  string to,
-                                  string asset_symbol,
-                                  string amount,
-								  int days=600,
-                                  int times=20);
+								 string to,
+								 string asset_symbol,
+								 string amount,
+								 string begin_date,
+								 string begin_time,
+								 int days=600,
+								 int times=20);
 
       /** Transfer an amount from one account to another.
        * @param from the name or id of the account sending the funds
