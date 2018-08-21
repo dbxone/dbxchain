@@ -176,7 +176,7 @@ void database::open(
 		 //reindex( data_dir );
 
 		 //liruigang 20180813 open reindex again
-		 reindex( data_dir );
+		 //reindex( data_dir );
       }
       _opened = true;
    }
