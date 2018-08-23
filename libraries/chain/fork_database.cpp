@@ -38,6 +38,9 @@ void fork_database::reset()
 
 void fork_database::pop_block()
 {
+   //liruigang 20180823 ilog fork_database::pop_block
+   ilog("fork_database::pop_block");
+
    FC_ASSERT( _head, "no blocks to pop" );
    auto prev = _head->prev.lock();
    FC_ASSERT( prev, "poping block would leave head block null" );
