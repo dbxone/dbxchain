@@ -80,8 +80,10 @@ void  fork_database::_push_block(const item_ptr& item)
                  ("item->num",item->num)("head",_head->num)("max_size",_max_size));
    }
 
+   wlog( "Head: 1111111, ${id}", ("id", block_id_type()) );
    if( _head && item->previous_id() != block_id_type() )
    {
+	  wlog( "Head: 222222, ${id}", ("id", block_id_type()) );
       auto& index = _index.get<block_id>();
       auto itr = index.find(item->previous_id());
       GRAPHENE_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
