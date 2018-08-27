@@ -559,6 +559,15 @@ namespace graphene { namespace app {
        return hist->tracked_buckets();
     }
 
+	//liruigang 20180820 history size
+	uint32_t history_api::get_account_history_size(account_id_type account )const
+	{
+		FC_ASSERT( _app.chain_database() );
+		const auto& db = *_app.chain_database();
+		const auto& stats = account(db).statistics(db);
+		return stats.total_ops;
+	}
+
     history_operation_detail history_api::get_account_history_by_operations(account_id_type account, vector<uint16_t> operation_types, uint32_t start, unsigned limit)
     {
         FC_ASSERT(limit <= 100);

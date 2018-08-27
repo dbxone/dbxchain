@@ -118,6 +118,9 @@ namespace graphene { namespace app {
       public:
          history_api(application& app):_app(app){}
 
+		 //liruigang 20180820 history size
+		 uint32_t get_account_history_size(account_id_type account )const;
+
          /**
           * @brief Get operations relevant to the specificed account
           * @param account The account whose history should be queried
@@ -467,6 +470,7 @@ FC_REFLECT( graphene::app::account_asset_balance, (name)(account_id)(amount) );
 FC_REFLECT( graphene::app::asset_holders, (asset_id)(count) );
 
 FC_API(graphene::app::history_api,
+	   (get_account_history_size)	//liruigang 20180820 history size
        (get_account_history)
        (get_account_history_by_operations)
        (get_account_history_operations)

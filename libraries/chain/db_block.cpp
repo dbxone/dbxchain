@@ -204,7 +204,12 @@ bool database::_push_block(const signed_block& new_block)
 
    try {
       auto session = _undo_db.start_undo_session();
-      apply_block(new_block, skip);
+
+	  //liruiang 20180823 add : remove skip_witness_schedule_check
+	  apply_block(new_block, skip | skip_witness_schedule_check);
+
+	  //liruiang 20180823 remove
+	  //apply_block(new_block, skip);
       _block_id_to_block.store(new_block.id(), new_block);
       session.commit();
    } catch ( const fc::exception& e ) {
