@@ -221,6 +221,9 @@ namespace graphene { namespace app {
 
          typedef std::function<void(variant/*transaction_confirmation*/)> confirmation_callback;
 
+		 //liruigang 20180827 add : blacklistd server ip and port
+		 void set_blacklistd_url( const string& s_ip, const uint32_t u_port );
+
          /**
           * @brief Broadcast a transaction to the network
           * @param trx The transaction to broadcast
@@ -228,7 +231,7 @@ namespace graphene { namespace app {
           * The transaction will be checked for validity in the local database prior to broadcasting. If it fails to
           * apply locally, an error will be thrown and the transaction will not be broadcast.
           */
-         void broadcast_transaction(const signed_transaction& trx);
+		 void broadcast_transaction(const signed_transaction& trx);
 
          /** this version of broadcast transaction registers a callback method that will be called when the transaction is
           * included into a block.  The callback method includes the transaction id, block number, and transaction number in the
@@ -257,6 +260,10 @@ namespace graphene { namespace app {
          boost::signals2::scoped_connection             _applied_block_connection;
          map<transaction_id_type,confirmation_callback> _callbacks;
          application&                                   _app;
+
+		 //
+		 string                                         ms_blacklistd_ip;
+		 uint32_t                                       mu_blacklistd_port;
    };
 
    /**
@@ -483,9 +490,10 @@ FC_API(graphene::app::block_api,
        (get_blocks)
      )
 FC_API(graphene::app::network_broadcast_api,
+	   (set_blacklistd_url) //liruigang 20180827 add : blacklistd server ip and port
        (broadcast_transaction)
-       (broadcast_transaction_with_callback)
-       (broadcast_transaction_synchronous)
+	   (broadcast_transaction_with_callback)
+	   (broadcast_transaction_synchronous)
        (broadcast_block)
      )
 FC_API(graphene::app::network_node_api,

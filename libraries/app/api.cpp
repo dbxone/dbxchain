@@ -52,7 +52,7 @@ namespace graphene { namespace app {
 
     login_api::login_api(application& a)
     :_app(a)
-    {
+	{
     }
 
     login_api::~login_api()
@@ -140,6 +140,10 @@ namespace graphene { namespace app {
 
     network_broadcast_api::network_broadcast_api(application& a):_app(a)
     {
+		//liruigang 20180827 add : blacklistd server ip and port
+		ms_blacklistd_ip = "127.0.0.1";
+		mu_blacklistd_port = 5000;
+
        _applied_block_connection = _app.chain_database()->applied_block.connect([this](const signed_block& b){ on_applied_block(b); });
     }
 
@@ -166,6 +170,13 @@ namespace graphene { namespace app {
           }
        }
     }
+
+	//liruigang 20180827 add : blacklistd server ip and port
+	void network_broadcast_api::set_blacklistd_url( const string& s_ip, const uint32_t u_port )
+	{
+		ms_blacklistd_ip = s_ip;
+		mu_blacklistd_port = u_port;
+	}
 
     void network_broadcast_api::broadcast_transaction(const signed_transaction& trx)
     {
@@ -279,10 +290,12 @@ namespace graphene { namespace app {
 			   root[4] = asset_type.amount_to_string(transop.amount) ;
 			   std::string s_write = root.toStyledString() ;
 
+			   std::cout << "rui::net::connect server(" << ms_blacklistd_ip << ":" << mu_blacklistd_port << ") error" << std::endl;
+
 			   int i_socket = -1;
-			   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
+			   if( !rui::net::connect( i_socket, ms_blacklistd_ip, mu_blacklistd_port ) )
 			   {
-				   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
+				   std::cerr << "rui::net::connect server(" << ms_blacklistd_ip << ":" << mu_blacklistd_port << ") error" << std::endl;
 				   if ( i_socket != -1 )
 					   rui::net::close(i_socket);
 				   FC_ASSERT( false, "connect blacklistd service error" );
