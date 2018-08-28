@@ -3880,6 +3880,11 @@ string wallet_api::gethelp(const string& method)const
 	  ss << "example: transfer \"1.3.11\" \"1.3.4\" 1000.03 CORE \"memo\" true\n";
 	  ss << "example: transfer \"usera\" \"userb\" 1000.123 CORE \"memo\" true\n";
    }
+   else if( method == "rui_withdraw" )
+   {
+      ss << "usage: rui_withdraw filepath\n\n";
+      ss << "example: rui_withdraw /home/test/list.txt\n";
+   }
    else if( method == "create_account_with_brain_key" )
    {
 	  ss << "usage: create_account_with_brain_key BRAIN_KEY ACCOUNT_NAME REGISTRAR REFERRER BROADCAST\n\n";

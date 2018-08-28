@@ -801,6 +801,8 @@ map<string,account_id_type> database_api_impl::lookup_accounts(const string& low
    const auto& accounts_by_name = _db.get_index_type<account_index>().indices().get<by_name>();
    map<string,account_id_type> result;
 
+   std::cout << "fuck : " << lower_bound_name << std::endl ;
+
    for( auto itr = accounts_by_name.lower_bound(lower_bound_name);
         limit-- && itr != accounts_by_name.end();
         ++itr )
