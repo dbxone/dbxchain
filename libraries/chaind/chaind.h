@@ -26,7 +26,8 @@
 #include "net.h"
 #include <string>
 #include <vector>
-
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/json.h>
 using namespace std;
 
 namespace chaind {
