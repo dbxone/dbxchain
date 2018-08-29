@@ -322,7 +322,7 @@ namespace chaind {
 			if (s_data.empty())
 			{
 				std::cerr << "data empty" << std::endl ;
-				return  RNET_ERROR;
+				return  net::RNET_ERROR;
 			}
 
 			char buffer[SOCKET_BUFFER_SIZE] = { 0x00 } ;
