@@ -90,7 +90,7 @@ namespace chaind {
 		return true ;
 	}
 
-	bool chaind::set_asset_fee( const string& s_json, share_type& fee_amount )
+	bool chaind::set_asset_fee( const string& s_json, graphene::chain::share_type& fee_amount )
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 

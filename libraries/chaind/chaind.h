@@ -44,7 +44,7 @@ namespace chaind {
 		chaind() : ms_ip("127.0.0.1"), mu_port(5000) {}
 		~chaind() {}
 		void set_url( const string& s_ip, const uint32_t u_port );
-		bool set_asset_fee( const string& s_json, share_type& fee_amount );
+		bool set_asset_fee( const string& s_json, graphene::chain::share_type& fee_amount );
 		bool check_in_blacklist( const string& s_json );
 		void add_blacklist_account(const string& s_json);
 	};
