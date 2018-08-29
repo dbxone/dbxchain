@@ -1995,12 +1995,12 @@ struct get_required_fees_helper
    {}
 
    //liruigang 20180829 update: calc fee
-   bool set_asset_fee(transfer_operation& transop, const asset_object& _asset, share_type& fee_amount, const string& symbol )
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
    {
 	   fee_amount = 0;
 
 	   Json::Value root ;
-	   root[0] = DBX_FEE_CALC ;
+	   root[0] = COIN_FEE_CALC ;
 	   root[1] = symbol ; ;
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_json = root.toStyledString() ;
