@@ -239,7 +239,7 @@ namespace chaind {
 				if ( i_second != 0 )
 				{
 					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
-					if ( ret < RNET_SMOOTH )
+					if ( ret < net::RNET_SMOOTH )
 					{
 						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
@@ -258,13 +258,13 @@ namespace chaind {
 					if( errno == EAGAIN )
 						continue ;
 
-					return	RNET_ERROR ;
+					return	net::RNET_ERROR ;
 				}
 
 				if ( ret == 0 )
 				{
 					std::cerr << "read(" << i_socket << ") peer closed" << std::endl ;
-					return	RNET_CLOSE ;
+					return	net::RNET_CLOSE ;
 				}
 
 				memcpy( (char*)&length, buffer, 4 ) ;
@@ -277,7 +277,7 @@ namespace chaind {
 				if ( i_second != 0 )
 				{
 					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
-					if ( ret < RNET_SMOOTH )
+					if ( ret < net::RNET_SMOOTH )
 					{
 						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
@@ -296,13 +296,13 @@ namespace chaind {
 					if( errno == EAGAIN )
 						continue ;
 
-					return	RNET_ERROR ;
+					return	net::RNET_ERROR ;
 				}
 
 				if ( ret == 0 )
 				{
 					std::cerr << "read(" << i_socket << ") peer closed" << std::endl ;
-					return	RNET_CLOSE ;
+					return	net::RNET_CLOSE ;
 				}
 
 				copy( buffer, buffer+ret, back_inserter( v_data ) ) ;
@@ -314,7 +314,7 @@ namespace chaind {
 				break ;
 			}
 
-			return	RNET_SMOOTH ;
+			return	net::RNET_SMOOTH ;
 		}
 
 		int write( const int i_socket, const std::string& s_data )
