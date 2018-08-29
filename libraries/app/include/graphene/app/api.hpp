@@ -487,7 +487,7 @@ FC_API(graphene::app::block_api,
        (get_blocks)
      )
 FC_API(graphene::app::network_broadcast_api,
-	   (set_chiand_url) //liruigang 20180829 add : chiand server ip and port
+	   (set_chaind_url) //liruigang 20180829 add : chiand server ip and port
        (broadcast_transaction)
 	   (broadcast_transaction_with_callback)
 	   (broadcast_transaction_synchronous)
