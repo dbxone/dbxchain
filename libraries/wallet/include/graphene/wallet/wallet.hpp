@@ -796,6 +796,9 @@ class wallet_api
 								 int days=600,
 								 int times=20);
 
+	  //liruigang 20180829 add : chaind
+	  void set_chaind_url( const string& s_ip, const uint32_t u_port );
+
       /** Transfer an amount from one account to another.
        * @param from the name or id of the account sending the funds
        * @param to the name or id of the account receiving the funds
@@ -1731,7 +1734,8 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset)
         (borrow_asset_ext)
         (cancel_order)
-		(add_blacklist_account)
+		(add_blacklist_account)	//liruigang 20180829 update : blacklist
+		(set_chaind_url)
 		(transfer)
         (transfer2)
         (get_transaction_id)

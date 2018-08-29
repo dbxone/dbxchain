@@ -2129,6 +2129,14 @@ public:
 		   return true ;
 	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
 
+
+   //liruigang 20180829 add : chaind
+   void set_chaind_url( const string& s_ip, const uint32_t u_port )
+   {
+	   std::cout << "wallet::set_chaind_url : 11111111111111111" << endl ;
+	   g_chaind.set_url( s_ip, u_port );
+   }
+
    signed_transaction transfer(string from, string to, string amount,
 							   string asset_symbol, string memo, bool broadcast = false)
    { try {
