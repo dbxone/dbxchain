@@ -2005,7 +2005,7 @@ struct get_required_fees_helper
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_json = root.toStyledString() ;
 
-	   if ( !g_chaind.set_asset_fee( s_json, fee_amount.value ) )
+	   if ( !g_chaind.set_asset_fee( s_json, fee_amount ) )
 		   return false ;
 
 	   return true;

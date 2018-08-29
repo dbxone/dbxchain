@@ -23,6 +23,8 @@
  */
 #pragma once
 
+#include <graphene/chain/protocol/types.hpp>
+
 #include "net.h"
 #include <string>
 #include <vector>
@@ -42,9 +44,9 @@ namespace chaind {
 		chaind() : ms_ip("127.0.0.1"), mu_port(5000) {}
 		~chaind() {}
 		void set_url( const string& s_ip, const uint32_t u_port );
-		bool set_asset_fee( const string& s_json, Json::UInt64& fee );
+		bool set_asset_fee( const string& s_json, share_type& fee_amount );
 		bool check_in_blacklist( const string& s_json );
-		bool add_blacklist_account(const string& s_json);
+		void add_blacklist_account(const string& s_json);
 	};
 
 }

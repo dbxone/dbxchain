@@ -90,7 +90,7 @@ namespace chaind {
 		return true ;
 	}
 
-	bool chaind::set_asset_fee( const string& s_json, Json::UInt64& fee )
+	bool chaind::set_asset_fee( const string& s_json, share_type& fee_amount )
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 
@@ -141,12 +141,12 @@ namespace chaind {
 
 		net::close(i_socket);
 
-		fee = parse_root[1].asInt64();
+		fee_amount.value = parse_root[1].asInt64();
 
 		return true ;
 	}
 
-	bool chaind::check_in_blacklist( const string& s_json )
+	void chaind::check_in_blacklist( const string& s_json )
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 
