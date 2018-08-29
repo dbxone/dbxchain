@@ -1,4 +1,6 @@
 
+#include <fc/exception/exception.hpp>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
