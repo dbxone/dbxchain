@@ -144,7 +144,7 @@ namespace chaind {
 		return true ;
 	}
 
-	bool chaind::check_in_blacklist( const string& s_json, const bool b_assert )
+	bool chaind::check_in_blacklist( const string& s_json )
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 
