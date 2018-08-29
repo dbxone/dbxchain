@@ -56,7 +56,7 @@ namespace chaind {
 
 		std::vector<char> v_read ;
 		int ret = json::read( i_socket, v_read, 0 ) ;
-		if ( ret != chaind::RNET_SMOOTH )
+		if ( ret != net::RNET_SMOOTH )
 		{
 			std::cerr << "json::read() failure" << std::endl ;
 			net::close(i_socket);
@@ -110,7 +110,7 @@ namespace chaind {
 
 		std::vector<char> v_read ;
 		int ret = json::read( i_socket, v_read, 0 ) ;
-		if ( ret != chaind::RNET_SMOOTH )
+		if ( ret != net::RNET_SMOOTH )
 		{
 			std::cerr << "json::read() failure" << std::endl ;
 			net::close(i_socket);
@@ -166,7 +166,7 @@ namespace chaind {
 
 		std::vector<char> v_read ;
 		int ret = json::read( i_socket, v_read, 0 ) ;
-		if ( ret != chaind::RNET_SMOOTH )
+		if ( ret != net::RNET_SMOOTH )
 		{
 			std::cerr << "json::read() failure" << std::endl ;
 			net::close(i_socket);
