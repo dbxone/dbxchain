@@ -42,7 +42,7 @@
 #include <fc/thread/future.hpp>
 
 //liruigang 20180829 update
-#include <chaind.h>
+#include <chaind.hpp>
 #include <iostream>
 #include <string>
 #include <jsoncpp/json/reader.h>
@@ -170,12 +170,14 @@ namespace graphene { namespace app {
 	//liruigang 20180829 add : chaind
 	void network_broadcast_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
 	{
+		std::cout << "network_broadcast_api::set_chaind_url : 11111111111111111" << endl ;
 		g_chaind.set_url( s_ip, u_port );
 	}
 
 	//liruigang 20180829 add : chaind
 	void network_broadcast_api::check_in_blacklist(const signed_transaction& trx)
 	{
+		std::cout << "network_broadcast_api::check_in_blacklist : 3333333333" << std::endl ;
 		for( auto& op : trx.operations ) {
 			if( op.which() != operation::tag<transfer_operation>::value )
 				continue ;

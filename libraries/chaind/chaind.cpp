@@ -17,8 +17,8 @@
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
-#include "net.h"
-#include "chaind.h"
+#include "net.hpp"
+#include "chaind.hpp"
 
 #include <iostream>
 #include <vector>
@@ -32,13 +32,14 @@ namespace chaind {
 
 	void chaind::set_url( const string& s_ip, const uint32_t u_port )
 	{
+		std::cout << "chaind::set_url : 2222222222" << endl ;
 		this->ms_ip = s_ip;
 		this->mu_port = u_port;
 	}
 
 	bool chaind::add_blacklist_account(const string& s_json)
 	{
-		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
+		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
 		int i_socket = -1;
 		if( !net::connect( i_socket, ms_ip, mu_port ) )
@@ -92,7 +93,7 @@ namespace chaind {
 
 	bool chaind::set_asset_fee( const string& s_json, graphene::chain::share_type& fee_amount )
 	{
-		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
+		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
 		int i_socket = -1;
 		if( !net::connect( i_socket, ms_ip, mu_port ) )
@@ -148,7 +149,7 @@ namespace chaind {
 
 	void chaind::check_in_blacklist( const string& s_json )
 	{
-		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
+		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
 		int i_socket = -1;
 		if( !net::connect( i_socket, ms_ip, mu_port ) )

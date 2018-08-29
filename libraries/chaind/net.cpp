@@ -15,7 +15,7 @@
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
-#include "net.h"
+#include "net.hpp"
 
 #include <iostream>
 #include <vector>

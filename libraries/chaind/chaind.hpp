@@ -25,7 +25,7 @@
 
 #include <graphene/chain/protocol/types.hpp>
 
-#include "net.h"
+#include "net.hpp"
 #include <string>
 #include <vector>
 #include <jsoncpp/json/reader.h>
