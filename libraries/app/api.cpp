@@ -42,7 +42,7 @@
 #include <fc/thread/future.hpp>
 
 //liruigang 20180829 update
-#include <chaind.h>
+#include <chaind/chaind.h>
 #include <iostream>
 #include <string>
 #include <jsoncpp/json/reader.h>

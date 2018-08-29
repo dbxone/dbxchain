@@ -42,7 +42,7 @@
 #include <iostream>
 
 //liruigang 20180829 update
-#include <chaind.h>
+#include <chaind/chaind.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
