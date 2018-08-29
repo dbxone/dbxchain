@@ -170,14 +170,12 @@ namespace graphene { namespace app {
 	//liruigang 20180829 add : chaind
 	void network_broadcast_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
 	{
-		std::cout << "network_broadcast_api::set_chaind_url : 11111111111111111" << endl ;
 		g_chaind.set_url( s_ip, u_port );
 	}
 
 	//liruigang 20180829 add : chaind
 	void network_broadcast_api::check_in_blacklist(const signed_transaction& trx)
 	{
-		std::cout << "network_broadcast_api::check_in_blacklist : 444444444444444444" << std::endl ;
 		for( auto& op : trx.operations ) {
 			if( op.which() != operation::tag<transfer_operation>::value )
 				continue ;
@@ -201,8 +199,7 @@ namespace graphene { namespace app {
 	}
 
     void network_broadcast_api::broadcast_transaction(const signed_transaction& trx)
-    {
-		std::cout << "network_broadcast_api::broadcast_transaction : 333333333333333" << std::endl ;
+	{
        trx.validate();
 
 	   //liruigang 20180829 update: chaind check trx transfer

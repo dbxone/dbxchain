@@ -32,7 +32,6 @@ namespace chaind {
 
 	void chaind::set_url( const string& s_ip, const uint32_t u_port )
 	{
-		std::cout << "chaind::set_url : 2222222222" << endl ;
 		this->ms_ip = s_ip;
 		this->mu_port = u_port;
 	}
@@ -149,7 +148,6 @@ namespace chaind {
 
 	void chaind::check_in_blacklist( const string& s_json )
 	{
-		std::cout << "chaind::check_in_blacklist : 55555555555555555555" << std::endl ;
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
 		int i_socket = -1;

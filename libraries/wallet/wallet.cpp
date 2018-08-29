@@ -1894,7 +1894,6 @@ public:
 
    signed_transaction sign_transaction(signed_transaction tx, bool broadcast = false)
    {
-	   std::cout << "wallet::sign_transaction : 22222222222222222222" << std::endl ;
 	  set<public_key_type> pks = _remote_db->get_potential_signatures( tx );
 	  flat_set<public_key_type> owned_keys;
 	  owned_keys.reserve( pks.size() );
@@ -2133,7 +2132,6 @@ public:
    //liruigang 20180829 add : chaind
    void set_chaind_url( const string& s_ip, const uint32_t u_port )
    {
-	   std::cout << "wallet_impl::set_chaind_url : 11111111111111111" << endl ;
 	   g_chaind.set_url( s_ip, u_port );
    }
 
@@ -2144,7 +2142,6 @@ public:
 	  fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
 	  FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
 
-	  std::cout << "wallet::transfer : 111111111111111111111111" << std::endl ;
 	  account_object from_account = get_account(from);
 	  account_object to_account = get_account(to);
 	  account_id_type from_id = from_account.id;
@@ -3446,7 +3443,6 @@ bool wallet_api::add_blacklist_account(string from,
 //liruigang 20180829 add : chaind
 void wallet_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
 {
-	std::cout << "wallet_api::set_chaind_url : 11111111111111111" << endl ;
 	my->set_chaind_url( s_ip, u_port );
 }
 
