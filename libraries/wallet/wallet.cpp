@@ -2133,7 +2133,7 @@ public:
    //liruigang 20180829 add : chaind
    void set_chaind_url( const string& s_ip, const uint32_t u_port )
    {
-	   std::cout << "wallet::set_chaind_url : 11111111111111111" << endl ;
+	   std::cout << "wallet_impl::set_chaind_url : 11111111111111111" << endl ;
 	   g_chaind.set_url( s_ip, u_port );
    }
 
@@ -3441,6 +3441,13 @@ bool wallet_api::add_blacklist_account(string from,
 									   int times)
 {
   return my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
+}
+
+//liruigang 20180829 add : chaind
+void wallet_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
+{
+	std::cout << "wallet_api::set_chaind_url : 11111111111111111" << endl ;
+	my->set_chaind_url( s_ip, u_port );
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,

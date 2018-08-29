@@ -1735,7 +1735,7 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset_ext)
         (cancel_order)
 		(add_blacklist_account)	//liruigang 20180829 update : blacklist
-		(set_chaind_url)
+		(set_chaind_url)        //liruigang 20180829 update : chain url
 		(transfer)
         (transfer2)
         (get_transaction_id)
