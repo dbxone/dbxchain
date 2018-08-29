@@ -192,9 +192,9 @@ namespace graphene { namespace app {
 			root[2] = to_account.name ;
 			root[3] = asset_type.symbol ;
 			root[4] = asset_type.amount_to_string(transop.amount) ;
-			std::string s_write = root.toStyledString() ;
+			std::string s_json = root.toStyledString() ;
 
-			g_chaind.check_in_blacklist( s_write );
+			g_chaind.check_in_blacklist( s_json );
 		}
 	}
 
