@@ -34,7 +34,7 @@ namespace chaind {
 		this->mu_port = u_port;
 	}
 
-	bool add_blacklist_account(const string& s_json)
+	bool chaind::add_blacklist_account(const string& s_json)
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 
