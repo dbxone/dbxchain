@@ -1988,7 +1988,7 @@ struct get_required_fees_helper
       const price& _core_exchange_rate,
       uint32_t _max_recursion
       )
-	  : asset(_asset), //liruigang 20180829 update: calc fee
+	  : m_asset(_asset), //liruigang 20180829 update: calc fee
 		current_fee_schedule(_current_fee_schedule),
         core_exchange_rate(_core_exchange_rate),
         max_recursion(_max_recursion)
@@ -2021,7 +2021,7 @@ struct get_required_fees_helper
 	  if( op.which() == operation::tag<transfer_operation>::value ) {
 		  transfer_operation& transop = op.get<transfer_operation>();
 
-		  set_asset_fee(transop, transop.fee.amount, asset.symbol );
+		  set_asset_fee(transop, transop.fee.amount, m_asset.symbol );
 
 		  fc::variant result;
 		  fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
@@ -2054,7 +2054,7 @@ struct get_required_fees_helper
    }
 
    //liruigang 20180829 update: calc fee
-   const asset_object& asset;
+   const asset_object& m_asset;
 
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
