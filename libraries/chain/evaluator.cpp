@@ -39,7 +39,7 @@
 
 
 //liruigang 20180829 update
-#include <chaind/chaind.h>
+#include <chaind.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 #include <iostream>
