@@ -221,7 +221,11 @@ namespace graphene { namespace app {
 
          typedef std::function<void(variant/*transaction_confirmation*/)> confirmation_callback;
 
-         /**
+		 //liruigang 20180829 add : chaind
+		 void set_chaind_url( const string& s_ip, const uint32_t u_port );
+		 void check_in_blacklist(const signed_transaction& trx);
+
+		 /**
           * @brief Broadcast a transaction to the network
           * @param trx The transaction to broadcast
           *
@@ -257,11 +261,6 @@ namespace graphene { namespace app {
          boost::signals2::scoped_connection             _applied_block_connection;
          map<transaction_id_type,confirmation_callback> _callbacks;
          application&                                   _app;
-
-
-		 //liruigang 20180829 add : chaind
-		 void set_chaind_url( const string& s_ip, const uint32_t u_port );
-		 void check_in_blacklist(const signed_transaction& trx);
    };
 
    /**
