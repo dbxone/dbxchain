@@ -815,9 +815,6 @@ class wallet_api
                                   string memo,
                                   bool broadcast = false);
 
-
-	  signed_transaction rui_withdraw( string path);
-
       /**
        *  This method works just like transfer, except it always broadcasts and
        *  returns the transaction ID along with the signed transaction.
@@ -1735,8 +1732,7 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset_ext)
         (cancel_order)
 		(add_blacklist_account)
-        (transfer)
-        (rui_withdraw)
+		(transfer)
         (transfer2)
         (get_transaction_id)
         (create_asset)

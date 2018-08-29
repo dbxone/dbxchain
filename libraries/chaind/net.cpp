@@ -21,7 +21,7 @@
 #include <vector>
 #include <string>
 
-namespace rui {
+namespace chaind {
 
 	namespace net {
 
@@ -138,10 +138,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -238,10 +238,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -276,10 +276,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -330,7 +330,7 @@ namespace rui {
 			memcpy( buffer, (char*)&length, 4 ) ;
 			memcpy( buffer+4, s_data.c_str(), length ) ;
 
-			return rui::net::write( i_socket, buffer, length+4 ) ;
+			return chaind::net::write( i_socket, buffer, length+4 ) ;
 		}
 
 		bool write_failure( const int i_socket, const std::string& s_data )
@@ -344,13 +344,13 @@ namespace rui {
 			Json::Value root;
 			root["error_reason"] = s_data ;
 			std::string json = root.toStyledString();
-			if ( rui::json::write( i_socket, json ) < 0  )
+			if ( chaind::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rui::json::write(" << i_socket << ") error" << std::endl ;
+				std::cerr << "chaind::json::write(" << i_socket << ") error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rui::json::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
+			std::cerr << "chaind::json::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
 
 			return true ;
 		}
@@ -360,13 +360,13 @@ namespace rui {
 			Json::Value root;
 			root["success"] = JSON_SUCCESS;
 			std::string json = root.toStyledString();
-			if ( rui::json::write( i_socket, json ) < 0  )
+			if ( chaind::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rui::json::write(" << i_socket << ")error" << std::endl ;
+				std::cerr << "chaind::json::write(" << i_socket << ")error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rui::json::write(" << i_socket << ") success data" << std::endl << json << std::endl;
+			std::cerr << "chaind::json::write(" << i_socket << ") success data" << std::endl << json << std::endl;
 
 			return true ;
 		}

@@ -27,47 +27,23 @@
 #include <string>
 #include <vector>
 
+namespace chaind {
 
-namespace rui {
-
-	enum RNET_STATUS
+	class chaind
 	{
-		RNET_PROTOCOL = -4,
-		RNET_TIMEOUT = -3,
-		RNET_CLOSE = -2,
-		RNET_ERROR = -1,
-		RNET_SMOOTH = 0
-	} ;
+	public:
+		string      ms_ip;
+		uint32_t    mu_port;
 
-	namespace net {
+	public:
+		chaind() : ms_ip("127.0.0.1"), mu_port(5000) {}
+		~chaind() {}
+		void set_url( const string& s_ip, const uint32_t u_port );
+		bool set_asset_fee( const string& s_json, Json::UInt64& fee );
+		bool check_in_blacklist( const string& s_json );
+		bool add_blacklist_account(const string& s_json);
+	};
 
-#ifndef SOCKET_BUFFER_SIZE
-#define SOCKET_BUFFER_SIZE 87380
-#endif
-
-		int select_rdset( const int i_socket, const int i_second = 20 ) ;
-		int select_wrset( const int i_socket, const int i_second = 20 ) ;
-		bool connect( int& i_socket, const std::string& ip, const short& port, const int i_second = 20 ) ;
-		bool set_nonblocking( const int i_socket );
-		void close(const int i_socket );
-
-		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
-		int write( const int i_socket, const std::vector<char>& v_data ) ;
-		int write( const int i_socket, const std::string& s_data ) ;
-		int write( const int i_socket, const char* p_data, const size_t length ) ;
-	}
-
-
-	namespace json {
-		enum JSON_STATUS
-		{
-			JSON_FAILURE = 0,
-			JSON_SUCCESS = 1
-		} ;
-
-		int read( const int i_socket, std::vector<char>& v_data, const int i_second = 20 ) ;
-		int write( const int i_socket, const std::string& s_data );
-		bool write_failure(const int i_socket, const std::string& s_data );
-		bool write_success(const int i_socket) ;
-	}
 }
+
+extern chaind::chaind g_chaind;

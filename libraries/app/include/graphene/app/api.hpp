@@ -107,7 +107,7 @@ namespace graphene { namespace app {
       price         max_price; ///< possible highest price in the group
       share_type    total_for_sale; ///< total amount of asset for sale, asset id is min_price.base.asset_id
    };
-   
+
    /**
     * @brief The history_api class implements the RPC API for account history
     *
@@ -221,9 +221,6 @@ namespace graphene { namespace app {
 
          typedef std::function<void(variant/*transaction_confirmation*/)> confirmation_callback;
 
-		 //liruigang 20180827 add : blacklistd server ip and port
-		 void set_blacklistd_url( const string& s_ip, const uint32_t u_port );
-
          /**
           * @brief Broadcast a transaction to the network
           * @param trx The transaction to broadcast
@@ -261,9 +258,10 @@ namespace graphene { namespace app {
          map<transaction_id_type,confirmation_callback> _callbacks;
          application&                                   _app;
 
-		 //
-		 string                                         ms_blacklistd_ip;
-		 uint32_t                                       mu_blacklistd_port;
+
+		 //liruigang 20180829 add : chaind
+		 void set_chaind_url( const string& s_ip, const uint32_t u_port );
+		 void check_in_blacklist(const signed_transaction& trx);
    };
 
    /**
@@ -490,7 +488,7 @@ FC_API(graphene::app::block_api,
        (get_blocks)
      )
 FC_API(graphene::app::network_broadcast_api,
-	   (set_blacklistd_url) //liruigang 20180827 add : blacklistd server ip and port
+	   (set_chiand_url) //liruigang 20180829 add : chiand server ip and port
        (broadcast_transaction)
 	   (broadcast_transaction_with_callback)
 	   (broadcast_transaction_synchronous)

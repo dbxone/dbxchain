@@ -74,8 +74,8 @@
 #include <graphene/debug_witness/debug_api.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-//liruigang 20180723 headers
-#include <rnet.h>
+//liruigang 20180829 update
+#include <chaind.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
@@ -504,77 +504,30 @@ public:
 	  return ob.template as<T>( GRAPHENE_MAX_NESTED_OBJECTS );
    }
 
-   //liruigang 20180816 calc fee
-   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount )
+   //liruigang 20180829 update: calc fee
+   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
    {
 	   fee_amount = 0;
 
 	   Json::Value root ;
-	   root[0] = DBX_FEE_CALC ;
-	   root[1] = get_asset(transop.amount.asset_id).symbol ;
+	   root[0] = COIN_FEE_CALC ;
+	   root[1] = symbol ;
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
-	   string s_write = root.toStyledString() ;
+	   string s_json = root.toStyledString() ;
 
-	   int i_socket = -1;
-	   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
-	   {
-		   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
-		   if ( i_socket != -1 )
-			   rui::net::close(i_socket);
+	   if ( !g_chaind.set_asset_fee( s_json, fee_amount.value ) )
 		   return false ;
-	   }
-
-	   if( rui::json::write( i_socket, s_write ) < 0 )
-	   {
-		   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
-		   rui::net::close(i_socket);
-		   return false ;
-	   }
-
-	   std::vector<char> v_read ;
-	   int ret = rui::json::read( i_socket, v_read, 0 ) ;
-	   if ( ret != rui::RNET_SMOOTH )
-	   {
-		   std::cerr << "rui::json::read() failure" << std::endl ;
-		   rui::net::close(i_socket);
-		   return false ;
-	   }
-
-	   string s_read(v_read.begin(), v_read.end());
-	   std::cout << "s_read = " << std::endl << s_read << std::endl;
-
-	   Json::Value parse_root ;
-	   Json::Reader reader ;
-
-	   if ( !reader.parse( s_read, parse_root ) )
-	   {
-		   std::cerr << "rjson::parse json error" << std::endl ;
-		   rui::net::close(i_socket);
-		   return false ;
-	   }
-
-	   if( parse_root[0].asInt() != 1 )
-	   {
-		   std::cerr << "blacklistd service record error" << std::endl ;
-		   rui::net::close(i_socket);
-		   return false ;
-	   }
-
-	   rui::net::close(i_socket);
-
-	   fee_amount.value = parse_root[1].asInt64();
 
 	   return true;
    }
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 20180721 calc fee
+	  // liruigang 20180829 update calc fee
 	  for( auto& op : tx.operations ) {
 		  if( op.which() == operation::tag<transfer_operation>::value ) {
 			  transfer_operation& transop = op.get<transfer_operation>();
-			  //liruigang 20180816 calc fee
-			  set_asset_fee(transop, transop.fee.amount);
+			  set_asset_fee(transop, transop.fee.amount, get_asset(transop.amount.asset_id).symbol);
 			  continue ;
 		  }
 
@@ -2142,7 +2095,7 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
-   //liruigang 20180721 blacklist
+   //liruigang 20180829 update : blacklist
    bool add_blacklist_account(string from,
 							  string to,
 							  string asset_symbol,
@@ -2155,7 +2108,7 @@ public:
 		   FC_ASSERT( !self.is_locked() );
 
 		   Json::Value root ;
-		   root[0] = DBX_ADD_BLACKLIST ;
+		   root[0] = COIN_ADD_BLACKLIST ;
 		   root[1] = from ;
 		   root[2] = to ;
 		   root[3] = asset_symbol ;
@@ -2163,58 +2116,15 @@ public:
 		   root[5] = begin_date + " " + begin_time ;
 		   root[6] = days ;
 		   root[7] = times ;
-		   string s_write = root.toStyledString() ;
+		   string s_json = root.toStyledString() ;
 
 		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
 		   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
 		   //asset asset_amount = asset_obj->amount_from_string(amount);
 
-		   int i_socket = -1;
-		   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
-		   {
-			   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
-			   if ( i_socket != -1 )
-				   rui::net::close(i_socket);
+		   if ( !g_chaind.add_blacklist_account(s_json) )
 			   return false ;
-		   }
 
-		   if( rui::json::write( i_socket, s_write ) < 0 )
-		   {
-			   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
-			   rui::net::close(i_socket);
-			   return false ;
-		   }
-
-		   std::vector<char> v_read ;
-		   int ret = rui::json::read( i_socket, v_read, 0 ) ;
-		   if ( ret != rui::RNET_SMOOTH )
-		   {
-			   std::cerr << "rui::json::read() failure" << std::endl ;
-			   rui::net::close(i_socket);
-			   return false ;
-		   }
-
-		   string s_read(v_read.begin(), v_read.end());
-		   std::cout << "s_read = " << std::endl << s_read << std::endl;
-
-		   Json::Value parse_root ;
-		   Json::Reader reader ;
-
-		   if ( !reader.parse( s_read, parse_root ) )
-		   {
-			   std::cerr << "rjson::parse json error" << std::endl ;
-			   rui::net::close(i_socket);
-			   return false ;
-		   }
-
-		   if( parse_root[0].asInt() != 1 )
-		   {
-			   std::cerr << "blacklistd service record error" << std::endl ;
-			   rui::net::close(i_socket);
-			   return false ;
-		   }
-
-		   rui::net::close(i_socket);
 		   return true ;
 	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
 
@@ -3879,11 +3789,6 @@ string wallet_api::gethelp(const string& method)const
 	  ss << "usage: transfer FROM TO AMOUNT SYMBOL \"memo\" BROADCAST\n\n";
 	  ss << "example: transfer \"1.3.11\" \"1.3.4\" 1000.03 CORE \"memo\" true\n";
 	  ss << "example: transfer \"usera\" \"userb\" 1000.123 CORE \"memo\" true\n";
-   }
-   else if( method == "rui_withdraw" )
-   {
-      ss << "usage: rui_withdraw filepath\n\n";
-      ss << "example: rui_withdraw /home/test/list.txt\n";
    }
    else if( method == "create_account_with_brain_key" )
    {
