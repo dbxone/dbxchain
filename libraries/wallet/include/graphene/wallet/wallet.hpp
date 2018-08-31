@@ -787,7 +787,7 @@ class wallet_api
                                                        bool broadcast = false);
 
 	  //liruigang 20180721 blacklist
-	  bool add_blacklist_account(string from,
+	  void add_blacklist_account(string from,
 								 string to,
 								 string asset_symbol,
 								 string amount,

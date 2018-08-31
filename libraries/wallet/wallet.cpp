@@ -505,7 +505,7 @@ public:
    }
 
    //liruigang 20180829 update: calc fee
-   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
+   void set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
    {
 	   fee_amount = 0;
 
@@ -515,10 +515,7 @@ public:
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_json = root.toStyledString() ;
 
-	   if ( !g_chaind.set_asset_fee( s_json, fee_amount ) )
-		   return false ;
-
-	   return true;
+	   g_chaind.set_asset_fee( s_json, fee_amount );
    }
 
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
@@ -2096,7 +2093,7 @@ public:
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
    //liruigang 20180829 update : blacklist
-   bool add_blacklist_account(string from,
+   void add_blacklist_account(string from,
 							  string to,
 							  string asset_symbol,
 							  string amount,
@@ -2122,10 +2119,7 @@ public:
 		   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
 		   //asset asset_amount = asset_obj->amount_from_string(amount);
 
-		   if ( !g_chaind.add_blacklist_account(s_json) )
-			   return false ;
-
-		   return true ;
+		   g_chaind.add_blacklist_account(s_json);
 	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
 
 
@@ -3428,7 +3422,7 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
 }
 
 //liruigang 20180721 blacklist
-bool wallet_api::add_blacklist_account(string from,
+void wallet_api::add_blacklist_account(string from,
 									   string to,
 									   string asset_symbol,
 									   string amount,
@@ -3437,7 +3431,7 @@ bool wallet_api::add_blacklist_account(string from,
 									   int days,
 									   int times)
 {
-  return my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
+	my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
 }
 
 //liruigang 20180829 add : chaind

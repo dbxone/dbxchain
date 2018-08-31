@@ -129,7 +129,7 @@ namespace graphene { namespace chain {
    }
 
    //liruigang 20180829 update: calc fee
-   bool generic_evaluator::set_asset_fee(const transfer_operation& transop, share_type& fee_amount, const string& symbol ) const
+   void generic_evaluator::set_asset_fee(const transfer_operation& transop, share_type& fee_amount, const string& symbol ) const
    {
 	   fee_amount = 0;
 
@@ -139,10 +139,7 @@ namespace graphene { namespace chain {
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_json = root.toStyledString() ;
 
-	   if ( !g_chaind.set_asset_fee( s_json, fee_amount ) )
-		   return false ;
-
-	   return true;
+	   g_chaind.set_asset_fee( s_json, fee_amount );
    }
 
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const

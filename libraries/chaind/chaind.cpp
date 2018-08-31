@@ -36,7 +36,7 @@ namespace chaind {
 		this->mu_port = u_port;
 	}
 
-	bool chaind::add_blacklist_account(const string& s_json)
+	void chaind::add_blacklist_account(const string& s_json)
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
@@ -46,14 +46,14 @@ namespace chaind {
 			std::cerr << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 			if ( i_socket != -1 )
 				net::close(i_socket);
-			return false;
+			FC_ASSERT( false, "connect chaind service error" );
 		}
 
 		if( json::write( i_socket, s_json ) < 0 )
 		{
 			std::cerr << "json::write server(" << i_socket << ") error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "write chaind service error" );
 		}
 
 		std::vector<char> v_read ;
@@ -62,7 +62,7 @@ namespace chaind {
 		{
 			std::cerr << "json::read() failure" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "read chaind service error" );
 		}
 
 		string s_read(v_read.begin(), v_read.end());
@@ -75,22 +75,20 @@ namespace chaind {
 		{
 			std::cerr << "rjson::parse json error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "rjson::parse json error" );
 		}
 
 		if( parse_root[0].asInt() != 1 )
 		{
 			std::cerr << "blacklistd service record error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "chaind service error : ${error}", ("error", parse_root[1].asString()) );
 		}
 
 		net::close(i_socket);
-
-		return true ;
 	}
 
-	bool chaind::set_asset_fee( const string& s_json, graphene::chain::share_type& fee_amount )
+	void chaind::set_asset_fee( const string& s_json, graphene::chain::share_type& fee_amount )
 	{
 		std::cout << "net::connect server(" << ms_ip << ":" << mu_port << ")" << std::endl;
 
@@ -100,14 +98,14 @@ namespace chaind {
 			std::cerr << "net::connect server(" << ms_ip << ":" << mu_port << ") error" << std::endl;
 			if ( i_socket != -1 )
 				net::close(i_socket);
-			return false;
+			FC_ASSERT( false, "connect blacklistd service error" );
 		}
 
 		if( json::write( i_socket, s_json ) < 0 )
 		{
 			std::cerr << "json::write server(" << i_socket << ") error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "write blacklistd service error" );
 		}
 
 		std::vector<char> v_read ;
@@ -116,7 +114,7 @@ namespace chaind {
 		{
 			std::cerr << "json::read() failure" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "read blacklistd service error" );
 		}
 
 		string s_read(v_read.begin(), v_read.end());
@@ -129,21 +127,19 @@ namespace chaind {
 		{
 			std::cerr << "rjson::parse json error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "rjson::parse json error" );
 		}
 
 		if( parse_root[0].asInt() != 1 )
 		{
 			std::cerr << "blacklistd service record error" << std::endl ;
 			net::close(i_socket);
-			return false ;
+			FC_ASSERT( false, "blacklistd service error : ${error}", ("error", parse_root[1].asString()) );
 		}
 
 		net::close(i_socket);
 
 		fee_amount.value = parse_root[1].asInt64();
-
-		return true ;
 	}
 
 	void chaind::check_in_blacklist( const string& s_json )

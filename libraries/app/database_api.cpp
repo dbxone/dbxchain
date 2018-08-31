@@ -1995,7 +1995,7 @@ struct get_required_fees_helper
    {}
 
    //liruigang 20180829 update: calc fee
-   bool set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
+   void set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
    {
 	   fee_amount = 0;
 
@@ -2005,10 +2005,7 @@ struct get_required_fees_helper
 	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
 	   string s_json = root.toStyledString() ;
 
-	   if ( !g_chaind.set_asset_fee( s_json, fee_amount ) )
-		   return false ;
-
-	   return true;
+	   g_chaind.set_asset_fee( s_json, fee_amount );
    }
 
    fc::variant set_op_fees( operation& op )
