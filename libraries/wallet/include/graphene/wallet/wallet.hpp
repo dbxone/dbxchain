@@ -787,7 +787,7 @@ class wallet_api
                                                        bool broadcast = false);
 
 	  //liruigang 20180721 blacklist
-	  bool add_blacklist_account(string from,
+	  void add_blacklist_account(string from,
 								 string to,
 								 string asset_symbol,
 								 string amount,
@@ -795,6 +795,9 @@ class wallet_api
 								 string begin_time,
 								 int days=600,
 								 int times=20);
+
+	  //liruigang 20180829 add : chaind
+	  void set_chaind_url( const string& s_ip, const uint32_t u_port );
 
       /** Transfer an amount from one account to another.
        * @param from the name or id of the account sending the funds
@@ -1731,8 +1734,9 @@ FC_API( graphene::wallet::wallet_api,
         (borrow_asset)
         (borrow_asset_ext)
         (cancel_order)
-		(add_blacklist_account)
-        (transfer)
+		(add_blacklist_account)	//liruigang 20180829 update : blacklist
+		(set_chaind_url)        //liruigang 20180829 update : chain url
+		(transfer)
         (transfer2)
         (get_transaction_id)
         (create_asset)

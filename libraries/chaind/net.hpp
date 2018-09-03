@@ -28,22 +28,22 @@
 #include <vector>
 
 
-namespace rui {
-
-	enum RNET_STATUS
-	{
-		RNET_PROTOCOL = -4,
-		RNET_TIMEOUT = -3,
-		RNET_CLOSE = -2,
-		RNET_ERROR = -1,
-		RNET_SMOOTH = 0
-	} ;
+namespace chaind {
 
 	namespace net {
 
 #ifndef SOCKET_BUFFER_SIZE
 #define SOCKET_BUFFER_SIZE 87380
 #endif
+
+		enum RNET_STATUS
+		{
+			RNET_PROTOCOL = -4,
+			RNET_TIMEOUT = -3,
+			RNET_CLOSE = -2,
+			RNET_ERROR = -1,
+			RNET_SMOOTH = 0
+		} ;
 
 		int select_rdset( const int i_socket, const int i_second = 20 ) ;
 		int select_wrset( const int i_socket, const int i_second = 20 ) ;

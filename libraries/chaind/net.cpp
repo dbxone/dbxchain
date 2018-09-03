@@ -15,13 +15,13 @@
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
-#include "rnet.h"
+#include "net.hpp"
 
 #include <iostream>
 #include <vector>
 #include <string>
 
-namespace rui {
+namespace chaind {
 
 	namespace net {
 
@@ -138,10 +138,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
 					if ( ret < RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -238,10 +238,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
-					if ( ret < RNET_SMOOTH )
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
+					if ( ret < net::RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -258,13 +258,13 @@ namespace rui {
 					if( errno == EAGAIN )
 						continue ;
 
-					return	RNET_ERROR ;
+					return	net::RNET_ERROR ;
 				}
 
 				if ( ret == 0 )
 				{
 					std::cerr << "read(" << i_socket << ") peer closed" << std::endl ;
-					return	RNET_CLOSE ;
+					return	net::RNET_CLOSE ;
 				}
 
 				memcpy( (char*)&length, buffer, 4 ) ;
@@ -276,10 +276,10 @@ namespace rui {
 			{
 				if ( i_second != 0 )
 				{
-					int ret = rui::net::select_rdset( i_socket, i_second ) ;
-					if ( ret < RNET_SMOOTH )
+					int ret = chaind::net::select_rdset( i_socket, i_second ) ;
+					if ( ret < net::RNET_SMOOTH )
 					{
-						std::cerr << "rui::net::select_rdset(" << i_socket << ") error" << std::endl ;
+						std::cerr << "chaind::net::select_rdset(" << i_socket << ") error" << std::endl ;
 						return ret ;
 					}
 				}
@@ -296,13 +296,13 @@ namespace rui {
 					if( errno == EAGAIN )
 						continue ;
 
-					return	RNET_ERROR ;
+					return	net::RNET_ERROR ;
 				}
 
 				if ( ret == 0 )
 				{
 					std::cerr << "read(" << i_socket << ") peer closed" << std::endl ;
-					return	RNET_CLOSE ;
+					return	net::RNET_CLOSE ;
 				}
 
 				copy( buffer, buffer+ret, back_inserter( v_data ) ) ;
@@ -314,7 +314,7 @@ namespace rui {
 				break ;
 			}
 
-			return	RNET_SMOOTH ;
+			return	net::RNET_SMOOTH ;
 		}
 
 		int write( const int i_socket, const std::string& s_data )
@@ -322,7 +322,7 @@ namespace rui {
 			if (s_data.empty())
 			{
 				std::cerr << "data empty" << std::endl ;
-				return  RNET_ERROR;
+				return  net::RNET_ERROR;
 			}
 
 			char buffer[SOCKET_BUFFER_SIZE] = { 0x00 } ;
@@ -330,7 +330,7 @@ namespace rui {
 			memcpy( buffer, (char*)&length, 4 ) ;
 			memcpy( buffer+4, s_data.c_str(), length ) ;
 
-			return rui::net::write( i_socket, buffer, length+4 ) ;
+			return chaind::net::write( i_socket, buffer, length+4 ) ;
 		}
 
 		bool write_failure( const int i_socket, const std::string& s_data )
@@ -344,13 +344,13 @@ namespace rui {
 			Json::Value root;
 			root["error_reason"] = s_data ;
 			std::string json = root.toStyledString();
-			if ( rui::json::write( i_socket, json ) < 0  )
+			if ( chaind::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rui::json::write(" << i_socket << ") error" << std::endl ;
+				std::cerr << "chaind::json::write(" << i_socket << ") error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rui::json::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
+			std::cerr << "chaind::json::write(" << i_socket << ") failure data" << std::endl << json << std::endl;
 
 			return true ;
 		}
@@ -360,13 +360,13 @@ namespace rui {
 			Json::Value root;
 			root["success"] = JSON_SUCCESS;
 			std::string json = root.toStyledString();
-			if ( rui::json::write( i_socket, json ) < 0  )
+			if ( chaind::json::write( i_socket, json ) < 0  )
 			{
-				std::cerr << "rui::json::write(" << i_socket << ")error" << std::endl ;
+				std::cerr << "chaind::json::write(" << i_socket << ")error" << std::endl ;
 				return false ;
 			}
 
-			std::cerr << "rui::json::write(" << i_socket << ") success data" << std::endl << json << std::endl;
+			std::cerr << "chaind::json::write(" << i_socket << ") success data" << std::endl << json << std::endl;
 
 			return true ;
 		}

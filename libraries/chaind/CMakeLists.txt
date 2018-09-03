@@ -1,19 +1,19 @@
 
 file(GLOB headers "*.h")
 
-set(sources rnet.cpp
+set(sources net.cpp chaind.cpp
             ${headers})
 
-add_library( rui
+add_library( chaind
              ${sources}
              ${HEADERS} )
-target_link_libraries( rui PRIVATE jsoncpp ${CMAKE_DL_LIBS} ${PLATFORM_SPECIFIC_LIBS} )
-target_include_directories( rui
+target_link_libraries( chaind PRIVATE jsoncpp ${CMAKE_DL_LIBS} ${PLATFORM_SPECIFIC_LIBS} )
+target_include_directories( chaind
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
                           )
 
 install( TARGETS
-   rui
+   chaind
 
    RUNTIME DESTINATION bin
    LIBRARY DESTINATION lib

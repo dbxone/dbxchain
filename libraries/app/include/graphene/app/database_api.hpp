@@ -592,7 +592,6 @@ class database_api
       ////////////////////////////
       // Authority / validation //
       ////////////////////////////
-
       /// @brief Get a hexdump of the serialized binary form of a transaction
       std::string get_transaction_hex(const signed_transaction& trx)const;
 

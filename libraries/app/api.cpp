@@ -41,10 +41,10 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
-//liruigang 20180724 headers
+//liruigang 20180829 update
+#include <chaind.hpp>
 #include <iostream>
 #include <string>
-#include <rnet.h>
 #include <jsoncpp/json/reader.h>
 #include <jsoncpp/json/json.h>
 
@@ -52,7 +52,7 @@ namespace graphene { namespace app {
 
     login_api::login_api(application& a)
     :_app(a)
-    {
+	{
     }
 
     login_api::~login_api()
@@ -167,75 +167,43 @@ namespace graphene { namespace app {
        }
     }
 
+	//liruigang 20180829 add : chaind
+	void network_broadcast_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
+	{
+		g_chaind.set_url( s_ip, u_port );
+	}
+
+	//liruigang 20180829 add : chaind
+	void network_broadcast_api::check_in_blacklist(const signed_transaction& trx)
+	{
+		for( auto& op : trx.operations ) {
+			if( op.which() != operation::tag<transfer_operation>::value )
+				continue ;
+
+			const transfer_operation& transop = op.get<transfer_operation>();
+
+			const account_object& from_account    = transop.from(*(_app.chain_database().get()));
+			const account_object& to_account      = transop.to(*(_app.chain_database().get()));
+			const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
+
+			Json::Value root ;
+			root[0] = COIN_TRANSFER ;
+			root[1] = from_account.name ;
+			root[2] = to_account.name ;
+			root[3] = asset_type.symbol ;
+			root[4] = asset_type.amount_to_string(transop.amount) ;
+			std::string s_json = root.toStyledString() ;
+
+			g_chaind.check_in_blacklist( s_json );
+		}
+	}
+
     void network_broadcast_api::broadcast_transaction(const signed_transaction& trx)
-    {
+	{
        trx.validate();
 
-	   // liruigang 20180724 blacklist
-	   for( auto& op : trx.operations ) {
-		   if( op.which() == operation::tag<transfer_operation>::value ) {
-			   const transfer_operation& transop = op.get<transfer_operation>();
-
-			   const account_object& from_account    = transop.from(*(_app.chain_database().get()));
-			   const account_object& to_account      = transop.to(*(_app.chain_database().get()));
-			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
-
-			   Json::Value root ;
-			   root[0] = DBX_TRANSFER ;
-			   root[1] = from_account.name ;
-			   root[2] = to_account.name ;
-			   root[3] = asset_type.symbol ;
-			   root[4] = asset_type.amount_to_string(transop.amount) ;
-			   std::string s_write = root.toStyledString() ;
-
-			   int i_socket = -1;
-			   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
-			   {
-				   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
-				   if ( i_socket != -1 )
-					   rui::net::close(i_socket);
-				   FC_ASSERT( false, "connect blacklistd service error" );
-			   }
-
-			   if( rui::json::write( i_socket, s_write ) < 0 )
-			   {
-				   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "write blacklistd service error" );
-			   }
-
-			   std::vector<char> v_read ;
-			   int ret = rui::json::read( i_socket, v_read, 0 ) ;
-			   if ( ret != rui::RNET_SMOOTH )
-			   {
-				   std::cerr << "rui::json::read() failure" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "read blacklistd service error" );
-			   }
-
-			   std::string s_read(v_read.begin(), v_read.end());
-			   std::cout << "s_read = " << std::endl << s_read << std::endl;
-
-			   Json::Value parse_root ;
-			   Json::Reader reader ;
-
-			   if ( !reader.parse( s_read, parse_root ) )
-			   {
-				   std::cerr << "rjson::parse json error" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "rjson::parse json error" );
-			   }
-
-			   if( parse_root[0].asInt() != 1 )
-			   {
-				   std::cerr << "blacklistd service error : " << parse_root[1].asString() << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "blacklistd service error : ${error}", ("error", parse_root[1].asString()) );
-			   }
-
-			   rui::net::close(i_socket);
-		   }
-	   }
+	   //liruigang 20180829 update: chaind check trx transfer
+	   check_in_blacklist(trx);
 
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )
@@ -262,71 +230,9 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
-	   // liruigang 20180724 blacklist
-	   for( auto& op : trx.operations ) {
-		   if( op.which() == operation::tag<transfer_operation>::value ) {
-			   const transfer_operation& transop = op.get<transfer_operation>();
 
-			   const account_object& from_account    = transop.from(*(_app.chain_database().get()));
-			   const account_object& to_account      = transop.to(*(_app.chain_database().get()));
-			   const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
-
-			   Json::Value root ;
-			   root[0] = DBX_TRANSFER ;
-			   root[1] = from_account.name ;
-			   root[2] = to_account.name ;
-			   root[3] = asset_type.symbol ;
-			   root[4] = asset_type.amount_to_string(transop.amount) ;
-			   std::string s_write = root.toStyledString() ;
-
-			   int i_socket = -1;
-			   if( !rui::net::connect( i_socket, "127.0.0.1", 5000 ) )
-			   {
-				   std::cerr << "rui::net::connect server(127.0.0.1:5000) error" << std::endl;
-				   if ( i_socket != -1 )
-					   rui::net::close(i_socket);
-				   FC_ASSERT( false, "connect blacklistd service error" );
-			   }
-
-			   if( rui::json::write( i_socket, s_write ) < 0 )
-			   {
-				   std::cerr << "rui::json::write server(" << i_socket << ") error" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "write blacklistd service error" );
-			   }
-
-			   std::vector<char> v_read ;
-			   int ret = rui::json::read( i_socket, v_read, 0 ) ;
-			   if ( ret != rui::RNET_SMOOTH )
-			   {
-				   std::cerr << "rui::json::read() failure" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "read blacklistd service error" );
-			   }
-
-			   std::string s_read(v_read.begin(), v_read.end());
-			   std::cout << "s_read = " << std::endl << s_read << std::endl;
-
-			   Json::Value parse_root ;
-			   Json::Reader reader ;
-
-			   if ( !reader.parse( s_read, parse_root ) )
-			   {
-				   std::cerr << "rjson::parse json error" << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "rjson::parse json error" );
-			   }
-
-			   if( parse_root[0].asInt() != 1 )
-			   {
-				   std::cerr << "blacklistd service error : " << parse_root[1].asString() << std::endl ;
-				   rui::net::close(i_socket);
-				   FC_ASSERT( false, "blacklistd service error : ${error}", ("error", parse_root[1].asString()) );
-			   }
-
-			   rui::net::close(i_socket);
-		   }
-	   }
+	   //liruigang 20180829 update: chaind check trx transfer
+	   check_in_blacklist(trx);
 
        _callbacks[trx.id()] = cb;
        _app.chain_database()->push_transaction(trx);

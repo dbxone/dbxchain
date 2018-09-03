@@ -115,10 +115,10 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
-//liruigang 20180816 operate type
-#define DBX_ADD_BLACKLIST	0
-#define DBX_TRANSFER	1
-#define DBX_FEE_CALC	2
+//liruigang 20180829 update : operate type
+#define COIN_ADD_BLACKLIST	0
+#define COIN_TRANSFER	1
+#define COIN_FEE_CALC	2
 
 // counter initialization values used to derive near and far future seeds for shuffling witnesses
 // we use the fractional bits of sqrt(2) in hex

@@ -104,9 +104,9 @@ namespace graphene { namespace chain {
 
       // the next two functions are helpers that allow template functions declared in this 
       // header to call db() without including database.hpp, which would
-      // cause a circular dependency
-	  //liruigang 20180816 calc fee
-	  bool set_asset_fee(const transfer_operation& transop, share_type& fee_amount ) const;
+	  // cause a circular dependency
+	  //liruigang 20180829 update: calc fee
+	  void set_asset_fee(const transfer_operation& transop, share_type& fee_amount, const string& symbol="DBX" ) const;
       share_type calculate_fee_for_operation(const operation& op) const;
       void db_adjust_balance(const account_id_type& fee_payer, asset fee_from_account);
 
