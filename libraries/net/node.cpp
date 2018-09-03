@@ -82,7 +82,6 @@
 #include <graphene/chain/protocol/fee_schedule.hpp>
 
 #include <fc/git_revision.hpp>
-#include <p2pnode.hpp>
 
 //#define ENABLE_DEBUG_ULOGS
 
