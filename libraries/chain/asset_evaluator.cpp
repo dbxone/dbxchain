@@ -213,7 +213,9 @@ void_result asset_reserve_evaluator::do_evaluate( const asset_reserve_operation&
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o )
+//liruigang20180913 contract
+//void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o )
+void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance( o.payer, -o.amount_to_reserve );
 
