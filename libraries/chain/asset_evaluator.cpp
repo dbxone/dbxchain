@@ -806,7 +806,9 @@ void_result asset_global_settle_evaluator::do_evaluate(const asset_global_settle
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op)
+//liruigang20180913 contract
+//void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op)
+void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    d.globally_settle_asset( op.asset_to_settle(db()), op.settle_price );
