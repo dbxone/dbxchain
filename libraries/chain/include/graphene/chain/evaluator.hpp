@@ -171,7 +171,9 @@ namespace graphene { namespace chain {
          return eval->do_evaluate(op);
       }
 
-      virtual operation_result apply(const operation& o) final override
+      //liruigang20180913 contract
+      //virtual operation_result apply(const operation& o) final override
+	  virtual operation_result apply(const operation& o, uint32_t billed_cpu_time_us) final override
       {
          auto* eval = static_cast<DerivedEvaluator*>(this);
          const auto& op = o.get<typename DerivedEvaluator::operation_type>();
