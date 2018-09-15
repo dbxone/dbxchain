@@ -237,7 +237,9 @@ void_result asset_fund_fee_pool_evaluator::do_evaluate(const asset_fund_fee_pool
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o)
+//liruigang20180913 contract
+//void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o)
+void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance(o.from_account, -o.amount);
 
