@@ -242,6 +242,9 @@ namespace graphene { namespace chain {
    class special_authority_object;
    class buyback_object;
    class fba_accumulator_object;
+
+   class table_id_object;   //liruigang20180913 contract
+   class key_value_object;  //liruigang20180913 contract
    class collateral_bid_object;
 
    typedef object_id< implementation_ids, impl_global_property_object_type,  global_property_object>                    global_property_id_type;
