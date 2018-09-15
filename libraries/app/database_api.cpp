@@ -2205,6 +2205,35 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
 
    for( operation& op : _ops )
    {
+       //liruigang20180913 contract
+       if (op.which() == operation::tag<contract_call_operation>::value) {
+
+           auto tmp_session = _db._undo_db.start_undo_session();
+           contract_call_operation &opr = op.get<contract_call_operation>();
+           transaction_context trx_context(_db, opr.fee_payer().instance, fc::microseconds(_db.get_cpu_limit().trx_cpu_limit));
+           action act{opr.contract_id, opr.method_name, opr.data};
+           apply_context ctx{_db, trx_context, act, opr.amount};
+           ctx.exec();
+           auto fee_param = contract_call_operation::fee_parameters_type();
+           const auto &p = _db.get_global_properties().parameters;
+           for (auto &param : p.current_fees->parameters) {
+               if (param.which() == operation::tag<contract_call_operation>::value) {
+                   fee_param = param.get<contract_call_operation::fee_parameters_type>();
+                   break;
+               }
+           }
+           auto ram_result = fc::uint128(ctx.get_ram_usage() * fee_param.price_per_kbyte_ram) / 1024;
+           auto cpu_result = fc::uint128(trx_context.get_cpu_usage() * fee_param.price_per_ms_cpu);
+           uint64_t basic_fee = fee_param.fee;
+           uint64_t ram_fee = ram_result.to_uint64();
+           uint64_t cpu_fee = cpu_result.to_uint64();
+           asset fee = asset(basic_fee + ram_fee + cpu_fee, asset_id_type()) * asset_obj.options.core_exchange_rate;
+
+           fc::variant r;
+           fc::to_variant(fee, r, GRAPHENE_MAX_NESTED_OBJECTS);
+           result.push_back(r);
+		   continue ;
+       }
 	 result.push_back( helper.set_op_fees( op ) );
    }
    return result;
