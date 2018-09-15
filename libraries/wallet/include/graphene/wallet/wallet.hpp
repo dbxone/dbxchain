@@ -1787,6 +1787,10 @@ FC_API( graphene::wallet::wallet_api,
         (suggest_brain_key)
         (derive_owner_keys_from_brain_key)
         (register_account)
+        (deploy_contract)	//liruigang 20180912 contract
+        (call_contract)	    //liruigang 20180912 contract
+        (get_contract_tables)	//liruigang 20180912 contract
+        (get_table_objects)	    //liruigang 20180912 contract
         (upgrade_account)
         (create_account_with_brain_key)
         (sell_asset)
