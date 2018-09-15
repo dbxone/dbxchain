@@ -36,7 +36,9 @@ class vesting_balance_create_evaluator : public evaluator<vesting_balance_create
         typedef vesting_balance_create_operation operation_type;
 
         void_result do_evaluate( const vesting_balance_create_operation& op );
-        object_id_type do_apply( const vesting_balance_create_operation& op );
+        //liruigang20180913 contract
+        //object_id_type do_apply( const vesting_balance_create_operation& op );
+        object_id_type do_apply( const vesting_balance_create_operation& op, uint32_t billed_cpu_time_us = 0);
 };
 
 class vesting_balance_withdraw_evaluator : public evaluator<vesting_balance_withdraw_evaluator>
