@@ -8,7 +8,7 @@
 
 using namespace graphene;
 
-static const uint64_t contract_asset_id = 1;//GXS
+static const uint64_t contract_asset_id = 1;//DBX
 
 class linear_vesting_asset : public contract
 {
