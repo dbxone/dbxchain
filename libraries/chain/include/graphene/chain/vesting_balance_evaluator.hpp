@@ -47,7 +47,9 @@ class vesting_balance_withdraw_evaluator : public evaluator<vesting_balance_with
         typedef vesting_balance_withdraw_operation operation_type;
 
         void_result do_evaluate( const vesting_balance_withdraw_operation& op );
-        void_result do_apply( const vesting_balance_withdraw_operation& op );
+        //liruigang20180913 contract
+        //void_result do_apply( const vesting_balance_withdraw_operation& op );
+        void_result do_apply( const vesting_balance_withdraw_operation& op, uint32_t billed_cpu_time_us = 0);
 };
 
 } } // graphene::chain
