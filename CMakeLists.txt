@@ -155,6 +155,10 @@ if(ENABLE_COVERAGE_TESTING)
     SET(CMAKE_CXX_FLAGS "--coverage ${CMAKE_CXX_FLAGS}")
 endif()
 
+add_subdirectory( externals )
+
+include(wasm)
+include(installer)
 add_subdirectory( libraries )
 add_subdirectory( programs )
 add_subdirectory( tests )
