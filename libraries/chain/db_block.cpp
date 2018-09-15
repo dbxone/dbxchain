@@ -596,7 +596,7 @@ processed_transaction database::apply_transaction(const signed_transaction& trx,
    processed_transaction result;
    detail::with_skip_flags( *this, skip, [&]()
    {
-      result = _apply_transaction(trx);
+      result = _apply_transaction(trx, operation_results);
    });
    return result;
 }
