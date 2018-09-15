@@ -360,7 +360,9 @@ void_result asset_update_issuer_evaluator::do_evaluate(const asset_update_issuer
    return void_result();
 } FC_CAPTURE_AND_RETHROW((o)) }
 
-void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o)
+//liruigang20180913 contract
+//void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o)
+void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    d.modify(*asset_to_update, [&](asset_object& a) {
