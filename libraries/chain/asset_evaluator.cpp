@@ -710,7 +710,9 @@ static bool update_bitasset_object_options(
    return false;
 }
 
-void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op)
+//liruigang20180913 contract
+//void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op)
+void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op, uint32_t billed_cpu_time_us )
 {
    try
    {
