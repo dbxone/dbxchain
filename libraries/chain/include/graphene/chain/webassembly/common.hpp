@@ -3,7 +3,7 @@
 #include <graphene/chain/wasm_interface.hpp>
 #include <graphene/chain/wasm_constraints.hpp>
 
-#define GXC_INJECTED_MODULE_NAME "dbx_injection"
+#define DBX_INJECTED_MODULE_NAME "dbx_injection"
 
 using namespace fc;
 
