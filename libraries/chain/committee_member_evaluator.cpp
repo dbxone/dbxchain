@@ -62,7 +62,9 @@ void_result committee_member_update_evaluator::do_evaluate( const committee_memb
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result committee_member_update_evaluator::do_apply( const committee_member_update_operation& op )
+//liruigang20180913 contract
+//void_result committee_member_update_evaluator::do_apply( const committee_member_update_operation& op )
+void_result committee_member_update_evaluator::do_apply( const committee_member_update_operation& op, uint32_t billed_cpu_time_us)
 { try {
    database& _db = db();
    _db.modify(
