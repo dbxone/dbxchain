@@ -71,7 +71,9 @@ namespace graphene { namespace chain {
          typedef limit_order_cancel_operation operation_type;
 
          void_result do_evaluate( const limit_order_cancel_operation& o );
-         asset do_apply( const limit_order_cancel_operation& o );
+         //liruigang20180913 contract
+         //asset do_apply( const limit_order_cancel_operation& o );
+         asset do_apply( const limit_order_cancel_operation& o, uint32_t billed_cpu_time_us = 0);
 
          const limit_order_object* _order;
    };
