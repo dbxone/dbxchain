@@ -18,13 +18,13 @@ dxx -g contracts/examples/linear_vesting_asset/linear_vesting_asset.abi contract
 
 #### 部署合约
 ```
-deploy_contract ch3 nathan 0 0 	./contracts/examples/linear_vesting_asset/ GXS true
+deploy_contract ch3 nathan 0 0 	./contracts/examples/linear_vesting_asset/ DBX true
 ```
 #### 调用合约
 
-1.  从beita账号转账给nathan，100GXC(1.3.0)，锁定30秒后开始根据时间线性释放，120秒全部释放完毕
+1.  从beita账号转账给nathan，100DBX(1.3.0)，锁定30秒后开始根据时间线性释放，120秒全部释放完毕
 ```
-call_contract beita t81611 {"amount":10000000,"asset_id":1.3.0} vestingcreate "{\"to\":\"nathan\",\"lock_duration\":30,\"release_duration\":120}" GXC true
+call_contract beita t81611 {"amount":10000000,"asset_id":1.3.0} vestingcreate "{\"to\":\"nathan\",\"lock_duration\":30,\"release_duration\":120}" DBX true
 ```
 
 2. 查询合约ch3有哪些表
@@ -56,10 +56,10 @@ unlocked >>> get_table_objects ch3 vestingrule
 
 ```
 unlocked >>> list_account_balances ch3
-100 GXC
+100 DBX
 ```
 
-5. 尝试释放ch3中nathan的GXC(1.3.0)资产，根据当前时间和vestingrule来释放
+5. 尝试释放ch3中nathan的DBX(1.3.0)资产，根据当前时间和vestingrule来释放
 ```
-call_contract beita t81611 null vestingclaim "{\"who\":\"nathan\"}" GXC true
+call_contract beita t81611 null vestingclaim "{\"who\":\"nathan\"}" DBX true
 ```
