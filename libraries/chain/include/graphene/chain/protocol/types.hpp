@@ -267,6 +267,8 @@ namespace graphene { namespace chain {
    typedef object_id< implementation_ids, impl_buyback_object_type, buyback_object >                                    buyback_id_type;
    typedef object_id< implementation_ids, impl_fba_accumulator_object_type, fba_accumulator_object >                    fba_accumulator_id_type;
    typedef object_id< implementation_ids, impl_collateral_bid_object_type, collateral_bid_object >                      collateral_bid_id_type;
+   typedef object_id< implementation_ids, impl_table_id_object_type, table_id_object>        table_id_object_id_type; //liruigang20180913 contract
+   typedef object_id< implementation_ids, impl_key_value_object_type, key_value_object>      key_value_object_id_type;  //liruigang20180913 contract
 
    typedef fc::array<char, GRAPHENE_MAX_ASSET_SYMBOL_LENGTH>    symbol_type;
    typedef fc::ripemd160                                        block_id_type;
