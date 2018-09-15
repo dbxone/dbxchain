@@ -365,7 +365,9 @@ void_result account_whitelist_evaluator::do_evaluate(const account_whitelist_ope
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o)
+//liruigang20180913 contract
+//void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o)
+void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
