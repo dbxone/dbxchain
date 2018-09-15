@@ -946,6 +946,139 @@ public:
 	  _builder_transactions.erase(handle);
    }
 
+	//liruigang 20180912 contract
+       variants get_table_objects(string contract, string table)
+       { try {
+             account_object contract_obj = get_account(contract);
+
+             const auto& tables = contract_obj.abi.tables;
+             auto iter = std::find_if(tables.begin(), tables.end(),
+                     [&](const table_def& t) { return t.name == table; });
+
+             if (iter != tables.end()) {
+                 return _remote_db->get_table_objects(contract_obj.id.number, contract_obj.id.number, name(table));
+             } else {
+                 GRAPHENE_ASSERT(false, table_not_found_exception, "No table found for ${contract}", ("contract", contract));
+             }
+             return variants();
+       } FC_CAPTURE_AND_RETHROW((contract)(table)) }
+
+       variant get_contract_tables(string contract)
+       { try {
+             account_object contract_obj = get_account(contract);
+
+             fc::variants result;
+             const auto &tables = contract_obj.abi.tables;
+             result.reserve(tables.size());
+
+             std::transform(tables.begin(), tables.end(), std::back_inserter(result),
+                     [](const table_def &t_def) -> fc::variant {
+                         return name(t_def.name).to_string();
+                     });
+
+             return result;
+       } FC_CAPTURE_AND_RETHROW((contract)) }
+
+       signed_transaction deploy_contract(string name,
+                                          string account,
+                                          string vm_type,
+                                          string vm_version,
+                                          string contract_dir,
+                                          string fee_asset_symbol,
+                                          bool broadcast = false)
+       { try {
+           FC_ASSERT(!self.is_locked());
+           FC_ASSERT(is_valid_name(name));
+           fc::optional<asset_object> fee_asset_obj = get_asset(fee_asset_symbol);
+
+           std::vector<uint8_t> wasm;
+           variant abi_def_data;
+
+           auto load_contract = [&]() {
+               fc::path cpath(contract_dir);
+               if (cpath.filename().generic_string() == ".") cpath = cpath.parent_path();
+
+               fc::path wasm_path = cpath / (cpath.filename().generic_string() + ".wasm");
+               fc::path abi_path = cpath / (cpath.filename().generic_string() + ".abi");
+
+               bool wasm_exist = fc::exists(wasm_path);
+               bool abi_exist = fc::exists(abi_path);
+
+               FC_ASSERT(abi_exist, "no abi file exist");
+               FC_ASSERT(wasm_exist, "no wasm file exist");
+
+               abi_def_data = fc::json::from_file(abi_path);
+
+               std::string wasm_string;
+               fc::read_file_contents(wasm_path, wasm_string);
+               const string binary_wasm_header("\x00\x61\x73\x6d", 4);
+               FC_ASSERT(wasm_string.size() > 4 && (wasm_string.compare(0, 4, binary_wasm_header) == 0), "wasm invalid");
+               
+               for (auto it = wasm_string.begin(); it != wasm_string.end(); ++it) {
+                   wasm.push_back(*it); //TODO
+               }
+           };
+
+           load_contract();
+
+           account_object creator_account_object = this->get_account(account);
+           account_id_type creator_account_id = creator_account_object.id;
+
+           contract_deploy_operation op;
+           op.name = name;
+           op.account = creator_account_id;
+           op.vm_type = vm_type;
+           op.vm_version = vm_version;
+           op.code = bytes(wasm.begin(), wasm.end());
+           op.abi = abi_def_data.as<abi_def>(GRAPHENE_MAX_NESTED_OBJECTS);
+
+           signed_transaction tx;
+           tx.operations.push_back(op);
+		   //liruigang20180914 contract
+           //set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+		   set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees);
+           tx.validate();
+
+           return sign_transaction(tx, broadcast);
+       } FC_CAPTURE_AND_RETHROW( (name)(account)(vm_type)(vm_version)(contract_dir)(fee_asset_symbol)(broadcast)) }
+
+       signed_transaction call_contract(string account,
+                                        string contract,
+                                        optional<asset> amount,
+                                        string method,
+                                        string args,
+                                        string fee_asset_symbol,
+                                        bool broadcast = false)
+       { try {
+             FC_ASSERT(!self.is_locked());
+             fc::optional<asset_object> fee_asset_obj = get_asset(fee_asset_symbol);
+
+             account_object caller = get_account(account);
+             account_object contract_obj = get_account(contract);
+
+             contract_call_operation contract_call_op;
+             contract_call_op.account = caller.id;
+             contract_call_op.contract_id = contract_obj.id;
+             if (amount.valid()) {
+                 contract_call_op.amount = amount;
+             }
+             contract_call_op.method_name = string_to_name(method.c_str());
+             fc::variant action_args_var = fc::json::from_string(args);
+
+             abi_serializer abis(contract_obj.abi, fc::milliseconds(1000000));
+             auto action_type = abis.get_action_type(method);
+             GRAPHENE_ASSERT(!action_type.empty(), action_validate_exception, "Unknown action ${action} in contract ${contract}", ("action", method)("contract", contract));
+             contract_call_op.data = abis.variant_to_binary(action_type, action_args_var, fc::milliseconds(1000000));
+
+             signed_transaction tx;
+             tx.operations.push_back(contract_call_op);
+			 //liruigang20180914 contract
+             //set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+			 set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees);
+             tx.validate();
+
+             return sign_transaction(tx, broadcast);
+       } FC_CAPTURE_AND_RETHROW( (account)(contract)(amount)(method)(args)(fee_asset_symbol)(broadcast)) }
 
    signed_transaction register_account(string name,
 									   public_key_type owner,
