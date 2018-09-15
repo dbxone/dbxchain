@@ -116,7 +116,9 @@ void_result vesting_balance_withdraw_evaluator::do_evaluate( const vesting_balan
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op )
+//liruigang20180913 contract
+//void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op )
+void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
    const time_point_sec now = d.head_block_time();
