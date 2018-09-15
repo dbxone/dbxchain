@@ -1,5 +1,5 @@
-# Defines BitShares library target.
-project( BitShares )
+# Defines dbx-core library target.
+project( dbx-core )
 cmake_minimum_required( VERSION 2.8.12 )
 
 set( BLOCKCHAIN_NAME "BitShares" )
