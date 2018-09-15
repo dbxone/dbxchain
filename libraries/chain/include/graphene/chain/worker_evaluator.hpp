@@ -32,7 +32,9 @@ namespace graphene { namespace chain {
          typedef worker_create_operation operation_type;
 
          void_result do_evaluate( const operation_type& o );
-         object_id_type do_apply( const operation_type& o );
+         //liruigang20180913 contract
+         //object_id_type do_apply( const operation_type& o );
+         object_id_type do_apply( const operation_type& o, uint32_t billed_cpu_time_us = 0);
    };
 
 } } // graphene::chain
