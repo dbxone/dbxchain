@@ -127,7 +127,9 @@ namespace graphene { namespace chain {
    {
    public:
       virtual ~op_evaluator(){}
-      virtual operation_result evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply) = 0;
+	  //liruigang20180913 contract
+      //virtual operation_result evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply) = 0;
+      virtual operation_result evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply, uint32_t billed_cpu_time_us) = 0;
    };
 
    template<typename T>
