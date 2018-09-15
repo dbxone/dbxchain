@@ -74,7 +74,9 @@ void_result transfer_evaluator::do_evaluate( const transfer_operation& op )
 
 }  FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result transfer_evaluator::do_apply( const transfer_operation& o )
+//liruigang20180913 contract
+//void_result transfer_evaluator::do_apply( const transfer_operation& o )
+void_result transfer_evaluator::do_apply( const transfer_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.from, -o.amount );
    db().adjust_balance( o.to, o.amount );
