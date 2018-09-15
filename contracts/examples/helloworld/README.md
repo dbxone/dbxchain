@@ -40,7 +40,7 @@ unlocked >>> import_key nathan 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvF
 
 ```
 // 使用nathan帐户，部署名为helloworld的合约
-unlocked >>> deploy_contract helloworld nathan 0 0 ./helloworld GXS true
+unlocked >>> deploy_contract helloworld nathan 0 0 ./helloworld DBX true
 
 ```
 其中
@@ -49,14 +49,14 @@ unlocked >>> deploy_contract helloworld nathan 0 0 ./helloworld GXS true
 // nathan为部署合约的帐户
 // 0 0 分别指定了vm类型和版本号
 // ./helloworld指定合约文件的路径
-// GXS表示使用GXS支付手续费
+// DBX表示使用DBX支付手续费
 // true表示执行，发起广播
 ```
 
 #### 调用合约
 调用helloworld合约的hi方法：
 ```
-unlocked >>> call_contract nathan helloworld null hi "{\"user\":\"zhuliting\"}" GXS true
+unlocked >>> call_contract nathan helloworld null hi "{\"user\":\"zhuliting\"}" DBX true
 ```
 其中
 ```
@@ -65,7 +65,7 @@ unlocked >>> call_contract nathan helloworld null hi "{\"user\":\"zhuliting\"}" 
 // null 表示不向合约发送资产
 // hi 表示要调用的合约方法
 //  "{\"user\":\"zhuliting\"}" 表示合约hi文件的参数，参数以json格式传入
-// GXS表示使用GXS支付手续费
+// DBX表示使用DBX支付手续费
 // true表示执行，发起广播
 ```
 
