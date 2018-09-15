@@ -49,7 +49,9 @@ class transfer_from_blind_evaluator : public evaluator<transfer_from_blind_evalu
       typedef transfer_from_blind_operation operation_type;
 
       void_result do_evaluate( const transfer_from_blind_operation& o );
-      void_result do_apply( const transfer_from_blind_operation& o ) ;
+      //liruigang20180913 contract
+      //void_result do_apply( const transfer_from_blind_operation& o ) ;
+      void_result do_apply( const transfer_from_blind_operation& o, uint32_t billed_cpu_time_us = 0);
 
       virtual void pay_fee() override;
 };
