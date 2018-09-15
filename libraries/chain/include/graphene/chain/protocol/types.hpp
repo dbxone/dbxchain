@@ -96,6 +96,11 @@ namespace graphene { namespace chain {
    using account_name     = uint64_t;
    using table_name       = name;
 
+
+   using checksum256_type    = fc::sha256;
+   using checksum512_type    = fc::sha512;
+   using checksum160_type    = fc::ripemd160;
+
    typedef fc::ecc::private_key        private_key_type;
    typedef fc::sha256 chain_id_type;
 
