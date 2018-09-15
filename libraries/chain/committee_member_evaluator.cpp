@@ -39,7 +39,9 @@ void_result committee_member_create_evaluator::do_evaluate( const committee_memb
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-object_id_type committee_member_create_evaluator::do_apply( const committee_member_create_operation& op )
+//liruigang20180913 contract
+//object_id_type committee_member_create_evaluator::do_apply( const committee_member_create_operation& op )
+object_id_type committee_member_create_evaluator::do_apply( const committee_member_create_operation& op, uint32_t billed_cpu_time_us)
 { try {
    vote_id_type vote_id;
    db().modify(db().get_global_properties(), [&vote_id](global_property_object& p) {
