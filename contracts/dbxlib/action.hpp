@@ -33,7 +33,7 @@ namespace graphene {
     *    unsigned long long b; //8
     *    int  c; //4
     *
-    *    GXBLIB_SERIALIZE( dummy_action, (a)(b)(c) )
+    *    DBXLIB_SERIALIZE( dummy_action, (a)(b)(c) )
     *  };
     *  dummy_action msg = unpack_action_data<dummy_action>();
     *  @endcode
@@ -81,7 +81,7 @@ namespace graphene {
       action( uint64_t a, action_name n, T&& value )
       :account(a), name(n), data(pack(std::forward<T>(value))) {}
 
-      GXBLIB_SERIALIZE( action, (account)(name)(data) )
+      DBXLIB_SERIALIZE( action, (account)(name)(data) )
 
       void send() const
       {

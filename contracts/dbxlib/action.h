@@ -19,7 +19,7 @@ extern "C" {
     * @brief Define API for querying action properties
     *
     *
-    * A GXB action has the following abstract structure:
+    * A DBX action has the following abstract structure:
     *
     * ```
     *   struct action {

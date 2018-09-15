@@ -151,7 +151,7 @@ namespace graphene {
          symbol.print(false);
       }
 
-      GXBLIB_SERIALIZE( asset, (amount)(symbol) )
+      DBXLIB_SERIALIZE( asset, (amount)(symbol) )
    };
 
 } /// namespace graphene
