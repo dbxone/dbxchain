@@ -304,7 +304,9 @@ void_result account_update_evaluator::do_evaluate( const account_update_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result account_update_evaluator::do_apply( const account_update_operation& o )
+//liruigang20180913 contract
+//void_result account_update_evaluator::do_apply( const account_update_operation& o )
+void_result account_update_evaluator::do_apply( const account_update_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    bool sa_before, sa_after;
