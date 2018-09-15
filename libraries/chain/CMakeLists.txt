@@ -35,6 +35,7 @@ add_library( graphene_chain
              # As database takes the longest to compile, start it first
              ${GRAPHENE_DB_FILES}
              fork_database.cpp
+             name.cpp
 
              protocol/types.cpp
              protocol/address.cpp
