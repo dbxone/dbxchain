@@ -410,7 +410,9 @@ void_result account_upgrade_evaluator::do_evaluate(const account_upgrade_evaluat
 //} FC_CAPTURE_AND_RETHROW( (o) ) }
 } FC_RETHROW_EXCEPTIONS( error, "Unable to upgrade account '${a}'", ("a",o.account_to_upgrade(db()).name) ) }
 
-void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o)
+//liruigang20180913 contract
+//void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o)
+void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
