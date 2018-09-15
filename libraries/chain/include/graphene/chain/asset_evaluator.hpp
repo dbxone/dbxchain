@@ -173,7 +173,9 @@ namespace graphene { namespace chain {
          typedef asset_publish_feed_operation operation_type;
 
          void_result do_evaluate( const asset_publish_feed_operation& o );
-         void_result do_apply( const asset_publish_feed_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const asset_publish_feed_operation& o );
+         void_result do_apply( const asset_publish_feed_operation& o, uint32_t billed_cpu_time_us = 0);
 
          std::map<std::pair<asset_id_type,asset_id_type>,price_feed> median_feed_values;
    };
