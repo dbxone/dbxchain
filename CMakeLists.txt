@@ -76,7 +76,7 @@ ENDIF()
 
 if( WIN32 )
 
-    message( STATUS "Configuring BitShares on WIN32")
+    message( STATUS "Configuring dbx-core on WIN32")
     set( DB_VERSION 60 )
     set( BDB_STATIC_LIBS 1 )
 
