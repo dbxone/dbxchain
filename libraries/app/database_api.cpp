@@ -23,6 +23,7 @@
  */
 
 #include <graphene/app/database_api.hpp>
+#include <graphene/chain/asset_object.hpp> //liruigang20180914 contract
 #include <graphene/app/util.hpp>
 #include <graphene/chain/get_config.hpp>
 
