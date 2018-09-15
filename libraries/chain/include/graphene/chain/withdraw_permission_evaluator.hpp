@@ -44,7 +44,9 @@ public:
    typedef withdraw_permission_claim_operation operation_type;
 
    void_result do_evaluate( const operation_type& op );
-   void_result do_apply( const operation_type& op );
+   //liruigang20180913 contract
+   //void_result do_apply( const operation_type& op );
+   void_result do_apply( const operation_type& op, uint32_t billed_cpu_time_us = 0);
 };
 
 class withdraw_permission_update_evaluator : public evaluator<withdraw_permission_update_evaluator>
