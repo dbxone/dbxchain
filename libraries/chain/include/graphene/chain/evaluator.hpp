@@ -181,7 +181,9 @@ namespace graphene { namespace chain {
          convert_fee();
          pay_fee();
 
-         auto result = eval->do_apply(op);
+         //liruigang20180913 contract
+         //auto result = eval->do_apply(op);
+		 auto result = eval->do_apply(op, billed_cpu_time_us);
 
          db_adjust_balance(op.fee_payer(), -fee_from_account);
 
