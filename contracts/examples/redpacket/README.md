@@ -29,7 +29,7 @@ dxx -g contracts/examples/redpacket/redpacket.abi contracts/examples/redpacket/r
 ##### 部署合约
 ```
 // 这里使用nathan帐户部署合约，部署的合约名为redpacket
-unlocked >>> deploy_contract redpacket nathan 0 0 ./contracts/examples/redpacket GXS true
+unlocked >>> deploy_contract redpacket nathan 0 0 ./contracts/examples/redpacket DBX true
 
 
 ```
@@ -38,8 +38,8 @@ unlocked >>> deploy_contract redpacket nathan 0 0 ./contracts/examples/redpacket
 
 1. 发行红包
 ```
-// 使用nathan帐户，发行一个红包， 随机生成的红包口令为GXC81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b， 金额总量为100 GXS(链上为大数，需要乘以10万)， 数量为5个
-unlocked >>> call_contract nathan redpacket {"amount":10000000,"asset_id":1.3.1} issue "{\"pubkey\":\"DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b\",\"number\":5}" GXS true
+// 使用nathan帐户，发行一个红包， 随机生成的红包口令为DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b， 金额总量为100 DBX(链上为大数，需要乘以10万)， 数量为5个
+unlocked >>> call_contract nathan redpacket {"amount":10000000,"asset_id":1.3.1} issue "{\"pubkey\":\"DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b\",\"number\":5}" DBX true
 ```
 
 2. 发行红包后，查询redpacket合约的帐户余额
@@ -59,7 +59,7 @@ unlocked >>> sign_string 5J9vj4XiwVQ2HNr22uFrxgaaerqrPN7xZQER9z2hwSPeWdbMKBM 17
 "1f1d104d5750beba9fd4b0637ce69cf54721a57cce91ca81904653307eb72b0a840bd8a80c58df0a7be206a4c5c5b1fa0d96d497667e54579e717d499d0a3498b2"
 
 
-unlocked >>> call_contract nathan redpacket null open "{\"issuer\":\"nathan\",\"sig\":\"1f1d104d5750beba9fd4b0637ce69cf54721a57cce91ca81904653307eb72b0a840bd8a80c58df0a7be206a4c5c5b1fa0d96d497667e54579e717d499d0a3498b2\"}" GXS true
+unlocked >>> call_contract nathan redpacket null open "{\"issuer\":\"nathan\",\"sig\":\"1f1d104d5750beba9fd4b0637ce69cf54721a57cce91ca81904653307eb72b0a840bd8a80c58df0a7be206a4c5c5b1fa0d96d497667e54579e717d499d0a3498b2\"}" DBX true
 
 ```
 
@@ -114,7 +114,7 @@ unlocked >>> get_table_objects redpacket record
 // 只有发行红包的帐户，才可以关闭红包
 // 此处为nathan帐户
 // 关闭红包的合约方法名为close
-unlocked >>> call_contract nathan redpacket null close "{}" GXS true
+unlocked >>> call_contract nathan redpacket null close "{}" DBX true
 ```
 
 本次演示使用的口令对
