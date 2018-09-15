@@ -148,7 +148,9 @@ namespace graphene { namespace chain {
          typedef asset_global_settle_operation operation_type;
 
          void_result do_evaluate(const operation_type& op);
-         void_result do_apply(const operation_type& op);
+         //liruigang20180913 contract
+         //void_result do_apply(const operation_type& op);
+         void_result do_apply(const operation_type& op, uint32_t billed_cpu_time_us = 0);
 
          const asset_object* asset_to_settle = nullptr;
    };
