@@ -717,7 +717,9 @@ operation_result database::apply_operation(transaction_evaluation_state& eval_st
    unique_ptr<op_evaluator>& eval = _operation_evaluators[ u_which ];
    FC_ASSERT( eval, "No registered evaluator for operation ${op}", ("op",op) );
    auto op_id = push_applied_operation( op );
-   auto result = eval->evaluate( eval_state, op, true );
+   //liruigang20180913 contract
+   //auto result = eval->evaluate( eval_state, op, true );
+   auto result = eval->evaluate(eval_state, op, true, billed_cpu_time_us);
    set_applied_operation_result( op_id, result );
    return result;
 } FC_CAPTURE_AND_RETHROW( (op) ) }
