@@ -349,6 +349,39 @@ fc::variants database_api::get_table_objects(uint64_t code, uint64_t scope, uint
     return my->get_table_objects(code, scope, table);
 }
 
+fc::variants database_api_impl::get_table_objects(uint64_t code, uint64_t scope, uint64_t table) const
+{ try {
+    fc::variants result;
+
+    const auto &account_obj = get_account_by_contract_code(code);
+    if(!account_obj.valid())
+        return result;
+
+    abi_serializer abis(account_obj->abi, fc::milliseconds(10000));
+
+    const auto &table_idx = _db.get_index_type<table_id_multi_index>().indices().get<by_code_scope_table>();
+    auto existing_tid = table_idx.find(boost::make_tuple(code & GRAPHENE_DB_MAX_INSTANCE_ID, name(scope & GRAPHENE_DB_MAX_INSTANCE_ID), name(table)));
+    if (existing_tid != table_idx.end()) {
+        decltype(existing_tid->id) next_tid(existing_tid->id + 1);
+        const auto &kv_idx = _db.get_index_type<key_value_index>().indices().get<by_scope_primary>();
+
+        auto lower = kv_idx.lower_bound(boost::make_tuple(existing_tid->id));
+        auto upper = kv_idx.lower_bound(boost::make_tuple(next_tid));
+
+        auto end = fc::time_point::now() + fc::microseconds(1000 * 10);
+        vector<char> data;
+        name tname(table);
+        for(auto it = lower; it != upper; ++it) {
+            if(fc::time_point::now() > end) break;
+            copy_inline_row(*it, data);
+            result.emplace_back(abis.binary_to_variant(tname.to_string(), data, fc::microseconds(1000 * 10)));
+        }
+    }
+    return result;
+    }
+    FC_CAPTURE_AND_RETHROW((code)(scope)(table))
+}
+
 //////////////////////////////////////////////////////////////////////
 //                                                                  //
 // Subscriptions                                                    //
