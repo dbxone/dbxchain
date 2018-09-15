@@ -54,7 +54,9 @@ namespace graphene { namespace chain {
       public:
          typedef asset_issue_operation operation_type;
          void_result do_evaluate( const asset_issue_operation& o );
-         void_result do_apply( const asset_issue_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const asset_issue_operation& o );
+         void_result do_apply( const asset_issue_operation& o, uint32_t billed_cpu_time_us = 0);
 
          const asset_dynamic_data_object* asset_dyn_data = nullptr;
          const account_object*            to_account = nullptr;
