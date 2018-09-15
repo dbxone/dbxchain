@@ -51,7 +51,9 @@ void_result transfer_to_blind_evaluator::do_evaluate( const transfer_to_blind_op
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o ) 
+//liruigang20180913 contract
+//void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o ) 
+void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.from, -o.amount ); 
 
