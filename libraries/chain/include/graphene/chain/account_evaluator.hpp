@@ -71,7 +71,9 @@ public:
    typedef account_whitelist_operation operation_type;
 
    void_result do_evaluate( const account_whitelist_operation& o);
-   void_result do_apply( const account_whitelist_operation& o);
+   //liruigang20180913 contract
+   //void_result do_apply( const account_whitelist_operation& o);
+   void_result do_apply( const account_whitelist_operation& o, uint32_t billed_cpu_time_us = 0);
 
    const account_object* listed_account;
 };
