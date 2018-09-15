@@ -476,7 +476,7 @@ public:
 	  while( fc::exists(dest_path) )
 	  {
 		 ++suffix;
-		 dest_path = destination_filename + "-" + to_string( suffix ) + _wallet_filename_extension;
+		 dest_path = destination_filename + "-" + fc::to_string( suffix ) + _wallet_filename_extension;
 	  }
 	  wlog( "backing up wallet ${src} to ${dest}",
 			("src", src_path)
