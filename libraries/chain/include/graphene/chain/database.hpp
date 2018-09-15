@@ -544,6 +544,8 @@ namespace graphene { namespace chain {
           * database::close() has not been called, or failed during execution.
           */
          bool                              _opened = false;
+         bool                              contract_log_to_console = false;   //liruigan20180913 contract
+         bool                              rpc_mock_calc_fee = false;   //liruigan20180913 contract
    };
 
    namespace detail
