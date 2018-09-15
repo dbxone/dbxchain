@@ -44,7 +44,9 @@ namespace graphene { namespace chain {
          typedef committee_member_update_operation operation_type;
 
          void_result do_evaluate( const committee_member_update_operation& o );
-         void_result do_apply( const committee_member_update_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const committee_member_update_operation& o );
+         void_result do_apply( const committee_member_update_operation& o, uint32_t billed_cpu_time_us = 0);
    };
 
    class committee_member_update_global_parameters_evaluator : public evaluator<committee_member_update_global_parameters_evaluator>
