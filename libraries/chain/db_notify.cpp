@@ -419,6 +419,11 @@ static void get_relevant_accounts( const object* obj, flat_set<account_id_type>&
               accounts.insert( aobj->bidder );
               break;
            }
+		   //liruigang20180913 contract
+           case impl_table_id_object_type:
+           break;
+           case impl_key_value_object_type:
+           break;
       }
    }
 } // end get_relevant_accounts( const object* obj, flat_set<account_id_type>& accounts )
