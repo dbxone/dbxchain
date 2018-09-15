@@ -63,7 +63,9 @@ namespace graphene { namespace chain {
          typedef proposal_delete_operation operation_type;
 
          void_result do_evaluate( const proposal_delete_operation& o );
-         void_result do_apply(const proposal_delete_operation&);
+         //liruigang20180913 contract
+         //void_result do_apply(const proposal_delete_operation&);
+         void_result do_apply(const proposal_delete_operation& o, uint32_t billed_cpu_time_us = 0);
 
          const proposal_object* _proposal = nullptr;
    };
