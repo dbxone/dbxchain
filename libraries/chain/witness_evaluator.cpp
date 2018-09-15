@@ -60,7 +60,9 @@ void_result witness_update_evaluator::do_evaluate( const witness_update_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result witness_update_evaluator::do_apply( const witness_update_operation& op )
+//liruigang20180913 contract
+//void_result witness_update_evaluator::do_apply( const witness_update_operation& op )
+void_result witness_update_evaluator::do_apply( const witness_update_operation& op, uint32_t billed_cpu_time_us)
 { try {
    database& _db = db();
    _db.modify(
