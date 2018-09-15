@@ -141,7 +141,9 @@ namespace graphene { namespace chain {
       virtual operation_result evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply = true, uint32_t billed_cpu_time_us = 0) override
       {
          T eval;
-         return eval.start_evaluate(eval_state, op, apply);
+		 //liruigang20180913 contract		 
+         //return eval.start_evaluate(eval_state, op, apply);
+         return eval.start_evaluate(eval_state, op, apply, billed_cpu_time_us);
       }
    };
 
