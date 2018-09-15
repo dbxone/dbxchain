@@ -2183,6 +2183,26 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
       _db.current_fee_schedule(),
 	  asset_obj.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );
+	  
+   //liruigang 20180913 contract
+   bool mock_calc_fee = _db.get_rpc_mock_calc_fee(); //just mock contract call operations
+   if(mock_calc_fee) {
+       const asset mock_asset{0, id};
+       fc::variant mock_fee;
+       fc::to_variant(mock_asset, mock_fee, GRAPHENE_MAX_NESTED_OBJECTS);
+
+       for( operation& op : _ops )
+       {
+           if (op.which() == operation::tag<contract_call_operation>::value) {
+               result.push_back(mock_fee);
+			   continue ;
+		   }
+           result.push_back(helper.set_op_fees(op));
+       }
+
+       return result;
+   }
+
    for( operation& op : _ops )
    {
 	 result.push_back( helper.set_op_fees( op ) );
