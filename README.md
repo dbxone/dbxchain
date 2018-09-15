@@ -1,11 +1,11 @@
-BitShares Core
+DBXChain
 ==============
 
-[Build Status](https://travis-ci.org/bitshares/bitshares-core/branches):
+[Build Status](https://github.com/dbxone/dbxchain/branches):
 
-`master` | `develop` | `hardfork` | `testnet` | `bitshares-fc` 
+`master` | `develop`  
  --- | --- | --- | --- | ---
- [![](https://travis-ci.org/bitshares/bitshares-core.svg?branch=master)](https://travis-ci.org/bitshares/bitshares-core) | [![](https://travis-ci.org/bitshares/bitshares-core.svg?branch=develop)](https://travis-ci.org/bitshares/bitshares-core) | [![](https://travis-ci.org/bitshares/bitshares-core.svg?branch=hardfork)](https://travis-ci.org/bitshares/bitshares-core) | [![](https://travis-ci.org/bitshares/bitshares-core.svg?branch=testnet)](https://travis-ci.org/bitshares/bitshares-core) | [![](https://travis-ci.org/bitshares/bitshares-fc.svg?branch=master)](https://travis-ci.org/bitshares/bitshares-fc) 
+ [![](https://github.com/dbxone/dbxchain/master)](https://github.com/dbxone/dbxchain) | [![](https://github.com/dbxone/dbxchain/tree/develop)](https://github.com/dbxone/dbxchain) 
 
 
 * [Getting Started](#getting-started)
@@ -15,15 +15,14 @@ BitShares Core
 * [FAQ](#faq)
 * [License](#license)
 
-BitShares Core is the BitShares blockchain implementation and command-line interface.
-The web wallet is [BitShares UI](https://github.com/bitshares/bitshares-ui).
+DBXChain Core is the DBXChain blockchain implementation and command-line interface.
+DBX Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
+The web wallet is [DBXChain UI](https://github.com/dbxone/dbxui).
 
-Visit [BitShares.org](https://bitshares.org/) to learn about BitShares and join the community at [BitSharesTalk.org](https://bitsharestalk.org/).
-
-**NOTE:** The official BitShares git repository location, default branch, and submodule remotes were recently changed. Existing
+**NOTE:** The official DBXChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
-    git remote set-url origin https://github.com/bitshares/bitshares-core.git
+    git remote set-url origin https://github.com/dbxone/dbxchain.git
     git checkout master
     git remote set-head origin --auto
     git pull
@@ -33,7 +32,7 @@ repositories can be updated with the following steps:
 Getting Started
 ---------------
 Build instructions and additional documentation are available in the
-[wiki](https://github.com/bitshares/bitshares-core/wiki).
+[wiki](https://github.com/dbxone/dbxchain/wiki).
 
 We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be installed with:
 
@@ -42,16 +41,16 @@ We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be ins
 
 To build after all dependencies are installed:
 
-    git clone https://github.com/bitshares/bitshares-core.git
-    cd bitshares-core
+    git clone https://github.com/dbxone/dbxchain.git
+    cd dbxchain
     git checkout <LATEST_RELEASE_TAG>
     git submodule update --init --recursive
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
     make
 
-**NOTE:** BitShares requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
+**NOTE:** DBXChain requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
 
-**NOTE:** BitShares requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
+**NOTE:** DBXChain requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
 1.57 or newer than 1.63 are NOT supported. If your system Boost version is newer, then you will need to manually build
 an older version of Boost and specify it to CMake using `DBOOST_ROOT`.
 
@@ -65,7 +64,7 @@ the blockchain. After syncing, you can exit the node using Ctrl+C and setup the 
 
     rpc-endpoint = 127.0.0.1:8090
 
-**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/bitshares/bitshares-core/wiki/Memory-reduction-for-nodes).
+**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/dbxone/dbxchain/wiki/Memory-reduction-for-nodes).
 In order to run a full node with all the account history you need to remove `partial-operations` and `max-ops-per-account` from your config file. Please note that currently(2017-12-23) a full node need 54GB of RAM to operate and required memory is growing fast.
 
 After starting the witness node again, in a separate terminal you can run:
@@ -84,17 +83,16 @@ To import your initial balance:
 If you send private keys over this connection, `rpc-endpoint` should be bound to localhost for security.
 
 Use `help` to see all available wallet commands. Source definition and listing of all commands is available
-[here](https://github.com/bitshares/bitshares-core/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
+[here](https://github.com/dbxone/dbxchain/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
 
 Support
 -------
-Technical support is available in the [BitSharesTalk technical support subforum](https://bitsharestalk.org/index.php?board=45.0).
 
-BitShares Core bugs can be reported directly to the [issue tracker](https://github.com/bitshares/bitshares-core/issues).
+DBXChain Core bugs can be reported directly to the [issue tracker](https://github.com/dbxone/dbxchain/issues).
 
-BitShares UI bugs should be reported to the [UI issue tracker](https://github.com/bitshares/bitshares-ui/issues)
+DBXChain UI bugs should be reported to the [UI issue tracker](https://github.com/dbxone/dbx-ui/issues)
 
-Up to date online Doxygen documentation can be found at [Doxygen](https://bitshares.org/doxygen/hierarchy.html)
+Up to date online Doxygen documentation can be found at [Doxygen](https://dbx.org/doxygen/hierarchy.html)
 
 Using the API
 -------------
@@ -161,10 +159,10 @@ With the above configuration, here is an example of how to call `add_node` from 
 Note, the call to `network_node` is necessary to obtain the correct API identifier for the network API.  It is not guaranteed that the network API identifier will always be `2`.
 
 Since the `network_node` API requires login, it is only accessible over the websocket RPC.  Our `doxygen` documentation contains the most up-to-date information
-about API's for the [witness node](https://bitshares.github.io/doxygen/namespacegraphene_1_1app.html) and the
-[wallet](https://bitshares.github.io/doxygen/classgraphene_1_1wallet_1_1wallet__api.html).
+about API's for the [witness node](https://dbx.github.io/doxygen/namespacegraphene_1_1app.html) and the
+[wallet](https://dbx.github.io/doxygen/classgraphene_1_1wallet_1_1wallet__api.html).
 If you want information which is not available from an API, it might be available
-from the [database](https://bitshares.github.io/doxygen/classgraphene_1_1chain_1_1database.html);
+from the [database](https://dbx.github.io/doxygen/classgraphene_1_1chain_1_1database.html);
 it is fairly simple to write API methods to expose database methods.
 
 FAQ
@@ -207,7 +205,7 @@ FAQ
 
     The second number specifies the *type*.  The type of the object determines what fields it has.  For a
     complete list of type ID's, see `enum object_type` and `enum impl_object_type` in
-    [types.hpp](https://github.com/bitshares/bitshares-2/blob/bitshares/libraries/chain/include/graphene/chain/protocol/types.hpp).
+    [types.hpp](https://github.com/dbxone/dbx-2/blob/dbxone/libraries/chain/include/graphene/chain/protocol/types.hpp).
 
     The third number specifies the *instance*.  The instance of the object is different for each individual
     object.
@@ -240,5 +238,5 @@ FAQ
  
 License
 -------
-BitShares Core is under the MIT license. See [LICENSE](https://github.com/bitshares/bitshares-core/blob/master/LICENSE.txt)
+DBXChain Core is under the MIT license. See [LICENSE](https://github.com/dbxone/dbxchain/blob/master/LICENSE.txt)
 for more information.
