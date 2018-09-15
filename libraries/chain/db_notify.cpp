@@ -354,6 +354,8 @@ static void get_relevant_accounts( const object* obj, flat_set<account_id_type>&
         } case balance_object_type:{
            /** these are free from any accounts */
            break;
+        } case index64_object_type: {   //liruigang20180913 contract
+            break;
         }
       }
    }
