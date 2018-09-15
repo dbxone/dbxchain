@@ -556,6 +556,23 @@ global_property_object database_api_impl::get_global_properties()const
    return _db.get(global_property_id_type());
 }
 
+//liruigang20180913 contract
+vm_cpu_limit_t database_api::get_cpu_limit() const
+{
+    return my->get_cpu_limit();
+}
+
+vm_cpu_limit_t database_api_impl::get_cpu_limit() const
+{
+    const chain_parameters& params = get_global_properties().parameters;
+    for (auto& ext : params.extensions) {
+        if (ext.which() == future_extensions::tag<vm_cpu_limit_t>::value) {
+            return ext.get<vm_cpu_limit_t>();
+        }
+    }
+    return vm_cpu_limit_t();
+}
+
 fc::variant_object database_api::get_config()const
 {
    return my->get_config();
