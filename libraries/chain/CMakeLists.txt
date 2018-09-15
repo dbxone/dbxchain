@@ -84,6 +84,15 @@ add_library( graphene_chain
              special_authority.cpp
              buyback.cpp
 
+             apply_context.cpp
+             transaction_context.cpp
+             wast_to_wasm.cpp
+             wasm_interface.cpp
+             wasm_validation.cpp
+             wasm_injection.cpp
+
+             webassembly/wavm.cpp
+             webassembly/binaryen.cpp
              account_object.cpp
              asset_object.cpp
              fba_object.cpp
