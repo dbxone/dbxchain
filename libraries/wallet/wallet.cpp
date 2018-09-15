@@ -72,6 +72,12 @@
 #include <graphene/wallet/api_documentation.hpp>
 #include <graphene/wallet/reflect_util.hpp>
 #include <graphene/debug_witness/debug_api.hpp>
+
+//liruigang 20180912 contract
+#include <graphene/chain/wast_to_wasm.hpp>
+#include <graphene/chain/abi_serializer.hpp>
+#include <graphene/chain/protocol/name.hpp>
+
 #include <fc/smart_ref_impl.hpp>
 
 //liruigang 20180829 update
