@@ -56,8 +56,10 @@ namespace graphene { namespace chain {
       trx_state   = &eval_state;
       //check_required_authorities(op);
       auto result = evaluate( op );
-
-      if( apply ) result = this->apply( op );
+     
+	  //liruigang20180913 contract
+      //if( apply ) result = this->apply( op );
+	  if (apply) result = this->apply(op, billed_cpu_time_us);
       return result;
    } FC_CAPTURE_AND_RETHROW() }
 
