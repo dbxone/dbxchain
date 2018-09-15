@@ -86,6 +86,13 @@
 namespace graphene { namespace chain {
 
    FC_DECLARE_EXCEPTION( chain_exception, 3000000, "blockchain exception" )
+
+   //liruigang20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( chain_type_exception,              graphene::chain::chain_exception, 3010000, "chain type exception" )
+   FC_DECLARE_DERIVED_EXCEPTION( name_type_exception,               graphene::chain::chain_type_exception, 3010001, "Invalid name" )
+   FC_DECLARE_DERIVED_EXCEPTION( abi_type_exception,                graphene::chain::chain_type_exception, 3010007, "Invalid ABI" )
+
+
    FC_DECLARE_DERIVED_EXCEPTION( database_query_exception,          graphene::chain::chain_exception, 3010000, "database query exception" )
    FC_DECLARE_DERIVED_EXCEPTION( block_validate_exception,          graphene::chain::chain_exception, 3020000, "block validation exception" )
    FC_DECLARE_DERIVED_EXCEPTION( transaction_exception,             graphene::chain::chain_exception, 3030000, "transaction validation exception" )
