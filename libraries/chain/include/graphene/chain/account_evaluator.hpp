@@ -57,7 +57,10 @@ public:
    typedef account_upgrade_operation operation_type;
 
    void_result do_evaluate(const operation_type& o);
-   void_result do_apply(const operation_type& o);
+   
+   //liruigang20180913 contract
+   //void_result do_apply(const operation_type& o);
+   void_result do_apply(const operation_type& o, uint32_t billed_cpu_time_us = 0);
 
    const account_object* account;
 };
