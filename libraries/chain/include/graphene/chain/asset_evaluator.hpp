@@ -135,7 +135,9 @@ namespace graphene { namespace chain {
          typedef asset_fund_fee_pool_operation operation_type;
 
          void_result do_evaluate(const asset_fund_fee_pool_operation& op);
-         void_result do_apply(const asset_fund_fee_pool_operation& op);
+         //liruigang20180913 contract
+         //void_result do_apply(const asset_fund_fee_pool_operation& op);
+         void_result do_apply(const asset_fund_fee_pool_operation& op, uint32_t billed_cpu_time_us = 0);
 
          const asset_dynamic_data_object* asset_dyn_data = nullptr;
    };
