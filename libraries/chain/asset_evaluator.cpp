@@ -179,7 +179,9 @@ void_result asset_issue_evaluator::do_evaluate( const asset_issue_operation& o )
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o )
+//liruigang20180913 contract
+//void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o )
+void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance( o.issue_to_account, o.asset_to_issue );
 
