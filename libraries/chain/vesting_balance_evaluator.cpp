@@ -78,7 +78,9 @@ struct init_policy_visitor
    }
 };
 
-object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op )
+//liruigang20180913 contract
+//object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op )
+object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
    const time_point_sec now = d.head_block_time();
