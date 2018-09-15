@@ -197,7 +197,7 @@ if(WIN32)
  SET(CPACK_GENERATOR "ZIP;NSIS")
  set(CPACK_PACKAGE_NAME "dbx-core") # override above
  set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
- set(CPACK_NSIS_PACKAGE_NAME "BitShares v${CPACK_PACKAGE_VERSION}")
+ set(CPACK_NSIS_PACKAGE_NAME "dbx-core v${CPACK_PACKAGE_VERSION}")
  set(CPACK_NSIS_DISPLAY_NAME "${CPACK_NSIS_PACKAGE_NAME}")
  set(CPACK_NSIS_DEFINES "  !define MUI_STARTMENUPAGE_DEFAULTFOLDER \\\"BitShares\\\"")
  # it seems like windows zip files usually don't have a single directory inside them, unix tgz frequently do
