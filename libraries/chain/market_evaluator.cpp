@@ -134,7 +134,9 @@ void_result limit_order_cancel_evaluator::do_evaluate(const limit_order_cancel_o
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o)
+//liruigang20180913 contract
+//asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o)
+asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
