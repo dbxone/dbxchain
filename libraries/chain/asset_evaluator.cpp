@@ -988,7 +988,9 @@ void_result asset_claim_fees_evaluator::do_evaluate( const asset_claim_fees_oper
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o )
+//liruigang20180913 contract
+//void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o )
+void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
