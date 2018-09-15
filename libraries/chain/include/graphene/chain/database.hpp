@@ -440,6 +440,9 @@ namespace graphene { namespace chain {
          //////////////////// db_block.cpp ////////////////////
 
        public:
+         wasm_interface                 wasmif;  //liruigang20180913 contract
+
+       public:
          // these were formerly private, but they have a fairly well-defined API, so let's make them public
          void                  apply_block( const signed_block& next_block, uint32_t skip = skip_nothing );
          processed_transaction apply_transaction( const signed_transaction& trx, uint32_t skip = skip_nothing );
