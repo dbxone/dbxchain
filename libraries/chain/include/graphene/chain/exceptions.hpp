@@ -123,6 +123,13 @@ namespace graphene { namespace chain {
    FC_DECLARE_DERIVED_EXCEPTION( wasm_execution_error,              graphene::chain::wasm_exception, 3070002, "Runtime Error Processing WASM" )
    FC_DECLARE_DERIVED_EXCEPTION( wasm_serialization_error,          graphene::chain::wasm_exception, 3070003, "Serialization Error Processing WASM" )
    FC_DECLARE_DERIVED_EXCEPTION( overlapping_memory_error,          graphene::chain::wasm_exception, 3070004, "memcpy with overlapping memory" )
+
+   FC_DECLARE_DERIVED_EXCEPTION( action_validate_exception,         graphene::chain::chain_exception, 3070005, "action exception" )
+   FC_DECLARE_DERIVED_EXCEPTION( account_name_exists_exception,     graphene::chain::action_validate_exception, 3070006, "account name already exists" )
+   FC_DECLARE_DERIVED_EXCEPTION( invalid_action_args_exception,     graphene::chain::action_validate_exception, 3070007, "Invalid Action Arguments" )
+   FC_DECLARE_DERIVED_EXCEPTION( graphene_assert_message_exception, graphene::chain::action_validate_exception, 3070008, "graphene_assert_message assertion failure" )
+   FC_DECLARE_DERIVED_EXCEPTION( graphene_assert_code_exception,    graphene::chain::action_validate_exception, 3070009, "graphene_assert_code assertion failure" )
+
    GRAPHENE_DECLARE_OP_BASE_EXCEPTIONS( transfer );
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( from_account_not_whitelisted, transfer, 1, "owner mismatch" )
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( to_account_not_whitelisted, transfer, 2, "owner mismatch" )
