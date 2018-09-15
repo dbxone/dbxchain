@@ -386,6 +386,23 @@ bytes database_api::serialize_contract_call_args(string contract, string method,
 {
     return my->serialize_contract_call_args(contract, method, json_args);
 }
+
+bytes database_api_impl::serialize_contract_call_args(string contract, string method, string json_args) const
+{
+    auto contract_obj = get_account_by_name(contract);
+    if(!contract_obj) {
+        return bytes();
+    }
+
+    fc::variant action_args_var = fc::json::from_string(json_args);
+
+    abi_serializer abis(contract_obj->abi, fc::milliseconds(10000));
+    auto action_type = abis.get_action_type(method);
+    GRAPHENE_ASSERT(!action_type.empty(), action_validate_exception, "Unknown action ${action} in contract ${contract}", ("action", method)("contract", contract));
+    bytes bin_data = abis.variant_to_binary(action_type, action_args_var, fc::milliseconds(10000));
+    return bin_data;
+}
+
 //////////////////////////////////////////////////////////////////////
 //                                                                  //
 // Subscriptions                                                    //
