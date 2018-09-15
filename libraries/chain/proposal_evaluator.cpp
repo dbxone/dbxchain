@@ -174,7 +174,9 @@ void_result proposal_create_evaluator::do_evaluate(const proposal_create_operati
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o)
+//liruigang20180913 contract
+//object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o)
+object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
