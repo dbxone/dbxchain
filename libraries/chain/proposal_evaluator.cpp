@@ -302,7 +302,9 @@ void_result proposal_delete_evaluator::do_evaluate(const proposal_delete_operati
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o)
+//liruigang20180913 contract
+//void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o)
+void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().remove(*_proposal);
 
