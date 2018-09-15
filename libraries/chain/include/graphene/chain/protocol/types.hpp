@@ -89,7 +89,7 @@ namespace graphene { namespace chain {
    using bytes              = std::vector<char>;
 
    struct void_t{};
-
+   
    //liruigang20180913 contract
    using action_name      = name;
    using scope_name       = name;
@@ -100,6 +100,7 @@ namespace graphene { namespace chain {
    using checksum256_type    = fc::sha256;
    using checksum512_type    = fc::sha512;
    using checksum160_type    = fc::ripemd160;
+
    typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
    //liruigang20180913 contract
    // vm execution cpu limit
@@ -164,6 +165,7 @@ namespace graphene { namespace chain {
       vesting_balance_object_type,
       worker_object_type,
       balance_object_type,
+      index64_object_type,   //liruigang20180913 contract
       OBJECT_TYPE_COUNT ///< Sentry value which contains the number of different object types
    };
 
