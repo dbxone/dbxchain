@@ -382,6 +382,10 @@ fc::variants database_api_impl::get_table_objects(uint64_t code, uint64_t scope,
     FC_CAPTURE_AND_RETHROW((code)(scope)(table))
 }
 
+bytes database_api::serialize_contract_call_args(string contract, string method, string json_args) const 
+{
+    return my->serialize_contract_call_args(contract, method, json_args);
+}
 //////////////////////////////////////////////////////////////////////
 //                                                                  //
 // Subscriptions                                                    //
