@@ -148,7 +148,9 @@ void_result blind_transfer_evaluator::do_evaluate( const blind_transfer_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o ) 
+//liruigang20180913 contract
+//void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o ) 
+void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.fee_payer(), o.fee ); // deposit the fee to the temp account
    const auto& bbi = db().get_index_type<blinded_balance_index>();
