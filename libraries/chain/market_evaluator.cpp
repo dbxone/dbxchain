@@ -195,7 +195,9 @@ void_result call_order_update_evaluator::do_evaluate(const call_order_update_ope
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o)
+//liruigang20180913 contract
+//void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o)
+void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
