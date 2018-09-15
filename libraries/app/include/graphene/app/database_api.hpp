@@ -228,6 +228,11 @@ class database_api
        * @brief Retrieve the current @ref global_property_object
        */
       global_property_object get_global_properties()const;
+	  //liruigang20180913 contract
+      /**
+       *  @brief Retrieve vm cpu_limit
+       */
+      vm_cpu_limit_t get_cpu_limit() const;
 
       /**
        * @brief Retrieve compile-time constants
