@@ -718,6 +718,65 @@ class wallet_api
        */
       string normalize_brain_key(string s) const;
 
+
+//liruigang 20180912 contract
+
+      /** Deploy contract
+       *
+       * deploy contract
+       * @param name name
+       * @param account this account use to deploy contract
+       * @param vm_type vm_type
+       * @param vm_version vm_version
+       * @param contract_dir contract_dir
+       * @param fee_asset_symbol the symbol of the fee asset.
+       * @param broadcast broadcast
+       * @returns signed_transaction
+       */
+      signed_transaction deploy_contract(string name,
+                                         string account,
+                                         string vm_type,
+                                         string vm_version,
+                                         string contract_dir,
+                                         string fee_asset_symbol,
+                                         bool broadcast = false);
+
+
+    /** Call contract
+     *
+     * call contract
+     * @param account this account use to call contract
+     * @param contract contract
+     * @param amount amount of asset sent to contract
+     * @param method method
+     * @param arg arg
+     * @param fee_asset_symbol the symbol of the fee asset.
+     * @param broadcast broadcast
+     * @returns signed_transaction
+     */
+    signed_transaction call_contract(string account,
+                                     string contract,
+                                     optional<asset> amount,
+                                     string method,
+                                     string arg,
+                                     string fee_asset_symbol,
+                                     bool broadcast = false);
+
+      /** Returns table infos about the given contract.
+       *
+       * @param contract the name of the contract to query
+       * @returns the table names/types stored in the blockchain
+       */
+      variant get_contract_tables(string contract) const;
+
+      /** Returns table infos about the given contract.
+       *
+       * @param contract the name of the contract to query
+       * @param table the table of the contract to query
+       * @returns the table names/types stored in the blockchain
+       */
+      variant get_table_objects(string contract, string table) const;
+
       /** Registers a third party's account on the blockckain.
        *
        * This function is used to register an account for which you do not own the private keys.
