@@ -590,9 +590,8 @@ void database::_apply_block( const signed_block& next_block )
    notify_changed_objects();
 } FC_CAPTURE_AND_RETHROW( (next_block.block_num()) )  }
 
-
-
-processed_transaction database::apply_transaction(const signed_transaction& trx, uint32_t skip)
+///liruigang20180913 contract
+processed_transaction database::apply_transaction(const signed_transaction& trx, uint32_t skip, const vector<operation_result> &operation_results)
 {
    processed_transaction result;
    detail::with_skip_flags( *this, skip, [&]()
