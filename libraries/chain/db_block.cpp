@@ -541,7 +541,9 @@ void database::_apply_block( const signed_block& next_block )
        * for transactions when validating broadcast transactions or
        * when building a block.
        */
-      apply_transaction( trx, skip );
+	  //liruigang20180913 contract
+      apply_transaction(trx, skip, trx.operation_results);
+      //apply_transaction( trx, skip );
       ++_current_trx_in_block;
    }
 
