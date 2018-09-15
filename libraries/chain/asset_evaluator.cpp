@@ -113,7 +113,9 @@ void asset_create_evaluator::pay_fee()
    generic_evaluator::pay_fee();
 }
 
-object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op )
+//liruigang20180913 contract
+//object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op )
+object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op, uint32_t billed_cpu_time_us )
 { try {
    bool hf_429 = fee_is_odd && db().head_block_time() > HARDFORK_CORE_429_TIME;
 
