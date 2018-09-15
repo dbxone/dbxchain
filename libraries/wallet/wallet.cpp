@@ -119,7 +119,7 @@ public:
 struct operation_printer
 {
 private:
-   ostream& out;
+   std::ostream& out; //liruigang20180914 contract
    const wallet_api_impl& wallet;
    operation_result result;
 
