@@ -400,6 +400,11 @@ void application_impl::startup()
       _force_validate = true;
    }
 
+    //liruigang20180913 contract
+    if (_options->count("contracts-console")) {
+       _chain_db->set_contract_log_to_console(true);
+    }
+		 
    // TODO uncomment this when GUI is ready
    //if( _options->count("enable-subscribe-to-all") )
    //   _app_options.enable_subscribe_to_all = _options->at("enable-subscribe-to-all").as<bool>();
