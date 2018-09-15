@@ -3540,6 +3540,39 @@ fc::ecc::private_key wallet_api::derive_private_key(const std::string& prefix_st
    return detail::derive_private_key( prefix_string, sequence_number );
 }
 
+//liruigang 20180912 contract
+signed_transaction wallet_api::deploy_contract(string name,
+                                              string account,
+                                              string vm_type,
+                                              string vm_version,
+                                              string contract_dir,
+                                              string fee_asset_symbol,
+                                              bool broadcast)
+{
+    return my->deploy_contract(name, account, vm_type, vm_version, contract_dir, fee_asset_symbol, broadcast);
+}
+
+signed_transaction wallet_api::call_contract(string account,
+                                  string contract,
+                                  optional<asset> amount,
+                                  string method,
+                                  string args,
+                                  string fee_asset_symbol,
+                                  bool broadcast)
+{
+    return my->call_contract(account, contract, amount, method, args, fee_asset_symbol, broadcast);
+}
+
+variant wallet_api::get_contract_tables(string contract) const
+{
+    return my->get_contract_tables(contract);
+}
+
+variant wallet_api::get_table_objects(string contract, string table) const
+{
+    return my->get_table_objects(contract, table);
+}
+
 signed_transaction wallet_api::register_account(string name,
 												public_key_type owner_pubkey,
 												public_key_type active_pubkey,
