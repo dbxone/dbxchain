@@ -188,7 +188,9 @@ namespace graphene { namespace chain {
       impl_special_authority_object_type,
       impl_buyback_object_type,
       impl_fba_accumulator_object_type,
-      impl_collateral_bid_object_type
+      impl_collateral_bid_object_type,
+      impl_table_id_object_type, //liruigang20180913 contract
+      impl_key_value_object_type //liruigang20180913 contract
    };
 
    //typedef fc::unsigned_int            object_id_type;
