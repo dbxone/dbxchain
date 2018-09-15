@@ -117,6 +117,12 @@ namespace graphene { namespace chain {
 
    FC_DECLARE_DERIVED_EXCEPTION( pop_empty_chain,                   graphene::chain::undo_database_exception, 3070001, "there are no blocks to pop" )
 
+   //liruigang 20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_exception,                    graphene::chain::chain_exception, 3070000, "WASM Exception" )
+   FC_DECLARE_DERIVED_EXCEPTION( page_memory_error,                 graphene::chain::wasm_exception, 3070001, "error in WASM page memory" )
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_execution_error,              graphene::chain::wasm_exception, 3070002, "Runtime Error Processing WASM" )
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_serialization_error,          graphene::chain::wasm_exception, 3070003, "Serialization Error Processing WASM" )
+   FC_DECLARE_DERIVED_EXCEPTION( overlapping_memory_error,          graphene::chain::wasm_exception, 3070004, "memcpy with overlapping memory" )
    GRAPHENE_DECLARE_OP_BASE_EXCEPTIONS( transfer );
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( from_account_not_whitelisted, transfer, 1, "owner mismatch" )
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( to_account_not_whitelisted, transfer, 2, "owner mismatch" )
