@@ -42,7 +42,9 @@ namespace graphene { namespace chain {
          typedef limit_order_create_operation operation_type;
 
          void_result do_evaluate( const limit_order_create_operation& o );
-         object_id_type do_apply( const limit_order_create_operation& o );
+         //liruigang20180913 contract
+         //object_id_type do_apply( const limit_order_create_operation& o );
+         object_id_type do_apply( const limit_order_create_operation& o, uint32_t billed_cpu_time_us = 0);
 
          asset calculate_market_fee( const asset_object* aobj, const asset& trade_amount );
 
