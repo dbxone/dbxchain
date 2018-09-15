@@ -706,7 +706,9 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    return ptrx;
 } FC_CAPTURE_AND_RETHROW( (trx) ) }
 
-operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op)
+//liruigang20180913 contract
+//operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op)
+operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op, uint32_t billed_cpu_time_us)
 { try {
    int i_which = op.which();
    uint64_t u_which = uint64_t( i_which );
