@@ -401,6 +401,8 @@ FC_REFLECT_ENUM( graphene::chain::impl_object_type,
                  (impl_buyback_object_type)
                  (impl_fba_accumulator_object_type)
                  (impl_collateral_bid_object_type)
+                 (impl_table_id_object_type)     //liruigang20180913 contract
+                 (impl_key_value_object_type)   //liruigang20180913 contract
                )
 
 FC_REFLECT_TYPENAME( graphene::chain::share_type )
