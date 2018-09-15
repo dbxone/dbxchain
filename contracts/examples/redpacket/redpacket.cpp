@@ -13,7 +13,7 @@
 
 using namespace graphene;
 
-static const uint64_t redpacket_asset_id = 1;//GXS
+static const uint64_t redpacket_asset_id = 1;//DBX
 
 class redpacket : public contract
 {
@@ -31,7 +31,7 @@ class redpacket : public contract
     {
         // check publick key
         // TODO
-        std::string prefix("GXC");
+        std::string prefix("DBX");
         const size_t prefix_len = prefix.size();
         graphene_assert(pubkey.size() > prefix_len, "invalid public key");
         graphene_assert(pubkey.substr(0, prefix_len) == prefix, "invalid public key");
