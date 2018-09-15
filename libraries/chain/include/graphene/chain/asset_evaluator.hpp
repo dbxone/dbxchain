@@ -82,7 +82,9 @@ namespace graphene { namespace chain {
          typedef asset_update_operation operation_type;
 
          void_result do_evaluate( const asset_update_operation& o );
-         void_result do_apply( const asset_update_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const asset_update_operation& o );
+         void_result do_apply( const asset_update_operation& o, uint32_t billed_cpu_time_us = 0);
 
          const asset_object* asset_to_update = nullptr;
    };
