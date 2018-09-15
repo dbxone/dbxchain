@@ -90,7 +90,9 @@ void limit_order_create_evaluator::pay_fee()
    }
 }
 
-object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op)
+//liruigang20180913 contract
+//object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op)
+object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op, uint32_t billed_cpu_time_us)
 { try {
    const auto& seller_stats = _seller->statistics(db());
    db().modify(seller_stats, [&](account_statistics_object& bal) {
