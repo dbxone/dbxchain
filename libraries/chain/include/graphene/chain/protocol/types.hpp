@@ -100,6 +100,14 @@ namespace graphene { namespace chain {
    using checksum256_type    = fc::sha256;
    using checksum512_type    = fc::sha512;
    using checksum160_type    = fc::ripemd160;
+   typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
+   //liruigang20180913 contract
+   // vm execution cpu limit
+   struct vm_cpu_limit_t {
+       uint32_t trx_cpu_limit = 20000; // 20 ms
+       uint32_t block_cpu_limit = 800000; // 800 ms
+   };
+   
 
    typedef fc::ecc::private_key        private_key_type;
    typedef fc::sha256 chain_id_type;
