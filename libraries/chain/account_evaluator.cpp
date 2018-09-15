@@ -165,7 +165,9 @@ void_result account_create_evaluator::do_evaluate( const account_create_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-object_id_type account_create_evaluator::do_apply( const account_create_operation& o )
+//liruigang20180913 contract
+//object_id_type account_create_evaluator::do_apply( const account_create_operation& o )
+object_id_type account_create_evaluator::do_apply( const account_create_operation& o, uint32_t billed_cpu_time_us )
 { try {
 
    database& d = db();
