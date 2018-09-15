@@ -23,6 +23,7 @@
  */
 #pragma once
 #include <graphene/chain/protocol/operations.hpp>
+#include <graphene/chain/abi_def.hpp>  //liruigang20180913 contract
 #include <graphene/db/generic_index.hpp>
 #include <boost/multi_index/composite_key.hpp>
 
