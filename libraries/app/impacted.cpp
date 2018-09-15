@@ -267,6 +267,16 @@ struct get_impacted_account_visitor
    {
       _impacted.insert( op.fee_payer() ); // account_id
    }
+   //liruigang20180913 contract
+   void operator() (const contract_deploy_operation& op) {
+       _impacted.insert(op.fee_payer());
+   }
+   
+   void operator() (const contract_call_operation& op) {
+       _impacted.insert(op.fee_payer());
+       _impacted.insert(op.contract_id);
+   }
+
 };
 
 void operation_get_impacted_accounts( const operation& op, flat_set<account_id_type>& result )
