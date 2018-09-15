@@ -129,6 +129,12 @@ const uint8_t worker_object::space_id;
 const uint8_t worker_object::type_id;
 
 
+//liruigang20180913 contract
+const uint8_t table_id_object::space_id;
+const uint8_t table_id_object::type_id;
+
+const uint8_t key_value_object::space_id;
+const uint8_t key_value_object::type_id;
 void database::initialize_evaluators()
 {
    _operation_evaluators.resize(255);
