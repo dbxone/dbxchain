@@ -2181,7 +2181,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
    const asset_object& asset_obj = id(_db);
    get_required_fees_helper helper(asset_obj, //liruigang 20180816 calc fee
       _db.current_fee_schedule(),
-	  asset.options.core_exchange_rate,
+	  asset_obj.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );
    for( operation& op : _ops )
    {
