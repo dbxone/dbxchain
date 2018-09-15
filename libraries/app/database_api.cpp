@@ -848,6 +848,18 @@ optional<account_object> database_api_impl::get_account_by_name( string name )co
    return optional<account_object>();
 }
 
+//liruigang20180913 contract
+optional<account_object> database_api_impl::get_account_by_contract_code(uint64_t code)const
+{
+   object_id_type oid(1, 2, code & GRAPHENE_DB_MAX_INSTANCE_ID);
+   const auto& idx = _db.get_index_type<account_index>().indices().get<by_id>();
+   auto itr = idx.find(oid);
+   if (itr != idx.end())
+      return *itr;
+   return optional<account_object>();
+}
+
+
 vector<account_id_type> database_api::get_account_references( account_id_type account_id )const
 {
    return my->get_account_references( account_id );
