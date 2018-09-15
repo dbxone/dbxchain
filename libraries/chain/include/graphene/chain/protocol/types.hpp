@@ -90,6 +90,12 @@ namespace graphene { namespace chain {
 
    struct void_t{};
 
+   //liruigang20180913 contract
+   using action_name      = name;
+   using scope_name       = name;
+   using account_name     = uint64_t;
+   using table_name       = name;
+
    typedef fc::ecc::private_key        private_key_type;
    typedef fc::sha256 chain_id_type;
 
