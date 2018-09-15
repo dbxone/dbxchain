@@ -37,7 +37,9 @@ namespace graphene { namespace chain {
          typedef asset_create_operation operation_type;
 
          void_result do_evaluate( const asset_create_operation& o );
-         object_id_type do_apply( const asset_create_operation& o );
+         //liruigang20180913 contract
+         //object_id_type do_apply( const asset_create_operation& o );
+         object_id_type do_apply( const asset_create_operation& o, uint32_t billed_cpu_time_us = 0);
 
          /** override the default behavior defined by generic_evalautor which is to
           * post the fee to fee_paying_account_stats.pending_fees
