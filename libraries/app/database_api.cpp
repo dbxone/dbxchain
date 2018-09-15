@@ -343,6 +343,12 @@ static void copy_inline_row(const key_value_object& obj, vector<char>& data) {
    memcpy( data.data(), obj.value.data(), obj.value.size() );
 }
 
+//liruigang 20180912 contract
+fc::variants database_api::get_table_objects(uint64_t code, uint64_t scope, uint64_t table) const
+{
+    return my->get_table_objects(code, scope, table);
+}
+
 //////////////////////////////////////////////////////////////////////
 //                                                                  //
 // Subscriptions                                                    //
