@@ -112,6 +112,7 @@ public:
    std::string operator()(const void_result& x) const;
    std::string operator()(const object_id_type& oid);
    std::string operator()(const asset& a);
+   std::string operator()(const contract_receipt& r);  //liruigang20180913 contract
 };
 
 // BLOCK  TRX  OP  VOP
