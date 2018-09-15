@@ -833,7 +833,9 @@ void_result asset_settle_evaluator::do_evaluate(const asset_settle_evaluator::op
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op)
+//liruigang20180913 contract
+//operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op)
+operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
