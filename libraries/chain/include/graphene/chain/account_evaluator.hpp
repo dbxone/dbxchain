@@ -33,7 +33,9 @@ public:
    typedef account_create_operation operation_type;
 
    void_result do_evaluate( const account_create_operation& o );
-   object_id_type do_apply( const account_create_operation& o ) ;
+   //liruigang20180913 contract
+   //object_id_type do_apply( const account_create_operation& o ) ;
+   object_id_type do_apply(const account_create_operation &o, uint32_t billed_cpu_time_us = 0);
 };
 
 class account_update_evaluator : public evaluator<account_update_evaluator>
