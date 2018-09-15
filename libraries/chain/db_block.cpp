@@ -374,7 +374,9 @@ signed_block database::_generate_block(
       size_t new_total_size = total_block_size + fc::raw::pack_size( tx );
 
       // postpone transaction if it would make block too big
-      if( new_total_size >= maximum_block_size )
+	  //liruigang20180913 contract
+      if (new_total_size >= maximum_block_size || new_block_cpu >= block_cpu_limit) 
+      //if( new_total_size >= maximum_block_size )
       {
          postponed_tx_count++;
          continue;
