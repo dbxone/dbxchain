@@ -160,6 +160,7 @@ add_subdirectory( externals )
 include(wasm)
 include(installer)
 add_subdirectory( libraries )
+add_subdirectory( contracts )
 add_subdirectory( programs )
 add_subdirectory( tests )
 
