@@ -381,7 +381,9 @@ void_result bid_collateral_evaluator::do_evaluate(const bid_collateral_operation
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o)
+//liruigang20180913 contract
+//void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o)
+void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o, uint32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
