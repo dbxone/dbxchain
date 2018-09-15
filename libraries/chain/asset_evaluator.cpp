@@ -1017,7 +1017,9 @@ void_result asset_claim_pool_evaluator::do_evaluate( const asset_claim_pool_oper
     return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o )
+//liruigang20180913 contract
+//void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o )
+void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o, uint32_t billed_cpu_time_us )
 { try {
     database& d = db();
 
