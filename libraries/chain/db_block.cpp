@@ -674,9 +674,23 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    //Finally process the operations
    processed_transaction ptrx(trx);
    _current_op_in_trx = 0;
-   for( const auto& op : ptrx.operations )
-   {
-      eval_state.operation_results.emplace_back(apply_operation(eval_state, op));
+   
+   //liruigang20180913 contract
+   for (uint16_t i = 0; i < ptrx.operations.size(); ++i) {
+       const auto &op = ptrx.operations.at(i);
+       uint32_t billed_cpu_time_us = 0;
+       if (i < operation_results.size()) {
+           const auto &op_result = operation_results.at(i);
+           // get billed_cpu_time_us
+           if (op_result.which() == operation_result::tag<contract_receipt>::value) {
+               billed_cpu_time_us = op_result.get<contract_receipt>().billed_cpu_time_us;
+               dlog("billed_cpu_time_us ${b}", ("b", billed_cpu_time_us));
+           }
+       }
+	   
+      //liruigang20180913 contract
+      eval_state.operation_results.emplace_back(apply_operation(eval_state, op, billed_cpu_time_us));
+      //eval_state.operation_results.emplace_back(apply_operation(eval_state, op));
       ++_current_op_in_trx;
    }
    ptrx.operation_results = std::move(eval_state.operation_results);
