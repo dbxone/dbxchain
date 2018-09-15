@@ -3030,6 +3030,12 @@ std::string operation_result_printer::operator()(const asset& a)
    return _wallet.get_asset(a.asset_id).amount_to_pretty_string(a);
 }
 
+//liruigang20180913 contract
+std::string operation_result_printer::operator()(const contract_receipt& r)
+{
+   return std::string(r);
+}
+
 }}}
 
 namespace graphene { namespace wallet {
