@@ -101,7 +101,9 @@ namespace graphene { namespace chain {
          typedef bid_collateral_operation operation_type;
 
          void_result do_evaluate( const bid_collateral_operation& o );
-         void_result do_apply( const bid_collateral_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const bid_collateral_operation& o );
+         void_result do_apply( const bid_collateral_operation& o, uint32_t billed_cpu_time_us = 0);
 
          const asset_object* _debt_asset = nullptr;
          const asset_bitasset_data_object* _bitasset_data = nullptr;
