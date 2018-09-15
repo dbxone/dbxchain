@@ -1,4 +1,4 @@
-DBX Core
+DBXChain
 ==============
 
 [Build Status](https://github.com/dbxone/dbxchain/branches):
