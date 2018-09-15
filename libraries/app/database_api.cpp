@@ -26,6 +26,8 @@
 #include <graphene/chain/asset_object.hpp> //liruigang20180914 contract
 #include <graphene/app/util.hpp>
 #include <graphene/chain/get_config.hpp>
+//liruigang20180913 contract
+#include <graphene/chain/contract_table_objects.hpp>
 
 #include <fc/bloom_filter.hpp>
 #include <fc/smart_ref_impl.hpp>
