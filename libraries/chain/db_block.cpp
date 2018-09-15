@@ -386,6 +386,17 @@ signed_block database::_generate_block(
       {
          auto temp_session = _undo_db.start_undo_session();
          processed_transaction ptx = _apply_transaction( tx );
+           // check block cpu limit  //liruigang20180913 contract
+           for (const auto op_result : ptx.operation_results) {
+               if (op_result.which() == operation_result::tag<contract_receipt>::value) {
+                   new_block_cpu += op_result.get<contract_receipt>().billed_cpu_time_us;
+               }
+           }
+           if (new_block_cpu >= block_cpu_limit) {
+               wlog("posponed due to block cpu limit");
+               postponed_tx_count++;
+               continue;
+           }
          temp_session.merge();
 
          // We have to recompute pack_size(ptx) because it may be different
