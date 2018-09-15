@@ -126,7 +126,7 @@ private:
    std::string fee(const asset& a) const;
 
 public:
-   operation_printer( ostream& out, const wallet_api_impl& wallet, const operation_result& r = operation_result() )
+   operation_printer( std::ostream& out, const wallet_api_impl& wallet, const operation_result& r = operation_result() )
 	  : out(out),
 		wallet(wallet),
 		result(r)
