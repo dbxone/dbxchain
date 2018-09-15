@@ -186,7 +186,9 @@ namespace graphene { namespace chain {
          typedef asset_claim_fees_operation operation_type;
 
          void_result do_evaluate( const asset_claim_fees_operation& o );
-         void_result do_apply( const asset_claim_fees_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const asset_claim_fees_operation& o );
+         void_result do_apply( const asset_claim_fees_operation& o, uint32_t billed_cpu_time_us = 0);
    };
 
    class asset_claim_pool_evaluator : public evaluator<asset_claim_pool_evaluator>
