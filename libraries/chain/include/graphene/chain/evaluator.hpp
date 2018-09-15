@@ -39,7 +39,9 @@ namespace graphene { namespace chain {
       virtual ~generic_evaluator(){}
 
       virtual int get_type()const = 0;
-      virtual operation_result start_evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply);
+	  //liruigang20180913 contract
+      //virtual operation_result start_evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply);
+      virtual operation_result start_evaluate(transaction_evaluation_state& eval_state, const operation& op, bool apply, uint32_t billed_cpu_time_us);
 
       /**
        * @note derived classes should ASSUME that the default validation that is
