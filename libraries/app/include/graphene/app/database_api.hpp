@@ -695,7 +695,8 @@ FC_REFLECT( graphene::app::market_trade, (sequence)(date)(price)(amount)(value)(
 FC_API(graphene::app::database_api,
    // Objects
    (get_objects)
-
+   (get_table_objects)     //liruigang 20180912 contract
+   (serialize_contract_call_args)     //liruigang 20180912 contract 
    // Subscriptions
    (set_subscribe_callback)
    (set_pending_transaction_callback)
