@@ -155,6 +155,13 @@ namespace graphene { namespace chain {
 
          /// The account's name. This name must be unique among all account names on the graph. May not be empty.
          string name;
+		 
+		 //liruigang20180913 contract
+         string                 vm_type;
+         string                 vm_version;
+         bytes                  code;
+         string                 code_version;
+         abi_def                abi;
 
          /**
           * The owner authority represents absolute control over the account. Usually the keys in this authority will
