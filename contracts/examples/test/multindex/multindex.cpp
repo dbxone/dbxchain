@@ -1,7 +1,7 @@
-#include <graphenelib/contract.hpp>
-#include <graphenelib/dispatcher.hpp>
-#include <graphenelib/multi_index.hpp>
-#include <graphenelib/print.hpp>
+#include <dbxlib/contract.hpp>
+#include <dbxlib/dispatcher.hpp>
+#include <dbxlib/multi_index.hpp>
+#include <dbxlib/print.hpp>
 
 using namespace graphene;
 
