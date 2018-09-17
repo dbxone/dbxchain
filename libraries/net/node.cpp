@@ -4627,6 +4627,38 @@ namespace graphene { namespace net { namespace detail {
       return iter != _hard_fork_block_numbers.end() ? *iter : 0;
     }
 
+    // stat network performance and delay, then get network weight
+    fc::variant_object node_impl::stat_network_weight() const
+    {
+      VERIFY_CORRECT_THREAD();
+      std::vector<uint32_t> network_usage_by_second;
+      network_usage_by_second.reserve(_average_network_read_speed_seconds.size());
+      std::transform(_average_network_read_speed_seconds.begin(), _average_network_read_speed_seconds.end(),
+                     _average_network_write_speed_seconds.begin(),
+                     std::back_inserter(network_usage_by_second),
+                     std::plus<uint32_t>());
+
+      std::vector<uint32_t> network_usage_by_minute;
+      network_usage_by_minute.reserve(_average_network_read_speed_minutes.size());
+      std::transform(_average_network_read_speed_minutes.begin(), _average_network_read_speed_minutes.end(),
+                     _average_network_write_speed_minutes.begin(),
+                     std::back_inserter(network_usage_by_minute),
+                     std::plus<uint32_t>());
+
+      std::vector<uint32_t> network_usage_by_hour;
+      network_usage_by_hour.reserve(_average_network_read_speed_hours.size());
+      std::transform(_average_network_read_speed_hours.begin(), _average_network_read_speed_hours.end(),
+                     _average_network_write_speed_hours.begin(),
+                     std::back_inserter(network_usage_by_hour),
+                     std::plus<uint32_t>());
+
+      fc::mutable_variant_object result;
+      result["status_by_second"] = fc::variant( network_usage_by_second, 2 );
+      result["status_by_minute"] = fc::variant( network_usage_by_minute, 5 );
+      result["status_by_hour"]   = fc::variant( network_usage_by_hour, 3 );
+      return result;
+    }
+
   }  // end namespace detail
 
 

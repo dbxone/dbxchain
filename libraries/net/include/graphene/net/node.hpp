@@ -292,6 +292,8 @@ namespace graphene { namespace net {
 
         void disable_peer_advertising();
         fc::variant_object get_call_statistics() const;
+
+        fc::variant_object stat_network_weight() const;
       private:
         std::unique_ptr<detail::node_impl, detail::node_impl_deleter> my;
    };
