@@ -1,9 +1,9 @@
-#include <graphenelib/contract.hpp>
-#include <graphenelib/crypto.h>
-#include <graphenelib/dispatcher.hpp>
-#include <graphenelib/print.hpp>
-#include <graphenelib/types.h>
-#include <graphenelib/global.h>
+#include <dbxlib/contract.hpp>
+#include <dbxlib/crypto.h>
+#include <dbxlib/dispatcher.hpp>
+#include <dbxlib/print.hpp>
+#include <dbxlib/types.h>
+#include <dbxlib/global.h>
 
 using namespace graphene;
 
