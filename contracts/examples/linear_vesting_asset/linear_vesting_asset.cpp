@@ -1,9 +1,9 @@
-#include <graphenelib/asset.h>
-#include <graphenelib/contract.hpp>
-#include <graphenelib/contract_asset.hpp>
-#include <graphenelib/dispatcher.hpp>
-#include <graphenelib/global.h>
-#include <graphenelib/multi_index.hpp>
+#include <dbxlib/asset.h>
+#include <dbxlib/contract.hpp>
+#include <dbxlib/contract_asset.hpp>
+#include <dbxlib/dispatcher.hpp>
+#include <dbxlib/global.h>
+#include <dbxlib/multi_index.hpp>
 #include <vector>
 
 using namespace graphene;
