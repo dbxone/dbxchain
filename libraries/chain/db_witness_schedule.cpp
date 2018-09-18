@@ -29,6 +29,8 @@
 
 #include <graphene/net/node.hpp>
 
+#include <dbxchain/net/node.hpp>
+
 namespace graphene
 {
 namespace chain
@@ -124,7 +126,7 @@ void database::update_witness_schedule()
     uint64_t database::get_net_weight(account_id_type owner) const
     {
         fc::variant_object result = stat_network_weight();
-        uint64_t network_weight = result["status_by_second"] * 0.6 + result["status_by_minute"] * 0.3 + result["status_by_hour"] * 0.1;
+        uint64_t network_weight = evaluate_weight(result["status_by_second"], result["status_by_minute"], result["status_by_hour"]);
         return network_weight;
     }
 }
