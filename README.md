@@ -16,7 +16,7 @@ DBXChain
 * [License](#license)
 
 DBXChain Core is the DBXChain blockchain implementation and command-line interface.
-DBX Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
+DBX Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidity, the most popular Ethereum smart contract language.
 The web wallet is [DBXChain UI](https://github.com/dbxone/dbxui).
 
 **NOTE:** The official DBXChain git repository location, default branch, and submodule remotes were recently changed. Existing
