@@ -1,13 +1,6 @@
 DBXChain
 ==============
 
-[Build Status](https://github.com/dbxone/dbxchain/branches):
-
-`master` | `develop`  
- --- | --- | --- | --- | ---
- [![](https://github.com/dbxone/dbxchain/master)](https://github.com/dbxone/dbxchain) | [![](https://github.com/dbxone/dbxchain/tree/develop)](https://github.com/dbxone/dbxchain) 
-
-
 * [Getting Started](#getting-started)
 * [Support](#support)
 * [Using the API](#using-the-api)
