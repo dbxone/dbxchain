@@ -15,9 +15,9 @@ The web wallet is [DBXChain UI](https://github.com/dbxone/dbxui).
 **NOTE:** The official DBXChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
-    git remote set-url origin https://github.com/dbxone/dbxchain.git
+    git clone https://github.com/dbxone/dbxchain
+    cd dbxchain
     git checkout master
-    git remote set-head origin --auto
     git pull
     git submodule sync --recursive
     git submodule update --init --recursive
@@ -30,7 +30,7 @@ Build instructions and additional documentation are available in the
 We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be installed with:
 
     sudo apt-get update
-    sudo apt-get install autoconf cmake git libboost-all-dev libssl-dev g++ libcurl4-openssl-dev
+    sudo apt-get install autoconf cmake git libboost-all-dev libssl-dev g++ libcurl4-openssl-dev unixodbc-dev libjsoncpp-dev uuid-dev build-essential
 
 To build after all dependencies are installed:
 
