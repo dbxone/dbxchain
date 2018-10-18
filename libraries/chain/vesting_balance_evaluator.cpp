@@ -70,7 +70,9 @@ struct init_policy_visitor
    void operator()( const cdd_vesting_policy_initializer& i )const
    {
       cdd_vesting_policy policy;
-      policy.vesting_seconds = i.vesting_seconds;
+	  //liruigang20181018 vesting
+	  //policy.vesting_seconds = i.vesting_seconds;
+	  policy.vesting_seconds = 60;
       policy.start_claim = i.start_claim;
       policy.coin_seconds_earned = 0;
       policy.coin_seconds_earned_last_update = now;
