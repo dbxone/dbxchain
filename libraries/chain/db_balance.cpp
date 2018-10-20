@@ -98,10 +98,13 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
          break;
       if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
          break;
+	  /* liruigang20181020 vesting seconds
       if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
          break;
+	  */
       modify( vbo, [&]( vesting_balance_object& _vbo )
       {
+		 _vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds; //liruigang20181020 vesting seconds
          if( require_vesting )
             _vbo.deposit(now, amount);
          else

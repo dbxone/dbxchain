@@ -240,7 +240,9 @@ class database_api
        */
       dynamic_global_property_object get_dynamic_global_properties()const;
 
-      //////////
+	  void update_vesting_seconds(const uint32_t seconds); //liruigang20181020 vesting seconds
+
+	  //////////
       // Keys //
       //////////
 
@@ -787,4 +789,5 @@ FC_API(graphene::app::database_api,
    (get_withdraw_permissions_by_giver)
    (get_withdraw_permissions_by_recipient)
 
+   (update_vesting_seconds) //liruigang20181020 vesting seconds
 )

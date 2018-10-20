@@ -256,7 +256,8 @@ namespace graphene { namespace chain {
          const global_property_object&          get_global_properties()const;
          const dynamic_global_property_object&  get_dynamic_global_properties()const;
          const node_property_object&            get_node_properties()const;
-         const fee_schedule&                    current_fee_schedule()const;
+         const fee_schedule&                    current_fee_schedule()const;		 
+		 void update_vesting_seconds(const uint32_t seconds); //liruigang20181020 vesting seconds
 
          time_point_sec   head_block_time()const;
          uint32_t         head_block_num()const;

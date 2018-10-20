@@ -80,6 +80,7 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
       fc::variant_object get_config()const;
       chain_id_type get_chain_id()const;
       dynamic_global_property_object get_dynamic_global_properties()const;
+	  void update_vesting_seconds(const uint32_t seconds); //liruigang20181020 vesting seconds
 
       // Keys
       vector<vector<account_id_type>> get_key_references( vector<public_key_type> key )const;
@@ -504,6 +505,17 @@ dynamic_global_property_object database_api::get_dynamic_global_properties()cons
 dynamic_global_property_object database_api_impl::get_dynamic_global_properties()const
 {
    return _db.get(dynamic_global_property_id_type());
+}
+
+//liruigang20181020 vesting seconds
+void database_api::update_vesting_seconds(const uint32_t seconds)
+{
+   return my->update_vesting_seconds(seconds);
+}
+
+void database_api_impl::update_vesting_seconds(const uint32_t seconds)
+{
+   return _db.update_vesting_seconds(seconds);
 }
 
 //////////////////////////////////////////////////////////////////////
