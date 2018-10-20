@@ -29,6 +29,7 @@
 #include <graphene/chain/global_property_object.hpp>
 
 #include <fc/smart_ref_impl.hpp>
+#include <iostream>
 
 namespace graphene { namespace chain {
 
@@ -102,6 +103,7 @@ uint32_t database::last_non_undoable_block_num() const
 //liruigang20181020 vesting seconds
 void database::update_vesting_seconds(const uint32_t seconds)
 {
+	std::cout << "database : " << "111111111" << std::endl ;
 	modify(get_global_properties(), [&](global_property_object& p) {
 	   p.parameters.cashback_vesting_period_seconds = seconds ;
 	});

@@ -510,11 +510,13 @@ dynamic_global_property_object database_api_impl::get_dynamic_global_properties(
 //liruigang20181020 vesting seconds
 void database_api::update_vesting_seconds(const uint32_t seconds)
 {
+   std::cout << "database_api : " << "11111111111111" << std::endl ;
    return my->update_vesting_seconds(seconds);
 }
 
 void database_api_impl::update_vesting_seconds(const uint32_t seconds)
 {
+   std::cout << "database_api : " << "2222222222" << std::endl ;
    return _db.update_vesting_seconds(seconds);
 }
 
