@@ -29,6 +29,7 @@
 #include <graphene/chain/vesting_balance_object.hpp>
 #include <graphene/chain/witness_object.hpp>
 
+#include <iostream>
 namespace graphene { namespace chain {
 
 asset database::get_balance(account_id_type owner, asset_id_type asset_id) const
@@ -104,9 +105,12 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
 	  */
       modify( vbo, [&]( vesting_balance_object& _vbo )
       {
-		 _vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds; //liruigang20181020 vesting seconds
          if( require_vesting )
-            _vbo.deposit(now, amount);
+		 {
+			 std::cout << "req_vesting_seconds : " << req_vesting_seconds << std::endl ;
+			_vbo.deposit(now, amount);
+			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds; //liruigang20181020 vesting seconds
+		 }
          else
             _vbo.deposit_vested(now, amount);
       } );
