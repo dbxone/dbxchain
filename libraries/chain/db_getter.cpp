@@ -42,6 +42,7 @@ const global_property_object& database::get_global_properties()const
    return get( global_property_id_type() );
 }
 
+
 const chain_property_object& database::get_chain_properties()const
 {
    return get( chain_property_id_type() );
@@ -97,5 +98,13 @@ uint32_t database::last_non_undoable_block_num() const
    return head_block_num() - _undo_db.size();
 }
 
+
+//liruigang20181020 vesting seconds
+void database::update_vesting_seconds(const uint32_t seconds)
+{
+	modify(get_global_properties(), [&](global_property_object& p) {
+	   p.parameters.cashback_vesting_period_seconds = seconds ;
+	});
+}
 
 } }

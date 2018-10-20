@@ -597,6 +597,13 @@ public:
    {
 	  return _remote_db->get_dynamic_global_properties();
    }
+
+   //liruigang20181020 vesting seconds
+   void update_vesting_seconds(const uint32_t seconds)
+   {
+	  _remote_db->update_vesting_seconds(seconds);
+   }
+
    account_object get_account(account_id_type id) const
    {
 	  auto rec = _remote_db->get_accounts({id}).front();
@@ -3759,6 +3766,12 @@ global_property_object wallet_api::get_global_properties() const
 dynamic_global_property_object wallet_api::get_dynamic_global_properties() const
 {
    return my->get_dynamic_global_properties();
+}
+
+//liruigang20181020 vesting seconds
+void wallet_api::update_vesting_seconds(const uint32_t seconds)
+{
+   void my->update_vesting_seconds(seconds);
 }
 
 string wallet_api::help()const
