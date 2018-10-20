@@ -601,7 +601,6 @@ public:
    //liruigang20181020 vesting seconds
    void update_vesting_seconds(const uint32_t seconds)
    {
-	   std::cout << "wallet_api : " << "2222222222222" << std::endl ;
 	  _remote_db->update_vesting_seconds(seconds);
    }
 
@@ -3772,7 +3771,6 @@ dynamic_global_property_object wallet_api::get_dynamic_global_properties() const
 //liruigang20181020 vesting seconds
 void wallet_api::update_vesting_seconds(const uint32_t seconds)
 {
-   std::cout << "wallet_api : " << "11111111111111" << std::endl ;
    my->update_vesting_seconds(seconds);
 }
 
