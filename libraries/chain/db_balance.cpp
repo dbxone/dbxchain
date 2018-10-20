@@ -107,7 +107,6 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
       {
          if( require_vesting )
 		 {
-			 std::cout << "req_vesting_seconds : " << req_vesting_seconds << std::endl ;
 			_vbo.deposit(now, amount);
 			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds; //liruigang20181020 vesting seconds
 		 }
