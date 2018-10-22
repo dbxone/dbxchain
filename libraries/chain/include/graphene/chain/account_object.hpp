@@ -83,9 +83,6 @@ namespace graphene { namespace chain {
           */
          share_type pending_vested_fees;
 
-         // workload
-         uint64_t workload = 0;
-
          /// @brief Split up and pay out @ref pending_fees and @ref pending_vested_fees
          void process_fees(const account_object& a, database& d) const;
 
@@ -93,8 +90,6 @@ namespace graphene { namespace chain {
           * Core fees are paid into the account_statistics_object by this method
           */
          void pay_fee( share_type core_fee, share_type cashback_vesting_threshold );
-
-         uint64_t get_wordload();
    };
 
    /**
