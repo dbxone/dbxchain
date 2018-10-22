@@ -1,13 +1,13 @@
-#include <dbxlib/asset.h>
-#include <dbxlib/contract.hpp>
-#include <dbxlib/contract_asset.hpp>
-#include <dbxlib/crypto.h>
-#include <dbxlib/dispatcher.hpp>
-#include <dbxlib/global.h>
-#include <dbxlib/multi_index.hpp>
-#include <dbxlib/print.hpp>
-#include <dbxlib/system.h>
-#include <dbxlib/types.h>
+#include <graphenelib/asset.h>
+#include <graphenelib/contract.hpp>
+#include <graphenelib/contract_asset.hpp>
+#include <graphenelib/crypto.h>
+#include <graphenelib/dispatcher.hpp>
+#include <graphenelib/global.h>
+#include <graphenelib/multi_index.hpp>
+#include <graphenelib/print.hpp>
+#include <graphenelib/system.h>
+#include <graphenelib/types.h>
 
 #include<cmath>
 
