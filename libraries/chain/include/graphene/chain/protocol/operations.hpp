@@ -48,57 +48,57 @@ namespace graphene { namespace chain {
     * Defines the set of valid operations as a discriminated union type.
     */
    typedef fc::static_variant<
-            transfer_operation,
-            limit_order_create_operation,
-            limit_order_cancel_operation,
-            call_order_update_operation,
-            fill_order_operation,           // VIRTUAL
-            account_create_operation,
-            account_update_operation,
-            account_whitelist_operation,
-            account_upgrade_operation,
-            account_transfer_operation,
-            asset_create_operation,
-            asset_update_operation,
-            asset_update_bitasset_operation,
-            asset_update_feed_producers_operation,
-            asset_issue_operation,
-            asset_reserve_operation,
-            asset_fund_fee_pool_operation,
-            asset_settle_operation,
-            asset_global_settle_operation,
-            asset_publish_feed_operation,
-            witness_create_operation,
-            witness_update_operation,
-            proposal_create_operation,
-            proposal_update_operation,
-            proposal_delete_operation,
-            withdraw_permission_create_operation,
-            withdraw_permission_update_operation,
-            withdraw_permission_claim_operation,
-            withdraw_permission_delete_operation,
-            committee_member_create_operation,
-            committee_member_update_operation,
-            committee_member_update_global_parameters_operation,
-            vesting_balance_create_operation,
-            vesting_balance_withdraw_operation,
-            worker_create_operation,
-            custom_operation,
-            assert_operation,
-            balance_claim_operation,
-            override_transfer_operation,
-            transfer_to_blind_operation,
-            blind_transfer_operation,
-            transfer_from_blind_operation,
-            asset_settle_cancel_operation,  // VIRTUAL
-            asset_claim_fees_operation,
-            fba_distribute_operation,       // VIRTUAL
-            bid_collateral_operation,
-            execute_bid_operation,          // VIRTUAL
-            asset_claim_pool_operation,
-            asset_update_issuer_operation,  
-            contract_deploy_operation, //liruigang20180913 contract
-            contract_call_operation //liruigang20180913 contract
+			transfer_operation, //0
+			limit_order_create_operation, //1
+			limit_order_cancel_operation, //2
+			call_order_update_operation, //3
+			fill_order_operation, //4           // VIRTUAL
+			account_create_operation, //5
+			account_update_operation, //6
+			account_whitelist_operation, //7
+			account_upgrade_operation, //8
+			account_transfer_operation, //9
+			asset_create_operation, //10
+			asset_update_operation, //11
+			asset_update_bitasset_operation, //12
+			asset_update_feed_producers_operation, //13
+			asset_issue_operation, //14
+			asset_reserve_operation, //15
+			asset_fund_fee_pool_operation, //16
+			asset_settle_operation, //17
+			asset_global_settle_operation, //18
+			asset_publish_feed_operation, //19
+			witness_create_operation, //20
+			witness_update_operation, //21
+			proposal_create_operation, //22
+			proposal_update_operation, //23
+			proposal_delete_operation, //24
+			withdraw_permission_create_operation, //25
+			withdraw_permission_update_operation, //26
+			withdraw_permission_claim_operation, //27
+			withdraw_permission_delete_operation, //28
+			committee_member_create_operation, //29
+			committee_member_update_operation, //30
+			committee_member_update_global_parameters_operation, //31
+			vesting_balance_create_operation, //32
+			vesting_balance_withdraw_operation, //33
+			worker_create_operation, //34
+			custom_operation, //35
+			assert_operation, //36
+			balance_claim_operation, //37
+			override_transfer_operation, //38
+			transfer_to_blind_operation, //39
+			blind_transfer_operation, //40
+			transfer_from_blind_operation, //41
+			asset_settle_cancel_operation, //42 // VIRTUAL
+			asset_claim_fees_operation, //43
+			fba_distribute_operation, //44       // VIRTUAL
+			bid_collateral_operation, //45
+			execute_bid_operation, //46          // VIRTUAL
+			asset_claim_pool_operation, //47
+			asset_update_issuer_operation, //48
+			contract_deploy_operation, //49     //liruigang20180913 contract
+			contract_call_operation //50     //liruigang20180913 contract
          > operation;
 
    /// @} // operations group
