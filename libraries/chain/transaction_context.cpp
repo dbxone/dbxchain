@@ -39,7 +39,8 @@ namespace graphene { namespace chain {
        }
 
        auto now = fc::time_point::now();
-       transaction_cpu_usage_us = (now - start).count();//TODO
+	   transaction_cpu_usage_us = (now - start).count();//TODO
+
        if (BOOST_UNLIKELY(now > _deadline)) {
            GRAPHENE_THROW(tx_cpu_usage_exceeded,
                           "transaction was executing for too long",
