@@ -1,8 +1,8 @@
-#include <dbxlib/action.h>
-#include <dbxlib/action.hpp>
-#include <dbxlib/contract.hpp>
-#include <dbxlib/dispatcher.hpp>
-#include <dbxlib/print.hpp>
+#include <graphenelib/action.h>
+#include <graphenelib/action.hpp>
+#include <graphenelib/contract.hpp>
+#include <graphenelib/dispatcher.hpp>
+#include <graphenelib/print.hpp>
 
 using namespace graphene;
 
@@ -20,7 +20,7 @@ class contracta : public contract
         print("hi contract:", act_id);
         std::string s = "abc";
         action a(act_id, N(hi), bytes(s.begin(), s.end()));
-        a.send();
+		a.send();
     }
 };
 
