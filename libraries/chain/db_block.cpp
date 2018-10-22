@@ -589,12 +589,14 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    //liruigang 20180813 remove basic fee calc
    eval_state.skip_fee_schedule_check = true;
 
+   /* liruigang 20181022 reindex check
    if( !(skip & (skip_transaction_signatures | skip_authority_check) ) )
    {
       auto get_active = [&]( account_id_type id ) { return &id(*this).active; };
       auto get_owner  = [&]( account_id_type id ) { return &id(*this).owner;  };
       trx.verify_authority( chain_id, get_active, get_owner, get_global_properties().parameters.max_authority_depth );
    }
+   */
 
    //Skip all manner of expiration and TaPoS checking if we're on block 1; It's impossible that the transaction is
    //expired, and TaPoS makes no sense as no blocks exist.

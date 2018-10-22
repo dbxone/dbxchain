@@ -172,10 +172,7 @@ void database::open(
                     "last block ID does not match current chain state",
                     ("last_block->id", last_block)("head_block_id",head_block_num()) );
 
-		 //liruigang 20180810 close reindex
-		 //reindex( data_dir );
-
-		 //liruigang 20180823 open reindex again
+		 //liruigang 20180823 reindex
 		 reindex( data_dir );
       }
       _opened = true;
