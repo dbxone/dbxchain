@@ -55,8 +55,30 @@ namespace graphene { namespace chain {
       vector<processed_transaction> transactions;
    };
 
+
+   //liruigang20180925 contract
+   struct signed_block_with_info : public signed_block
+    {
+        signed_block_with_info(const signed_block& block) : signed_block(block) {
+            block_id = id();
+            signing_key = signee();
+            transaction_ids.reserve(transactions.size());
+            for (const processed_transaction& tx : transactions) {
+                transaction_ids.push_back( tx.id() );
+            }
+        };
+        signed_block_with_info(const signed_block_with_info& block) = default;
+        signed_block_with_info() = default;
+
+        block_id_type block_id;
+        public_key_type signing_key;
+        vector< transaction_id_type > transaction_ids;
+    };
+
 } } // graphene::chain
 
 FC_REFLECT( graphene::chain::block_header, (previous)(timestamp)(witness)(transaction_merkle_root)(extensions) )
 FC_REFLECT_DERIVED( graphene::chain::signed_block_header, (graphene::chain::block_header), (witness_signature) )
 FC_REFLECT_DERIVED( graphene::chain::signed_block, (graphene::chain::signed_block_header), (transactions) )
+FC_REFLECT_DERIVED( graphene::chain::signed_block_with_info, (graphene::chain::signed_block), (block_id)(signing_key)(transaction_ids) )   //liruigang20180925 contract
+
