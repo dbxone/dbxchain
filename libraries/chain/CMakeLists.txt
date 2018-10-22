@@ -1,10 +1,3 @@
-
-add_custom_target( build_hardfork_hpp
-                   COMMAND cat-parts "${CMAKE_CURRENT_SOURCE_DIR}/hardfork.d" "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp" )
-set_source_files_properties( "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp" PROPERTIES GENERATED TRUE )
-
-add_dependencies( build_hardfork_hpp cat-parts )
-
 file(GLOB HEADERS "include/graphene/chain/*.hpp")
 file(GLOB PROTOCOL_HEADERS "include/graphene/chain/protocol/*.hpp")
 
@@ -107,11 +100,10 @@ add_library( graphene_chain
              abi_serializer.cpp
              ${HEADERS}
              ${PROTOCOL_HEADERS}
-             "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
+             ##"${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
            )
 
-add_dependencies( graphene_chain build_hardfork_hpp )
-target_link_libraries( graphene_chain fc graphene_db chaind jsoncpp Logging IR WAST WASM Runtime wasm
+target_link_libraries( graphene_chain chaind fc graphene_db Logging IR WAST WASM Runtime wasm
     asmjs passes ast emscripten-optimizer support softfloat builtins)
 
 target_include_directories( graphene_chain
