@@ -34,7 +34,7 @@ namespace graphene { namespace db {
    using  fc::flat_map;
    using  fc::variant;
    using  fc::unsigned_int;
-   using  fc::signed_int;
+//   using  fc::signed_int;   //liruigang 20180920 contract
 
    struct object_id_type
    {
