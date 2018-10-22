@@ -75,7 +75,7 @@ namespace graphene { namespace chain {
    using                               fc::enum_type;
    using                               fc::optional;
    using                               fc::unsigned_int;
-   using                               fc::signed_int;
+   //using                               fc::signed_int;  //liruigang20180925 contract
    using                               fc::time_point_sec;
    using                               fc::time_point;
    using                               fc::safe;
@@ -102,11 +102,9 @@ namespace graphene { namespace chain {
    using checksum160_type    = fc::ripemd160;
 
    typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
-   //liruigang20180913 contract
-   // vm execution cpu limit
    struct vm_cpu_limit_t {
-       uint32_t trx_cpu_limit = 20000; // 20 ms
-       uint32_t block_cpu_limit = 800000; // 800 ms
+	   uint32_t trx_cpu_limit = 20000; // 20 ms
+	   uint32_t block_cpu_limit = 800000; // 800 ms
    };
    
 
