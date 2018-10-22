@@ -1,8 +1,8 @@
-#include <dbxlib/action.h>
-#include <dbxlib/action.hpp>
-#include <dbxlib/contract.hpp>
-#include <dbxlib/dispatcher.hpp>
-#include <dbxlib/print.hpp>
+#include <graphenelib/action.h>
+#include <graphenelib/action.hpp>
+#include <graphenelib/contract.hpp>
+#include <graphenelib/dispatcher.hpp>
+#include <graphenelib/print.hpp>
 
 using namespace graphene;
 
@@ -17,7 +17,7 @@ class contractb : public contract
     /// @abi action
     void hi()
     {
-        printf("hi");
+		print("hi");
     }
 };
 
