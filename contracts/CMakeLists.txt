@@ -2,7 +2,7 @@ set(DEFAULT_SYSTEM_INCLUDE_FOLDERS ${CMAKE_SOURCE_DIR}/contracts/libc++/upstream
 
 set(STANDARD_INCLUDE_FOLDERS ${CMAKE_SOURCE_DIR}/contracts ${CMAKE_SOURCE_DIR}/externals/magic_get/include)
 
-add_subdirectory(dbxlib)
+add_subdirectory(graphenelib)
 add_subdirectory(musl)
 add_subdirectory(libc++)
 
@@ -23,7 +23,7 @@ add_custom_target(copy_skeleton_contract ALL DEPENDS share/dbx/skeleton/skeleton
 MESSAGE( STATUS "------- cmake_install_full_includedir ------ is: "
     ${CMAKE_INSTALL_FULL_INCLUDEDIR} )
 
-install(DIRECTORY dbxlib DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+install(DIRECTORY graphenelib DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 install(DIRECTORY musl DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 install(DIRECTORY libc++ DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 install(DIRECTORY skeleton DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/dbx)
