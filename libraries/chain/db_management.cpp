@@ -184,17 +184,6 @@ void database::open(
    FC_CAPTURE_LOG_AND_RETHROW( (data_dir) )
 }
 
-uint64_t database::get_workload(account_id_type owner) const
-{
-    // get the node's workload, current implemention is simple
-    simple_index<account_statistics_object>& statistics_index = db.get_index_type<simple_index<account_statistics_object>>();
-    auto itr = statistics_index.find(owner);
-    uint64_t account_workload = itr->get_workload();
-    const dynamic_global_property_object& dpo = get_dynamic_global_properties();
-    uint64_t workload = std::max(account_workload, dpo.recent_slots_filled.popcount())
-    return uint64_t(GRAPHENE_100_PERCENT) * workload / 128;
-}
-
 void database::close(bool rewind)
 {
    // TODO:  Save pending tx's on close()
