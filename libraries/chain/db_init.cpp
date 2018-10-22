@@ -63,6 +63,7 @@
 #include <graphene/chain/withdraw_permission_evaluator.hpp>
 #include <graphene/chain/witness_evaluator.hpp>
 #include <graphene/chain/worker_evaluator.hpp>
+#include <graphene/chain/contract_evaluator.hpp>  //liruigang20180926 contract
 
 #include <graphene/chain/protocol/fee_schedule.hpp>
 
@@ -182,6 +183,8 @@ void database::initialize_evaluators()
    register_evaluator<asset_claim_fees_evaluator>();
    register_evaluator<asset_update_issuer_evaluator>();
    register_evaluator<asset_claim_pool_evaluator>();
+   register_evaluator<contract_deploy_evaluator>();  //liruigang20180926 contract
+   register_evaluator<contract_call_evaluator>();  //liruigang20180926 contract
 }
 
 void database::initialize_indexes()
