@@ -46,8 +46,6 @@
 #include <graphene/chain/witness_object.hpp>
 #include <graphene/chain/worker_object.hpp>
 
-#include <dbx/chain/dapp.hpp>
-
 namespace graphene { namespace chain {
 
 template<class Index>
@@ -1028,15 +1026,10 @@ void database::perform_chain_maintenance(const signed_block& next_block, const g
                                      : d.get(stake_account.options.voting_account);
 
             const auto& stats = stake_account.statistics(d);
-
-            // the voting weight algorithm is replaced according to d-dpos.
-            // uint64_t voting_stake = stats.total_core_in_orders.value
-            //       + (stake_account.cashback_vb.valid() ? (*stake_account.cashback_vb)(d).balance.amount.value: 0)
-            //       + d.get_balance(stake_account.get_id(), asset_id_type()).amount.value;
             uint64_t voting_stake = stats.total_core_in_orders.value
-                   + d.get_net_weight(stake_account.get_id()) + d.get_workload(stake_account.get_id())
-                   + d.get_balance(stake_account.get_id(), asset_id_type()).amount.value;
-                   + get_dapp_performance();
+                  + (stake_account.cashback_vb.valid() ? (*stake_account.cashback_vb)(d).balance.amount.value: 0)
+                  + d.get_balance(stake_account.get_id(), asset_id_type()).amount.value;
+
             for( vote_id_type id : opinion_account.options.votes )
             {
                uint32_t offset = id.instance();
