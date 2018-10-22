@@ -3771,7 +3771,7 @@ dynamic_global_property_object wallet_api::get_dynamic_global_properties() const
 //liruigang20181020 vesting seconds
 void wallet_api::update_vesting_seconds(const uint32_t seconds)
 {
-   void my->update_vesting_seconds(seconds);
+   my->update_vesting_seconds(seconds);
 }
 
 string wallet_api::help()const

@@ -29,6 +29,7 @@
 #include <graphene/chain/global_property_object.hpp>
 
 #include <fc/smart_ref_impl.hpp>
+#include <iostream>
 
 namespace graphene { namespace chain {
 
