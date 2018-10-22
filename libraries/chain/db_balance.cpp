@@ -29,6 +29,7 @@
 #include <graphene/chain/vesting_balance_object.hpp>
 #include <graphene/chain/witness_object.hpp>
 
+#include <iostream>
 namespace graphene { namespace chain {
 
 asset database::get_balance(account_id_type owner, asset_id_type asset_id) const
@@ -87,33 +88,50 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
    if( amount == 0 )
       return optional< vesting_balance_id_type >();
 
+   std::cout << "-------" << "1111111111111111111111" << std::endl ;
+
    fc::time_point_sec now = head_block_time();
 
    while( true )
    {
-      if( !ovbid.valid() )
+	   std::cout << "-------" << "2222222222" << std::endl ;
+	  if( !ovbid.valid() )
          break;
       const vesting_balance_object& vbo = (*ovbid)(*this);
-      if( vbo.owner != req_owner )
+	  std::cout << "-------" << "3333333333333" << std::endl ;
+	  if( vbo.owner != req_owner )
          break;
-      if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
+	  std::cout << "-------" << "4444444444444" << std::endl ;
+	  if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
          break;
-      if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
-         break;
-      modify( vbo, [&]( vesting_balance_object& _vbo )
+	  std::cout << "-------" << "5555555555555" << std::endl ;
+	  //if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
+	  //   break;
+	  std::cout << "-------" << "66666666666666" << std::endl ;
+	  modify( vbo, [&]( vesting_balance_object& _vbo )
       {
          if( require_vesting )
-            _vbo.deposit(now, amount);
+		 {
+			 std::cout << "-------" << "77777777777" << std::endl ;
+			_vbo.deposit(now, amount);
+			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds ;
+		 }
          else
-            _vbo.deposit_vested(now, amount);
+		 {
+			 std::cout << "-------" << "88888888888" << std::endl ;
+			_vbo.deposit_vested(now, amount);
+			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds ;
+		 }
       } );
       return optional< vesting_balance_id_type >();
    }
+   std::cout << "-------" << "99999999999999" << std::endl ;
 
    const vesting_balance_object& vbo = create< vesting_balance_object >( [&]( vesting_balance_object& _vbo )
    {
       _vbo.owner = req_owner;
       _vbo.balance = amount;
+		   std::cout << "-------" << "aaaaaaaaaaaaaaaa" << std::endl ;
 
       cdd_vesting_policy policy;
       policy.vesting_seconds = req_vesting_seconds;
@@ -130,31 +148,38 @@ void database::deposit_cashback(const account_object& acct, share_type amount, b
 {
    // If we don't have a VBO, or if it has the wrong maturity
    // due to a policy change, cut it loose.
+	std::cout << "11111111111111111111" << std::endl ;
 
    if( amount == 0 )
       return;
+   std::cout << "2222222222" << std::endl ;
 
    if( acct.get_id() == GRAPHENE_COMMITTEE_ACCOUNT || acct.get_id() == GRAPHENE_WITNESS_ACCOUNT ||
        acct.get_id() == GRAPHENE_RELAXED_COMMITTEE_ACCOUNT || acct.get_id() == GRAPHENE_NULL_ACCOUNT ||
        acct.get_id() == GRAPHENE_TEMP_ACCOUNT )
    {
-      // The blockchain's accounts do not get cashback; it simply goes to the reserve pool.
+	   std::cout << "33333333333" << std::endl ;
+	  // The blockchain's accounts do not get cashback; it simply goes to the reserve pool.
       modify(get(asset_id_type()).dynamic_asset_data_id(*this), [amount](asset_dynamic_data_object& d) {
          d.current_supply -= amount;
       });
       return;
    }
+   std::cout << "444444444444" << std::endl ;
 
    optional< vesting_balance_id_type > new_vbid = deposit_lazy_vesting(
       acct.cashback_vb,
       amount,
-      get_global_properties().parameters.cashback_vesting_period_seconds,
+	  60,
+	  //get_global_properties().parameters.cashback_vesting_period_seconds,
       acct.id,
       require_vesting );
+   std::cout << "55555555555555" << std::endl ;
 
    if( new_vbid.valid() )
    {
-      modify( acct, [&]( account_object& _acct )
+	   std::cout << "66666666666666" << std::endl ;
+	  modify( acct, [&]( account_object& _acct )
       {
          _acct.cashback_vb = *new_vbid;
       } );
@@ -167,17 +192,21 @@ void database::deposit_witness_pay(const witness_object& wit, share_type amount)
 {
    if( amount == 0 )
       return;
+   std::cout << "++++++++++++" << "1111111111111111111111" << std::endl ;
 
    optional< vesting_balance_id_type > new_vbid = deposit_lazy_vesting(
       wit.pay_vb,
       amount,
-      get_global_properties().parameters.witness_pay_vesting_seconds,
+	  60,
+	  //get_global_properties().parameters.witness_pay_vesting_seconds,
       wit.witness_account,
       true );
+   std::cout << "++++++++++++" << "2222222222222222" << std::endl ;
 
    if( new_vbid.valid() )
    {
-      modify( wit, [&]( witness_object& _wit )
+	   std::cout << "++++++++++++" << "33333333333333333" << std::endl ;
+	  modify( wit, [&]( witness_object& _wit )
       {
          _wit.pay_vb = *new_vbid;
       } );
