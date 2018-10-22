@@ -111,7 +111,7 @@ static void load_config_file( const fc::path& config_ini_path, const bpo::option
    // try to get logging options from the config file.
    try
    {
-      fc::optional<fc::logging_config> logging_config = load_logging_config_from_ini_file(config_ini_path);
+	  fc::optional<fc::logging_config> logging_config = load_logging_config_from_ini_file(config_ini_path);
       if (logging_config)
          fc::configure_logging(*logging_config);
    }
@@ -190,7 +190,6 @@ int main(int argc, char** argv) {
             ;
 
       bpo::variables_map options;
-
       auto witness_plug = node->register_plugin<witness_plugin::witness_plugin>();
       auto debug_witness_plug = node->register_plugin<debug_witness_plugin::debug_witness_plugin>();
       auto history_plug = node->register_plugin<account_history::account_history_plugin>();
@@ -215,7 +214,7 @@ int main(int argc, char** argv) {
         return 1;
       }
 
-      if( options.count("help") )
+	  if( options.count("help") )
       {
          std::cout << app_options << "\n";
          return 0;
@@ -231,7 +230,7 @@ int main(int argc, char** argv) {
          return 0;
       }
 
-      fc::path data_dir;
+	  fc::path data_dir;
       if( options.count("data-dir") )
       {
          data_dir = options["data-dir"].as<boost::filesystem::path>();
@@ -239,16 +238,16 @@ int main(int argc, char** argv) {
             data_dir = fc::current_path() / data_dir;
       }
 
-      fc::path config_ini_path = data_dir / "config.ini";
-      if( !fc::exists(config_ini_path) )
-         create_new_config_file( config_ini_path, data_dir, cfg_options );
-      load_config_file( config_ini_path, cfg_options, options );
+	  fc::path config_ini_path = data_dir / "config.ini";
+	  if( !fc::exists(config_ini_path) )
+		 create_new_config_file( config_ini_path, data_dir, cfg_options );
+	  load_config_file( config_ini_path, cfg_options, options );
 
-      bpo::notify(options);
+	  bpo::notify(options);
       node->initialize(data_dir, options);
       node->initialize_plugins( options );
 
-      node->startup();
+	  node->startup();
       node->startup_plugins();
 
       fc::promise<int>::ptr exit_promise = new fc::promise<int>("UNIX Signal Handler");
