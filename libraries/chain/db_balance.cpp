@@ -154,8 +154,7 @@ void database::deposit_cashback(const account_object& acct, share_type amount, b
    optional< vesting_balance_id_type > new_vbid = deposit_lazy_vesting(
       acct.cashback_vb,
       amount,
-	  60, //liruigang20181022 vesting
-	  //get_global_properties().parameters.cashback_vesting_period_seconds, //liruigang20181022 vesting
+	  get_global_properties().parameters.cashback_vesting_period_seconds,
       acct.id,
       require_vesting );
 

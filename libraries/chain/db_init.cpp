@@ -389,6 +389,8 @@ void database::init_genesis(const genesis_state_type& genesis_state)
        // We'll fix it at the end of the function
        p.parameters.current_fees->zero_all_fees();
 
+	   p.parameters.cashback_vesting_period_seconds = 60 ;//liruigang20181023 vesting
+
    });
    create<dynamic_global_property_object>([&](dynamic_global_property_object& p) {
       p.time = genesis_state.initial_timestamp;
