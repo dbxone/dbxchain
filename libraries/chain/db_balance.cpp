@@ -122,7 +122,9 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
       _vbo.balance = amount;
 
       cdd_vesting_policy policy;
-      policy.vesting_seconds = req_vesting_seconds;
+	  //liruigang20181023 vesting
+	  //policy.vesting_seconds = req_vesting_seconds;
+	  policy.vesting_seconds = 60;
       policy.coin_seconds_earned = require_vesting ? 0 : amount.value * policy.vesting_seconds;
       policy.coin_seconds_earned_last_update = now;
 

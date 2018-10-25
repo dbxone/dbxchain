@@ -60,7 +60,9 @@ struct worker_init_visitor
          b.balance = asset(0);
 
          cdd_vesting_policy policy;
-         policy.vesting_seconds = fc::days(i.pay_vesting_period_days).to_seconds();
+		 //liruigang20181023 vesting
+		 //policy.vesting_seconds = fc::days(i.pay_vesting_period_days).to_seconds();
+		 policy.vesting_seconds = 60;
          policy.coin_seconds_earned = 0;
          policy.coin_seconds_earned_last_update = db.head_block_time();
          b.policy = policy;
