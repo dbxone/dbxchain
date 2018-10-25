@@ -107,7 +107,7 @@ namespace graphene { namespace app {
       price         max_price; ///< possible highest price in the group
       share_type    total_for_sale; ///< total amount of asset for sale, asset id is min_price.base.asset_id
    };
-
+   
    /**
     * @brief The history_api class implements the RPC API for account history
     *
@@ -117,9 +117,6 @@ namespace graphene { namespace app {
    {
       public:
          history_api(application& app):_app(app){}
-
-		 //liruigang 20180820 history size
-		 uint32_t get_account_history_size(account_id_type account )const;
 
          /**
           * @brief Get operations relevant to the specificed account
@@ -221,18 +218,14 @@ namespace graphene { namespace app {
 
          typedef std::function<void(variant/*transaction_confirmation*/)> confirmation_callback;
 
-		 //liruigang 20180829 add : chaind
-		 void set_chaind_url( const string& s_ip, const uint32_t u_port );
-		 void check_in_blacklist(const signed_transaction& trx);
-
-		 /**
+         /**
           * @brief Broadcast a transaction to the network
           * @param trx The transaction to broadcast
           *
           * The transaction will be checked for validity in the local database prior to broadcasting. If it fails to
           * apply locally, an error will be thrown and the transaction will not be broadcast.
           */
-		 void broadcast_transaction(const signed_transaction& trx);
+         void broadcast_transaction(const signed_transaction& trx);
 
          /** this version of broadcast transaction registers a callback method that will be called when the transaction is
           * included into a block.  The callback method includes the transaction id, block number, and transaction number in the
@@ -474,7 +467,6 @@ FC_REFLECT( graphene::app::account_asset_balance, (name)(account_id)(amount) );
 FC_REFLECT( graphene::app::asset_holders, (asset_id)(count) );
 
 FC_API(graphene::app::history_api,
-	   (get_account_history_size)	//liruigang 20180820 history size
        (get_account_history)
        (get_account_history_by_operations)
        (get_account_history_operations)
@@ -487,10 +479,9 @@ FC_API(graphene::app::block_api,
        (get_blocks)
      )
 FC_API(graphene::app::network_broadcast_api,
-	   (set_chaind_url) //liruigang 20180829 add : chiand server ip and port
        (broadcast_transaction)
-	   (broadcast_transaction_with_callback)
-	   (broadcast_transaction_synchronous)
+       (broadcast_transaction_with_callback)
+       (broadcast_transaction_synchronous)
        (broadcast_block)
      )
 FC_API(graphene::app::network_node_api,
