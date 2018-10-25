@@ -80,11 +80,6 @@
 
 #include <fc/smart_ref_impl.hpp>
 
-//liruigang 20180829 update
-#include <chaind.hpp>
-#include <jsoncpp/json/reader.h>
-#include <jsoncpp/json/json.h>
-
 #ifndef WIN32
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -105,7 +100,7 @@ struct operation_result_printer
 {
 public:
    explicit operation_result_printer( const wallet_api_impl& w )
-	  : _wallet(w) {}
+      : _wallet(w) {}
    const wallet_api_impl& _wallet;
    typedef std::string result_type;
 
@@ -511,32 +506,10 @@ public:
 	  return ob.template as<T>( GRAPHENE_MAX_NESTED_OBJECTS );
    }
 
-   //liruigang 20180829 update: calc fee
-   void set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
-   {
-	   fee_amount = 0;
-
-	   Json::Value root ;
-	   root[0] = COIN_FEE_CALC ;
-	   root[1] = symbol ;
-	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
-	   string s_json = root.toStyledString() ;
-
-	   g_chaind.set_asset_fee( s_json, fee_amount );
-   }
-
    void set_operation_fees( signed_transaction& tx, const fee_schedule& s  )
    {
-	  // liruigang 20180829 update calc fee
-	  for( auto& op : tx.operations ) {
-		  if( op.which() == operation::tag<transfer_operation>::value ) {
-			  transfer_operation& transop = op.get<transfer_operation>();
-			  set_asset_fee(transop, transop.fee.amount, get_asset(transop.amount.asset_id).symbol);
-			  continue ;
-		  }
-
-		  s.set_fee(op);
-	  }
+      for( auto& op : tx.operations )
+         s.set_fee(op);
    }
 
    variant info() const
@@ -2232,43 +2205,6 @@ public:
 		 return sign_transaction(trx, broadcast);
    } FC_CAPTURE_AND_RETHROW((order_id)) }
 
-   //liruigang 20180829 update : blacklist
-   void add_blacklist_account(string from,
-							  string to,
-							  string asset_symbol,
-							  string amount,
-							  string begin_date,
-							  string begin_time,
-							  int days,
-							  int times)
-   { try {
-		   FC_ASSERT( !self.is_locked() );
-
-		   Json::Value root ;
-		   root[0] = COIN_ADD_BLACKLIST ;
-		   root[1] = from ;
-		   root[2] = to ;
-		   root[3] = asset_symbol ;
-		   root[4] = amount ;
-		   root[5] = begin_date + " " + begin_time ;
-		   root[6] = days ;
-		   root[7] = times ;
-		   string s_json = root.toStyledString() ;
-
-		   fc::optional<asset_object> asset_obj = get_asset(asset_symbol);
-		   FC_ASSERT(asset_obj, "Could not find asset matching ${asset}", ("asset", asset_symbol));
-		   //asset asset_amount = asset_obj->amount_from_string(amount);
-
-		   g_chaind.add_blacklist_account(s_json);
-	   } FC_CAPTURE_AND_RETHROW( (from)(to)(asset_symbol)(days)(times) ) }
-
-
-   //liruigang 20180829 add : chaind
-   void set_chaind_url( const string& s_ip, const uint32_t u_port )
-   {
-	   g_chaind.set_url( s_ip, u_port );
-   }
-
    signed_transaction transfer(string from, string to, string amount,
 							   string asset_symbol, string memo, bool broadcast = false)
    { try {
@@ -3598,25 +3534,6 @@ signed_transaction wallet_api::issue_asset(string to_account, string amount, str
 										   string memo, bool broadcast)
 {
    return my->issue_asset(to_account, amount, symbol, memo, broadcast);
-}
-
-//liruigang 20180721 blacklist
-void wallet_api::add_blacklist_account(string from,
-									   string to,
-									   string asset_symbol,
-									   string amount,
-									   string begin_date,
-									   string begin_time,
-									   int days,
-									   int times)
-{
-	my->add_blacklist_account(from, to, asset_symbol, amount, begin_date, begin_time, days, times);
-}
-
-//liruigang 20180829 add : chaind
-void wallet_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
-{
-	my->set_chaind_url( s_ip, u_port );
 }
 
 signed_transaction wallet_api::transfer(string from, string to, string amount,
