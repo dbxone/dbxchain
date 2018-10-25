@@ -1,4 +1,3 @@
-add_subdirectory( chaind )
 add_subdirectory( fc )
 add_subdirectory( builtins )
 add_subdirectory( db )
