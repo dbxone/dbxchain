@@ -41,13 +41,6 @@
 #include <fc/smart_ref_impl.hpp>
 #include <fc/thread/future.hpp>
 
-//liruigang 20180829 update
-#include <chaind.hpp>
-#include <iostream>
-#include <string>
-#include <jsoncpp/json/reader.h>
-#include <jsoncpp/json/json.h>
-
 namespace graphene { namespace app {
 
     login_api::login_api(application& a)
@@ -167,44 +160,9 @@ namespace graphene { namespace app {
        }
     }
 
-	//liruigang 20180829 add : chaind
-	void network_broadcast_api::set_chaind_url( const string& s_ip, const uint32_t u_port )
-	{
-		g_chaind.set_url( s_ip, u_port );
-	}
-
-	//liruigang 20180829 add : chaind
-	void network_broadcast_api::check_in_blacklist(const signed_transaction& trx)
-	{
-		for( auto& op : trx.operations ) {
-			if( op.which() != operation::tag<transfer_operation>::value )
-				continue ;
-
-			const transfer_operation& transop = op.get<transfer_operation>();
-
-			const account_object& from_account    = transop.from(*(_app.chain_database().get()));
-			const account_object& to_account      = transop.to(*(_app.chain_database().get()));
-			const asset_object&   asset_type      = transop.amount.asset_id(*(_app.chain_database().get()));
-
-			Json::Value root ;
-			root[0] = COIN_TRANSFER ;
-			root[1] = from_account.name ;
-			root[2] = to_account.name ;
-			root[3] = asset_type.symbol ;
-			root[4] = asset_type.amount_to_string(transop.amount) ;
-			std::string s_json = root.toStyledString() ;
-
-			g_chaind.check_in_blacklist( s_json );
-		}
-	}
-
     void network_broadcast_api::broadcast_transaction(const signed_transaction& trx)
 	{
        trx.validate();
-
-	   //liruigang 20180829 update: chaind check trx transfer
-	   check_in_blacklist(trx);
-
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )
           _app.p2p_node()->broadcast_transaction(trx);
@@ -230,10 +188,6 @@ namespace graphene { namespace app {
     void network_broadcast_api::broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction& trx)
     {
        trx.validate();
-
-	   //liruigang 20180829 update: chaind check trx transfer
-	   check_in_blacklist(trx);
-
        _callbacks[trx.id()] = cb;
        _app.chain_database()->push_transaction(trx);
        if( _app.p2p_node() != nullptr )
@@ -464,15 +418,6 @@ namespace graphene { namespace app {
        FC_ASSERT( hist );
        return hist->tracked_buckets();
     }
-
-	//liruigang 20180820 history size
-	uint32_t history_api::get_account_history_size(account_id_type account )const
-	{
-		FC_ASSERT( _app.chain_database() );
-		const auto& db = *_app.chain_database();
-		const auto& stats = account(db).statistics(db);
-		return stats.total_ops;
-	}
 
     history_operation_detail history_api::get_account_history_by_operations(account_id_type account, vector<uint16_t> operation_types, uint32_t start, unsigned limit)
     {
