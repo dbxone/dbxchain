@@ -37,14 +37,6 @@
 
 #include <fc/uint128.hpp>
 
-
-//liruigang 20180829 update
-#include <chaind.hpp>
-#include <jsoncpp/json/reader.h>
-#include <jsoncpp/json/json.h>
-#include <iostream>
-
-
 namespace graphene { namespace chain {
 
    database& generic_evaluator::db()const { return trx_state->db(); }
@@ -132,33 +124,8 @@ namespace graphene { namespace chain {
       } );
    }
 
-   //liruigang 20180829 update: calc fee
-   void generic_evaluator::set_asset_fee(const transfer_operation& transop, share_type& fee_amount, const string& symbol ) const
-   {
-	   fee_amount = 0;
-
-	   Json::Value root ;
-	   root[0] = COIN_FEE_CALC ;
-	   root[1] = symbol ;
-	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
-	   string s_json = root.toStyledString() ;
-
-	   g_chaind.set_asset_fee( s_json, fee_amount );
-   }
-
    share_type generic_evaluator::calculate_fee_for_operation(const operation& op) const
    {
-	 // liruigang 20180713 calc fee
-	 if( op.which() == operation::tag<transfer_operation>::value ) {
-         const transfer_operation& transop = op.get<transfer_operation>();
-
-		 //liruigang 20180816 calc fee
-		 share_type    fee_amount = 0;
-		 set_asset_fee(transop, fee_amount, transop.amount.asset_id(db()).symbol);
-
-		 return fee_amount;
-     }
-
      return db().current_fee_schedule().calculate_fee( op ).amount;
    }
    void generic_evaluator::db_adjust_balance(const account_id_type& fee_payer, asset fee_from_account)

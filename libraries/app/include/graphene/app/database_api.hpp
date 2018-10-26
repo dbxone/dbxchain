@@ -357,7 +357,7 @@ class database_api
       /**
        * @brief Get assets alphabetically by symbol name
        * @param lower_bound_symbol Lower bound of symbol names to retrieve
-       * @param limit Maximum number of assets to fetch (must not exceed 101)
+       * @param limit Maximum number of assets to fetch (must not exceed 100)
        * @return The assets found
        */
       vector<asset_object> list_assets(const string& lower_bound_symbol, uint32_t limit)const;
@@ -601,6 +601,7 @@ class database_api
       ////////////////////////////
       // Authority / validation //
       ////////////////////////////
+
       /// @brief Get a hexdump of the serialized binary form of a transaction
       std::string get_transaction_hex(const signed_transaction& trx)const;
 
