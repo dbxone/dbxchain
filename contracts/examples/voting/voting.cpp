@@ -26,7 +26,7 @@ public:
         if ( it == persons.end() )
         {
             print("create candidate=", name, "\n");
-            cpus.emplace(_self, [&](auto &person) {
+            persons.emplace(_self, [&](auto &person) {
                 person.name = name;
                 person.count = 1;
             });
