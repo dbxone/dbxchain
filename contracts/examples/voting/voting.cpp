@@ -82,6 +82,8 @@ private:
         std::string name;
         uint32_t count;
 
+        uint64_t primary_key() const { return 0; }
+
         GRAPHENE_SERIALIZE(person, (name)(count));
     };
 
