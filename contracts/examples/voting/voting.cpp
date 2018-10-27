@@ -29,7 +29,7 @@ public:
     }
 
     /// @abi action
-    void remove(std::string name)
+    void remove(uint64_t id)
     {
         const auto &it = persons.find(id);
         if ( it == persons.end() )
@@ -51,10 +51,9 @@ public:
     }
 
     /// @abi action
-    void count(std::string name)
+    void count(uint64_t id)
     {
-        auto it = persons.begin() ;
-        for( ; it->name != name ; it++ ) ;
+        const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
             print("can not find candidate=", name, "\n");
