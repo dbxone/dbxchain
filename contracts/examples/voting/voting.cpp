@@ -76,7 +76,7 @@ public:
 
 private:
     struct person {
-        string name;
+        std::string name;
         uint32_t count;
 
         GRAPHENE_SERIALIZE(person, (name)(count));
