@@ -18,20 +18,20 @@ public:
     }
 
     /// @abi action
-    void vote(std::string name)
+    void vote(uint64_t id, std::string name)
     {
         persons.emplace(_self, [&](auto &person) {
+            person.id = id ;
             person.name = name;
             person.count++;
-            print("candidate=", name, ", count=" , person.count,"\n");
+            print("candidate=", name, ", id=" , id, ", count=" , person.count,"\n");
         });
     }
 
     /// @abi action
     void remove(std::string name)
     {
-        auto it = persons.begin() ;
-        for( ; it->name != name ; it++ ) ;
+        const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
             print("can not find candidate=", name, "\n");
@@ -61,15 +61,16 @@ public:
             return ;
         }
 
-        print("candidate=", it->name, ", count=" , it->count,"\n");
+        print("candidate=", it->name, ", id=" , it->id, ", count=" , it->count,"\n");
     }
 
 private:
     struct person {
+        uint64_t id;
         std::string name;
         uint32_t count;
 
-        uint64_t primary_key() const { return 0; }
+        uint64_t primary_key() const { return id; }
 
         GRAPHENE_SERIALIZE(person, (name)(count));
     };
