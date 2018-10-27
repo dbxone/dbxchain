@@ -23,7 +23,7 @@ public:
         persons.emplace(_self, [&](auto &person) {
             person.name = name;
             person.count++;
-            print("candidate=", name, ", count=" , it->count,"\n");
+            print("candidate=", name, ", count=" , person.count,"\n");
         });
     }
 
