@@ -20,24 +20,11 @@ public:
     /// @abi action
     void vote(std::string name)
     {
-        print("voting candidate=", name, "\n");
-        auto it = persons.begin() ;
-        for( ; it->name != name ; it++ ) ;
-        if ( it == persons.end() )
-        {
-            print("create candidate=", name, "\n");
-            persons.emplace(_self, [&](auto &person) {
-                person.name = name;
-                person.count = 1;
-            });
-            return ;
-        }
-
-        persons.modify(it, _self, [&](auto &person) {
-            person.count++ ;
+        persons.emplace(_self, [&](auto &person) {
+            person.name = name;
+            person.count++;
+            print("candidate=", name, ", count=" , it->count,"\n");
         });
-
-        print("candidate=", name, ", count=" , it->count,"\n");
     }
 
     /// @abi action
