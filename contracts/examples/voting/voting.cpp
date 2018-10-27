@@ -22,7 +22,7 @@ public:
         auto it = persons.find(name) ;
         if ( it == persons.end() )
         {
-            persons.insert(std::make_pair(name, 1));
+            persons[name] = 1;
             return ;
         }
 
