@@ -8,6 +8,8 @@
 
 using namespace graphene;
 
+std::string g_str ;
+
 class voting: public contract
 {
 public:
@@ -20,6 +22,7 @@ public:
     void vote(std::string name)
     {
         str=name;
+        g_str = name ;
         print("voting candidate=", name, "\n");
         auto it = persons.find(name) ;
         if ( it == persons.end() )
@@ -51,6 +54,7 @@ public:
     void list()
     {
         print("str=", str, "\n");
+        print("g_str=", g_str, "\n");
         for( auto it : persons ) {
             print("candidate=", it.first, ", count=" , it.second,"\n");
         }
