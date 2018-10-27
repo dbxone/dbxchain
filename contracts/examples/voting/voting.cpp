@@ -33,7 +33,10 @@ public:
             return ;
         }
 
-        it->count++;
+        cpus.modify(it, _self, [&](auto &person) {
+            person.count++ ;
+        });
+
         print("candidate=", name, ", count=" , it->count,"\n");
     }
 
