@@ -19,17 +19,17 @@ public:
     /// @abi action
     void vote(std::string name)
     {
-        print("voting candidate = ${name}\n", ("name", name));
+        print("voting candidate=", name, "\n");
         auto it = persons.find(name) ;
         if ( it == persons.end() )
         {
-            print("create candidate = ${name}\n", ("name", name));
+            print("create candidate=", name, "\n");
             persons[name] = 1;
             return ;
         }
 
-        print("candidate = ${name} vote\n", ("name", name));
         it->second++;
+        print("candidate=", name, ", count=" , it->second,"\n");
     }
 
     /// @abi action
@@ -38,19 +38,19 @@ public:
         auto it = persons.find(name);
         if( it == persons.end() )
         {
-            print("can not find the candidate = ${name}\n", ("name", name));
+            print("can not find candidate=", name, "\n");
             return ;
         }
 
         persons.erase(it);
-        print("remove the candidate = ${name}\n", ("name", name));
+        print("remove candidate=", name, "\n");
     }
 
     /// @abi action
     void list()
     {
         for( auto it : persons ) {
-           print("${name}, ${count}\n", ("name", it.first), ("count", it.second));
+            print("candidate=", it.first, ", count=" , it.second,"\n");
         }
     }
 
@@ -60,10 +60,11 @@ public:
         auto it = persons.find(name);
         if( it == persons.end() )
         {
-            print("can not find the candidate = ${name}\n", ("name", name));
+            print("can not find candidate=", name, "\n");
+            return ;
         }
 
-        print("${name}, ${count}\n", ("name", it->first), ("count", it->second));
+        print("candidate=", it->first, ", count=" , it->second,"\n");
     }
 
 private:
