@@ -62,7 +62,7 @@ public:
             return 0 ;
         }
 
-        print("${name}, ${count}\n", ("name", it.first), ("count", it.second));
+        print("${name}, ${count}\n", ("name", it->first), ("count", it->second));
 
         return it->second;
     }
