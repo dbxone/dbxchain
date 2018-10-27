@@ -8,39 +8,41 @@
 
 using namespace graphene;
 
-uint32_t g_i ;
-
 class voting: public contract
 {
 public:
     voting(uint64_t self)
         : contract(self)
+        , persons(_self, _self)
     {
     }
 
     /// @abi action
     void vote(std::string name)
     {
-        str=name;
-        g_i = 100 ;
         print("voting candidate=", name, "\n");
-        auto it = persons.find(name) ;
+        auto it = persons.begin() ;
+        for( ; it->name != name ; it++ ) ;
         if ( it == persons.end() )
         {
             print("create candidate=", name, "\n");
-            persons[name] = 1;
+            cpus.emplace(_self, [&](auto &person) {
+                person.name = name;
+                person.count = 1;
+            });
             return ;
         }
 
-        it->second++;
-        print("candidate=", name, ", count=" , it->second,"\n");
+        it->count++;
+        print("candidate=", name, ", count=" , it->count,"\n");
     }
 
     /// @abi action
     void remove(std::string name)
     {
-        auto it = persons.find(name);
-        if( it == persons.end() )
+        auto it = persons.begin() ;
+        for( ; it->name != name ; it++ ) ;
+        if ( it == persons.end() )
         {
             print("can not find candidate=", name, "\n");
             return ;
@@ -53,30 +55,36 @@ public:
     /// @abi action
     void list()
     {
-        print("str=", str, "\n");
-        print("g_i=", g_i, "\n");
         for( auto it : persons ) {
-            print("candidate=", it.first, ", count=" , it.second,"\n");
+            print("candidate=", it.name, ", count=" , it.count,"\n");
         }
     }
 
     /// @abi action
     void count(std::string name)
     {
-        auto it = persons.find(name);
-        if( it == persons.end() )
+        auto it = persons.begin() ;
+        for( ; it->name != name ; it++ ) ;
+        if ( it == persons.end() )
         {
             print("can not find candidate=", name, "\n");
             return ;
         }
 
-        print("candidate=", it->first, ", count=" , it->second,"\n");
+        print("candidate=", it->name, ", count=" , it->count,"\n");
     }
 
 private:
-    std::map<std::string, int> persons;
+    struct person {
+        string name;
+        uint32_t count;
 
-    std::string str;
+        GRAPHENE_SERIALIZE(person, (name)(count));
+    };
+
+    typedef graphene::multi_index<N(person), person> person_index;
+
+    person_index persons;
 };
 
 GRAPHENE_ABI(voting, (vote)(remove)(list)(count))
