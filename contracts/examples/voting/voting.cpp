@@ -30,18 +30,17 @@ public:
     }
 
     /// @abi action
-    bool remove(std::string name)
+    void remove(std::string name)
     {
         auto it = persons.find(name);
         if( it == persons.end() )
         {
             print("can not find the candidate = ${name}\n", ("name", name));
-            return false ;
+            return ;
         }
 
         persons.erase(it);
         print("remove the candidate = ${name}\n", ("name", name));
-        return true ;
     }
 
     /// @abi action
@@ -53,18 +52,15 @@ public:
     }
 
     /// @abi action
-    uint32_t count(std::string name)
+    void count(std::string name)
     {
         auto it = persons.find(name);
         if( it == persons.end() )
         {
             print("can not find the candidate = ${name}\n", ("name", name));
-            return 0 ;
         }
 
         print("${name}, ${count}\n", ("name", it->first), ("count", it->second));
-
-        return it->second;
     }
 
 private:
