@@ -4,6 +4,7 @@
 #include <graphenelib/multi_index.hpp>
 #include <graphenelib/types.h>
 #include <string>
+#include <map>
 
 using namespace graphene;
 
@@ -16,14 +17,16 @@ public:
     }
 
     /// @abi action
-    bool vote(std::string name)
+    void vote(std::string name)
     {
-        persons.emplace(_self, [&](auto &person) {
-            person.name = name;
-            person.count++;
-        });
+        auto it = persons.find(name) ;
+        if ( it == persons.end() )
+        {
+            persons.insert(std::make_pair(name, 1))
+            return ;
+        }
 
-        return true ;
+        it->second++;
     }
 
     /// @abi action
@@ -45,7 +48,7 @@ public:
     void list()
     {
         for( auto it : persons ) {
-           print("${name}, ${count}\n", ("name", it->name), ("count", it->count));
+           print("${name}, ${count}\n", ("name", it->first), ("count", it->second));
         }
     }
 
@@ -59,24 +62,13 @@ public:
             return 0 ;
         }
 
-        print("${name}, ${count}\n", ("name", it->name), ("count", it->count));
+        print("${name}, ${count}\n", ("name", it->first), ("count", it->second));
 
-        return it->count;
+        return it->second;
     }
 
 private:
-    struct person {
-        std::string name;
-        uint32_t count;
-
-        std::string primary_key() const { return name; }
-
-        GRAPHENE_SERIALIZE(person, (name)(count))
-    };
-
-    typedef graphene::multi_index<N(person), person> person_index;
-
-    person_index persons;
+    std::map<std::string, int> persons;
 };
 
 GRAPHENE_ABI(voting, (hi))
