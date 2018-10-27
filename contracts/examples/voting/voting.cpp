@@ -33,7 +33,7 @@ public:
             return ;
         }
 
-        cpus.modify(it, _self, [&](auto &person) {
+        persons.modify(it, _self, [&](auto &person) {
             person.count++ ;
         });
 
