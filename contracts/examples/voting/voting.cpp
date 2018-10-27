@@ -12,7 +12,7 @@ class voting: public contract
 {
 public:
     voting(uint64_t self)
-        : contract(self), persons(_self, _self)
+        : contract(self)
     {
     }
 
@@ -71,4 +71,4 @@ private:
     std::map<std::string, int> persons;
 };
 
-GRAPHENE_ABI(voting, (hi))
+GRAPHENE_ABI(voting, (vote)(remove)(list)(count))
