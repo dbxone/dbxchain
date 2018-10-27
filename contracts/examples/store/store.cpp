@@ -14,14 +14,21 @@ class store : public contract
     {
 		user="username";
     }
+    
+	/// @abi action
+    void set()
+    {
+        user="11111111111111";
+    }
 
+	
     /// @abi action
     void show()
     {
-        print("hi, ", user, "\n");
+        print("user=", user, "\n");
     }
 
     std::string user;
 };
 
-GRAPHENE_ABI(store, (show))
+GRAPHENE_ABI(store, (set)(show))
