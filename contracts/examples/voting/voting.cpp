@@ -19,6 +19,7 @@ public:
     /// @abi action
     void vote(std::string name)
     {
+        str=name;
         print("voting candidate=", name, "\n");
         auto it = persons.find(name) ;
         if ( it == persons.end() )
@@ -49,6 +50,7 @@ public:
     /// @abi action
     void list()
     {
+        print("str=", str, "\n");
         for( auto it : persons ) {
             print("candidate=", it.first, ", count=" , it.second,"\n");
         }
@@ -69,6 +71,8 @@ public:
 
 private:
     std::map<std::string, int> persons;
+
+    std::string str;
 };
 
 GRAPHENE_ABI(voting, (vote)(remove)(list)(count))
