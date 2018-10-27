@@ -12,16 +12,16 @@ class store : public contract
     store(uint64_t id)
         : contract(id)
     {
-	user="aaaaaaaa";
+		user="username";
     }
 
     /// @abi action
-    void hi()
+    void show()
     {
-            print("hi, ", user, "\n");
+        print("hi, ", user, "\n");
     }
 
     std::string user;
 };
 
-GRAPHENE_ABI(store, (hi))
+GRAPHENE_ABI(store, (show))
