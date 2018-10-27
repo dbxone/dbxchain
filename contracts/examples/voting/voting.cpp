@@ -19,13 +19,16 @@ public:
     /// @abi action
     void vote(std::string name)
     {
+        print("voting candidate = ${name}\n", ("name", name));
         auto it = persons.find(name) ;
         if ( it == persons.end() )
         {
+            print("create candidate = ${name}\n", ("name", name));
             persons[name] = 1;
             return ;
         }
 
+        print("candidate = ${name} vote\n", ("name", name));
         it->second++;
     }
 
