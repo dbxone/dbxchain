@@ -34,12 +34,12 @@ public:
         const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
-            print("can not find candidate=", name, "\n");
+            print("can not find candidate=", id, "\n");
             return ;
         }
 
+        print("remove candidate=", it->name, "\n");
         persons.erase(it);
-        print("remove candidate=", name, "\n");
     }
 
     /// @abi action
@@ -56,7 +56,7 @@ public:
         const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
-            print("can not find candidate=", name, "\n");
+            print("can not find candidate=", id, "\n");
             return ;
         }
 
