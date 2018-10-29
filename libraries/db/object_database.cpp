@@ -53,10 +53,10 @@ const object& object_database::get_object( object_id_type id )const
 
 const index& object_database::get_index(uint8_t space_id, uint8_t type_id)const
 {
-	if( type_id != 0 && type_id != 1)
+	if( type_id != 0 && type_id != 1)  //liruigang 20181029 test log
 	{
-		ilog("111111111111 space_id=${space_id}", ("space_id", space_id));
-		ilog("111111111111 type_id=${type_id}", ("type_id", type_id));
+		ilog("---------- space_id=${space_id}", ("space_id", space_id));
+		ilog("---------- type_id=${type_id}", ("type_id", type_id));
 	}
    FC_ASSERT( _index.size() > space_id, "", ("space_id",space_id)("type_id",type_id)("index.size",_index.size()) );
    FC_ASSERT( _index[space_id].size() > type_id, "", ("space_id",space_id)("type_id",type_id)("index[space_id].size",_index[space_id].size()) );
