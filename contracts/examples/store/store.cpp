@@ -11,24 +11,23 @@ class store : public contract
   public:
     store(uint64_t id)
         : contract(id)
-    {
-		user="username";
+	{
     }
     
 	/// @abi action
     void set()
     {
-        user="11111111111111";
+		i=3;
     }
 
 	
     /// @abi action
     void show()
     {
-        print("user=", user, "\n");
+		print("i=", i, "\n");
     }
 
-    std::string user;
+	uint32_t i;
 };
 
 GRAPHENE_ABI(store, (set)(show))
