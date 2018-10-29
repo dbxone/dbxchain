@@ -189,6 +189,7 @@ void database::initialize_evaluators()
 
 void database::initialize_indexes()
 {
+	ilog( "initialize_indexes 1111111111111111111 " );
    reset_indexes();
    _undo_db.set_max_size( GRAPHENE_MIN_UNDO_HISTORY );
 
@@ -231,9 +232,13 @@ void database::initialize_indexes()
    add_index< primary_index<collateral_bid_index                          > >();
 
    add_index< primary_index< simple_index< fba_accumulator_object       > > >();
+
+   ilog( "initialize_indexes 222222222222222 " );
    add_index< primary_index< table_id_multi_index> >();  //liruigang20181029 contract
    add_index< primary_index< key_value_index> >();  //liruigang20181029 contract
    add_index< primary_index< index64_index> >();  //liruigang20181029 contract
+
+   ilog( "initialize_indexes 333333333333 " );
 }
 
 void database::init_genesis(const genesis_state_type& genesis_state)
