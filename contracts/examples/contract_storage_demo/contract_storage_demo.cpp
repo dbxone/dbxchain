@@ -42,7 +42,7 @@ class contract_storage_demo : public contract
         if (cpu_itr == cpus.end()) {
             print("can not find this cpu");
         } else {
-            print("cpu.name = ${name}", ("name", cpu_itr->name));
+			print("cpu.name = ", cpu_itr->name, "\n");
         }
     }
 
@@ -54,7 +54,7 @@ class contract_storage_demo : public contract
             cpus.modify(it, _self, [&freq](auto &the_cpu) {
                 the_cpu.frequency = freq;
             });
-            print("cpu.name = ${name}", ("name", it->name));
+			print("cpu.name = ", it->name, "\n");
         } else {
             print("cpu not found");
         }

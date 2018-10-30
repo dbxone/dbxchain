@@ -32,6 +32,7 @@ fork_database::fork_database()
 }
 void fork_database::reset()
 {
+   dlog("fork database reset");
    _head.reset();
    _index.clear();
 }
@@ -46,6 +47,7 @@ void fork_database::pop_block()
 
 void     fork_database::start_block(signed_block b)
 {
+   dlog("fork database start_block, block_num: ${num}", ("num", b.block_num()));
    auto item = std::make_shared<fork_item>(std::move(b));
    _index.insert(item);
    _head = item;
@@ -63,8 +65,9 @@ shared_ptr<fork_item>  fork_database::push_block(const signed_block& b)
    }
    catch ( const unlinkable_block_exception& e )
    {
-      wlog( "Pushing block to fork database that failed to link: ${id}, ${num}", ("id",b.id())("num",b.block_num()) );
-      wlog( "Head: ${num}, ${id}", ("num",_head->data.block_num())("id",_head->data.id()) );
+      wlog("Pushing block to fork database exception:\n${e}", ("e", e.to_detail_string()));
+      wlog("Pushing block to fork database that failed to link, block_id: ${id}, block_num: ${num}", ("id",b.id())("num",b.block_num()));
+      wlog("fork db head block_num: ${num}, block_id: ${id}", ("num",_head->data.block_num())("id",_head->data.id()));
       throw;
       _unlinked_index.insert( item );
    }
@@ -82,6 +85,7 @@ void  fork_database::_push_block(const item_ptr& item)
 
    if( _head && item->previous_id() != block_id_type() )
    {
+      // append item
       auto& index = _index.get<block_id>();
       auto itr = index.find(item->previous_id());
       GRAPHENE_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
@@ -94,7 +98,7 @@ void  fork_database::_push_block(const item_ptr& item)
    {
       _head = item;
       uint32_t min_num = _head->num - std::min( _max_size, _head->num );
-//      ilog( "min block in fork DB ${n}, max_size: ${m}", ("n",min_num)("m",_max_size) );
+	  //dlog( "fork DB min block_num: ${n}, max_size: ${m}, head_num: ${head_num}", ("n",min_num)("m",_max_size)("head_num", _head->num));
       auto& num_idx = _index.get<block_num>();
       while( num_idx.size() && (*num_idx.begin())->num < min_num )
          num_idx.erase( num_idx.begin() );
@@ -112,6 +116,7 @@ void  fork_database::_push_block(const item_ptr& item)
  */
 void fork_database::_push_next( const item_ptr& new_item )
 {
+    idump(("fork_database _push_next()"));
     auto& prev_idx = _unlinked_index.get<by_previous>();
 
     auto itr = prev_idx.find( new_item->id );
@@ -182,6 +187,7 @@ item_ptr fork_database::fetch_block(const block_id_type& id)const
 
 vector<item_ptr> fork_database::fetch_block_by_number(uint32_t num)const
 {
+   dlog("fork_database fetch_block_by_number ${num}", ("num", num));
    vector<item_ptr> result;
    auto itr = _index.get<block_num>().find(num);
    while( itr != _index.get<block_num>().end() )

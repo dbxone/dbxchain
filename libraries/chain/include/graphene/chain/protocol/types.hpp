@@ -89,7 +89,7 @@ namespace graphene { namespace chain {
    using bytes              = std::vector<char>;
 
    struct void_t{};
-   
+
    //liruigang20180913 contract
    using action_name      = name;
    using scope_name       = name;
@@ -106,7 +106,7 @@ namespace graphene { namespace chain {
 	   uint32_t trx_cpu_limit = 20000; // 20 ms
 	   uint32_t block_cpu_limit = 800000; // 800 ms
    };
-   
+
 
    typedef fc::ecc::private_key        private_key_type;
    typedef fc::sha256 chain_id_type;
@@ -115,80 +115,80 @@ namespace graphene { namespace chain {
 
    enum asset_issuer_permission_flags
    {
-      charge_market_fee    = 0x01, /**< an issuer-specified percentage of all market trades in this asset is paid to the issuer */
-      white_list           = 0x02, /**< accounts must be whitelisted in order to hold this asset */
-      override_authority   = 0x04, /**< issuer may transfer asset back to himself */
-      transfer_restricted  = 0x08, /**< require the issuer to be one party to every transfer */
-      disable_force_settle = 0x10, /**< disable force settling */
-      global_settle        = 0x20, /**< allow the bitasset issuer to force a global settling -- this may be set in permissions, but not flags */
-      disable_confidential = 0x40, /**< allow the asset to be used with confidential transactions */
-      witness_fed_asset    = 0x80, /**< allow the asset to be fed by witnesses */
-      committee_fed_asset  = 0x100 /**< allow the asset to be fed by the committee */
+	  charge_market_fee    = 0x01, /**< an issuer-specified percentage of all market trades in this asset is paid to the issuer */
+	  white_list           = 0x02, /**< accounts must be whitelisted in order to hold this asset */
+	  override_authority   = 0x04, /**< issuer may transfer asset back to himself */
+	  transfer_restricted  = 0x08, /**< require the issuer to be one party to every transfer */
+	  disable_force_settle = 0x10, /**< disable force settling */
+	  global_settle        = 0x20, /**< allow the bitasset issuer to force a global settling -- this may be set in permissions, but not flags */
+	  disable_confidential = 0x40, /**< allow the asset to be used with confidential transactions */
+	  witness_fed_asset    = 0x80, /**< allow the asset to be fed by witnesses */
+	  committee_fed_asset  = 0x100 /**< allow the asset to be fed by the committee */
    };
    const static uint32_t ASSET_ISSUER_PERMISSION_MASK = charge_market_fee|white_list|override_authority|transfer_restricted|disable_force_settle|global_settle|disable_confidential
-      |witness_fed_asset|committee_fed_asset;
+	  |witness_fed_asset|committee_fed_asset;
    const static uint32_t UIA_ASSET_ISSUER_PERMISSION_MASK = charge_market_fee|white_list|override_authority|transfer_restricted|disable_confidential;
 
    enum reserved_spaces
    {
-      relative_protocol_ids = 0,
-      protocol_ids          = 1,
-      implementation_ids    = 2
+	  relative_protocol_ids = 0,
+	  protocol_ids          = 1,
+	  implementation_ids    = 2
    };
 
    inline bool is_relative( object_id_type o ){ return o.space() == 0; }
 
    /**
-    *  List all object types from all namespaces here so they can
-    *  be easily reflected and displayed in debug output.  If a 3rd party
-    *  wants to extend the core code then they will have to change the
-    *  packed_object::type field from enum_type to uint16 to avoid
-    *  warnings when converting packed_objects to/from json.
-    */
+	*  List all object types from all namespaces here so they can
+	*  be easily reflected and displayed in debug output.  If a 3rd party
+	*  wants to extend the core code then they will have to change the
+	*  packed_object::type field from enum_type to uint16 to avoid
+	*  warnings when converting packed_objects to/from json.
+	*/
    enum object_type
    {
-      null_object_type,
-      base_object_type,
-      account_object_type,
-      asset_object_type,
-      force_settlement_object_type,
-      committee_member_object_type,
-      witness_object_type,
-      limit_order_object_type,
-      call_order_object_type,
-      custom_object_type,
-      proposal_object_type,
-      operation_history_object_type,
-      withdraw_permission_object_type,
-      vesting_balance_object_type,
-      worker_object_type,
-      balance_object_type,
-      index64_object_type,   //liruigang20180913 contract
-      OBJECT_TYPE_COUNT ///< Sentry value which contains the number of different object types
+	  null_object_type,  //1.0.x
+	  base_object_type,  //1
+	  account_object_type,  //2
+	  asset_object_type,  //3
+	  force_settlement_object_type,  //4
+	  committee_member_object_type,  //5
+	  witness_object_type,  //6
+	  limit_order_object_type,  //7
+	  call_order_object_type,  //8
+	  custom_object_type,  //9
+	  proposal_object_type,  //10
+	  operation_history_object_type,  //11
+	  withdraw_permission_object_type,  //12
+	  vesting_balance_object_type,  //13
+	  worker_object_type,  //14
+	  balance_object_type,  //15
+	  index64_object_type,  //16   //liruigang20180913 contract
+	  OBJECT_TYPE_COUNT ///< Sentry value which contains the number of different object types
    };
 
    enum impl_object_type
    {
-      impl_global_property_object_type,
-      impl_dynamic_global_property_object_type,
-      impl_reserved0_object_type,      // formerly index_meta_object_type, TODO: delete me
-      impl_asset_dynamic_data_type,
-      impl_asset_bitasset_data_type,
-      impl_account_balance_object_type,
-      impl_account_statistics_object_type,
-      impl_transaction_object_type,
-      impl_block_summary_object_type,
-      impl_account_transaction_history_object_type,
-      impl_blinded_balance_object_type,
-      impl_chain_property_object_type,
-      impl_witness_schedule_object_type,
-      impl_budget_record_object_type,
-      impl_special_authority_object_type,
-      impl_buyback_object_type,
-      impl_fba_accumulator_object_type,
-      impl_collateral_bid_object_type,
-      impl_table_id_object_type, //liruigang20180913 contract
-      impl_key_value_object_type //liruigang20180913 contract
+	  impl_global_property_object_type,  //2.0.0
+	  impl_dynamic_global_property_object_type,  //1
+	  impl_reserved0_object_type,  //2     // formerly index_meta_object_type, TODO: delete me
+	  impl_asset_dynamic_data_type,  //3
+	  impl_asset_bitasset_data_type,  //4
+	  impl_account_balance_object_type,  //5
+	  impl_account_statistics_object_type,  //6
+	  impl_transaction_object_type,  //7
+	  impl_block_summary_object_type,  //8
+	  impl_account_transaction_history_object_type,  //9
+	  impl_blinded_balance_object_type,  //10
+	  impl_chain_property_object_type,  //11
+	  impl_witness_schedule_object_type,  //12
+	  impl_budget_record_object_type,  //13
+	  impl_special_authority_object_type,  //14
+	  impl_buyback_object_type,  //15
+	  impl_fba_accumulator_object_type,  //16
+	  impl_collateral_bid_object_type,  //17
+	  impl_table_id_object_type,  //18 //liruigang20180913 contract
+	  impl_key_value_object_type  //19 //liruigang20180913 contract
    };
 
    //typedef fc::unsigned_int            object_id_type;
@@ -255,8 +255,8 @@ namespace graphene { namespace chain {
    typedef object_id< implementation_ids, impl_block_summary_object_type,    block_summary_object>                      block_summary_id_type;
 
    typedef object_id< implementation_ids,
-                      impl_account_transaction_history_object_type,
-                      account_transaction_history_object>       account_transaction_history_id_type;
+					  impl_account_transaction_history_object_type,
+					  account_transaction_history_object>       account_transaction_history_id_type;
    typedef object_id< implementation_ids, impl_chain_property_object_type,   chain_property_object>                     chain_property_id_type;
    typedef object_id< implementation_ids, impl_witness_schedule_object_type, witness_schedule_object>                   witness_schedule_id_type;
    typedef object_id< implementation_ids, impl_budget_record_object_type, budget_record_object >                        budget_record_id_type;
@@ -279,78 +279,78 @@ namespace graphene { namespace chain {
 
    struct public_key_type
    {
-       struct binary_key
-       {
-          binary_key() {}
-          uint32_t                 check = 0;
-          fc::ecc::public_key_data data;
-       };
-       fc::ecc::public_key_data key_data;
-       public_key_type();
-       public_key_type( const fc::ecc::public_key_data& data );
-       public_key_type( const fc::ecc::public_key& pubkey );
-       explicit public_key_type( const std::string& base58str );
-       operator fc::ecc::public_key_data() const;
-       operator fc::ecc::public_key() const;
-       explicit operator std::string() const;
-       friend bool operator == ( const public_key_type& p1, const fc::ecc::public_key& p2);
-       friend bool operator == ( const public_key_type& p1, const public_key_type& p2);
-       friend bool operator != ( const public_key_type& p1, const public_key_type& p2);
+	   struct binary_key
+	   {
+		  binary_key() {}
+		  uint32_t                 check = 0;
+		  fc::ecc::public_key_data data;
+	   };
+	   fc::ecc::public_key_data key_data;
+	   public_key_type();
+	   public_key_type( const fc::ecc::public_key_data& data );
+	   public_key_type( const fc::ecc::public_key& pubkey );
+	   explicit public_key_type( const std::string& base58str );
+	   operator fc::ecc::public_key_data() const;
+	   operator fc::ecc::public_key() const;
+	   explicit operator std::string() const;
+	   friend bool operator == ( const public_key_type& p1, const fc::ecc::public_key& p2);
+	   friend bool operator == ( const public_key_type& p1, const public_key_type& p2);
+	   friend bool operator != ( const public_key_type& p1, const public_key_type& p2);
    };
 
    struct extended_public_key_type
    {
-      struct binary_key
-      {
-         binary_key() {}
-         uint32_t                   check = 0;
-         fc::ecc::extended_key_data data;
-      };
-      
-      fc::ecc::extended_key_data key_data;
-       
-      extended_public_key_type();
-      extended_public_key_type( const fc::ecc::extended_key_data& data );
-      extended_public_key_type( const fc::ecc::extended_public_key& extpubkey );
-      explicit extended_public_key_type( const std::string& base58str );
-      operator fc::ecc::extended_public_key() const;
-      explicit operator std::string() const;
-      friend bool operator == ( const extended_public_key_type& p1, const fc::ecc::extended_public_key& p2);
-      friend bool operator == ( const extended_public_key_type& p1, const extended_public_key_type& p2);
-      friend bool operator != ( const extended_public_key_type& p1, const extended_public_key_type& p2);
+	  struct binary_key
+	  {
+		 binary_key() {}
+		 uint32_t                   check = 0;
+		 fc::ecc::extended_key_data data;
+	  };
+
+	  fc::ecc::extended_key_data key_data;
+
+	  extended_public_key_type();
+	  extended_public_key_type( const fc::ecc::extended_key_data& data );
+	  extended_public_key_type( const fc::ecc::extended_public_key& extpubkey );
+	  explicit extended_public_key_type( const std::string& base58str );
+	  operator fc::ecc::extended_public_key() const;
+	  explicit operator std::string() const;
+	  friend bool operator == ( const extended_public_key_type& p1, const fc::ecc::extended_public_key& p2);
+	  friend bool operator == ( const extended_public_key_type& p1, const extended_public_key_type& p2);
+	  friend bool operator != ( const extended_public_key_type& p1, const extended_public_key_type& p2);
    };
-   
+
    struct extended_private_key_type
    {
-      struct binary_key
-      {
-         binary_key() {}
-         uint32_t                   check = 0;
-         fc::ecc::extended_key_data data;
-      };
-      
-      fc::ecc::extended_key_data key_data;
-       
-      extended_private_key_type();
-      extended_private_key_type( const fc::ecc::extended_key_data& data );
-      extended_private_key_type( const fc::ecc::extended_private_key& extprivkey );
-      explicit extended_private_key_type( const std::string& base58str );
-      operator fc::ecc::extended_private_key() const;
-      explicit operator std::string() const;
-      friend bool operator == ( const extended_private_key_type& p1, const fc::ecc::extended_private_key& p2);
-      friend bool operator == ( const extended_private_key_type& p1, const extended_private_key_type& p2);
-      friend bool operator != ( const extended_private_key_type& p1, const extended_private_key_type& p2);
+	  struct binary_key
+	  {
+		 binary_key() {}
+		 uint32_t                   check = 0;
+		 fc::ecc::extended_key_data data;
+	  };
+
+	  fc::ecc::extended_key_data key_data;
+
+	  extended_private_key_type();
+	  extended_private_key_type( const fc::ecc::extended_key_data& data );
+	  extended_private_key_type( const fc::ecc::extended_private_key& extprivkey );
+	  explicit extended_private_key_type( const std::string& base58str );
+	  operator fc::ecc::extended_private_key() const;
+	  explicit operator std::string() const;
+	  friend bool operator == ( const extended_private_key_type& p1, const fc::ecc::extended_private_key& p2);
+	  friend bool operator == ( const extended_private_key_type& p1, const extended_private_key_type& p2);
+	  friend bool operator != ( const extended_private_key_type& p1, const extended_private_key_type& p2);
    };
 } }  // graphene::chain
 
 namespace fc
 {
-    void to_variant( const graphene::chain::public_key_type& var,  fc::variant& vo, uint32_t max_depth = 2 );
-    void from_variant( const fc::variant& var,  graphene::chain::public_key_type& vo, uint32_t max_depth = 2 );
-    void to_variant( const graphene::chain::extended_public_key_type& var, fc::variant& vo, uint32_t max_depth = 2 );
-    void from_variant( const fc::variant& var, graphene::chain::extended_public_key_type& vo, uint32_t max_depth = 2 );
-    void to_variant( const graphene::chain::extended_private_key_type& var, fc::variant& vo, uint32_t max_depth = 2 );
-    void from_variant( const fc::variant& var, graphene::chain::extended_private_key_type& vo, uint32_t max_depth = 2 );
+	void to_variant( const graphene::chain::public_key_type& var,  fc::variant& vo, uint32_t max_depth = 2 );
+	void from_variant( const fc::variant& var,  graphene::chain::public_key_type& vo, uint32_t max_depth = 2 );
+	void to_variant( const graphene::chain::extended_public_key_type& var, fc::variant& vo, uint32_t max_depth = 2 );
+	void from_variant( const fc::variant& var, graphene::chain::extended_public_key_type& vo, uint32_t max_depth = 2 );
+	void to_variant( const graphene::chain::extended_private_key_type& var, fc::variant& vo, uint32_t max_depth = 2 );
+	void from_variant( const fc::variant& var, graphene::chain::extended_private_key_type& vo, uint32_t max_depth = 2 );
 }
 
 FC_REFLECT( graphene::chain::public_key_type, (key_data) )
@@ -361,47 +361,47 @@ FC_REFLECT( graphene::chain::extended_private_key_type, (key_data) )
 FC_REFLECT( graphene::chain::extended_private_key_type::binary_key, (check)(data) )
 
 FC_REFLECT_ENUM( graphene::chain::object_type,
-                 (null_object_type)
-                 (base_object_type)
-                 (account_object_type)
-                 (force_settlement_object_type)
-                 (asset_object_type)
-                 (committee_member_object_type)
-                 (witness_object_type)
-                 (limit_order_object_type)
-                 (call_order_object_type)
-                 (custom_object_type)
-                 (proposal_object_type)
-                 (operation_history_object_type)
-                 (withdraw_permission_object_type)
-                 (vesting_balance_object_type)
-                 (worker_object_type)
-                 (balance_object_type)
-                 (index64_object_type)    //liruigang20180913 contract
-                 (OBJECT_TYPE_COUNT)
-               )
+				 (null_object_type)
+				 (base_object_type)
+				 (account_object_type)
+				 (force_settlement_object_type)
+				 (asset_object_type)
+				 (committee_member_object_type)
+				 (witness_object_type)
+				 (limit_order_object_type)
+				 (call_order_object_type)
+				 (custom_object_type)
+				 (proposal_object_type)
+				 (operation_history_object_type)
+				 (withdraw_permission_object_type)
+				 (vesting_balance_object_type)
+				 (worker_object_type)
+				 (balance_object_type)
+				 (index64_object_type)    //liruigang20180913 contract
+				 (OBJECT_TYPE_COUNT)
+			   )
 FC_REFLECT_ENUM( graphene::chain::impl_object_type,
-                 (impl_global_property_object_type)
-                 (impl_dynamic_global_property_object_type)
-                 (impl_reserved0_object_type)
-                 (impl_asset_dynamic_data_type)
-                 (impl_asset_bitasset_data_type)
-                 (impl_account_balance_object_type)
-                 (impl_account_statistics_object_type)
-                 (impl_transaction_object_type)
-                 (impl_block_summary_object_type)
-                 (impl_account_transaction_history_object_type)
-                 (impl_blinded_balance_object_type)
-                 (impl_chain_property_object_type)
-                 (impl_witness_schedule_object_type)
-                 (impl_budget_record_object_type)
-                 (impl_special_authority_object_type)
-                 (impl_buyback_object_type)
-                 (impl_fba_accumulator_object_type)
-                 (impl_collateral_bid_object_type)
-                 (impl_table_id_object_type)     //liruigang20180913 contract
-                 (impl_key_value_object_type)   //liruigang20180913 contract
-               )
+				 (impl_global_property_object_type)
+				 (impl_dynamic_global_property_object_type)
+				 (impl_reserved0_object_type)
+				 (impl_asset_dynamic_data_type)
+				 (impl_asset_bitasset_data_type)
+				 (impl_account_balance_object_type)
+				 (impl_account_statistics_object_type)
+				 (impl_transaction_object_type)
+				 (impl_block_summary_object_type)
+				 (impl_account_transaction_history_object_type)
+				 (impl_blinded_balance_object_type)
+				 (impl_chain_property_object_type)
+				 (impl_witness_schedule_object_type)
+				 (impl_budget_record_object_type)
+				 (impl_special_authority_object_type)
+				 (impl_buyback_object_type)
+				 (impl_fba_accumulator_object_type)
+				 (impl_collateral_bid_object_type)
+				 (impl_table_id_object_type)     //liruigang20180913 contract
+				 (impl_key_value_object_type)   //liruigang20180913 contract
+			   )
 
 FC_REFLECT_TYPENAME( graphene::chain::share_type )
 

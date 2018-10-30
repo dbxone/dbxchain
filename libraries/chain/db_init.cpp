@@ -136,6 +136,7 @@ const uint8_t table_id_object::type_id;
 
 const uint8_t key_value_object::space_id;
 const uint8_t key_value_object::type_id;
+
 void database::initialize_evaluators()
 {
    _operation_evaluators.resize(255);
@@ -231,6 +232,10 @@ void database::initialize_indexes()
    add_index< primary_index<collateral_bid_index                          > >();
 
    add_index< primary_index< simple_index< fba_accumulator_object       > > >();
+
+   add_index< primary_index< table_id_multi_index                         > >();  //liruigang20181029 contract
+   add_index< primary_index< key_value_index                              > >();  //liruigang20181029 contract
+//   add_index< primary_index< index64_index                                > >();  //liruigang20181029 contract
 }
 
 void database::init_genesis(const genesis_state_type& genesis_state)
