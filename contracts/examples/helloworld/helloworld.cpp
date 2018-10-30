@@ -15,10 +15,8 @@ class helloworld : public contract
 
     /// @abi action
     void hi(std::string user)
-    {
-        for (int i = 0; i < 2; ++i) {
-            print("hi, ", user, "\n");
-        }
+	{
+		print("hi, ", user, "\n");
     }
 };
 
