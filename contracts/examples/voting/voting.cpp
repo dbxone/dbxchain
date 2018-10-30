@@ -13,39 +13,48 @@ class voting: public contract
 public:
     voting(uint64_t self)
         : contract(self)
-        , persons(_self, _self)
+		, candidates(_self, _self)
     {
     }
 
     /// @abi action
     void vote(uint64_t id, std::string name)
     {
-        persons.emplace(_self, [&](auto &person) {
-            person.id = id ;
-            person.name = name;
-            person.count++;
-			print("name=", name, ", id=" , id, ", count=" , person.count,"\n");
-        });
+		auto it = candidates.find(id) ;
+		if ( it == candidates.end() ) {
+			candidates.emplace(_self, [&](auto &candidate) {
+				candidate.id = id ;
+				candidate.name = name;
+				candidate.count = 1;
+				print("id=" , id, ", name=", name,  ", count=" , candidate.count,"\n");
+			});
+		}
+		else {
+			candidates.modify(it, _self, [&](auto &candidate) {
+				candidate.count++ ;
+			});
+			print("id=" , it->id, ", name=", it->name,  ", count=" , it->count,"\n");
+		}
     }
 
     /// @abi action
     void remove(uint64_t id)
     {
-        const auto &it = persons.find(id);
-        if ( it == persons.end() )
+		const auto &it = candidates.find(id);
+		if ( it == candidates.end() )
         {
 			print("can not find name=", id, "\n");
             return ;
         }
 
 		print("remove name=", it->name, "\n");
-        persons.erase(it);
+		candidates.erase(it);
     }
 
     /// @abi action
     void list()
     {
-        for( auto it : persons ) {
+		for( auto it : candidates ) {
 			print("id=", it.id, ", name=", it.name, ", count=" , it.count,"\n");
         }
     }
@@ -53,8 +62,8 @@ public:
     /// @abi action
     void count(uint64_t id)
     {
-        const auto &it = persons.find(id);
-        if ( it == persons.end() )
+		const auto &it = candidates.find(id);
+		if ( it == candidates.end() )
         {
 			print("can not find name=", id, "\n");
             return ;
@@ -64,19 +73,19 @@ public:
     }
 
 private:
-    struct person {
+	struct candidate {
         uint64_t id;
         std::string name;
         uint32_t count;
 
         uint64_t primary_key() const { return id; }
 
-		GRAPHENE_SERIALIZE(person, (id)(name)(count));
+		GRAPHENE_SERIALIZE(candidate, (id)(name)(count));
     };
 
-    typedef graphene::multi_index<N(person), person> person_index;
+	typedef graphene::multi_index<N(candidate), candidate> candidate_index;
 
-    person_index persons;
+	candidate_index candidates;
 };
 
 GRAPHENE_ABI(voting, (vote)(remove)(list)(count))

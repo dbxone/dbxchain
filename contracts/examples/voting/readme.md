@@ -4,4 +4,7 @@ deploy_contract voting nathan 0 0 /root/dbxchain/contracts/examples/voting DBX t
 
 call_contract nathan voting null list "{}" DBX true
 call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" DBX true
+call_contract nathan voting null vote "{\"id\":2, \"name\":\"user2\"}" DBX true
+call_contract nathan voting null vote "{\"id\":3, \"name\":\"user3\"}" DBX true
+call_contract nathan voting null vote "{\"id\":4, \"name\":\"user4\"}" DBX true
 call_contract nathan voting null count "{\"id\":1, \"name\":\"user1\"}" DBX true
