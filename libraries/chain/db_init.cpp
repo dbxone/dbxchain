@@ -137,9 +137,6 @@ const uint8_t table_id_object::type_id;
 const uint8_t key_value_object::space_id;
 const uint8_t key_value_object::type_id;
 
-const uint8_t secondary_index::index_object index64_object::space_id;
-const uint8_t secondary_index::index_object index64_object::type_id;
-
 void database::initialize_evaluators()
 {
    _operation_evaluators.resize(255);
@@ -217,6 +214,8 @@ void database::initialize_indexes()
    add_index< primary_index<worker_index> >();
    add_index< primary_index<balance_index> >();
    add_index< primary_index<blinded_balance_index> >();
+   add_index< primary_index< index64_index                                > >();  //liruigang20181029 contract
+   ilog( "initialize_indexes 44444444444 " );
 
    //Implementation object indexes
    add_index< primary_index<transaction_index                             > >();
@@ -241,8 +240,6 @@ void database::initialize_indexes()
    ilog( "initialize_indexes 222222222222 " );
    add_index< primary_index< key_value_index                              > >();  //liruigang20181029 contract
    ilog( "initialize_indexes 33333333333 " );
-   add_index< primary_index< index64_index                                > >();  //liruigang20181029 contract
-   ilog( "initialize_indexes 44444444444 " );
 }
 
 void database::init_genesis(const genesis_state_type& genesis_state)
