@@ -98,7 +98,7 @@ void  fork_database::_push_block(const item_ptr& item)
    {
       _head = item;
       uint32_t min_num = _head->num - std::min( _max_size, _head->num );
-      dlog( "fork DB min block_num: ${n}, max_size: ${m}, head_num: ${head_num}", ("n",min_num)("m",_max_size)("head_num", _head->num));
+	  //dlog( "fork DB min block_num: ${n}, max_size: ${m}, head_num: ${head_num}", ("n",min_num)("m",_max_size)("head_num", _head->num));
       auto& num_idx = _index.get<block_num>();
       while( num_idx.size() && (*num_idx.begin())->num < min_num )
          num_idx.erase( num_idx.begin() );
