@@ -169,26 +169,26 @@ namespace graphene { namespace chain {
 
    enum impl_object_type
    {
-	  impl_global_property_object_type,
-	  impl_dynamic_global_property_object_type,
-	  impl_reserved0_object_type,      // formerly index_meta_object_type, TODO: delete me
-	  impl_asset_dynamic_data_type,
-	  impl_asset_bitasset_data_type,
-	  impl_account_balance_object_type,
-	  impl_account_statistics_object_type,
-	  impl_transaction_object_type,
-	  impl_block_summary_object_type,
-	  impl_account_transaction_history_object_type,
-	  impl_blinded_balance_object_type,
-	  impl_chain_property_object_type,
-	  impl_witness_schedule_object_type,
-	  impl_budget_record_object_type,
-	  impl_special_authority_object_type,
-	  impl_buyback_object_type,
-	  impl_fba_accumulator_object_type,
-	  impl_collateral_bid_object_type,
-	  impl_table_id_object_type, //liruigang20180913 contract
-	  impl_key_value_object_type //liruigang20180913 contract
+	  impl_global_property_object_type,  //2.0.0
+	  impl_dynamic_global_property_object_type,  //1
+	  impl_reserved0_object_type,  //2     // formerly index_meta_object_type, TODO: delete me
+	  impl_asset_dynamic_data_type,  //3
+	  impl_asset_bitasset_data_type,  //4
+	  impl_account_balance_object_type,  //5
+	  impl_account_statistics_object_type,  //6
+	  impl_transaction_object_type,  //7
+	  impl_block_summary_object_type,  //8
+	  impl_account_transaction_history_object_type,  //9
+	  impl_blinded_balance_object_type,  //10
+	  impl_chain_property_object_type,  //11
+	  impl_witness_schedule_object_type,  //12
+	  impl_budget_record_object_type,  //13
+	  impl_special_authority_object_type,  //14
+	  impl_buyback_object_type,  //15
+	  impl_fba_accumulator_object_type,  //16
+	  impl_collateral_bid_object_type,  //17
+	  impl_table_id_object_type,  //18 //liruigang20180913 contract
+	  impl_key_value_object_type  //19 //liruigang20180913 contract
    };
 
    //typedef fc::unsigned_int            object_id_type;

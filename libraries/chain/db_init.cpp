@@ -233,13 +233,9 @@ void database::initialize_indexes()
 
    add_index< primary_index< simple_index< fba_accumulator_object       > > >();
 
-   ilog( "initialize_indexes 111111111111 " );
    add_index< primary_index< table_id_multi_index                         > >();  //liruigang20181029 contract
-   ilog( "initialize_indexes 222222222222 " );
    add_index< primary_index< key_value_index                              > >();  //liruigang20181029 contract
-   ilog( "initialize_indexes 33333333333 " );
 //   add_index< primary_index< index64_index                                > >();  //liruigang20181029 contract
-   ilog( "initialize_indexes 44444444444 " );
 }
 
 void database::init_genesis(const genesis_state_type& genesis_state)
