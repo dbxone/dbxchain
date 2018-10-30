@@ -24,7 +24,7 @@ public:
             person.id = id ;
             person.name = name;
             person.count++;
-            print("candidate=", name, ", id=" , id, ", count=" , person.count,"\n");
+			print("name=", name, ", id=" , id, ", count=" , person.count,"\n");
         });
     }
 
@@ -34,11 +34,11 @@ public:
         const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
-            print("can not find candidate=", id, "\n");
+			print("can not find name=", id, "\n");
             return ;
         }
 
-        print("remove candidate=", it->name, "\n");
+		print("remove name=", it->name, "\n");
         persons.erase(it);
     }
 
@@ -46,7 +46,7 @@ public:
     void list()
     {
         for( auto it : persons ) {
-            print("candidate=", it.name, ", count=" , it.count,"\n");
+			print("id=", it.id, ", name=", it.name, ", count=" , it.count,"\n");
         }
     }
 
@@ -56,11 +56,11 @@ public:
         const auto &it = persons.find(id);
         if ( it == persons.end() )
         {
-            print("can not find candidate=", id, "\n");
+			print("can not find name=", id, "\n");
             return ;
         }
 
-        print("candidate=", it->name, ", id=" , it->id, ", count=" , it->count,"\n");
+		print("id=", it->id, ", name=", it->name, ", count=" , it->count,"\n");
     }
 
 private:
