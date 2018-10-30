@@ -137,8 +137,8 @@ const uint8_t table_id_object::type_id;
 const uint8_t key_value_object::space_id;
 const uint8_t key_value_object::type_id;
 
-const uint8_t template index64_object::space_id;
-const uint8_t template index64_object::type_id;
+const uint8_t secondary_index::index_object index64_object::space_id;
+const uint8_t secondary_index::index_object index64_object::type_id;
 
 void database::initialize_evaluators()
 {
