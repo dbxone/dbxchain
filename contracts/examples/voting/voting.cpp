@@ -71,7 +71,7 @@ private:
 
         uint64_t primary_key() const { return id; }
 
-        GRAPHENE_SERIALIZE(person, (name)(count));
+		GRAPHENE_SERIALIZE(person, (id)(name)(count));
     };
 
     typedef graphene::multi_index<N(person), person> person_index;
