@@ -1,7 +1,7 @@
 *.a
 *.sw*
 
-
+dbxchain*.*
 CMakeCache.txt
 CMakeFiles
 Makefile
