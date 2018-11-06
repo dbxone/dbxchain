@@ -96,7 +96,7 @@ object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance
       obj.balance = op.amount;
       op.policy.visit( init_policy_visitor( obj.policy, op.amount.amount, now ) );
 	  //liruigang20181023 vesting
-	  policy.vesting_seconds = 60;
+	  obj.policy.get< cdd_vesting_policy >().vesting_seconds = 60;
    } );
 
 

@@ -11,7 +11,7 @@ moc_*
 
 genesis.json
 hardfork.hpp
-dbxchain.*
+dbxchain*.*
 
 libraries/utilities/git_revision.cpp
 
